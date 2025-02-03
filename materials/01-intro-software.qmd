@@ -145,9 +145,7 @@ All the files in the working directory can be referenced using **relative paths*
 
 Relative paths are relative to a certain location on your computer. Absolute paths start from the absolute start of your hard drive. This is easiest illustrated with an example:
 
-**Relative path**: `data/data_01.csv`
-
-**Absolute path**: `C:/Users/Jeff/Documents/data-analysis/data/surveys.csv`
+![Relative vs absolute paths](images/working_directory_example.png){#fig-working_directory_example}
 
 :::
 
