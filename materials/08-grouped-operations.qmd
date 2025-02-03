@@ -10,8 +10,26 @@ title: Grouped operations
 
 
 ## Context
+
 We’ve done different types of operations, all on the entire data set. Sometimes there is structure within the data, such as different groups (e.g. genotypes, patient cohorts, geographical areas etc). We might then want information on a group-by-group basis.
 
+## Split-apply-combine
+
+This kind of operation can be referred to as split-apply-combine, because we split the data, apply some function and then combine the outcome.
+
+Let's illustrate this with an example. @fig-groupby_table shows a hypothetical data set, where we have temperature and rainfall measurements for different cities.
+
+![An example of a table with groups](images/groupby_table.png){#fig-groupby_table}
+
+Let's assume we were interested in the average temperature for each city. We would have to do the following:
+
+1. Split the data by `city`
+2. Calculate the average `temperature`
+3. Combine the outcome together in a new table
+
+This is visualised in @fig-groupby_split.
+
+![Split-apply-combine](images/groupby_split.png){#fig-groupby_split}
 
 ## Summary operations
 

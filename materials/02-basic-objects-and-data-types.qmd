@@ -21,9 +21,9 @@ We’ve seen examples where we entered data directly into a function. Most of th
 
 Computers are picky when it comes to data and they like consistency. As such, it's good to be aware of the fact that data can be viewed or interpreted in different ways by the computer.
 
-For example, you might have research data the presence or absence of a tumour is scored. This would often be recorded as `0` when absent and `1` as present. Your computer views these values as numbers and would happily calculate the average of those values. Not ideal, because a tumour being, on average, `0.3` present makes no sense!
+For example, you might have research data where the presence or absence of a tumour is scored. This would often be recorded as `0` when absent and `1` as present. Your computer views these values as numbers and would happily calculate the average of those values. Not ideal, because a tumour being, on average, `0.3` present makes no sense!
 
-So, it makes sense to spend a bit of time looking at your data and making sure that the computer sees it in the correct way.
+So, it is important to spend a bit of time looking at your data to make sure that the computer sees it in the correct way.
 
 ### Quantitative data
 
@@ -51,7 +51,7 @@ In general, computers can view these different types of data in specific ways.
 
 R has the following main data types:
 
-| Data type | Description|
+| Data&nbsp;type | Description|
 |-----------|--------------------------------------------------------------|
 | numeric   | Represents numbers; can be whole (integers) or decimals \
 (e.g., `19`or `2.73`).|
