@@ -190,6 +190,14 @@ commands.
 
 ### Scripts versus console
 
+| Console/terminal <i class="fa fa-terminal fa-1x"></i>| Script <i class="fa-regular fa-file-lines fa-1x"></i>|
+|-------------------------------------|-------------------------------------|
+| runs code directly | in essence, a text file |
+| interactive | needs to be told to run |
+| no record | records actions |
+| difficult to trace progress | transparent workflow |
+
+
 There are two main ways of interacting with R: by using the console or by using
 script files (plain text files that contain your code). The console pane (in
 RStudio, the bottom left panel) is the place where commands written in the R
