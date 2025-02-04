@@ -32,10 +32,10 @@ So, it is important to spend a bit of time looking at your data to make sure tha
 Discrete data are numerical data that can only take distinct values. They can be counted and only take whole numbers. Examples of discrete data include, for example, the number of planets in a solar system or the number of questions answered on an exam.
 
 |                                 | Description                                      |
-|---------------------------|--------------------------------------------------|
-| <i class="fa fa-list-check fa-2x"></i> | The number of questions answered on an exam (e.g. 12 out of 20) |
-| <i class="fa fa-check-circle fa-2x"></i> | If somebody has completed a survey (binary data; yes/no) |
-| <i class="fa fa-users fa-2x"></i>    | The number of students in a class (e.g. 20, 32) |
+|------------|--------------------------------------------------|
+| <i class="fa fa-list-check fa-1x"></i> | The number of questions answered on an exam (e.g. 12 out of 20) |
+| <i class="fa fa-check-circle fa-1x"></i> | If somebody has completed a survey (binary data; yes/no) |
+| <i class="fa fa-users fa-1x"></i>    | The number of students in a class (e.g. 20, 32) |
 
 
 
@@ -44,11 +44,11 @@ Discrete data are numerical data that can only take distinct values. They can be
 Continuous data can take any value within a given range. These data can be measured and can include decimals or fractions.
 
 |                                 | Description                                      |
-|---------------------------|--------------------------------------------------|
-| <i class="fa fa-thermometer-half fa-2x"></i> | Temperature of a liquid (e.g. 20 &deg;C) |
-| <i class="fa fa-ruler fa-2x"></i>    | Height of people in a cohort (e.g. 168 cm) |
-| <i class="fa fa-heartbeat fa-2x"></i> | Average heart rate in a patient (e.g. 70 beats per minute) |
-| <i class="fa fa-tint fa-2x"></i>     | Water levels in an aquifer (e.g. 2.4 metres) |
+|------------|--------------------------------------------------|
+| <i class="fa fa-thermometer-half fa-1x"></i> | Temperature of a liquid (e.g. 20 &deg;C) |
+| <i class="fa fa-ruler fa-1x"></i>    | Height of people in a cohort (e.g. 168 cm) |
+| <i class="fa fa-heartbeat fa-1x"></i> | Average heart rate in a patient (e.g. 70 beats per minute) |
+| <i class="fa fa-tint fa-1x"></i>     | Water levels in an aquifer (e.g. 2.4 metres) |
 
 ### Qualitative data
 
@@ -59,10 +59,10 @@ Qualitative data are data that describe qualities which can't be measured or qua
 These are categorical data that represent categories or distinct groups, without any inherent order or ranking.
 
 |                                 | Description                                      |
-|---------------------------|--------------------------------------------------|
-| <i class="fa fa-eye fa-2x"></i>      | Eye colour (e.g. blue, brown) |
-| <i class="fa fa-university fa-2x"></i> | Education level (e.g. primary school, secondary school) |
-| <i class="fa fa-flask fa-2x"></i>    | Treatment group (e.g. control, treatment) |
+|------------|--------------------------------------------------|
+| <i class="fa fa-eye fa-1x"></i>      | Eye colour (e.g. blue, brown) |
+| <i class="fa fa-university fa-1x"></i> | Education level (e.g. primary school, secondary school) |
+| <i class="fa fa-flask fa-1x"></i>    | Treatment group (e.g. control, treatment) |
 
 
 
@@ -70,10 +70,10 @@ These are categorical data that represent categories or distinct groups, without
 Ordinal data are similar to nominal data, in that they represent different categories or groups. However, these also have an inherent ordering to them.
 
 |                                 | Description                                      |
-|---------------------------|--------------------------------------------------|
-| <i class="fa fa-star fa-2x"></i>     | Rating scale (e.g., 1 to 5 stars for difficulty levels) |
-| <i class="fa fa-trophy fa-2x"></i>   | Rank or position (e.g., 1st, 2nd, 3rd place in a tournament) |
-| <i class="fa fa-sort-amount-up fa-2x"></i> | Order or progression (e.g., low, medium, high priority) |
+|------------|--------------------------------------------------|
+| <i class="fa fa-star fa-1x"></i>     | Rating scale (e.g., 1 to 5 stars for difficulty levels) |
+| <i class="fa fa-trophy fa-1x"></i>   | Rank or position (e.g., 1st, 2nd, 3rd place in a tournament) |
+| <i class="fa fa-sort-amount-up fa-1x"></i> | Order or progression (e.g., low, medium, high priority) |
 
 
 
@@ -267,11 +267,6 @@ temperature = 14
 temp_K
 ```
 :::
-
-### Updating objects
-
-> LO: update objects in R
-> LO: update objects in Python & demonstrate lack of updates in tuples
 
 ## Collections of data
 

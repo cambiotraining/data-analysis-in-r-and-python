@@ -5,28 +5,327 @@ title: Working with tabular data
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Understand the structure of tabular data
+- Be able to read in tabular data
+- Investigate properties of the data (e.g. types of variables, missing data)
 :::
 
 
 ## Context
-In the previous section we dealt with single objects and vectors. Here we expand towards tabular data, which can be seen as a set of vectors grouped together.
+In the previous section we dealt with single objects and vectors/lists. Here we expand towards tabular data, which can be seen as a set of these grouped together.
 
 ## Tabular data
+Tables are organised in columns (vertical) and rows (horizontal). An example of a tabular data set is given in @fig-tabular_data.
 
-* LO: understand data frames; matrices
-* LO: exploring structure of tabular data
+There, each **column** contains a variable (a thing that we've measured). Each **row** is a unique observation. 
 
 ![An example of tabular data](images/tabular_data.png){#fig-tabular_data}
 
 ## Working with data
+Tabular data sets are often created in spreadsheet programmes, such as Excel. These programmes are actually very well-suited, since they make it easy to enter data and keep an overview. When it comes to *analysing* these data, we're better off using coding - that way we can keep track of our analysis.
 
-* LO: read in CSV file; TSV; specifying how to deal with missing data
-* LO: selecting columns with $
-* LO: brief introduction to subsetting with [row, column]
+The default Excel format is not great, since it's a propriety format and not natively readable by other computer programmes. Good alternatives are `.csv` or *comma-separated values* files or `.tsv` `tab-separated files.
+
+For the next few sections we'll be using the `surveys.csv` data set (which you should now have in your `data-analysis/data` sub folder).
+
+We'll read in these data now.
+
+::: {.panel-tabset group="language"}
+## R
+If you haven't done so already, make sure to load the `tidyverse` package:
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+Next, we read in the file using the `read_csv()` function. Note that there is also a `read.csv()` function, but that one behaves slightly differently, so ensure you use the correct function name!
+
+```{r}
+read_csv("data/surveys.csv")
+```
+
+
+
+## Python
+
+We'll be using the `read_csv()` function from `pandas`, so make sure to load this module first.
+
+```{python}
+import pandas as pd
+```
+
+```{python}
+pd.read_csv("data/surveys.csv")
+```
+
+:::
+
+This actually spits out quite a bit of information onto the screen! This is because we've not assigned the output of reading in the file to an object. As such, we can't work with the data yet. So, we'll have to fix this. I've done this on purpose, of course, to show that the command itself works.
+
+It is always good practice to run commands like this without assigning things. That way you can double-check what gets stored into an object! We'll save the data into an object called `surveys`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+surveys <- read_csv("data/surveys.csv")
+```
+
+
+## Python
+
+```{python}
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+
+
+::: {.callout-note}
+## Reading in different types of data
+
+There are many different functions available to read in various data formats. Below are some of the most common ones.
+
+::: {.panel-tabset group="language"}
+## R
+
+The `readr` package (part of `tidyverse`) has several functions to read data in different formats.
+
+* `read_csv()` - for comma separated values
+* `read_tsv()` - for tab separated values
+* `read_csv2()` - for CSV files exported from non-English spreadsheet programs that use the semi-colon ; as a separator and a comma , as the decimal place.
+* `read_table()` - to read data where each column is separated by one or more spaces.
+* `read_delim()` - a flexible function that allows you to define your own delimiter.
+
+These functions have equivalents in base R (the default installation of R), which you can also use. They are very similarly named, for example: `read.csv()` and `read.table()` (notice the `.` instead of `_` in the function name). However, they have different default options, so pay attention to which one you use!
+
+## Python
+
+Python's `pd.read_csv()` function from `pandas` can read in many different types of (tabular) data. The way it recognises the different formats is by specifying the separator:
+
+* `pd.read_csv()` - for comma separated values
+* `pd.read_csv(file.tsv, sep = "\t")` - for tab separated values
+* `pd.read_csv(file.csv, sep = ";")` - for CSV files exported from non-English spreadsheet programs that use the semi-colon ; as a separator and a comma , as the decimal place.
+* `pd.read_table(file.txt)` - for general delimited text files and equivalent to `pd.read_csv()` with a default delimiter of `\t` (tab)
+:::
+:::
+
+## Table structure
+
+Now that we've read in the `surveys` data set, we can start exploring it a bit more. It's quite a substantial data set, with `r surveys |> ncol()` columns and `r surveys |> nrow()` rows.
+
+### Getting the first few rows
+
+A good starting point is to get a snippet of the data. We can use the `head()` function to get the first few rows of the table.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+head(surveys)
+```
+
+## Python
+
+```{python}
+surveys.head()
+```
+
+:::
+
+### Understanding overall structure
+
+It's also useful to have a bit of an overview of the overall structure of the table. This may seems trivial with smaller data sets, but the bigger the data set, the harder this can become!
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+str(surveys)
+```
+
+
+## Python
+
+```{python}
+surveys.info()
+```
+
+:::
+
+This gives quite a bit of information, but overall it's quite straightforward: we can see the number of rows and column and we have information on the type of data that is contained in each column.
+
+
+### Summary values
+
+Lastly, we can get some more information by creating some summary statistics.
+
+This can be quite useful to quickly check if there are any strange values in your data. For example, you might have expectations on what is a plausible `weight` value, so if there are typos or errors (e.g. `weight = 0`), they will quickly show up.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+summary(surveys)
+```
+
+
+## Python
+
+```{python}
+surveys.describe()
+```
+
+:::
+
+## Basic subsetting of data
+
+Although we'll go into more detail on how to select portions of a larger data set, we'll briefly cover some very basic subsetting techniques here - just to get us going.
+
+### Selecting columns
+
+We saw that there are 9 different columns in our data set. One of them is `weight`, which holds weight measurements for different animal records.
+
+::: {.panel-tabset group="language"}
+## R
+
+We can easily select an individual column using the `$` symbol. We type the name of the object and then specify which column we're interested in:
+
+```{r}
+#| eval: false
+surveys$weight
+```
+
+
+## Python
+
+We can easily select an individual column in a pandas data frame using the `.` notation. We type the name of the object and then specify which column we're interested in:
+
+```{python}
+surveys.weight
+```
+
+:::
+
+### Subsetting rows and columns
+
+We can subset specific rows and columns using the square bracket `[ ]` notation. The way this is ordered is `[rows, columns]`.
+
+We can divide the way we extract the data into two methods: based on their numerical index (index-based subsetting) or based on their label/name in the table (label-based subsetting).
+
+::: {.panel-tabset group="language"}
+## R
+
+Here, we are asking to return *all* the rows for the `species_id` column (its label). Note the comma before the `"species_id"` notation.
+
+```{r}
+surveys[ , "species_id"]
+```
+
+We can also select a subset of rows for this column, for example the first 3 rows:
+
+```{r}
+surveys[1:3, "species_id"]
+```
+
+## Python
+
+Here, we are asking to return *all* the rows for the `species_id` column. We use the `loc` to use label-based indexing. Note the `: ,` before the `"species_id"` notation. This tells Python to get all the rows.
+
+
+```{python}
+surveys.loc[: , "species_id"]
+```
+
+We can also select a subset of rows for this column, for example the first 3 rows:
+
+```{python}
+surveys.loc[0:2, "species_id"]
+```
+
+:::
+
+Alternatively, we use index-based subsetting:
+
+::: {.panel-tabset group="language"}
+## R
+
+Let's grab the first 3 rows, and columns 2 to 4:
+
+```{r}
+surveys[1:3, 2:4]
+```
+
+or rows 10 to 15, and columns 2, 6 and 8:
+
+```{r}
+surveys[10:15, c(2, 6, 8)]
+```
+
+## Python
+
+Let's grab the first 3 rows, and columns 2 to 4:
+
+```{python}
+surveys.iloc[0:3, 1:4]
+```
+
+or rows 10 to 15, and columns 2, 6 and 8:
+
+```{python}
+surveys.iloc[9:15, [1, 5, 7]]
+```
+
+Remember, Python's indexing is zero-based - so you have to be quite careful/accurate when you're after specific indexes! 
+:::
 
 ## Saving
-LO: saving tables to file
+
+Before we move on to the next section, we'll practice saving data to file. You might want to do this if you created new tables or subsetted your data and don't want to repeat that every single time you do your analysis.
+
+::: {.callout-important}
+Remember: never overwrite your raw data but always keep this as a separate copy!
+:::
+
+::: {.panel-tabset group="language"}
+## R
+
+Let's create a practice data set to save, for example by taking the first 20 rows of our `surveys` data set and saving it in a file `surveys_snippet.csv`.
+
+```{r}
+surveys_snippet <- surveys[1:20, ]
+```
+
+We can now save this. We do this with the `write_csv()` function. 
+We need to tell it which data set to save (this comes first) and then tell it with the `file =` argument *where* we want to save it. Here, we're saving it in our `data/` folder, as a file called `surveys_snippet.csv`. The file extension `.csv` is important, so don't forget to add it!
+
+```{r}
+write_csv(surveys_snippet, file = "data/surveys_snippet.csv")
+```
+
+## Python
+
+Let's create a practice data set to save, for example by taking the first 20 rows of our `surveys` data set and saving it in a file `surveys_snippet.csv`.
+
+```{python}
+surveys_snippet = surveys.iloc[0:20, :]
+```
+
+We can now save this. We do this using `.to_csv`
+. 
+We need to tell it which data set to save (this comes first) and then tell it *where* we want to save it. Here, we're saving it in our `data/` folder, as a file called `surveys_snippet.csv`. The file extension `.csv` is important, so don't forget to add it!
+
+We also include the `index = False` argument, so that the row numbers are not written to file.
+
+```{python}
+surveys_snippet.to_csv("data/surveys_snippet.csv", index = False)
+```
+
+:::
+
+
 
 ## Summary
 
