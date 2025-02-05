@@ -332,5 +332,9 @@ surveys_snippet.to_csv("data/surveys_snippet.csv", index = False)
 ::: {.callout-tip}
 #### Key points
 
-- 
+- Tabular data is structured into columns (variables) and rows (observations)
+- Common data types include CSVs and TSVs - widely accessible formats where data are separated by commas or tabs
+- It is good practice to get insight into your data by examining the structure, creating summary statistics and checking for missing values
+- Basic subsetting allows us to quickly pull out certain variables or observations
+- Write modified tables to file, but always keep the original, raw, data intact!
 :::
