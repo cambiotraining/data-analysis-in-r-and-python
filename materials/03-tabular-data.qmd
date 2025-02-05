@@ -24,7 +24,7 @@ There, each **column** contains a variable (a thing that we've measured). Each *
 ## Working with data
 Tabular data sets are often created in spreadsheet programmes, such as Excel. These programmes are actually very well-suited, since they make it easy to enter data and keep an overview. When it comes to *analysing* these data, we're better off using coding - that way we can keep track of our analysis.
 
-The default Excel format is not great, since it's a propriety format and not natively readable by other computer programmes. Good alternatives are `.csv` or *comma-separated values* files or `.tsv` `tab-separated files.
+The default Excel format is not great, since it's a propriety format and not natively readable by other computer programmes. Good alternatives are `.csv` or *comma-separated values* files or `.tsv` *tab-separated values* files.
 
 For the next few sections we'll be using the `surveys.csv` data set (which you should now have in your `data-analysis/data` sub folder).
 
