@@ -2,6 +2,21 @@
 title: Plotting data
 ---
 
+```{r}
+#| echo: false
+#| message: false
+#| results: hide
+library(patchwork)
+```
+
+```{python}
+#| echo: false
+#| message: false
+import shutup;shutup.please()
+import patchworklib as pw
+```
+
+
 ::: {.callout-tip}
 #### Learning objectives
 
@@ -99,7 +114,7 @@ We use the `ggplot()` function to do this. Note that the whole code chunk below 
 
 Let's unpack that a bit. We specify which data to use with the `data =` argument (our `surveys` data set in this case).
 
-Next, we define what goes onto the `x` and `y` axes, using the `mapping =` argument. This needs a so-called *helper function* `aes()`, which stands for aesthetics. Within this helper function we define what goes onto the x-axis (`x =`) and y-axis (`y =`).
+Next, we define what goes onto the `x` and `y` axes, using the `mapping =` argument. This needs a so-called *helper function* `aes()`, which stands for *aesthetics*. Within this helper function we define what goes onto the x-axis (`x =`) and y-axis (`y =`).
 
 Finally, we need to tell it *what kind of plot* we want. Here, we want to use a scatter plot. The type of plot is determined by the `geom_`. This literally gets added to the `ggplot()` function: note the `+` symbol at the end of the line of code.
 
@@ -108,13 +123,383 @@ Most `geom_` functions are logically named. For example, a line graph will be `g
 We don't have to add any information within the `geom_point()` function, because it's taking all it needs from the `ggplot()` function above. More on this later.
 
 ### Building up plots
-* LO: layering plots
+
+The good thing about `ggplot()` is that it builds up the plot layer-by-layer. We don't even have to provide it with a geometry to start with and it'll still create the outline of a plot.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length))
+```
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "weight", y = "hindfoot_length")))
+```
+:::
+
+However, that obviously is not very useful. The nice thing is that we can add multiple layers to a single plot. Let's illustrate this with a different example. We have a column `sex` in the data. This contains three possible values:`F` (female),  `M` (male) and `NA` (not recorded).
+
+Let's look at the hindfoot length distribution across these groups.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_point()
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_point())
+```
+:::
+
+A lot of the points are overlapping, which makes it a bit hard to see how the data are distributed. We can do something about that (more on that in the next session), but we can also add some summary statistics in the form of a boxplot. We can simply add a layer to the plot that displays the boxes.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_point() +
+  geom_boxplot()
+```
 
 
-### Changing plots
-* LO: changing aesthetics (colour, fill, transparency, size)
+## Python
 
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_point() +
+        geom_boxplot())
+```
+:::
 
+The layers are added in the order we provide them, so here the boxes are on top of the individual data points. You might want to rearrange that, so that the boxes are *behind* the data.
+
+## Changing plots
+
+Often we want to control other parts of the plot as well. There is a whole range of things we can change about the appearance of a plot - in fact, *anything* in a plot can be changed! Don't try to remember every tiny detail. You might want to change the orientation of the text labels on the x-axis, but a quick search is probably easier than keeping that information in your head!
+
+### Colour
+
+Changing colour is pretty straightforward. We use the `colour =` argument. There are a whole range of default colours available, but we'll go with blue here.
+
+Let's illustrate that using our original `weight` vs `hindfoot_length` scatter plot.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point(colour = "blue")
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "weight", y = "hindfoot_length")) +
+        geom_point(colour = "blue"))
+```
+:::
+
+### Fill
+
+The `fill =` argument is used to *fill* surface areas. It doesn't work on individual points, but instead on geometries that have an area, such as a boxplot, bar chart or violin plot.
+
+We can't create a boxplot with two continuous variables, so we'll plot `hindfoot_length` for the different `sex` groups again. We fill the boxes using magenta.
+
+**What happens if you use `colour = "magenta"` instead?**
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_boxplot(fill = "magenta")
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_boxplot(fill = "magenta"))
+```
+:::
+
+### Aesthetics based on data
+
+Manually assigning colours can be very helpful, but quite often we want to colour data based on *another variable*. For example, we might be interested in the potential relationship between weight and hindfoot length, but are wondering if this looks different across the sex groups.
+
+In that case, we'd want to colour all the data points belonging to the male group different to those of the female group. The same goes for the missing values.
+
+The way we can do this is by adding the `sex` variable *inside* the aesthetics.
+
+::: {.callout-note}
+## Within `aes()` or not?
+
+An easy way of remembering where your `colour =` or `fill =` argument goes is to ask: is the colour based on the data or not? If the answer is yes, it goes *inside* the aesthetics. If not, then outside.
+
+:::
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length, colour = sex)) +
+  geom_point()
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "weight", y = "hindfoot_length", colour = "sex")) +
+        geom_point())
+```
+:::
+
+### Dealing with overlap
+
+In the example of hindfoot length for the different sex groups we noticed that there is quite a bit of overlap in the data. One of the ways of dealing with this is by adding a little bit of *jitter*. What that does is add a tiny bit of random noise to the data, to avoid overlap.
+
+We can do this with the `geom_jitter()` geometry. The amount of jitter that is added can be regulated with the `width =` argument, as a fraction of the available width. Compare the differences in the following plots.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_jitter()
+```
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_jitter(width = 0.1)
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_jitter())
+```
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_jitter(width = 0.1))
+```
+:::
+
+### Transparency
+
+Even with jittering the data, we still have quite some overlap. There probably is a limit to what we can do about it, but adding some transparency can also help. Here, where there is more overlap then areas will appear darker whereas less overlap will appear lighter.
+
+We control this with the `alpha =` argument. Again, this takes a value between 0 (full transparency) and 1 (no transparency).
+
+Compare the following plot with the previous ones.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = sex, y = hindfoot_length)) +
+  geom_jitter(width = 0.1, alpha = 0.4)
+```
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(data = surveys,
+        mapping = aes(x = "sex", y = "hindfoot_length")) +
+        geom_jitter(width = 0.1, alpha = 0.4))
+```
+:::
+
+### Point size and line width
+
+The `size =` argument is used to control the size of points, whereas the `linewidth =` argument is used to specify line thickness. Look at the following examples.
+
+In the next two panels we're using `geom_point()` with different sizes.
+
+```{r}
+#| echo: false
+#| warning: false
+#| results: hide
+p1 <- ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point(size = 1) +
+  labs(title = "geom_point(size = 1)")
+
+p2 <- ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point(size = 3) +
+  labs(title = "geom_point(size = 3)")
+
+p1 + p2 +
+  plot_annotation(tag_levels = "A")
+```
+
+The following two panels use a different geometry: `geom_smooth()`. This creates a smoothed line across the data. The width of the line can be changed with the `linewidth =` argument.
+
+```{r}
+#| echo: false
+#| warning: false
+#| results: hide
+p3 <- ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  geom_smooth(linewidth = 1) +
+  labs(title = "geom_smooth(linewidth = 1)")
+  
+p4 <- ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  geom_smooth(linewidth = 3) +
+  labs(title = "geom_smooth(linewidth = 3)")
+  
+p3 + p4 +
+  plot_annotation(tag_levels = "A")
+```
+
+### Facets
+
+Plots can split into multiple panels using *facetting*. This is a very useful tool to quickly see data distributions across different groups. We can split them into two types:
+
+1. `facet_wrap()` arranges a one-dimensional sequence of panels (based on a single splitting variable) to fit on one page
+2. `facet_grid()` allows you to form a matrix of rows and columns of panels (based on two different variables)
+
+This is best illustrated with an example. Let's say we want to split the weight vs hindfoot length scatter plot by the different sex groups, where the data belonging to each group has its own sub-panel. We can do this as follows.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  facet_wrap(facets = vars(sex))
+```
+
+Note the added code:
+
+```{r}
+#| eval: false 
+facet_wrap(facets = vars(sex))
+```
+
+We used `facet_wrap()`, because we're only splitting the data by a single variable: `sex`. We also need to tell the function which variable to split by, which we do in the `facets =` argument. Annoyingly - and for reasons unknown to me - this requires the use of a *helper function*, `vars()`.
+
+## Python
+
+```{python}
+#| results: hide
+(ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+        geom_point() +
+        facet_wrap("~ sex"))
+```
+
+Note the added code:
+
+```{python}
+#| eval: false
+facet_wrap("~ sex")
+```
+
+We used `facet_wrap()`, because we're only splitting the data by a single variable: `sex`. We also need to tell the function which variable to split by, which we do by using the `~` symbol. I completely agree that this is a weird notation. Just read it as *split by...*
+
+:::
+
+In the end, our data is split into three sub-panels - one for each group. This makes it easy to see trends across the groups. Or, in this case, that there doesn't seem to be much difference in the distribution across the female and male observations.
+
+## Saving plots
+
+Sometimes you might want to save a plot you created. This is pretty straightforward. Here, we are assuming that you have an `images` subfolder in your working directory.
+
+We save a plot in two steps:
+
+1. Assign the plot to an object
+2. Then use `ggsave()` to save this object
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+plot_r <- ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  facet_wrap(facets = vars(sex))
+```
+
+```{r}
+ggsave(filename = "images/height_vs_hindfootlength.png",
+       plot = plot_r,
+       width = 7,
+       height = 5,
+       units = "in")
+```
+
+## Python
+
+```{python}
+#| results: hide
+plot_python = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+        geom_point() +
+        facet_wrap("~ sex"))
+```
+
+```{python}
+(ggsave(plot_python,
+        filename = "images/height_vs_hindfootlength.png",
+        units = "in",
+        width = 7,
+        height = 5))
+```
+
+:::
+
+Here, I've added a few extra arguments to demonstrate what you can change. The only two things that are required are (1) the plot you want to save and (2) the name of the plot, including the filename extension.
+
+The other arguments, such as `units =`, `width =` and `height =` are used to define the units size (inches in this case) and corresponding width/height values.
 
 ## Summary
 
