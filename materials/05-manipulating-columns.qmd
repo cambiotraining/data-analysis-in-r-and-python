@@ -11,7 +11,8 @@ title: Manipulating columns
 
 
 ## Context
-In [tabular data](#tabular-data) section we learned to deal with, well, tabular data in the form of our `surveys` data set. This data set isn't huge, but sometimes we have many variables and we might only want to work with a subset of them. Or, we might want to create new columns based on existing data. In this section we'll cover how we can do this.
+
+In the [tabular data](#tabular-data) section we learned to deal with, well, tabular data in the form of our `surveys` data set. This data set isn't huge, but sometimes we have many variables and we might only want to work with a subset of them. Or, we might want to create new columns based on existing data. In this section we'll cover how we can do this.
 
 ## Section setup {#setup_plotting}
 
@@ -48,9 +49,7 @@ surveys = pd.read_csv("data/surveys.csv")
 :::
 :::
 
-## Manipulation of variables
-
-### Selecting columns
+## Selecting columns
 
 Let's remind ourselves to which columns we have in our `surveys` data set. After that, we'll start making some changes.
 
@@ -61,7 +60,22 @@ Let's remind ourselves to which columns we have in our `surveys` data set. After
 colnames(surveys)
 ```
  
- Let's say we wanted to select only the `record_id` and `year` columns. We've briefly done this when we looked at [subsetting rows and columns](#subset_rc). However, there is an alternative way of doing this using the `dplyr` package - which is part of `tidyverse`.
+## Python
+
+```{python}
+surveys.columns
+```
+
+:::
+
+### Selecting individual columns
+
+Let's say we wanted to select only the `record_id` and `year` columns. We've briefly done this when we looked at [subsetting rows and columns](#subset_rc).
+
+::: {.panel-tabset group="language"}
+## R
+
+However, there is an alternative way of doing this using the `dplyr` package - which is part of `tidyverse`.
  
  We can use the `select()` function:
  
@@ -71,6 +85,23 @@ select(surveys, record_id, year)
  
 Using the base R syntax, this is equivalent to `surveys[, c("record_id", "year")]`. Notice that with the `select()` function (and generally with `dplyr` functions) we didn’t need to quote " the column names. This is because the first input to the function is the table name, and so everything after is assumed to be column names of that table.
 
+## Python
+
+The way we need to specify this is by giving a list of column names `["record_id", "year"]` and subsetting the surveys data set with this.
+
+The way we subset is with `surveys[ ]`, so we end up with double square brackets:
+
+```{python}
+surveys[["record_id", "year"]]
+```
+
+:::
+
+### Selecting with helper functions
+
+::: {.panel-tabset group="language"}
+## R
+
 The `select()` function becomes particularly useful when we combine it with other helper functions. For example, this code will select all the columns where the column name contains the string (text) `"_id"`:
 
 ```{r}
@@ -78,15 +109,31 @@ The `select()` function becomes particularly useful when we combine it with othe
 select(surveys, contains("_id"))
 ```
 
+## Python
 
-Or maybe we're interested in all the columns from `record_id` to `year`. In that case, we can use the `:` symbol.
+The subsetting becomes a bit tedious when we're looking for patterns in the column names. Here, we can instead use the `.filter` attribute of the surveys data set, and look for a string (text) where the column name contains `"_id"`.
+
+```{python}
+surveys.filter(like = "_id")
+```
+
+
+:::
+
+### Selecting a range of columns
+
+Let's say we're interested in all the columns from `record_id` to `year`.
+
+::: {.panel-tabset group="language"}
+## R
+In that case, we can use the `:` symbol.
 
 ```{r}
 # returns all columns between and including record_id and year
 select(surveys, record_id:year)
 ```
 
-We can also combine these:
+We can also combine this with the previous method:
 
 ```{r}
 # returns all columns between and including record_id and year
@@ -94,7 +141,25 @@ We can also combine these:
 select(surveys, record_id:year, contains("_id"))
 ```
 
-Lastly, we can also **unselect columns**. This can be useful when you want most columns, apart from some. To do this, we use the `-` symbol before the column name. For example:
+## Python
+
+In that case, we can use the `:` symbol, in combination with the `.loc` indexer.
+
+```{python}
+surveys.loc[:, "record_id":"year"]
+```
+
+
+:::
+
+### Unselecting columns
+
+Lastly, we can also **unselect columns**. This can be useful when you want most columns, apart from some.
+
+::: {.panel-tabset group="language"}
+## R
+
+To do this, we use the `-` symbol before the column name.
 
 ```{r}
 # returns all columns apart from record_id
@@ -102,12 +167,19 @@ select(surveys, -record_id)
 ```
 
 ## Python
+
+To do this, we use the `.drop` attribute. Here, we only unselect one column, but we can easily extend this by providing a list of columns do the `column =` argument.
+
+```{python}
+surveys.drop(columns = "record_id")
+```
+
 :::
 
-### Renaming and reshuffling columns
+## Renaming and reshuffling columns
 LO: renaming and reshuffling columns
 
-### Creating new columns
+## Creating new columns
 LO: creating new columns
 
 
