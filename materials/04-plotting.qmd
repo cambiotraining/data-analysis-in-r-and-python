@@ -20,7 +20,11 @@ import patchworklib as pw
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn to create plots
+- Be able to build up plots in multiple layers
+- Make changes to plot colours and other aesthetics
+- Be able to create sub-panels based on data
+- Export/save plots to file
 :::
 
 ## Context
@@ -327,7 +331,7 @@ ggplot(data = surveys,
 
 ### Transparency
 
-Even with jittering the data, we still have quite some overlap. There probably is a limit to what we can do about it, but adding some transparency can also help. Here, where there is more overlap then areas will appear darker whereas less overlap will appear lighter.
+Even with jittering the data, we still have quite some overlap. There probably is a limit to what we can do about it, but adding some transparency can also help. Here, where there is more overlap, areas will appear darker whereas less overlap will appear lighter.
 
 We control this with the `alpha =` argument. Again, this takes a value between 0 (full transparency) and 1 (no transparency).
 
@@ -426,7 +430,7 @@ Note the added code:
 facet_wrap(facets = vars(sex))
 ```
 
-We used `facet_wrap()`, because we're only splitting the data by a single variable: `sex`. We also need to tell the function which variable to split by, which we do in the `facets =` argument. Annoyingly - and for reasons unknown to me - this requires the use of a *helper function*, `vars()`.
+We used `facet_wrap()`, because we're only splitting the data by a single variable: `sex`. We also need to tell the function which variable to split by, which we do in the `facets =` argument. Annoyingly - and for reasons unbeknownst to me - this requires the use of a *helper function*, `vars()`.
 
 ## Python
 
@@ -471,6 +475,7 @@ plot_r <- ggplot(data = surveys,
 ```
 
 ```{r}
+#| warning: false
 ggsave(filename = "images/height_vs_hindfootlength.png",
        plot = plot_r,
        width = 7,
@@ -506,5 +511,9 @@ The other arguments, such as `units =`, `width =` and `height =` are used to def
 ::: {.callout-tip}
 #### Key points
 
-- 
+- We can build up plots layer-by-layer, adding multiple geometries in a single plot
+- Plot aesthetics can be changed based on data or manually defined
+- Colour, fill, transparency and jittering can all be useful ways to improve clarity
+- Plots can be subdivided into panels, called *facets*, which are based on a variable within the data. This allows easy visual comparison across groups.
+- We use functions like `ggsave()` to export plots to file
 :::
