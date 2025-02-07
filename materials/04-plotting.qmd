@@ -41,6 +41,7 @@ We now have a good grasp of how data is commonly structured, with variables in c
 We'll start this section with a new script named, for example, `04-plotting.R`. If needed, add the following code to the top of your script and run it.
 
 ```{r}
+#| message: false
 # A collection of R packages designed for data science
 library(tidyverse)
 
@@ -403,7 +404,7 @@ p3 + p4 +
   plot_annotation(tag_levels = "A")
 ```
 
-### Facets
+## Facets
 
 Plots can split into multiple panels using *facetting*. This is a very useful tool to quickly see data distributions across different groups. We can split them into two types:
 

@@ -14,7 +14,7 @@ title: Working with tabular data
 ## Context
 In the previous section we dealt with single objects and vectors/lists. Here we expand towards tabular data, which can be seen as a set of these grouped together.
 
-## Tabular data
+## Tabular data {#tabular-data}
 Tables are organised in columns (vertical) and rows (horizontal). An example of a tabular data set is given in @fig-tabular_data.
 
 There, each **column** contains a variable (a thing that we've measured). Each **row** is a unique observation. 
@@ -142,12 +142,27 @@ It's also useful to have a bit of an overview of the overall structure of the ta
 ::: {.panel-tabset group="language"}
 ## R
 
+If we are just interested in finding out which columns we have, we can use:
+
+```{r}
+colnames(surveys)
+```
+
+However, sometimes we want more detailed information. We can do this as follows:
+
 ```{r}
 str(surveys)
 ```
 
-
 ## Python
+
+If we are just interested in finding out which columns we have, we can use:
+
+```{python}
+surveys.columns
+```
+
+However, sometimes we want more detailed information. We can do this as follows:
 
 ```{python}
 surveys.info()
@@ -209,7 +224,7 @@ surveys.weight
 
 :::
 
-### Subsetting rows and columns
+### Subsetting rows and columns {#subset_rc}
 
 We can subset specific rows and columns using the square bracket `[ ]` notation. The way this is ordered is `[rows, columns]`.
 

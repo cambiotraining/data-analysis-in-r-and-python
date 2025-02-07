@@ -5,17 +5,104 @@ title: Manipulating columns
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn how to select and/or rename specific columns from a data frame
+- Be able to create new columns and modify existing ones
 :::
 
 
 ## Context
-On day 1 we learned to deal with tabular data. Sometimes we have many variables and we might only want to work with a subset of them.
+In [tabular data](#tabular-data) section we learned to deal with, well, tabular data in the form of our `surveys` data set. This data set isn't huge, but sometimes we have many variables and we might only want to work with a subset of them. Or, we might want to create new columns based on existing data. In this section we'll cover how we can do this.
+
+## Section setup {#setup_plotting}
+
+::: {.callout-note collapse="true"}
+## Click to expand
+
+::: {.panel-tabset group="language"}
+## R
+
+We'll start this section with a new script named, for example, `05-manipulation.R`. If needed, add the following code to the top of your script and run it.
+
+```{r}
+#| message: false
+# A collection of R packages designed for data science
+library(tidyverse)
+
+surveys <- read_csv("data/surveys.csv")
+```
+
+## Python
+
+We'll start this section with a new script named, for example, `05-manipulation.py`. If needed, add the following code to the top of your script and run it.
+
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+:::
 
 ## Manipulation of variables
 
 ### Selecting columns
-LO: selecting columns
+
+Let's remind ourselves to which columns we have in our `surveys` data set. After that, we'll start making some changes.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+colnames(surveys)
+```
+ 
+ Let's say we wanted to select only the `record_id` and `year` columns. We've briefly done this when we looked at [subsetting rows and columns](#subset_rc). However, there is an alternative way of doing this using the `dplyr` package - which is part of `tidyverse`.
+ 
+ We can use the `select()` function:
+ 
+```{r}
+select(surveys, record_id, year)
+```
+ 
+Using the base R syntax, this is equivalent to `surveys[, c("record_id", "year")]`. Notice that with the `select()` function (and generally with `dplyr` functions) we didn’t need to quote " the column names. This is because the first input to the function is the table name, and so everything after is assumed to be column names of that table.
+
+The `select()` function becomes particularly useful when we combine it with other helper functions. For example, this code will select all the columns where the column name contains the string (text) `"_id"`:
+
+```{r}
+# returns all columns where the column name contains the text "_id"
+select(surveys, contains("_id"))
+```
+
+
+Or maybe we're interested in all the columns from `record_id` to `year`. In that case, we can use the `:` symbol.
+
+```{r}
+# returns all columns between and including record_id and year
+select(surveys, record_id:year)
+```
+
+We can also combine these:
+
+```{r}
+# returns all columns between and including record_id and year
+# and all columns where the column name contains the text "_id"
+select(surveys, record_id:year, contains("_id"))
+```
+
+Lastly, we can also **unselect columns**. This can be useful when you want most columns, apart from some. To do this, we use the `-` symbol before the column name. For example:
+
+```{r}
+# returns all columns apart from record_id
+select(surveys, -record_id)
+```
+
+## Python
+:::
 
 ### Renaming and reshuffling columns
 LO: renaming and reshuffling columns
