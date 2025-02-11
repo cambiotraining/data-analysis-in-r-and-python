@@ -177,7 +177,48 @@ surveys.drop(columns = "record_id")
 :::
 
 ## Renaming and reshuffling columns
-LO: renaming and reshuffling columns
+
+### Renaming columns
+
+For example, we might want to change the `weight` column name to `weight_g`, to reflect that the values are in grams.
+
+::: {.panel-tabset group="language"}
+## R
+We can use the `rename()` function to change a column name. We do this as follows:
+
+```{r}
+rename(surveys, weight_g = weight)
+```
+
+## Python
+
+We can use the `.rename()` attribute of the `surveys` Pandas data frame:
+
+```{python}
+surveys.rename(columns = {'weight': 'weight_g'})
+```
+
+:::
+
+### Reshuffling columns
+
+It might be that you want to reorder/reshuffle a column. Here, the `year` column is our fourth variable. Let's say we'd want to  move this to the second position (after `record_id`).
+
+::: {.panel-tabset group="language"}
+## R
+
+We can use the `relocate()` function to do this. The function has several arguments, starting with `.`, such as `.before =` or `.after =`. These allow you to specify where you want to reinsert the column.
+
+```{r}
+
+relocate(surveys, year, .after = record_id)
+```
+
+
+## Python
+
+Unlike in R, there isn't a very clear, straightforward way of reinserting columns in a Pandas data frame. We could show you convoluted ways of doing so, but at this point that's just confusing. So, we'll leave you with a [link to a Stackoverflow solution](https://stackoverflow.com/questions/13148429/how-to-change-the-order-of-dataframe-columns).
+:::
 
 ## Creating new columns
 LO: creating new columns
