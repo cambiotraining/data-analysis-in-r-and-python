@@ -210,7 +210,6 @@ It might be that you want to reorder/reshuffle a column. Here, the `year` column
 We can use the `relocate()` function to do this. The function has several arguments, starting with `.`, such as `.before =` or `.after =`. These allow you to specify where you want to reinsert the column.
 
 ```{r}
-
 relocate(surveys, year, .after = record_id)
 ```
 
@@ -221,9 +220,52 @@ Unlike in R, there isn't a very clear, straightforward way of reinserting column
 :::
 
 ## Creating new columns
-LO: creating new columns
+
+Sometimes we need to create new columns. For example, we might have a variable that is not in the unit of measurement we need (e.g. in millimeter, instead of centimeters).
+
+| month | day | year | plot_id | species_id | sex | hindfoot_length | weight |
+|-------|-----|------|---------|------------|-----|-----------------|--------|
+| 7     | 16  | 1977 | 2       | NL         | M   | 32              | NA     |
+| 7     | 16  | 1977 | 3       | NL         | M   | 33              | NA     |
+| 7     | 16  | 1977 | 2       | DM         | F   | 37              | NA     |
+| 7     | 16  | 1977 | 7       | DM         | M   | 36              | NA     |
+| 7     | 16  | 1977 | 3       | DM         | M   | 35              | NA     |
+
+Let's say we wanted to get `hindfoot_length` in centimeters, instead of millimeters. We'd have to go through each row, take the `hindfoot_length` value and divide it by 10. We then need to store this output in a column called, for example, `hindfoot_length_cm`.
 
 
+::: {.panel-tabset group="language"}
+## R
+
+We can use the `mutate()` function to create new columns:
+
+```{r}
+mutate(surveys, hindfoot_length_cm = hindfoot_length / 10)
+```
+
+## Python
+:::
+
+Although it has created the column, we can't quite see it because we have too many columns. So, let's save the new column to the data set and then select the relevant columns.
+
+::: {.panel-tabset group="language"}
+## R
+
+First, we update our data:
+
+```{r}
+surveys <- mutate(surveys, hindfoot_length_cm = hindfoot_length / 10)
+```
+
+Next, we can select the columns.
+
+```{r}
+select(surveys, record_id, hindfoot_length, hindfoot_length_cm)
+```
+
+
+## Python
+:::
 
 ## Summary
 
