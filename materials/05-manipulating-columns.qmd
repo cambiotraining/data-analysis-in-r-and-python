@@ -244,6 +244,13 @@ mutate(surveys, hindfoot_length_cm = hindfoot_length / 10)
 ```
 
 ## Python
+
+We use the square brackets to define the name of the new column, then specify what needs to go in the new column:
+
+```{python}
+surveys['hindfoot_length_cm'] = surveys['hindfoot_length'] / 10
+```
+
 :::
 
 Although it has created the column, we can't quite see it because we have too many columns. So, let's save the new column to the data set and then select the relevant columns.
@@ -263,8 +270,15 @@ Next, we can select the columns.
 select(surveys, record_id, hindfoot_length, hindfoot_length_cm)
 ```
 
-
 ## Python
+
+Our previous step already added the new column to the DataFrame, so we can directly select the relevant columns, by giving a list of the columns we're interested in:
+
+```{python}
+surveys[['record_id', 'hindfoot_length', 'hindfoot_length_cm']]
+
+```
+
 :::
 
 ## Summary
@@ -272,5 +286,5 @@ select(surveys, record_id, hindfoot_length, hindfoot_length_cm)
 ::: {.callout-tip}
 #### Key points
 
-- 
+- We have several functions available that allow us to select, move, rename and create new columns
 :::
