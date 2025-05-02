@@ -1,5 +1,5 @@
 ---
-title: "Coding for research"
+title: "Data analysis in R and Python"
 author: "Hugo Tavares, Alexia Cardona, Martin van Rongen"
 date: today
 number-sections: false

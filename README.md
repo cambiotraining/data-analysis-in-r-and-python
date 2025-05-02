@@ -1,4 +1,4 @@
-# Coding for research
+# Data analysis in R and Python
 
 This repository contains the materials for the Coding for research course.
 

@@ -52,7 +52,7 @@ book:
     logo: "_extensions/cambiotraining/courseformat/img/university_crest_reversed.png"
     right:
       - icon: github
-        href: https://github.com/cambiotraining/coding-for-research/
+        href: https://github.com/cambiotraining/data-analysis-in-r-and-python/
         aria-label: Bioinformatics Training Facility GitHub
       - icon: twitter
         href: https://twitter.com/bioinfocambs
@@ -60,7 +60,7 @@ book:
       - icon: mastodon
         href: https://genomic.social/@BioInfoCambs
         aria-label: Bioinformatics Training Facility Mastodon
-    title: "Coding for research"
+    title: "Data analysis in R and Python"
   chapters:
     - part: "Welcome"
       chapters:
