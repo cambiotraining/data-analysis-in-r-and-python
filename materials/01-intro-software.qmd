@@ -110,15 +110,6 @@ you need to write code is available in a single window. Additionally, with many
 shortcuts, auto-completion, and highlighting for the major file types you use
 while developing in R, RStudio will make typing easier and less error-prone.
 
-::: {.callout-note}
-RStudio's default preferences generally work well, but saving a work space to
-`.RData` can be cumbersome, especially if you are working with larger data sets as this would save all the data that is loaded into R into the `.RData` file.  
-To turn that off, go to `Tools` --> `Global Options` and select the 'Never' option
-for `Save workspace to .RData' on exit.`
-
-![Set 'Save workspace to .RData on exit' to 'Never'](images/rstudio-preferences.png)
-:::
-
 ## Working directory
 
 A good way of staying organised is to keep all the files related to a given project together. Using that concept when programming is really helpful, because it makes it easier for the computer to find all the data, scripts and other information related to an analysis.
@@ -159,6 +150,14 @@ Before we start writing any code we'll set up our working environment properly. 
 The easiest way to set up a working directory in R is to create an **R-project**. This is simply a folder on your computer with a shortcut in it (ending in `.RProj`). When you double-click on the shortcut, it opens RStudio and sets the working directory to that particular folder. 
 
 To create an "R Project":
+
+::: {.carousel data-caption="Setting up a new working directory (click on arrows to toggle)."}
+
+![](images/wd-setup-01.png)
+![](images/wd-setup-02.png)
+![](images/wd-setup-03.png)
+![](images/wd-setup-04.png)
+:::
 
 1. Start RStudio.
 2. Under the `File` menu, click on `New Project`. Choose `New Directory`, then
