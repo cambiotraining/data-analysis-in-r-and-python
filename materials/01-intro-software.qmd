@@ -85,6 +85,7 @@ transparency, there is less chance for mistakes, and if you (or someone else)
 find some, you can report and fix bugs.
 
 ### What is RStudio?
+
 [RStudio](https://posit.co) is currently a very popular Integrated Development Environment (IDE) for working with R.  An IDE is an application used by software developers that facilitates programming by offering source code editing, building and debugging tools all integrated into one application.  To function correctly, RStudio needs R and therefore both need to be installed on your computer.
 
 The RStudio Desktop open-source product is free under the
