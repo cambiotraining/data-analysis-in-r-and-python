@@ -24,6 +24,7 @@ exercises:
 filters:
   - courseformat
   - auto-dark
+  - quarto-bootstrap-carousel
 
 execute:
   freeze: auto

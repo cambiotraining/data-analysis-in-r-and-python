@@ -1,0 +1,11 @@
+title: "Bootstrap Carousel"
+version: 1.0.0
+
+contributes:
+  filters:
+    - carousel.lua
+  format:
+    html:
+      includes:
+        in-header: bootstrap-header.html
+        after-body: bootstrap-footer.html
