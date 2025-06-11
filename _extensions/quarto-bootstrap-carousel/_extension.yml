@@ -9,3 +9,7 @@ contributes:
       includes:
         in-header: bootstrap-header.html
         after-body: bootstrap-footer.html
+    courseformat-html:
+      includes:
+        in-header: bootstrap-header.html
+        after-body: bootstrap-footer.html

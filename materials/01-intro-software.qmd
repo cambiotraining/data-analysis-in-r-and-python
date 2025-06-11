@@ -9,7 +9,6 @@ title: "Intro to software"
 - Get to know the interface software
 :::
 
-
 ## Context
 
 ### What is R? 
@@ -152,7 +151,7 @@ The easiest way to set up a working directory in R is to create an **R-project**
 
 To create an "R Project":
 
-::: {.carousel data-caption="Setting up a new working directory (click on arrows to toggle)."}
+::: {.carousel data-caption="Setting up a new working directory (click to toggle)."}
 
 ![](images/wd-setup-01.png)
 ![](images/wd-setup-02.png)
