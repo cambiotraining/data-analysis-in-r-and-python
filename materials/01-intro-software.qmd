@@ -11,104 +11,40 @@ title: "Intro to software"
 
 ## Context
 
-### What is R? 
+### Why learn programming?
 
-R is a statistical programming language.  It is very popular in the data science field, including Bioinformatics.  The term "`R`" is used to refer to both the programming language and the software that interprets the scripts written using it.
+Simply put, programming allows you to **move away from point-and-click** activities. They might seem great because they're intuitive and relatively easy - until you want to redo an analysis after collecting more data. You then need to manually go through the whole process again.
 
+By writing out the different steps of your analysis you're making all those 'clicks' explicit. The added benefit is that it forces you to think more about what steps you need to go through in your analysis, thereby making errors less likely!
 
-### Why learn R?
+This also very much improves the **reproducibility** of the analysis: after all, running the same code on the same data should also result in the same outcome. This is great when you're sharing your analysis with colleagues, but also great for your future self. Your brilliant approach might have made sense at the time, but who knows how much you still recall a year later...
+More and more often funding bodies are (rightfully!) requiring you to include raw data and analysis pipelines when submitting a paper. So, you'll be ahead of the game.
 
-**R does not involve lots of pointing and clicking**
+### Interacting with the programming language
 
-The learning curve might be steeper than with other software, but with R, the
-results of your analysis do not rely on remembering a succession of pointing
-and clicking, but instead on a series of written commands, and that's a good
-thing! So, if you want to redo your analysis because you collected more data,
-you don't have to remember which button you clicked in which order to obtain
-your results; you just have to run your script again.
+In this course we're focusing on generic programming concepts, but we're illustrating them in two different languages: R and Python.
 
-Working with scripts makes the steps you used in your analysis clear, and the
-code you write can be inspected by someone else who can give you feedback and
-spot mistakes.
+In both cases we don't *directly* type in commands in some kind of terminal window, but instead use an additional bit of software to make our programming experience a bit more user-friendly.
 
-Working with scripts forces you to have a deeper understanding of what you are
-doing, and facilitates your learning and comprehension of the methods you use.
+::: {.panel-tabset group="language"}
+## R
 
-**R code is great for reproducibility**
+For R, the [RStudio](https://posit.co/products/open-source/rstudio/) software is a very popular choice - and one we'll be using here. It's free, open-source and well-supported. What more can you ask for?
 
-Reproducibility is when someone else (including your future self) can obtain the
-same results from the same data set when using the same analysis.
+![The welcome screen of RStudio](images/rstudio-main.png){#fig-rstudio_main}
 
-R integrates with other tools to generate reports from your code. If you
-collect more data, or fix a mistake in your dataset, the figures and the
-statistical tests in your manuscript are updated automatically after running the code again.
+In the image above you can see that the window is divided into three main parts, each with various tabs. In clockwise order we have:
 
-An increasing number of journals and funding agencies expect analyses to be
-reproducible, so knowing R will give you an edge with these requirements.
+1. **Console** / Terminal / Background jobs
+2. **Environment** / History / Connections / Tutorial
+3. **Files** / **Plots** / Packages / **Help** / Viewer / Presentation
 
+In bold we've highlighted the tabs we'll be using most.
 
-**R is interdisciplinary and extendable**
+In the **Console** we can directly run code - more on that soon. The **Environment** shows any information that is stored in R's memory (empty in the figure above). The **Files** tab is a mini-browser; **Plots** shows you any plots that have been created and **Help** is where you can go for... well, help.
 
-With 10,000+ packages that can be installed to extend its capabilities, R
-provides a framework that allows you to combine statistical approaches from many
-scientific disciplines to best suit the analytical framework you need to analyze your
-data. For instance, R has packages for image analysis, GIS, time series, population
-genetics, and a lot more.
-
-**R works on data of different sizes**
-
-The skills you learn with R scale easily with the size of your dataset. Whether
-your dataset has hundreds or millions of lines, it won't make much difference to
-you.
-
-R is designed for data analysis. It comes with special data structures and data
-types that make handling of missing data and statistical factors convenient.
-
-R can connect to spreadsheets, databases, and many other data formats, on your
-computer or on the web.
-
-**R produces high-quality graphics**
-
-The plotting functionality in R is endless, and allow you to adjust any
-aspect of your graph to convey most effectively the message from your data.
-
-**R has great support**
-
-Thousands of people use R daily. Many of them are willing to help you through
-mailing lists and websites such as [Stack Overflow](https://stackoverflow.com/), or on the [Posit community](https://forum.posit.co/).
-
-**R is free, open-source and cross-platform**
-
-Anyone can inspect the source code to see how R works. Because of this
-transparency, there is less chance for mistakes, and if you (or someone else)
-find some, you can report and fix bugs.
-
-### What is RStudio?
-
-[RStudio](https://posit.co) is currently a very popular Integrated Development Environment (IDE) for working with R.  An IDE is an application used by software developers that facilitates programming by offering source code editing, building and debugging tools all integrated into one application.  To function correctly, RStudio needs R and therefore both need to be installed on your computer.
-
-The RStudio Desktop open-source product is free under the
-[Affero General Public License (AGPL) v3](https://www.gnu.org/licenses/agpl-3.0.en.html).  [Other versions of RStudio](https://posit.co/download/rstudio-desktop/) are also available.
-
-We will use RStudio IDE to write code, navigate the files on our computer,
-inspect the variables we are going to create, and visualize the plots we will
-generate. RStudio can also be used for other things (*e.g.,* version control,
-developing packages, writing Shiny apps) that we will not cover during the
-course
-
-![RStudio interface screenshot. Clockwise from top left: Source, Environment/History, Files/Plots/Packages/Help/Viewer, Console.](images/rstudio-screenshot.png)
-
-RStudio is divided into 4 "Panes": the **Source** for your scripts and documents
-(top-left, in the default layout), your **Environment/History** (top-right),
-your **Files/Plots/Packages/Help/Viewer** (bottom-right), and 
-the R **Console** (bottom-left). The placement of these
-panes and their content can be customized (see menu, Tools -> Global Options ->
-Pane Layout). 
-
-One of the advantages of using RStudio is that all the information
-you need to write code is available in a single window. Additionally, with many
-shortcuts, auto-completion, and highlighting for the major file types you use
-while developing in R, RStudio will make typing easier and less error-prone.
+## Python
+:::
 
 ## Working directory
 
@@ -178,16 +114,15 @@ R will show you your current working directory in the `Files` pane. Alternativel
 Complete @ex-createwd before proceeding.
 :::
 
-## Working with R
+## Working with R or Python
 
-The basis of programming is that we write down instructions for the computer to
-follow, and then we tell the computer to follow those instructions. We write, or
-*code*, instructions in R because it is a common language that both the computer
-and we can understand. We call the instructions *commands* and we tell the
-computer to follow the instructions by *executing* (also called *running*) those
-commands.
+The basis of programming is that we create or *code* instructions for the computer to follow. Next, we tell the computer to follow the instructions by *executing* or *running* those instructions.
 
 ### Scripts versus console
+
+There are two main ways of interacting with the language: by using the console or by using script files (plain text files that contain your code). The console is the place where commands can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed. However, no record is kept and any information is lost once the session is closed.
+
+Instead, we uses scripts to write all the commands. That way there is a complete record of what we did, and anyone (including our future selves!) can easily replicate the results on their computer.
 
 | Console/terminal <i class="fa fa-terminal fa-1x"></i>| Script <i class="fa-regular fa-file-lines fa-1x"></i>|
 |-------------------------------------|-------------------------------------|
@@ -196,26 +131,12 @@ commands.
 | no record | records actions |
 | difficult to trace progress | transparent workflow |
 
+::: {.panel-tabset group="language"}
+## R
 
-There are two main ways of interacting with R: by using the console or by using
-script files (plain text files that contain your code). The console pane (in
-RStudio, the bottom left panel) is the place where commands written in the R
-language can be typed and executed immediately by the computer. It is also where
-the results will be shown for commands that have been executed. You can type
-commands directly into the console and press `Enter` to execute those commands,
-but they will be forgotten when you close the session.
+We can type commands directly in the **Console** pane and press {{< kbd Enter >}}. 
 
-Because we want our code and workflow to be reproducible, it is better to type
-the commands we want in the script editor, and save the script. This way, there
-is a complete record of what we did, and anyone (including our future selves!)
-can easily replicate the results on their computer.
-
-RStudio allows you to execute commands directly from the script editor by using
-the {{< kbd Control >}} + {{< kbd Enter >}} shortcut (on Macs, {{< kbd mac=Command >}} +
-{{< kbd mac=Return >}} will work, too). The command on the current line in the
-script (indicated by the cursor) or all of the commands in the currently
-selected text will be sent to the console and executed when you press
-{{< kbd Control >}} + {{< kbd Enter >}}. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE (PDF)](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf).
+RStudio also allows you to execute commands directly from the script editor by using the {{< kbd Control >}} + {{< kbd Enter >}} shortcut (on Macs, {{< kbd mac=Command >}} + {{< kbd mac=Return >}} will work, too). The command on the current line in the script (indicated by the cursor) or all of the commands in the currently selected text will be sent to the console and executed when you press {{< kbd Control >}} + {{< kbd Enter >}}. You can find other keyboard shortcuts in this [RStudio cheatsheet about the RStudio IDE (PDF)](https://rstudio.github.io/cheatsheets/rstudio-ide.pdf).
 
 ::: {.callout-warning}
 ## The R prompt
@@ -232,8 +153,10 @@ a complete command. This is because you have not 'closed' a parenthesis or
 quotation, i.e. you don't have the same number of left-parentheses as
 right-parentheses, or the same number of opening and closing quotation marks.
 When this happens, and you thought you finished typing your command, click
-inside the console window and press {{< kbd Escape >}}. This will cancel the incomplete
-command and return you to the `>` prompt.
+inside the console window and press {{< kbd Escape >}}. This will cancel the incomplete command and return you to the `>` prompt.
+:::
+
+## Python
 :::
 
 ### Comments in code

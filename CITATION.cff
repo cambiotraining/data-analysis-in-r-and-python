@@ -5,7 +5,7 @@
 # This is a known limitation of CFF files: https://github.com/citation-file-format/citation-file-format/issues/112
 
 cff-version: 1.2.0
-title: Coding for research
+title: Data analysis in R and Python
 message: >-
   You may cite these materials using the metadata in this
   file. Please cite our materials if you publish materials
@@ -18,19 +18,14 @@ authors:
     affiliation: Cambridge Centre for Research Informatics Training
     orcid: 'https://orcid.org/0000-0001-9373-2726'
     alias: 'writing - original draft; conceptualisation; software'
-  - given-names: Alexia
-    family-names: Cardona
-    affiliation: Cambridge Centre for Research Informatics Training
-    orcid: 'https://orcid.org/0000-0002-7877-5565'
-    alias: 'writing - original draft; conceptualisation'
   - given-names: Martin
     family-names: van Rongen
     website: 'https://bioinfotraining.bio.cam.ac.uk/staff/martin-van-rongen-phd'
     affiliation: Cambridge Centre for Research Informatics Training
     orcid: 'https://orcid.org/0000-0002-1441-367X'
     alias: 'writing - original draft; conceptualisation; software'
-repository-code: 'https://github.com/cambiotraining/coding-for-research'
-url: 'https://cambiotraining.github.io/coding-for-research/'
+repository-code: 'https://github.com/cambiotraining/data-analysis-in-r-and-python'
+url: 'https://cambiotraining.github.io/data-analysis-in-r-and-python/'
 license: CC-BY-4.0
 commit: 3c8234e82c7315cfb4d869d9635433bf62baf17f
-date-released: '2024-10-22'
+date-released: '2025-06-11'
