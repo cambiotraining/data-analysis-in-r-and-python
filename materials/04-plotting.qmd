@@ -79,7 +79,7 @@ This breakdown of plotting is often associated with R's `ggplot2` package, but t
 
 The idea is that you consistently build up plots, layer-by-layer. I like the concept, because it creates consistency in our approach - regardless of the language. There is a Python implementation of `ggplot2`, called `plotnine`.
 
-We'll be using these libraries/modules here, but will also show some examples of other commonly-used plotting packages. You might develop your own preference - this is absolutely fine!
+We'll be using these libraries/modules here, but will also show you some examples of other commonly-used plotting packages. You'll probably develop your own preference - this is absolutely fine!
 
 
 ### Start plotting
