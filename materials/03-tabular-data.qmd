@@ -262,7 +262,7 @@ surveys.loc[0:2, "species_id"]
 
 :::
 
-Alternatively, we use index-based subsetting:
+Alternatively, we use index-based subsetting. Remember, this is based on the numerical position in the data set:
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -301,7 +301,7 @@ Remember, Python's indexing is zero-based - so you have to be quite careful/accu
 Before we move on to the next section, we'll practice saving data to file. You might want to do this if you created new tables or subsetted your data and don't want to repeat that every single time you do your analysis.
 
 ::: {.callout-important}
-Remember: never overwrite your raw data but always keep this as a separate copy!
+Remember: **never overwrite your raw data** but always keep this as a separate copy!
 :::
 
 ::: {.panel-tabset group="language"}

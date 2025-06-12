@@ -1,5 +1,5 @@
 ---
-title: "Intro to software"
+title: "Intro to software" 
 ---
 
 ::: {.callout-tip}
@@ -159,35 +159,6 @@ inside the console window and press {{< kbd Escape >}}. This will cancel the inc
 ## Python
 :::
 
-### Comments in code
-
-It's always a good idea to add explanations to your code. We can do that with the hash tag `#` symbol, for example:
-
-```{r}
-#| eval: false
-
-# This code calculates the sum of two numbers
-1 + 9
-```
-
-
-It's always a good idea to add lots of comments to your code. What makes sense to you in that moment, might not a week later. Similarly, when sharing code with colleagues and collaborators, it's always good to be as clear as possible.
-
-### Splitting code {#sec-splitting_code}
-
-As you increase your code, your script can become quite long. Often we want to split analyses into multiple scripts, for example:
-
-* `01_preprocessing` may contain data cleaning steps
-* `02_exploration` may contain exploratory plots of your data
-* `03_analysis` could contain (statistical) analyses of your data
-* `04_figures` could contain code for figures, ready for publication
-
-Each of these files could be hundreds of lines long. So, keeping track of your code makes sense. We can do that with **code headings**, which use the `# heading ----` syntax. You can even add different heading levels, by increasing the number of `#` at the start.
-
-This creates a little table of contents in the bottom-left corner of the script pane:
-
-![Code headings](images/rstudio-codeheadings.png)
-
 ## Running code {#running-code}
 
 The simplest way of using a programming language is to use it interactively. We can do this by typing directly into the console / terminal.
@@ -213,7 +184,43 @@ For example, you can use Python as a glorified calculator:
 
 :::
 
-Running code like this directly in the console is generally not a good idea, because then we can't keep track of what we are doing. So, we first need to create a script to save our code in. Then, we can then play around.
+Running code like this directly in the console is generally not a good idea, because then we can't keep track of what we are doing. So, we first need to create a script to save our code in. Then, we can then play around. Let's focus on that next.
+
+### Splitting code {#sec-splitting_code}
+
+As your analysis grows, so does your code. So,often we want to split analyses into multiple scripts, for example:
+
+* `01_preprocessing` may contain data cleaning steps
+* `02_exploration` may contain exploratory plots of your data
+* `03_analysis` could contain (statistical) analyses of your data
+* `04_figures` could contain code for figures, ready for publication
+
+::: {.panel-tabset group="language"}
+## R
+
+Each of these files could be hundreds of lines long. So, keeping track of your code makes sense. We can do that with **code headings**, which use the `# heading ----` syntax. You can even add different heading levels, by increasing the number of `#` at the start.
+
+This creates a little table of contents in the bottom-left corner of the script pane:
+
+![Code headings](images/rstudio-codeheadings.png)
+
+## Python
+
+:::
+
+### Comments in code
+
+It's always a good idea to add explanations to your code. We can do that with the hash tag `#` symbol, for example:
+
+```{r}
+#| eval: false
+
+# This code calculates the sum of two numbers
+1 + 9
+```
+
+
+It's always a good idea to add lots of comments to your code. What makes sense to you in that moment, might not a week later. Similarly, when sharing code with colleagues and collaborators, it's always good to be as clear as possible.
 
 ::: {.callout-important}
 ## Complete before proceeding

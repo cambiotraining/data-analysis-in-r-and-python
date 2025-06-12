@@ -16,6 +16,7 @@ project:
 format:
   courseformat-html:
     theme: flatly
+    lightbox: true
 
 exercises:
   number: true

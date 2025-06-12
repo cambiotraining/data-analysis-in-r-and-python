@@ -189,9 +189,7 @@ What you use is up to you, but be consistent. Programming languages are **case-s
 * Some names are reserved words or keywords, because they are the names of core functions (e.g., `if`, `else`, `for`, see [R](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Reserved.html) or [Python](https://docs.python.org/3/reference/lexical_analysis.html#keywords) for a complete list).
 * Avoid using function names (e.g., `c`, `T`, `mean`, `data`, `df`, `weights`), even if allowed. If in doubt, check the help to see if the name is already in use.
 * Avoid full-stops (`.`) within an object name as in `my.data`. Full-stops often have meaning in programming languages, so it's best to avoid them.
-* Use consistent styling. In R, popular style guides are:
-  * [R's tidyverse's](http://style.tidyverse.org/).
-  * [Google's](https://google.github.io/styleguide/Rguide.xml)
+* Use consistent styling.
 
 **Whatever style you use, be consistent!**
 :::
@@ -551,13 +549,15 @@ For example, let's look at the following data, where we have measured six differ
 systolic_pressure <- c(125, 134, NA, 145, NA, 141)
 ```
 
-We can see that we're missing measurements for two of them. If we want to calculate the average systolic blood pressure across these patients, then we could use the `mean()` function. However, this does not result in `NA`.
+We can see that we're missing measurements for two of them. If we want to calculate the average systolic blood pressure across these patients, then we could use the `mean()` function. However, this results in `NA`.
 
 ```{r}
 mean(systolic_pressure)
 ```
 
-You can add the argument `na.rm = TRUE` to various functions - including `mean()` - to calculate the result while ignoring the missing values. This stands for "remove missing values".
+The reason that happens is because missing values are obviously not numbers and, as such, the `mean()` function doesn't know what to do with the. 
+
+To overcome this, we need to tell it to ignore missing values and *then* calculate the mean. We do this by adding the argument `na.rm = TRUE` to it. This argument works on many different functions and instructs it to remove missing values before any calculation takes place.
 
 ```{r}
 mean(systolic_pressure, na.rm = TRUE)
