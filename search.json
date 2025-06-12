@@ -1,0 +1,734 @@
+[
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data analysis in R and Python",
+    "section": "",
+    "text": "Target audience\nThese sessions provide an introduction to coding in R and Python. The aim is to get you comfortable with coding techniques commonly used in scientific research.\nThis course is aimed at people without any prior programming experience. It does however, allow people with some experience to further enhance their knowledge through different level exercises.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "Welcome",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#citation-authors",
+    "href": "index.html#citation-authors",
+    "title": "Data analysis in R and Python",
+    "section": "Citation & authors",
+    "text": "Citation & authors\nPlease cite these materials if:\n\nYou adapted or used any of them in your own teaching.\nThese materials were useful for your research work. For example, you can cite us in the methods section of your paper: “We carried our analyses based on the recommendations in YourReferenceHere”.\n\n\nYou can cite these materials as:\n\nTavares, H., van Rongen, M. (2025). Data analysis in R and Python. https://cambiotraining.github.io/data-analysis-in-r-and-python/\n\nOr in BibTeX format:\n@misc{YourReferenceHere,\n  author = {Tavares, Hugo and van Rongen, Martin},\n  month = {6},\n  title = {Data analysis in R and Python},\n  url = {https://cambiotraining.github.io/data-analysis-in-r-and-python/},\n  year = {2025}\n}\nAbout the authors:\nHugo Tavares  \nAffiliation: Cambridge Centre for Research Informatics Training Roles: writing - original draft; conceptualisation; software\n\nMartin van Rongen  \nAffiliation: Cambridge Centre for Research Informatics Training Roles: writing - original draft; conceptualisation; software",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "Welcome",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "index.html#acknowledgements",
+    "href": "index.html#acknowledgements",
+    "title": "Data analysis in R and Python",
+    "section": "Acknowledgements",
+    "text": "Acknowledgements\n\nThese materials are loosely based on the original course contents of the “Data Carpentry lesson in Ecology”.\nMichonneau F, Teal T, Fournier A, Seok B, Obeng A, Pawlik AN, Conrado AC, Woo K, Lijnzaad P, Hart T, White EP, Marwick B, Bolker B, Jordan KL, Ashander J, Dashnow H, Hertweck K, Cuesta SM, Becker EA, Guillou S, Shiklomanov A, Klinges D, Odom GJ, Jean M, Mislan KAS, Johnson K, Jahn N, Mannheimer S, Pederson S, Pletzer A, Fouilloux A, Switzer C, Bahlai C, Li D, Kerchner D, Rodriguez-Sanchez F, Rajeg GPW, Ye H, Tavares H, Leinweber K, Peck K, Lepore ML, Hancock S, Sandmann T, Hodges T, Tirok K, Jean M, Bailey A, von Hardenberg A, Theobold A, Wright A, Basu A, Johnson C, Voter C, Hulshof C, Bouquin D, Quinn D, Vanichkina D, Wilson E, Strauss E, Bledsoe E, Gan E, Fishman D, Boehm F, Daskalova G, Tavares H, Kaupp J, Dunic J, Keane J, Stachelek J, Herr JR, Millar J, Lotterhos K, Cranston K, Direk K, Tylén K, Chatzidimitriou K, Deer L, Tarkowski L, Chiapello M, Burle M, Ankenbrand M, Czapanskiy M, Moreno M, Culshaw-Maurer M, Koontz M, Weisner M, Johnston M, Carchedi N, Burge OR, Harrison P, Humburg P, Pauloo R, Peek R, Elahi R, Cortijo S, sfn_brt, Umashankar S, Goswami S, Sumedh, Yanco S, Webster T, Reiter T, Pearse W, Li Y (2019). “datacarpentry/R-ecology-lesson: Data Carpentry: Data Analysis and Visualization in R for Ecologists, June 2019.” doi: 10.5281/zenodo.3264888, “http://datacarpentry.org/R-ecology-lesson/”.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "Welcome",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>Overview</span>"
+    ]
+  },
+  {
+    "objectID": "setup.html",
+    "href": "setup.html",
+    "title": "Data & Setup",
+    "section": "",
+    "text": "Data\nThe data used in these materials is provided as a zip file. Download and unzip the folder to your Desktop to follow along with the materials.\nDownload",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "Welcome",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data & Setup</span>"
+    ]
+  },
+  {
+    "objectID": "setup.html#software",
+    "href": "setup.html#software",
+    "title": "Data & Setup",
+    "section": "Software",
+    "text": "Software\n\nQuarto\nTo develop and render the course materials website, you will need to install Quarto:\n\nDownload and install Quarto (available for all major OS).\nIf you are developing materials using executable .qmd documents, it is recommended that you also install the extensions for your favourite IDE (e.g. RStudio, VS Code).\nIf you are developing materials using JupyterLab or Jupyter Notebooks, please install Jupytext.\n\nUse the paired notebook feature to have synchronised .ipynb/.qmd files. Only .qmd files should be pushed to the repository (.ipynb files have been added to .gitignore).",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "Welcome",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Data & Setup</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html",
+    "href": "materials/01-intro-software.html",
+    "title": "3  Intro to software",
+    "section": "",
+    "text": "3.1 Context",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#context",
+    "href": "materials/01-intro-software.html#context",
+    "title": "3  Intro to software",
+    "section": "",
+    "text": "3.1.1 Why learn programming?\nSimply put, programming allows you to move away from point-and-click activities. They might seem great because they’re intuitive and relatively easy - until you want to redo an analysis after collecting more data. You then need to manually go through the whole process again.\nBy writing out the different steps of your analysis you’re making all those ‘clicks’ explicit. The added benefit is that it forces you to think more about what steps you need to go through in your analysis, thereby making errors less likely!\nThis also very much improves the reproducibility of the analysis: after all, running the same code on the same data should also result in the same outcome. This is great when you’re sharing your analysis with colleagues, but also great for your future self. Your brilliant approach might have made sense at the time, but who knows how much you still recall a year later… More and more often funding bodies are (rightfully!) requiring you to include raw data and analysis pipelines when submitting a paper. So, you’ll be ahead of the game.\n\n\n3.1.2 Interacting with the programming language\nIn this course we’re focusing on generic programming concepts, but we’re illustrating them in two different languages: R and Python.\nIn both cases we don’t directly type in commands in some kind of terminal window, but instead use an additional bit of software to make our programming experience a bit more user-friendly.\n\nRPython\n\n\nFor R, the RStudio software is a very popular choice - and one we’ll be using here. It’s free, open-source and well-supported. What more can you ask for?\n\n\n\n\n\n\nFigure 3.1: The welcome screen of RStudio\n\n\n\nIn the image above you can see that the window is divided into three main parts, each with various tabs. In clockwise order we have:\n\nConsole / Terminal / Background jobs\nEnvironment / History / Connections / Tutorial\nFiles / Plots / Packages / Help / Viewer / Presentation\n\nIn bold we’ve highlighted the tabs we’ll be using most.\nIn the Console we can directly run code - more on that soon. The Environment shows any information that is stored in R’s memory (empty in the figure above). The Files tab is a mini-browser; Plots shows you any plots that have been created and Help is where you can go for… well, help.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#working-directory",
+    "href": "materials/01-intro-software.html#working-directory",
+    "title": "3  Intro to software",
+    "section": "3.2 Working directory",
+    "text": "3.2 Working directory\nA good way of staying organised is to keep all the files related to a given project together. Using that concept when programming is really helpful, because it makes it easier for the computer to find all the data, scripts and other information related to an analysis.\nWe often refer to this as the working directory. This simply is the starting point for the computer to look for stuff.\nBecause you easily accumulate a lot of files when analysing data, it’s good to be organised. During this course we’ll create a project folder called data-analysis, which we’ll make our working directory.\nWithin this folder we’ll have sub folders that allow us to further organise our data. We’ll use the following structure:\n\n\n\n\n\n\nFigure 3.2: The working directory structure of this course\n\n\n\n\n\n\n\n\n\n\nFolder\nDescription\n\n\n\n\ndata\nContains the data files we’ll use in this course, for example surveys.csv. For your own analysis you might want to consider adding another folder within this to contain the raw data. It’s good practice to always keep an untouched copy of your raw data. This helps with transparency and allows you analyse data differently in the future. Aim to keep your data cleaning and analyses programmatically.\n\n\nimages\nThis folder will contain any images you might produce, for example for publications or data exploration.\n\n\nscripts\nHere we can store any scripts we create. Here it’s also good to be structured and organised, something we cover a bit more in Section 3.4.1.\n\n\n…\nThe opportunities are endless. You can add folders for documents, presentations, etc. How you do things matters less than being consistent!\n\n\n\nAll the files in the working directory can be referenced using relative paths. This allows you to move you working directory across your computer - or to other computers - without breaking any of the links within your scripts.\n\n\n\n\n\n\nRelative versus absolute paths\n\n\n\nRelative paths are relative to a certain location on your computer. Absolute paths start from the absolute start of your hard drive. This is easiest illustrated with an example:\n\n\n\n\n\n\nFigure 3.3: Relative vs absolute paths\n\n\n\n\n\n\n3.2.1 Creating a working directory\nBefore we start writing any code we’ll set up our working environment properly. To do this, we’ll create our data-analysis working directory, with all its sub folders.\n\nRPython\n\n\nThe easiest way to set up a working directory in R is to create an R-project. This is simply a folder on your computer with a shortcut in it (ending in .RProj). When you double-click on the shortcut, it opens RStudio and sets the working directory to that particular folder.\nTo create an “R Project”:\n\n\n\n  \n  \n                \n          \n            \n          \n            \n          \n            \n          \n  \n  \n    \n\n\n\n  \n  \n    \n    Previous\n  \n  \n    \n    Next\n  \n\n\n  Setting up a new working directory (click to toggle).\n\n\n\nStart RStudio.\nUnder the File menu, click on New Project. Choose New Directory, then New Project.\nEnter a name for this new folder (or “directory”), and choose a convenient location for it. This will be your working directory for the rest of the day (e.g., ~/data-analysis).\nClick on Create Project.\nTick Open in new session to ensure RStudio starts afresh.\n\nR will show you your current working directory in the Files pane. Alternatively, you can get it by typing in and running the getwd() command.\n\n\n\n\n\n\n\n\n\n\n\n\nImportant\n\n\n\nComplete Exercise 1 before proceeding.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#working-with-r-or-python",
+    "href": "materials/01-intro-software.html#working-with-r-or-python",
+    "title": "3  Intro to software",
+    "section": "3.3 Working with R or Python",
+    "text": "3.3 Working with R or Python\nThe basis of programming is that we create or code instructions for the computer to follow. Next, we tell the computer to follow the instructions by executing or running those instructions.\n\n3.3.1 Scripts versus console\nThere are two main ways of interacting with the language: by using the console or by using script files (plain text files that contain your code). The console is the place where commands can be typed and executed immediately by the computer. It is also where the results will be shown for commands that have been executed. However, no record is kept and any information is lost once the session is closed.\nInstead, we uses scripts to write all the commands. That way there is a complete record of what we did, and anyone (including our future selves!) can easily replicate the results on their computer.\n\n\n\n\n\n\n\nConsole/terminal \nScript \n\n\n\n\nruns code directly\nin essence, a text file\n\n\ninteractive\nneeds to be told to run\n\n\nno record\nrecords actions\n\n\ndifficult to trace progress\ntransparent workflow\n\n\n\n\nRPython\n\n\nWe can type commands directly in the Console pane and press EnterEnter.\nRStudio also allows you to execute commands directly from the script editor by using the ControlControl + EnterEnter shortcut (on Macs,  +  will work, too). The command on the current line in the script (indicated by the cursor) or all of the commands in the currently selected text will be sent to the console and executed when you press ControlControl + EnterEnter. You can find other keyboard shortcuts in this RStudio cheatsheet about the RStudio IDE (PDF).\n\n\n\n\n\n\nThe R prompt\n\n\n\nIf R is ready to accept commands, the R console shows a &gt; prompt. If it receives a command (by typing, copy-pasting or sent from the script editor using ControlControl + EnterEnter), R will try to execute it, and when ready, will show the results and come back with a new &gt; prompt to wait for new commands.\nIf R is still waiting for you to enter more data because it isn’t complete yet, the console will show a + prompt. It means that you haven’t finished entering a complete command. This is because you have not ‘closed’ a parenthesis or quotation, i.e. you don’t have the same number of left-parentheses as right-parentheses, or the same number of opening and closing quotation marks. When this happens, and you thought you finished typing your command, click inside the console window and press EscapeEscape. This will cancel the incomplete command and return you to the &gt; prompt.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#running-code",
+    "href": "materials/01-intro-software.html#running-code",
+    "title": "3  Intro to software",
+    "section": "3.4 Running code",
+    "text": "3.4 Running code\nThe simplest way of using a programming language is to use it interactively. We can do this by typing directly into the console / terminal.\n\nRPython\n\n\nFor example, you can use R as a glorified calculator:\n\n3 + 5\n\n[1] 8\n\n12 / 7\n\n[1] 1.714286\n\n\n\n\nFor example, you can use Python as a glorified calculator:\n\n3 + 5\n\n8\n\n12 / 7\n\n1.7142857142857142\n\n\n\n\n\nRunning code like this directly in the console is generally not a good idea, because then we can’t keep track of what we are doing. So, we first need to create a script to save our code in. Then, we can then play around. Let’s focus on that next.\n\n3.4.1 Splitting code\nAs your analysis grows, so does your code. So,often we want to split analyses into multiple scripts, for example:\n\n01_preprocessing may contain data cleaning steps\n02_exploration may contain exploratory plots of your data\n03_analysis could contain (statistical) analyses of your data\n04_figures could contain code for figures, ready for publication\n\n\nRPython\n\n\nEach of these files could be hundreds of lines long. So, keeping track of your code makes sense. We can do that with code headings, which use the # heading ---- syntax. You can even add different heading levels, by increasing the number of # at the start.\nThis creates a little table of contents in the bottom-left corner of the script pane:\n\n\n\nCode headings\n\n\n\n\n\n\n\n\n\n\n3.4.2 Comments in code\nIt’s always a good idea to add explanations to your code. We can do that with the hash tag # symbol, for example:\n\n# This code calculates the sum of two numbers\n1 + 9\n\nIt’s always a good idea to add lots of comments to your code. What makes sense to you in that moment, might not a week later. Similarly, when sharing code with colleagues and collaborators, it’s always good to be as clear as possible.\n\n\n\n\n\n\nComplete before proceeding\n\n\n\nPlease complete Exercise 2 and Exercise 3.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#functions-and-their-arguments",
+    "href": "materials/01-intro-software.html#functions-and-their-arguments",
+    "title": "3  Intro to software",
+    "section": "3.5 Functions and their arguments",
+    "text": "3.5 Functions and their arguments\nFunctions are “canned scripts” that automate more complicated sets of commands including operations assignments, etc. Many functions are predefined, or can be made available by importing packages (more on that later). A function usually takes one or more inputs called arguments. Functions often (but not always) return a value. A typical example would be the function sqrt(). The input (the argument) must be a number, and the return value (in fact, the output) is the square root of that number.\n\nRPython\n\n\n\nsqrt(9)\n\n\n\nThe sqrt() function is not available by default, but is stored in the math module. Before we can use it, we need to load this module:\n\nimport math\n\nNext, we can use the sqrt() function, specifying that it comes from the mathmodule. We separate the two with a full-stop (.):\n\nmath.sqrt(9)\n\n3.0\n\n\n\n\n\nHere, the value 9 is given to the sqrt() function. This function calculates the square root, and returns the value. This function is very simple, because it takes just one argument.\nThe return ‘value’ of a function need not be numerical (like that of sqrt()), and it also does not need to be a single item: it can be a set of things, or even a data set. We’ll see that when we read data files.\n\n3.5.1 Arguments\nArguments allow you to control the behaviour of a function. They can be anything, not only numbers or file names. Exactly what each argument means differs per function and can be looked up in the documentation. Some functions take arguments which may either be specified by the user, or, if left out, take on a default value: these are called options.\nOptions are typically used to alter the way the function operates, such as if it should ignore missing values, or what symbol to use in a plot. However, if you want something specific, you can specify a value of your choice which will be used instead of the default.\nLet’s try a function that can take multiple arguments: round().\n\nRPython\n\n\n\nround(3.14159)\n\n[1] 3\n\n\n\n\n\nround(3.14159)\n\n3\n\n\n\n\n\nHere, we’ve called round() with just one argument, 3.14159, and it has returned the value 3. That’s because the default is to round to the nearest whole number. If we want more digits we can see how to do that by getting information about the round() function.\n\nRPython\n\n\nWe can use args(round) to find what arguments it takes, or look at the help for this function using ?round.\n\nargs(round)\n\nfunction (x, digits = 0, ...) \nNULL\n\n\nWe see that if we want a different number of digits, we can type digits = 2 or however many we want. For example:\n\nround(x = 3.14159, digits = 2)\n\nIf you provide the arguments in the exact same order as they are defined you don’t have to name them:\n\nround(3.14159, 2)\n\nAnd if you do name the arguments, you can switch their order:\n\nround(digits = 2, x = 3.14159)\n\n\n\nWe can use help(round) to find what arguments it takes.\n\nhelp(round)\n\nWe see that if we want a different number of digits, we can type ndigits = 2 or however many we want. For example:\n\nround(3.14159, ndigits = 2)\n\n3.14\n\n\nIf you provide the arguments in the exact same order as they are defined you don’t have to name them:\n\nround(3.14159, 2)\n\n3.14\n\n\nPython still expects the arguments in the correct order, so this gives an error:\n\nround(ndigits = 2, 3.14159)\n\n\n\n\nIt’s good practice be explicit about the names of the arguments. That way you can avoid confusion later on when looking back at your code or when sharing your code.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#adding-functionality-using-packages",
+    "href": "materials/01-intro-software.html#adding-functionality-using-packages",
+    "title": "3  Intro to software",
+    "section": "3.6 Adding functionality using packages",
+    "text": "3.6 Adding functionality using packages\nLO: adding functionality (installing + loading packages) LO: For Python: requires numpy for next section",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#exercises",
+    "href": "materials/01-intro-software.html#exercises",
+    "title": "3  Intro to software",
+    "section": "3.7 Exercises",
+    "text": "3.7 Exercises\n\n\n\n\n\n\nExercise 1 - Creating a working directory\n\n\n\n\n\n\nLevel: \nCreate a working directory called data-analysis. When you’ve done this, add the following sub folders:\n\ndata\nscripts\nimages\n\nNote: programming languages are case-sensitive, so data is not treated the same way as Data.\n\n\n\n\n\n\n\n\n\n\nExercise 2 - Creating a script\n\n\n\n\n\n\nLevel: \nCreate a script and save it as session_01 in the scripts folder within your working directory.\n\n\n\n\n\n\nHint\n\n\n\n\n\n\nRemember, you will need to add an extension to the file. This is .R for R scripts or .py for Python ones.\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nExercise 3 - Running code\n\n\n\n\n\n\nLevel: \nIn your new script session_01, run some mathematical operations, such as:\n\n8 * 4\n6 - 9\n\n\n\n\n\n\n\nHint\n\n\n\n\n\n\nRemember, you run the code using Ctrl + Enter (or Command + Enter on Mac).",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/01-intro-software.html#summary",
+    "href": "materials/01-intro-software.html#summary",
+    "title": "3  Intro to software",
+    "section": "3.8 Summary",
+    "text": "3.8 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>Intro to software</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html",
+    "href": "materials/02-basic-objects-and-data-types.html",
+    "title": "4  Data types & structures",
+    "section": "",
+    "text": "4.1 Context\nWe’ve seen examples where we entered data directly into a function. Most of the time we have data from elsewhere, such as a spreadsheet. In the previous section we created single objects. We’ll build up from this and introduce vectors and tabular data. We’ll also briefly mention other data types, such as matrices, arrays.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html#explained-data-types-structures",
+    "href": "materials/02-basic-objects-and-data-types.html#explained-data-types-structures",
+    "title": "4  Data types & structures",
+    "section": "4.2 Explained: Data types & structures",
+    "text": "4.2 Explained: Data types & structures\nComputers are picky when it comes to data and they like consistency. As such, it’s good to be aware of the fact that data can be viewed or interpreted in different ways by the computer.\nFor example, you might have research data where the presence or absence of a tumour is scored. This would often be recorded as 0 when absent and 1 as present. Your computer views these values as numbers and would happily calculate the average of those values. Not ideal, because a tumour being, on average, 0.3 present makes no sense!\nSo, it is important to spend a bit of time looking at your data to make sure that the computer sees it in the correct way.\n\n4.2.1 Quantitative data\n\nDiscrete data\nDiscrete data are numerical data that can only take distinct values. They can be counted and only take whole numbers. Examples of discrete data include, for example, the number of planets in a solar system or the number of questions answered on an exam.\n\n\n\n\n\n\n\n\nDescription\n\n\n\n\n\nThe number of questions answered on an exam (e.g. 12 out of 20)\n\n\n\nIf somebody has completed a survey (binary data; yes/no)\n\n\n\nThe number of students in a class (e.g. 20, 32)\n\n\n\n\n\nContinuous data\nContinuous data can take any value within a given range. These data can be measured and can include decimals or fractions.\n\n\n\n\n\n\n\n\nDescription\n\n\n\n\n\nTemperature of a liquid (e.g. 20 °C)\n\n\n\nHeight of people in a cohort (e.g. 168 cm)\n\n\n\nAverage heart rate in a patient (e.g. 70 beats per minute)\n\n\n\nWater levels in an aquifer (e.g. 2.4 metres)\n\n\n\n\n\n\n4.2.2 Qualitative data\nQualitative data are data that describe qualities which can’t be measured or quantified numerically. We can roughly split these data into two types: ones with an inherent order to them, and ones without.\n\nNominal data: categories\nThese are categorical data that represent categories or distinct groups, without any inherent order or ranking.\n\n\n\n\n\n\n\n\nDescription\n\n\n\n\n\nEye colour (e.g. blue, brown)\n\n\n\nEducation level (e.g. primary school, secondary school)\n\n\n\nTreatment group (e.g. control, treatment)\n\n\n\n\n\nOrdinal data: categories with ranking or ordering\nOrdinal data are similar to nominal data, in that they represent different categories or groups. However, these also have an inherent ordering to them.\n\n\n\n\n\n\n\n\nDescription\n\n\n\n\n\nRating scale (e.g., 1 to 5 stars for difficulty levels)\n\n\n\nRank or position (e.g., 1st, 2nd, 3rd place in a tournament)\n\n\n\nOrder or progression (e.g., low, medium, high priority)\n\n\n\n\n\n\n4.2.3 Getting the computer to see the right way\nIn general, computers can view these different types of data in specific ways.\n\nRPython\n\n\nR has the following main data types:\n\n\n\n\n\n\n\nData type\nDescription\n\n\n\n\nnumeric\nRepresents numbers; can be whole (integers) or decimals\n(e.g., 19or 2.73).\n\n\ninteger\nSpecific type of numeric data; can only be an integer\n(e.g., 7L where L indicates an integer).\n\n\ncharacter\nAlso called text or string\n(e.g., \"Rabbits are great!\").\n\n\nlogical\nAlso called boolean values; takes either TRUE or FALSE.\n\n\nfactor\nA type of categorical data that can have inherent ordering\n(e.g., low, medium, high).\n\n\n\n\n\nPython has the following main data types:\n\n\n\n\n\n\n\nData type\nDescription\n\n\n\n\nint\nSpecific type of numeric data; can only be an integer\n(e.g., 7 or 56).\n\n\nfloat\nDecimal numbers\n(e.g., 3.92 or 9.824).\n\n\nstr\nText or string data\n(e.g., \"Rabbits are great!\").\n\n\nbool\nLogical or boolean values; takes either True or False.\n\n\n\n\n\n\n\n\n4.2.4 Data structures\nIn the section on running code we saw how we can run code interactively. However, we frequently need to save values so we can work with them. We’ve just seen that we can have different types of data. We can save these into different data structures. Which data structure you need is often determined by the type of data and the complexity.\nIn the following sections we look at simple data structures.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html#objects",
+    "href": "materials/02-basic-objects-and-data-types.html#objects",
+    "title": "4  Data types & structures",
+    "section": "4.3 Objects",
+    "text": "4.3 Objects\nWe can store values into objects. To do this, we assign values to them. An object acts as a container for that value.\nTo create an object, we need to give it a name followed by the assignment operator and the value we want to give it, for example:\n\nRPython\n\n\n\ntemperature &lt;- 23\n\nWe can read the code as: the value 23 is assigned (&lt;-) to the object temperature. Note that when you run this line of code the object you just created appears on your environment tab (top-right panel).\nWhen assigning a value to an object, R does not print anything on the console. You can print the value by typing the object name on the console or within your script and running that line of code.\n\n\n\ntemperature = 23\n\nWe can read the code as: the value 23 is assigned (=) to the object temperature.\nWhen assigning a value to an object, Python does not print anything on the console. You can print the value by typing the object name on the console or within your script and running that line of code.\n\n\n\n\n\n\n\n\n\nThe assignment operator\n\n\n\nWe use an assignment operator to assign values on the right to objects on the left.\n\nRPython\n\n\nIn R we use &lt;- as the assignment operator.\nIn RStudio, typing Alt + - (push Alt at the same time as the - key) will write &lt;- in a single keystroke on a PC, while typing Option + - (push Option at the same time as the - key) does the same on a Mac. \n\n\nIn Python we use = as the assignment operator. \n\n\n\n\n\n\n\nObjects can be given almost any name such as x, current_temperature, or subject_id. You want the object names to be explicit and short. There are some exceptions / considerations (see below).\n\n\n\n\n\n\nRestrictions on object names\n\n\n\nObject names can contain letters, numbers, underscores and periods.\nThey cannot start with a number nor contain spaces. Different people use different conventions for long variable names, two common ones being:\nUnderscore: my_long_named_object\nCamel case: myLongNamedObject\nWhat you use is up to you, but be consistent. Programming languages are case-sensitive so temperature is different from Temperature.\n\nSome names are reserved words or keywords, because they are the names of core functions (e.g., if, else, for, see R or Python for a complete list).\nAvoid using function names (e.g., c, T, mean, data, df, weights), even if allowed. If in doubt, check the help to see if the name is already in use.\nAvoid full-stops (.) within an object name as in my.data. Full-stops often have meaning in programming languages, so it’s best to avoid them.\nUse consistent styling.\n\nWhatever style you use, be consistent!\n\n\n\n4.3.1 Using objects\nNow that we have the temperature in memory, we can use it to perform operations. For example, this might the temperature in Celsius and we might want to calculate it to Kelvin.\nTo do this, we need to add 273.15:\n\nRPython\n\n\n\ntemperature + 273.15\n\n[1] 296.15\n\n\n\n\n\ntemperature + 273.15\n\n296.15\n\n\n\n\n\nWe can change an object’s value by assigning a new one:\n\nRPython\n\n\n\ntemperature &lt;- 36\ntemperature + 273.15\n\n[1] 309.15\n\n\n\n\n\ntemperature = 36\ntemperature + 273.15\n\n309.15\n\n\n\n\n\nFinally, assigning a value to one object does not change the values of other objects. For example, let’s store the outcome in Kelvin into a new object temp_K:\n\nRPython\n\n\n\ntemp_K &lt;- temperature + 273.15\n\n\n\n\ntemp_K = temperature + 273.15\n\n\n\n\nChanging the value of temperature does not change the value of temp_K.\n\nRPython\n\n\n\ntemperature &lt;- 14\ntemp_K\n\n[1] 309.15\n\n\n\n\n\ntemperature = 14\ntemp_K\n\n309.15",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html#collections-of-data",
+    "href": "materials/02-basic-objects-and-data-types.html#collections-of-data",
+    "title": "4  Data types & structures",
+    "section": "4.4 Collections of data",
+    "text": "4.4 Collections of data\nIn the examples above we have stored single values into an object. Of course we often have to deal with more than tat. Generally speaking, we can create collections of data. This enables us to organise our data, for example by creating a collection of numbers or text values.\n\n4.4.1 Creating collections\nCreating a collection of data is pretty straightforward, particularly if you are doing it manually.\n\nRPython\n\n\nThe simplest collection of data in R is called a vector. This really is the workhorse of R.\nA vector is composed by a series of values, which can numbers, text or any of the data types described.\nWe can assign a series of values to a vector using the c() function. For example, we can create a vector of temperatures and assign it to a new object temp_c:\n\ntemp_c &lt;- c(23, 24, 31, 27, 18, 21)\n\ntemp_c\n\n[1] 23 24 31 27 18 21\n\n\nA vector can also contain text. For example, let’s create a vector that contains weather descriptions:\n\nweather &lt;- c(\"sunny\", \"cloudy\", \"partial_cloud\", \"cloudy\", \"sunny\", \"rainy\")\n\nweather\n\n[1] \"sunny\"         \"cloudy\"        \"partial_cloud\" \"cloudy\"       \n[5] \"sunny\"         \"rainy\"        \n\n\n\n\nThe simplest collection of data in Python is either a list or a tuple. Both can hold items of the same of different types. Whereas a tuple cannot be changed after it’s created, a list can.\nWe can assign a collection of numbers to a list:\n\ntemp_c = [23, 24, 31, 27, 18, 21]\n\ntemp_c\n\n[23, 24, 31, 27, 18, 21]\n\n\nA list can also contain text. For example, let’s create a list that contains weather descriptions:\n\nweather = [\"sunny\", \"cloudy\", \"partial_cloud\", \"cloudy\", \"sunny\", \"rainy\"]\n\nweather\n\n['sunny', 'cloudy', 'partial_cloud', 'cloudy', 'sunny', 'rainy']\n\n\nWe can also create a tuple. Remember, this is like a list, but it cannot be altered after creating it. Note the difference in the type of brackets, where we use ( ) round brackets instead of [ ] square brackets:\n\ntemp_c_tuple = (23, 24, 31, 27, 18, 21)\n\n\n\n\nNote that when we define text (e.g. \"cloudy\" or \"sunny\"), we need to use quotes.\nWhen we deal with numbers - whole or decimal (e.g. 23, 18.5) - we do not use quotes.\n\n\n\n\n\n\nHaving a type\n\n\n\nDifferent data types result in slightly different types of objects. It can be quite useful to check how your data is viewed by the computer.\n\nRPython\n\n\nWe can use the class() function to find out how R views our data. This function also works for more complex data structures.\nLet’s do this for our examples:\n\nclass(temp_c)\n\n[1] \"numeric\"\n\n\n\nclass(weather)\n\n[1] \"character\"\n\n\n\n\nWe can use the type() function to find out how Python views our data. This function also works for more complex data structures.\nLet’s do this for our examples:\n\ntype(temp_c)\n\n&lt;class 'list'&gt;\n\n\n\ntype(weather)\n\n&lt;class 'list'&gt;\n\n\n\ntype(temp_c_tuple)\n\n&lt;class 'tuple'&gt;\n\n\n\n\n\n\n\n\n\n4.4.2 Making changes\nQuite often we would want to make some changes to a collection of data. There are different ways we can do this.\nLet’s say we gathered some new temperature data and wanted to add this to the original temp_c data.\n\nRPython\n\n\nWe’d use the c() function to combine the new data:\n\nc(temp_c, 22, 34)\n\n[1] 23 24 31 27 18 21 22 34\n\n\n\n\nWe take the original temp_c list and add the new values:\n\ntemp_c + [22, 34]\n\n[23, 24, 31, 27, 18, 21, 22, 34]\n\n\n\n\n\nLet’s consider another scenario. Again, we went out to gather some new temperature data, but this time we stored the measurements into an object called temp_new and wanted to add these to the original temp_c data.\n\nRPython\n\n\n\ntemp_new &lt;- c(5, 16, 8, 12)\n\nNext, we wanted to combine these new data with the original data, which we stored in temp_c.\nAgain, we can use the c() function:\n\nc(temp_c, temp_new)\n\n [1] 23 24 31 27 18 21  5 16  8 12\n\n\n\n\n\ntemp_new = [5, 16, 8, 12]\n\nWe can use the + operator to add the two lists together:\n\ntemp_c + temp_new\n\n[23, 24, 31, 27, 18, 21, 5, 16, 8, 12]\n\n\n\n\n\n\n\n4.4.3 Number sequences\nWe often need to create sequences of numbers when analysing data. There are some useful shortcuts available to do this, which can be used in different situations. Run the following code to see the output.\n\nRPython\n\n\n\n1:10                                # integers from 1 to 10\n10:1                                # integers from 10 to 1\nseq(1, 10, by = 2)                  # from 1 to 10 by steps of 2\nseq(10, 1, by = -0.5)               # from 10 to 1 by steps of -0.5\nseq(1, 10, length.out = 20)         # 20 equally spaced values from 1 to 10\n\n\n\nPython has some built-in functionality to deal with number sequences, but the numpy library is particularly helpful. We installed and loaded it previously, but if needed, re-run the following:\n\nimport numpy as np\n\nNext, we can create several different number sequences:\n\nlist(range(1, 11))                 # integers from 1 to 10\nlist(range(10, 0, -1))             # integers from 10 to 1\nlist(range(1, 11, 2))              # from 1 to 10 by steps of 2\nlist(np.arange(10, 1, -0.5))       # from 10 to 1 by steps of -0.5\nlist(np.linspace(1, 10, num = 20)) # 20 equally spaced values from 1 to 10\n\n\n\n\n\n\n4.4.4 Subsetting\nSometimes we want to extract one or more values from a collection of data. We will go into more detail later, but for now we’ll see how to do this on the simple data structures we’ve covered so far.\n\n\n\n\n\n\nTechnical: Differences in indexing between R and Python\n\n\n\n\n\nIn the course materials we keep R and Python separate in most cases. However, if you end up using both languages at some point then it’s important to be aware about some key differences. One of them is indexing.\nEach item in a collection of data has a number, called an index. Now, it would be great if this was consistent across all programming languages, but it’s not.\nR uses 1-based indexing whereas Python uses zero-based indexing. What does this mean? Compare the following:\n\nplants &lt;- c(\"tree\", \"shrub\", \"grass\") # the index of \"tree\" is 1, \"shrub\" is 2 etc.\n\n\nplants = [\"tree\", \"shrub\", \"grass\"]   # the index of \"tree\" is 0, \"shrub\" is 1 etc.  \n\nBehind the scenes of any programming language there is a lot of counting going on. So, it matters if you count starting at zero or one. So, if I’d ask:\n“Hey, R - give me the items with index 1 and 2 in plants” then I’d get tree and shrub.\nIf I’d ask that question in Python, then I’d get shrub and grass. Fun times.\n\n\n\n\nRPython\n\n\nIn R we can use square brackets [ ] to extract values. Let’s explore this using our weather object.\n\nweather          # remind ourselves of the data\n\n[1] \"sunny\"         \"cloudy\"        \"partial_cloud\" \"cloudy\"       \n[5] \"sunny\"         \"rainy\"        \n\nweather[2]       # extract the second value\n\n[1] \"cloudy\"\n\nweather[2:4]     # extract the second to fourth value\n\n[1] \"cloudy\"        \"partial_cloud\" \"cloudy\"       \n\nweather[c(3, 1)] # extract the third and first value\n\n[1] \"partial_cloud\" \"sunny\"        \n\nweather[-1]      # extract all apart from the first value\n\n[1] \"cloudy\"        \"partial_cloud\" \"cloudy\"        \"sunny\"        \n[5] \"rainy\"        \n\n\n\n\nLet’s explore this using our weather object.\n\nweather          # remind ourselves of the data\n\n['sunny', 'cloudy', 'partial_cloud', 'cloudy', 'sunny', 'rainy']\n\nweather[1]       # extract the second value\n\n'cloudy'\n\nweather[1:4]     # extract the second to fourth value (end index is exclusive)\n\n['cloudy', 'partial_cloud', 'cloudy']\n\nweather[2], weather[0] # extract the third and first value\n\n('partial_cloud', 'sunny')\n\nweather[1:]      # extract all apart from the first value\n\n['cloudy', 'partial_cloud', 'cloudy', 'sunny', 'rainy']",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html#dealing-with-missing-data",
+    "href": "materials/02-basic-objects-and-data-types.html#dealing-with-missing-data",
+    "title": "4  Data types & structures",
+    "section": "4.5 Dealing with missing data",
+    "text": "4.5 Dealing with missing data\nIt may seem weird that you have to consider what isn’t there, but that’s exactly what we do when we have missing data. Ideally, when we’re collecting data we entries for every single thing we measure. But, alas, life is messy. That one patient may have missed an appointment, or one eppendorf tube got dropped, or etc etc.\n\nRPython\n\n\nR includes the concept of missing data, meaning we can specify that a data point is missing. Missing data are represented as NA.\nWhen doing operations on numbers, most functions will return NA if the data you are working with include missing values. This makes it harder to overlook the cases where you are dealing with missing data. This is a good thing!\nFor example, let’s look at the following data, where we have measured six different patients and recorded their systolic blood pressure.\n\nsystolic_pressure &lt;- c(125, 134, NA, 145, NA, 141)\n\nWe can see that we’re missing measurements for two of them. If we want to calculate the average systolic blood pressure across these patients, then we could use the mean() function. However, this results in NA.\n\nmean(systolic_pressure)\n\n[1] NA\n\n\nThe reason that happens is because missing values are obviously not numbers and, as such, the mean() function doesn’t know what to do with the.\nTo overcome this, we need to tell it to ignore missing values and then calculate the mean. We do this by adding the argument na.rm = TRUE to it. This argument works on many different functions and instructs it to remove missing values before any calculation takes place.\n\nmean(systolic_pressure, na.rm = TRUE)\n\n[1] 136.25\n\n\nThere are quite a few ways that you can deal with missing data and we’ll discuss more of them in later sessions.\n\n\nThe built-in functionality of Python is not very good at dealing with missing data. This means that you normally need to deal with them manually.\nOne of the ways you can denote missing data in Python is with None. Let’s look at the following data, where we have measured six different patients and recorded their systolic blood pressure.\n\nsystolic_pressure = [125, 134, None, 145, None, 141]\n\nNext, we’d have to filter out the missing values (don’t worry about the exact meaning of the code at this point):\n\nfiltered_data = [x for x in systolic_pressure if x is not None]\n\nAnd lastly we would be able to calculate the mean value:\n\nsum(filtered_data) / len(filtered_data)\n\n136.25\n\n\nThere are quite a few (easier!) ways that you can deal with missing data and we’ll discuss more of them in later sessions, once we start dealing with tabular data.\n\n\n\n\n\n\n\n\n\nTo exclude or not exclude?\n\n\n\nIt may be tempting to simply remove all observations that contain missing data. It often makes the analysis easier! However, there is good reason to be more subtle: throwing away good data.\nLet’s look at the following hypothetical data set, where we use NA to denote missing values. We are interested in the average weight and age across the patients.\npatient_id    weight_kg   age\nN982          72          47\nN821          68          49\nN082          NA          63\nN651          78          NA\nWe could remove all the rows that contain any missing data, thereby getting rid of the last two observations. However, that would mean we’d lose data on age from the penultimate row, and data on weight_kg from the last row.\nInstead, it would be better to tell the computer to ignore missing values on a variable-by-variable basis and calculate the averages on the data that is there.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/02-basic-objects-and-data-types.html#summary",
+    "href": "materials/02-basic-objects-and-data-types.html#summary",
+    "title": "4  Data types & structures",
+    "section": "4.6 Summary",
+    "text": "4.6 Summary\n\n\n\n\n\n\nKey points\n\n\n\n\nThe most common data types include numerical, text and logical data.\nWe can store data in single objects, enabling us to use the data\nMultiple data points and types can be stored as different collections of data\nWe can make changes to objects and collections of data\nWe need to be explicit about missing data",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S1: Getting started",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>Data types & structures</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html",
+    "href": "materials/03-tabular-data.html",
+    "title": "5  Working with tabular data",
+    "section": "",
+    "text": "5.1 Context\nIn the previous section we dealt with single objects and vectors/lists. Here we expand towards tabular data, which can be seen as a set of these grouped together.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#tabular-data",
+    "href": "materials/03-tabular-data.html#tabular-data",
+    "title": "5  Working with tabular data",
+    "section": "5.2 Tabular data",
+    "text": "5.2 Tabular data\nTables are organised in columns (vertical) and rows (horizontal). An example of a tabular data set is given in Figure 5.1.\nThere, each column contains a variable (a thing that we’ve measured). Each row is a unique observation.\n\n\n\n\n\n\nFigure 5.1: An example of tabular data",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#working-with-data",
+    "href": "materials/03-tabular-data.html#working-with-data",
+    "title": "5  Working with tabular data",
+    "section": "5.3 Working with data",
+    "text": "5.3 Working with data\nTabular data sets are often created in spreadsheet programmes, such as Excel. These programmes are actually very well-suited, since they make it easy to enter data and keep an overview. When it comes to analysing these data, we’re better off using coding - that way we can keep track of our analysis.\nThe default Excel format is not great, since it’s a propriety format and not natively readable by other computer programmes. Good alternatives are .csv (comma-separated values) files or .tsv (tab-separated values) files.\nFor the next few sections we’ll be using the surveys.csv data set (which you should now have in your data-analysis/data sub folder).\nWe’ll read in these data now.\n\nRPython\n\n\nIf you haven’t done so already, make sure to load the tidyverse package:\n\nlibrary(tidyverse)\n\nNext, we read in the file using the read_csv() function. Note that there is also a read.csv() function, but that one behaves slightly differently, so ensure you use the correct function name!\n\nread_csv(\"data/surveys.csv\")\n\nRows: 35549 Columns: 9\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (2): species_id, sex\ndbl (7): record_id, month, day, year, plot_id, hindfoot_length, weight\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\n\n# A tibble: 35,549 × 9\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1         1     7    16  1977       2 NL         M                  32     NA\n 2         2     7    16  1977       3 NL         M                  33     NA\n 3         3     7    16  1977       2 DM         F                  37     NA\n 4         4     7    16  1977       7 DM         M                  36     NA\n 5         5     7    16  1977       3 DM         M                  35     NA\n 6         6     7    16  1977       1 PF         M                  14     NA\n 7         7     7    16  1977       2 PE         F                  NA     NA\n 8         8     7    16  1977       1 DM         M                  37     NA\n 9         9     7    16  1977       1 DM         F                  34     NA\n10        10     7    16  1977       6 PF         F                  20     NA\n# ℹ 35,539 more rows\n\n\n\n\nWe’ll be using the read_csv() function from pandas, so make sure to load this module first.\n\nimport pandas as pd\n\n\npd.read_csv(\"data/surveys.csv\")\n\n       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight\n0              1      7   16  1977  ...          NL    M            32.0     NaN\n1              2      7   16  1977  ...          NL    M            33.0     NaN\n2              3      7   16  1977  ...          DM    F            37.0     NaN\n3              4      7   16  1977  ...          DM    M            36.0     NaN\n4              5      7   16  1977  ...          DM    M            35.0     NaN\n...          ...    ...  ...   ...  ...         ...  ...             ...     ...\n35544      35545     12   31  2002  ...          AH  NaN             NaN     NaN\n35545      35546     12   31  2002  ...          AH  NaN             NaN     NaN\n35546      35547     12   31  2002  ...          RM    F            15.0    14.0\n35547      35548     12   31  2002  ...          DO    M            36.0    51.0\n35548      35549     12   31  2002  ...         NaN  NaN             NaN     NaN\n\n[35549 rows x 9 columns]\n\n\n\n\n\nThis actually spits out quite a bit of information onto the screen! This is because we’ve not assigned the output of reading in the file to an object. As such, we can’t work with the data yet. So, we’ll have to fix this. I’ve done this on purpose, of course, to show that the command itself works.\nIt is always good practice to run commands like this without assigning things. That way you can double-check what gets stored into an object! We’ll save the data into an object called surveys.\n\nRPython\n\n\n\nsurveys &lt;- read_csv(\"data/surveys.csv\")\n\n\n\n\nsurveys = pd.read_csv(\"data/surveys.csv\")\n\n\n\n\n\n\n\n\n\n\nReading in different types of data\n\n\n\nThere are many different functions available to read in various data formats. Below are some of the most common ones.\n\nRPython\n\n\nThe readr package (part of tidyverse) has several functions to read data in different formats.\n\nread_csv() - for comma separated values\nread_tsv() - for tab separated values\nread_csv2() - for CSV files exported from non-English spreadsheet programs that use the semi-colon ; as a separator and a comma , as the decimal place.\nread_table() - to read data where each column is separated by one or more spaces.\nread_delim() - a flexible function that allows you to define your own delimiter.\n\nThese functions have equivalents in base R (the default installation of R), which you can also use. They are very similarly named, for example: read.csv() and read.table() (notice the . instead of _ in the function name). However, they have different default options, so pay attention to which one you use!\n\n\nPython’s pd.read_csv() function from pandas can read in many different types of (tabular) data. The way it recognises the different formats is by specifying the separator:\n\npd.read_csv() - for comma separated values\npd.read_csv(file.tsv, sep = \"\\t\") - for tab separated values\npd.read_csv(file.csv, sep = \";\") - for CSV files exported from non-English spreadsheet programs that use the semi-colon ; as a separator and a comma , as the decimal place.\npd.read_table(file.txt) - for general delimited text files and equivalent to pd.read_csv() with a default delimiter of \\t (tab)",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#table-structure",
+    "href": "materials/03-tabular-data.html#table-structure",
+    "title": "5  Working with tabular data",
+    "section": "5.4 Table structure",
+    "text": "5.4 Table structure\nNow that we’ve read in the surveys data set, we can start exploring it a bit more. It’s quite a substantial data set, with 9 columns and 35549 rows.\n\n5.4.1 Getting the first few rows\nA good starting point is to get a snippet of the data. We can use the head() function to get the first few rows of the table.\n\nRPython\n\n\n\nhead(surveys)\n\n# A tibble: 6 × 9\n  record_id month   day  year plot_id species_id sex   hindfoot_length weight\n      &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n1         1     7    16  1977       2 NL         M                  32     NA\n2         2     7    16  1977       3 NL         M                  33     NA\n3         3     7    16  1977       2 DM         F                  37     NA\n4         4     7    16  1977       7 DM         M                  36     NA\n5         5     7    16  1977       3 DM         M                  35     NA\n6         6     7    16  1977       1 PF         M                  14     NA\n\n\n\n\n\nsurveys.head()\n\n   record_id  month  day  year  plot_id species_id sex  hindfoot_length  weight\n0          1      7   16  1977        2         NL   M             32.0     NaN\n1          2      7   16  1977        3         NL   M             33.0     NaN\n2          3      7   16  1977        2         DM   F             37.0     NaN\n3          4      7   16  1977        7         DM   M             36.0     NaN\n4          5      7   16  1977        3         DM   M             35.0     NaN\n\n\n\n\n\n\n\n5.4.2 Understanding overall structure\nIt’s also useful to have a bit of an overview of the overall structure of the table. This may seems trivial with smaller data sets, but the bigger the data set, the harder this can become!\n\nRPython\n\n\nIf we are just interested in finding out which columns we have, we can use:\n\ncolnames(surveys)\n\n[1] \"record_id\"       \"month\"           \"day\"             \"year\"           \n[5] \"plot_id\"         \"species_id\"      \"sex\"             \"hindfoot_length\"\n[9] \"weight\"         \n\n\nHowever, sometimes we want more detailed information. We can do this as follows:\n\nstr(surveys)\n\nspc_tbl_ [35,549 × 9] (S3: spec_tbl_df/tbl_df/tbl/data.frame)\n $ record_id      : num [1:35549] 1 2 3 4 5 6 7 8 9 10 ...\n $ month          : num [1:35549] 7 7 7 7 7 7 7 7 7 7 ...\n $ day            : num [1:35549] 16 16 16 16 16 16 16 16 16 16 ...\n $ year           : num [1:35549] 1977 1977 1977 1977 1977 ...\n $ plot_id        : num [1:35549] 2 3 2 7 3 1 2 1 1 6 ...\n $ species_id     : chr [1:35549] \"NL\" \"NL\" \"DM\" \"DM\" ...\n $ sex            : chr [1:35549] \"M\" \"M\" \"F\" \"M\" ...\n $ hindfoot_length: num [1:35549] 32 33 37 36 35 14 NA 37 34 20 ...\n $ weight         : num [1:35549] NA NA NA NA NA NA NA NA NA NA ...\n - attr(*, \"spec\")=\n  .. cols(\n  ..   record_id = col_double(),\n  ..   month = col_double(),\n  ..   day = col_double(),\n  ..   year = col_double(),\n  ..   plot_id = col_double(),\n  ..   species_id = col_character(),\n  ..   sex = col_character(),\n  ..   hindfoot_length = col_double(),\n  ..   weight = col_double()\n  .. )\n - attr(*, \"problems\")=&lt;externalptr&gt; \n\n\n\n\nIf we are just interested in finding out which columns we have, we can use:\n\nsurveys.columns\n\nIndex(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id', 'sex',\n       'hindfoot_length', 'weight'],\n      dtype='object')\n\n\nHowever, sometimes we want more detailed information. We can do this as follows:\n\nsurveys.info()\n\n&lt;class 'pandas.core.frame.DataFrame'&gt;\nRangeIndex: 35549 entries, 0 to 35548\nData columns (total 9 columns):\n #   Column           Non-Null Count  Dtype  \n---  ------           --------------  -----  \n 0   record_id        35549 non-null  int64  \n 1   month            35549 non-null  int64  \n 2   day              35549 non-null  int64  \n 3   year             35549 non-null  int64  \n 4   plot_id          35549 non-null  int64  \n 5   species_id       34786 non-null  object \n 6   sex              33038 non-null  object \n 7   hindfoot_length  31438 non-null  float64\n 8   weight           32283 non-null  float64\ndtypes: float64(2), int64(5), object(2)\nmemory usage: 2.4+ MB\n\n\n\n\n\nThis gives quite a bit of information, but overall it’s quite straightforward: we can see the number of rows and column and we have information on the type of data that is contained in each column.\n\n\n5.4.3 Summary values\nLastly, we can get some more information by creating some summary statistics.\nThis can be quite useful to quickly check if there are any strange values in your data. For example, you might have expectations on what is a plausible weight value, so if there are typos or errors (e.g. weight = 0), they will quickly show up.\n\nRPython\n\n\n\nsummary(surveys)\n\n   record_id         month             day             year         plot_id    \n Min.   :    1   Min.   : 1.000   Min.   : 1.00   Min.   :1977   Min.   : 1.0  \n 1st Qu.: 8888   1st Qu.: 4.000   1st Qu.: 9.00   1st Qu.:1984   1st Qu.: 5.0  \n Median :17775   Median : 6.000   Median :16.00   Median :1990   Median :11.0  \n Mean   :17775   Mean   : 6.478   Mean   :15.99   Mean   :1990   Mean   :11.4  \n 3rd Qu.:26662   3rd Qu.:10.000   3rd Qu.:23.00   3rd Qu.:1997   3rd Qu.:17.0  \n Max.   :35549   Max.   :12.000   Max.   :31.00   Max.   :2002   Max.   :24.0  \n                                                                               \n  species_id            sex            hindfoot_length     weight      \n Length:35549       Length:35549       Min.   : 2.00   Min.   :  4.00  \n Class :character   Class :character   1st Qu.:21.00   1st Qu.: 20.00  \n Mode  :character   Mode  :character   Median :32.00   Median : 37.00  \n                                       Mean   :29.29   Mean   : 42.67  \n                                       3rd Qu.:36.00   3rd Qu.: 48.00  \n                                       Max.   :70.00   Max.   :280.00  \n                                       NA's   :4111    NA's   :3266    \n\n\n\n\n\nsurveys.describe()\n\n          record_id         month  ...  hindfoot_length        weight\ncount  35549.000000  35549.000000  ...     31438.000000  32283.000000\nmean   17775.000000      6.477847  ...        29.287932     42.672428\nstd    10262.256696      3.396925  ...         9.564759     36.631259\nmin        1.000000      1.000000  ...         2.000000      4.000000\n25%     8888.000000      4.000000  ...        21.000000     20.000000\n50%    17775.000000      6.000000  ...        32.000000     37.000000\n75%    26662.000000     10.000000  ...        36.000000     48.000000\nmax    35549.000000     12.000000  ...        70.000000    280.000000\n\n[8 rows x 7 columns]",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#basic-subsetting-of-data",
+    "href": "materials/03-tabular-data.html#basic-subsetting-of-data",
+    "title": "5  Working with tabular data",
+    "section": "5.5 Basic subsetting of data",
+    "text": "5.5 Basic subsetting of data\nAlthough we’ll go into more detail on how to select portions of a larger data set, we’ll briefly cover some very basic subsetting techniques here - just to get us going.\n\n5.5.1 Selecting columns\nWe saw that there are 9 different columns in our data set. One of them is weight, which holds weight measurements for different animal records.\n\nRPython\n\n\nWe can easily select an individual column using the $ symbol. We type the name of the object and then specify which column we’re interested in:\n\nsurveys$weight\n\n\n\nWe can easily select an individual column in a pandas data frame using the . notation. We type the name of the object and then specify which column we’re interested in:\n\nsurveys.weight\n\n0         NaN\n1         NaN\n2         NaN\n3         NaN\n4         NaN\n         ... \n35544     NaN\n35545     NaN\n35546    14.0\n35547    51.0\n35548     NaN\nName: weight, Length: 35549, dtype: float64\n\n\n\n\n\n\n\n5.5.2 Subsetting rows and columns\nWe can subset specific rows and columns using the square bracket [ ] notation. The way this is ordered is [rows, columns].\nWe can divide the way we extract the data into two methods: based on their numerical index (index-based subsetting) or based on their label/name in the table (label-based subsetting).\n\nRPython\n\n\nHere, we are asking to return all the rows for the species_id column (its label). Note the comma before the \"species_id\" notation.\n\nsurveys[ , \"species_id\"]\n\n# A tibble: 35,549 × 1\n   species_id\n   &lt;chr&gt;     \n 1 NL        \n 2 NL        \n 3 DM        \n 4 DM        \n 5 DM        \n 6 PF        \n 7 PE        \n 8 DM        \n 9 DM        \n10 PF        \n# ℹ 35,539 more rows\n\n\nWe can also select a subset of rows for this column, for example the first 3 rows:\n\nsurveys[1:3, \"species_id\"]\n\n# A tibble: 3 × 1\n  species_id\n  &lt;chr&gt;     \n1 NL        \n2 NL        \n3 DM        \n\n\n\n\nHere, we are asking to return all the rows for the species_id column. We use the loc to use label-based indexing. Note the : , before the \"species_id\" notation. This tells Python to get all the rows.\n\nsurveys.loc[: , \"species_id\"]\n\n0         NL\n1         NL\n2         DM\n3         DM\n4         DM\n        ... \n35544     AH\n35545     AH\n35546     RM\n35547     DO\n35548    NaN\nName: species_id, Length: 35549, dtype: object\n\n\nWe can also select a subset of rows for this column, for example the first 3 rows:\n\nsurveys.loc[0:2, \"species_id\"]\n\n0    NL\n1    NL\n2    DM\nName: species_id, dtype: object\n\n\n\n\n\nAlternatively, we use index-based subsetting. Remember, this is based on the numerical position in the data set:\n\nRPython\n\n\nLet’s grab the first 3 rows, and columns 2 to 4:\n\nsurveys[1:3, 2:4]\n\n# A tibble: 3 × 3\n  month   day  year\n  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n1     7    16  1977\n2     7    16  1977\n3     7    16  1977\n\n\nor rows 10 to 15, and columns 2, 6 and 8:\n\nsurveys[10:15, c(2, 6, 8)]\n\n# A tibble: 6 × 3\n  month species_id hindfoot_length\n  &lt;dbl&gt; &lt;chr&gt;                &lt;dbl&gt;\n1     7 PF                      20\n2     7 DS                      53\n3     7 DM                      38\n4     7 DM                      35\n5     7 DM                      NA\n6     7 DM                      36\n\n\n\n\nLet’s grab the first 3 rows, and columns 2 to 4:\n\nsurveys.iloc[0:3, 1:4]\n\n   month  day  year\n0      7   16  1977\n1      7   16  1977\n2      7   16  1977\n\n\nor rows 10 to 15, and columns 2, 6 and 8:\n\nsurveys.iloc[9:15, [1, 5, 7]]\n\n    month species_id  hindfoot_length\n9       7         PF             20.0\n10      7         DS             53.0\n11      7         DM             38.0\n12      7         DM             35.0\n13      7         DM              NaN\n14      7         DM             36.0\n\n\nRemember, Python’s indexing is zero-based - so you have to be quite careful/accurate when you’re after specific indexes!",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#saving",
+    "href": "materials/03-tabular-data.html#saving",
+    "title": "5  Working with tabular data",
+    "section": "5.6 Saving",
+    "text": "5.6 Saving\nBefore we move on to the next section, we’ll practice saving data to file. You might want to do this if you created new tables or subsetted your data and don’t want to repeat that every single time you do your analysis.\n\n\n\n\n\n\nImportant\n\n\n\nRemember: never overwrite your raw data but always keep this as a separate copy!\n\n\n\nRPython\n\n\nLet’s create a practice data set to save, for example by taking the first 20 rows of our surveys data set and saving it in a file surveys_snippet.csv.\n\nsurveys_snippet &lt;- surveys[1:20, ]\n\nWe can now save this. We do this with the write_csv() function. We need to tell it which data set to save (this comes first) and then tell it with the file = argument where we want to save it. Here, we’re saving it in our data/ folder, as a file called surveys_snippet.csv. The file extension .csv is important, so don’t forget to add it!\n\nwrite_csv(surveys_snippet, file = \"data/surveys_snippet.csv\")\n\n\n\nLet’s create a practice data set to save, for example by taking the first 20 rows of our surveys data set and saving it in a file surveys_snippet.csv.\n\nsurveys_snippet = surveys.iloc[0:20, :]\n\nWe can now save this. We do this using .to_csv . We need to tell it which data set to save (this comes first) and then tell it where we want to save it. Here, we’re saving it in our data/ folder, as a file called surveys_snippet.csv. The file extension .csv is important, so don’t forget to add it!\nWe also include the index = False argument, so that the row numbers are not written to file.\n\nsurveys_snippet.to_csv(\"data/surveys_snippet.csv\", index = False)",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/03-tabular-data.html#summary",
+    "href": "materials/03-tabular-data.html#summary",
+    "title": "5  Working with tabular data",
+    "section": "5.7 Summary",
+    "text": "5.7 Summary\n\n\n\n\n\n\nKey points\n\n\n\n\nTabular data is structured into columns (variables) and rows (observations)\nCommon data types include CSVs and TSVs - widely accessible formats where data are separated by commas or tabs\nIt is good practice to get insight into your data by examining the structure, creating summary statistics and checking for missing values\nBasic subsetting allows us to quickly pull out certain variables or observations\nWrite modified tables to file, but always keep the original, raw, data intact!",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>Working with tabular data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html",
+    "href": "materials/04-plotting.html",
+    "title": "6  Plotting data",
+    "section": "",
+    "text": "6.1 Context\nWe now have a good grasp of how data is commonly structured, with variables in columns and observations in rows. This is the perfect format for visualising data.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#setup_plotting",
+    "href": "materials/04-plotting.html#setup_plotting",
+    "title": "6  Plotting data",
+    "section": "6.2 Section setup",
+    "text": "6.2 Section setup\n\n\n\n\n\n\nClick to expand\n\n\n\n\n\n\nRPython\n\n\nWe’ll start this section with a new script named, for example, 04-plotting.R. If needed, add the following code to the top of your script and run it.\n\n# A collection of R packages designed for data science\nlibrary(tidyverse)\n\nsurveys &lt;- read_csv(\"data/surveys.csv\")\n\n\n\nWe’ll start this section with a new script named, for example, 04-plotting.py. If needed, add the following code to the top of your script and run it.\n\n# A Python data analysis and manipulation tool\nimport pandas as pd\n\n# Python equivalent of `ggplot2`\nfrom plotnine import *\n\nsurveys = pd.read_csv(\"data/surveys.csv\")",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#introducing-plotting",
+    "href": "materials/04-plotting.html#introducing-plotting",
+    "title": "6  Plotting data",
+    "section": "6.3 Introducing plotting",
+    "text": "6.3 Introducing plotting\nTo create a plot we’ll need three things:\n\n\n\n\n\n\n\n\n\n1. Data\nyour data\n\n\n\n2. Mapping aesthetics\nvariables used to create the visual (e.g. x/y data, colours)\n\n\n\n3. Specify the type of plot\ne.g. scatter plot, boxplot, line graph\n\n\n\nThis breakdown of plotting is often associated with R’s ggplot2 package, but the underlying principles of the gg (grammar of graphics) is a much more universal approach to creating graphs.\nThe idea is that you consistently build up plots, layer-by-layer. I like the concept, because it creates consistency in our approach - regardless of the language. There is a Python implementation of ggplot2, called plotnine.\nWe’ll be using these libraries/modules here, but will also show you some examples of other commonly-used plotting packages. You’ll probably develop your own preference - this is absolutely fine!\n\n6.3.1 Start plotting\nIf needed, add and run the code from Section setup.\nHere, we are using the surveys data set. Let’s assume that we’re interested in the relationship between two variables: weight and hindfoot_length. We can plot weight on the x-axis and hindfoot_length on the y-axis.\nSince they are both continuous data, a scatter plot would be a good way to represent these data.\nSo, we need three things: (1) data; (2) mapping of aesthetics and (3) specify the type of plot.\n\nRPython\n\n\nWe use the ggplot() function to do this:\n\nggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\nWe use the ggplot() function to do this. Note that the whole code chunk below is wrapped inside another set of parentheses ( ). This allows us to break up the code a bit for clarity. Also, the variable names that we’re giving to ggplot() are inside quotes \" \" - this is different from R, where this is not necessary.\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"weight\", y = \"hindfoot_length\")) + \n  geom_point())\n\n\n\n\n\n\n\n\n\n\n\nLet’s unpack that a bit. We specify which data to use with the data = argument (our surveys data set in this case).\nNext, we define what goes onto the x and y axes, using the mapping = argument. This needs a so-called helper function aes(), which stands for aesthetics. Within this helper function we define what goes onto the x-axis (x =) and y-axis (y =).\nFinally, we need to tell it what kind of plot we want. Here, we want to use a scatter plot. The type of plot is determined by the geom_. This literally gets added to the ggplot() function: note the + symbol at the end of the line of code.\nMost geom_ functions are logically named. For example, a line graph will be geom_line(), a boxplot geom_boxplot() etc. The odd one out is the scatter plot, which is geom_point(), because we’re plotting individual data points.\nWe don’t have to add any information within the geom_point() function, because it’s taking all it needs from the ggplot() function above. More on this later.\n\n\n6.3.2 Building up plots\nThe good thing about ggplot() is that it builds up the plot layer-by-layer. We don’t even have to provide it with a geometry to start with and it’ll still create the outline of a plot.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length))\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"weight\", y = \"hindfoot_length\")))\n\n\n\n\n\n\n\n\n\n\n\nHowever, that obviously is not very useful. The nice thing is that we can add multiple layers to a single plot. Let’s illustrate this with a different example. We have a column sex in the data. This contains three possible values:F (female), M (male) and NA (not recorded).\nLet’s look at the hindfoot length distribution across these groups.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_point())\n\n\n\n\n\n\n\n\n\n\n\nA lot of the points are overlapping, which makes it a bit hard to see how the data are distributed. We can do something about that (more on that in the next session), but we can also add some summary statistics in the form of a boxplot. We can simply add a layer to the plot that displays the boxes.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_point() +\n  geom_boxplot()\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_point() +\n        geom_boxplot())\n\n\n\n\n\n\n\n\n\n\n\nThe layers are added in the order we provide them, so here the boxes are on top of the individual data points. You might want to rearrange that, so that the boxes are behind the data.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#changing-plots",
+    "href": "materials/04-plotting.html#changing-plots",
+    "title": "6  Plotting data",
+    "section": "6.4 Changing plots",
+    "text": "6.4 Changing plots\nOften we want to control other parts of the plot as well. There is a whole range of things we can change about the appearance of a plot - in fact, anything in a plot can be changed! Don’t try to remember every tiny detail. You might want to change the orientation of the text labels on the x-axis, but a quick search is probably easier than keeping that information in your head!\n\n6.4.1 Colour\nChanging colour is pretty straightforward. We use the colour = argument. There are a whole range of default colours available, but we’ll go with blue here.\nLet’s illustrate that using our original weight vs hindfoot_length scatter plot.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length)) +\n  geom_point(colour = \"blue\")\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"weight\", y = \"hindfoot_length\")) +\n        geom_point(colour = \"blue\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.4.2 Fill\nThe fill = argument is used to fill surface areas. It doesn’t work on individual points, but instead on geometries that have an area, such as a boxplot, bar chart or violin plot.\nWe can’t create a boxplot with two continuous variables, so we’ll plot hindfoot_length for the different sex groups again. We fill the boxes using magenta.\nWhat happens if you use colour = \"magenta\" instead?\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_boxplot(fill = \"magenta\")\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_boxplot(fill = \"magenta\"))\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.4.3 Aesthetics based on data\nManually assigning colours can be very helpful, but quite often we want to colour data based on another variable. For example, we might be interested in the potential relationship between weight and hindfoot length, but are wondering if this looks different across the sex groups.\nIn that case, we’d want to colour all the data points belonging to the male group different to those of the female group. The same goes for the missing values.\nThe way we can do this is by adding the sex variable inside the aesthetics.\n\n\n\n\n\n\nWithin aes() or not?\n\n\n\nAn easy way of remembering where your colour = or fill = argument goes is to ask: is the colour based on the data or not? If the answer is yes, it goes inside the aesthetics. If not, then outside.\n\n\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length, colour = sex)) +\n  geom_point()\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"weight\", y = \"hindfoot_length\", colour = \"sex\")) +\n        geom_point())\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.4.4 Dealing with overlap\nIn the example of hindfoot length for the different sex groups we noticed that there is quite a bit of overlap in the data. One of the ways of dealing with this is by adding a little bit of jitter. What that does is add a tiny bit of random noise to the data, to avoid overlap.\nWe can do this with the geom_jitter() geometry. The amount of jitter that is added can be regulated with the width = argument, as a fraction of the available width. Compare the differences in the following plots.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_jitter()\n\n\n\n\n\n\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_jitter(width = 0.1)\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_jitter())\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_jitter(width = 0.1))\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.4.5 Transparency\nEven with jittering the data, we still have quite some overlap. There probably is a limit to what we can do about it, but adding some transparency can also help. Here, where there is more overlap, areas will appear darker whereas less overlap will appear lighter.\nWe control this with the alpha = argument. Again, this takes a value between 0 (full transparency) and 1 (no transparency).\nCompare the following plot with the previous ones.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = sex, y = hindfoot_length)) +\n  geom_jitter(width = 0.1, alpha = 0.4)\n\n\n\n\n\n\n\n\n\n\n\n(ggplot(data = surveys,\n        mapping = aes(x = \"sex\", y = \"hindfoot_length\")) +\n        geom_jitter(width = 0.1, alpha = 0.4))\n\n\n\n\n\n\n\n\n\n\n\n\n\n6.4.6 Point size and line width\nThe size = argument is used to control the size of points, whereas the linewidth = argument is used to specify line thickness. Look at the following examples.\nIn the next two panels we’re using geom_point() with different sizes.\n\n\n\n\n\n\n\n\n\nThe following two panels use a different geometry: geom_smooth(). This creates a smoothed line across the data. The width of the line can be changed with the linewidth = argument.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#facets",
+    "href": "materials/04-plotting.html#facets",
+    "title": "6  Plotting data",
+    "section": "6.5 Facets",
+    "text": "6.5 Facets\nPlots can split into multiple panels using faceting. This is a very useful tool to quickly see data distributions across different groups. We can split them into two types:\n\nfacet_wrap() arranges a one-dimensional sequence of panels (based on a single splitting variable) to fit on one page\nfacet_grid() allows you to form a matrix of rows and columns of panels (based on two different variables)\n\nThis is best illustrated with an example. Let’s say we want to split the weight vs hindfoot length scatter plot by the different sex groups, where the data belonging to each group has its own sub-panel. We can do this as follows.\n\nRPython\n\n\n\nggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length)) +\n  geom_point() +\n  facet_wrap(facets = vars(sex))\n\n\n\n\n\n\n\n\nNote the added code:\n\nfacet_wrap(facets = vars(sex))\n\nWe used facet_wrap(), because we’re only splitting the data by a single variable: sex. We also need to tell the function which variable to split by, which we do in the facets = argument. Annoyingly - and for reasons unbeknownst to me - this requires the use of a helper function, vars().\n\n\n\n(ggplot(surveys, aes(x = \"weight\", y = \"hindfoot_length\")) +\n        geom_point() +\n        facet_wrap(\"~ sex\"))\n\n\n\n\n\n\n\n\nNote the added code:\n\nfacet_wrap(\"~ sex\")\n\nWe used facet_wrap(), because we’re only splitting the data by a single variable: sex. We also need to tell the function which variable to split by, which we do by using the ~ symbol. I completely agree that this is a weird notation. Just read it as split by…\n\n\n\nIn the end, our data is split into three sub-panels - one for each group. This makes it easy to see trends across the groups. Or, in this case, that there doesn’t seem to be much difference in the distribution across the female and male observations.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#saving-plots",
+    "href": "materials/04-plotting.html#saving-plots",
+    "title": "6  Plotting data",
+    "section": "6.6 Saving plots",
+    "text": "6.6 Saving plots\nSometimes you might want to save a plot you created. This is pretty straightforward. Here, we are assuming that you have an images subfolder in your working directory.\nWe save a plot in two steps:\n\nAssign the plot to an object\nThen use ggsave() to save this object\n\n\nRPython\n\n\n\nplot_r &lt;- ggplot(data = surveys,\n       mapping = aes(x = weight, y = hindfoot_length)) +\n  geom_point() +\n  facet_wrap(facets = vars(sex))\n\n\nggsave(filename = \"images/height_vs_hindfootlength.png\",\n       plot = plot_r,\n       width = 7,\n       height = 5,\n       units = \"in\")\n\n\n\n\nplot_python = (ggplot(surveys, aes(x = \"weight\", y = \"hindfoot_length\")) +\n        geom_point() +\n        facet_wrap(\"~ sex\"))\n\n\n(ggsave(plot_python,\n        filename = \"images/height_vs_hindfootlength.png\",\n        units = \"in\",\n        width = 7,\n        height = 5))\n\n\n\n\nHere, I’ve added a few extra arguments to demonstrate what you can change. The only two things that are required are (1) the plot you want to save and (2) the name of the plot, including the filename extension.\nThe other arguments, such as units =, width = and height = are used to define the units size (inches in this case) and corresponding width/height values.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/04-plotting.html#summary",
+    "href": "materials/04-plotting.html#summary",
+    "title": "6  Plotting data",
+    "section": "6.7 Summary",
+    "text": "6.7 Summary\n\n\n\n\n\n\nKey points\n\n\n\n\nWe can build up plots layer-by-layer, adding multiple geometries in a single plot\nPlot aesthetics can be changed based on data or manually defined\nColour, fill, transparency and jittering can all be useful ways to improve clarity\nPlots can be subdivided into panels, called facets, which are based on a variable within the data. This allows easy visual comparison across groups.\nWe use functions like ggsave() to export plots to file",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S2: Data & plotting",
+      "<span class='chapter-number'>6</span>  <span class='chapter-title'>Plotting data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html",
+    "href": "materials/05-manipulating-columns.html",
+    "title": "7  Manipulating columns",
+    "section": "",
+    "text": "7.1 Context\nIn the tabular data section we learned to deal with, well, tabular data in the form of our surveys data set. This data set isn’t huge, but sometimes we have many variables and we might only want to work with a subset of them. Or, we might want to create new columns based on existing data. In this section we’ll cover how we can do this.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html#setup_plotting",
+    "href": "materials/05-manipulating-columns.html#setup_plotting",
+    "title": "7  Manipulating columns",
+    "section": "7.2 Section setup",
+    "text": "7.2 Section setup\n\n\n\n\n\n\nClick to expand\n\n\n\n\n\n\nRPython\n\n\nWe’ll start this section with a new script named, for example, 05-manipulation.R. If needed, add the following code to the top of your script and run it.\n\n# A collection of R packages designed for data science\nlibrary(tidyverse)\n\nsurveys &lt;- read_csv(\"data/surveys.csv\")\n\n\n\nWe’ll start this section with a new script named, for example, 05-manipulation.py. If needed, add the following code to the top of your script and run it.\n\n# A Python data analysis and manipulation tool\nimport pandas as pd\n\n# Python equivalent of `ggplot2`\nfrom plotnine import *\n\nsurveys = pd.read_csv(\"data/surveys.csv\")",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html#selecting-columns",
+    "href": "materials/05-manipulating-columns.html#selecting-columns",
+    "title": "7  Manipulating columns",
+    "section": "7.3 Selecting columns",
+    "text": "7.3 Selecting columns\nLet’s remind ourselves to which columns we have in our surveys data set. After that, we’ll start making some changes.\n\nRPython\n\n\n\ncolnames(surveys)\n\n[1] \"record_id\"       \"month\"           \"day\"             \"year\"           \n[5] \"plot_id\"         \"species_id\"      \"sex\"             \"hindfoot_length\"\n[9] \"weight\"         \n\n\n\n\n\nsurveys.columns\n\nIndex(['record_id', 'month', 'day', 'year', 'plot_id', 'species_id', 'sex',\n       'hindfoot_length', 'weight'],\n      dtype='object')\n\n\n\n\n\n\n7.3.1 Selecting individual columns\nLet’s say we wanted to select only the record_id and year columns. We’ve briefly done this when we looked at subsetting rows and columns.\n\nRPython\n\n\nHowever, there is an alternative way of doing this using the dplyr package - which is part of tidyverse.\nWe can use the select() function:\n\nselect(surveys, record_id, year)\n\n# A tibble: 35,549 × 2\n   record_id  year\n       &lt;dbl&gt; &lt;dbl&gt;\n 1         1  1977\n 2         2  1977\n 3         3  1977\n 4         4  1977\n 5         5  1977\n 6         6  1977\n 7         7  1977\n 8         8  1977\n 9         9  1977\n10        10  1977\n# ℹ 35,539 more rows\n\n\nUsing the base R syntax, this is equivalent to surveys[, c(\"record_id\", \"year\")]. Notice that with the select() function (and generally with dplyr functions) we didn’t need to quote ” the column names. This is because the first input to the function is the table name, and so everything after is assumed to be column names of that table.\n\n\nThe way we need to specify this is by giving a list of column names [\"record_id\", \"year\"] and subsetting the surveys data set with this.\nThe way we subset is with surveys[ ], so we end up with double square brackets:\n\nsurveys[[\"record_id\", \"year\"]]\n\n       record_id  year\n0              1  1977\n1              2  1977\n2              3  1977\n3              4  1977\n4              5  1977\n...          ...   ...\n35544      35545  2002\n35545      35546  2002\n35546      35547  2002\n35547      35548  2002\n35548      35549  2002\n\n[35549 rows x 2 columns]\n\n\n\n\n\n\n\n7.3.2 Selecting with helper functions\n\nRPython\n\n\nThe select() function becomes particularly useful when we combine it with other helper functions. For example, this code will select all the columns where the column name contains the string (text) \"_id\":\n\n# returns all columns where the column name contains the text \"_id\"\nselect(surveys, contains(\"_id\"))\n\n# A tibble: 35,549 × 3\n   record_id plot_id species_id\n       &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     \n 1         1       2 NL        \n 2         2       3 NL        \n 3         3       2 DM        \n 4         4       7 DM        \n 5         5       3 DM        \n 6         6       1 PF        \n 7         7       2 PE        \n 8         8       1 DM        \n 9         9       1 DM        \n10        10       6 PF        \n# ℹ 35,539 more rows\n\n\n\n\nThe subsetting becomes a bit tedious when we’re looking for patterns in the column names. Here, we can instead use the .filter attribute of the surveys data set, and look for a string (text) where the column name contains \"_id\".\n\nsurveys.filter(like = \"_id\")\n\n       record_id  plot_id species_id\n0              1        2         NL\n1              2        3         NL\n2              3        2         DM\n3              4        7         DM\n4              5        3         DM\n...          ...      ...        ...\n35544      35545       15         AH\n35545      35546       15         AH\n35546      35547       10         RM\n35547      35548        7         DO\n35548      35549        5        NaN\n\n[35549 rows x 3 columns]\n\n\n\n\n\n\n\n7.3.3 Selecting a range of columns\nLet’s say we’re interested in all the columns from record_id to year.\n\nRPython\n\n\nIn that case, we can use the : symbol.\n\n# returns all columns between and including record_id and year\nselect(surveys, record_id:year)\n\n# A tibble: 35,549 × 4\n   record_id month   day  year\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;\n 1         1     7    16  1977\n 2         2     7    16  1977\n 3         3     7    16  1977\n 4         4     7    16  1977\n 5         5     7    16  1977\n 6         6     7    16  1977\n 7         7     7    16  1977\n 8         8     7    16  1977\n 9         9     7    16  1977\n10        10     7    16  1977\n# ℹ 35,539 more rows\n\n\nWe can also combine this with the previous method:\n\n# returns all columns between and including record_id and year\n# and all columns where the column name contains the text \"_id\"\nselect(surveys, record_id:year, contains(\"_id\"))\n\n# A tibble: 35,549 × 6\n   record_id month   day  year plot_id species_id\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;     \n 1         1     7    16  1977       2 NL        \n 2         2     7    16  1977       3 NL        \n 3         3     7    16  1977       2 DM        \n 4         4     7    16  1977       7 DM        \n 5         5     7    16  1977       3 DM        \n 6         6     7    16  1977       1 PF        \n 7         7     7    16  1977       2 PE        \n 8         8     7    16  1977       1 DM        \n 9         9     7    16  1977       1 DM        \n10        10     7    16  1977       6 PF        \n# ℹ 35,539 more rows\n\n\n\n\nIn that case, we can use the : symbol, in combination with the .loc indexer.\n\nsurveys.loc[:, \"record_id\":\"year\"]\n\n       record_id  month  day  year\n0              1      7   16  1977\n1              2      7   16  1977\n2              3      7   16  1977\n3              4      7   16  1977\n4              5      7   16  1977\n...          ...    ...  ...   ...\n35544      35545     12   31  2002\n35545      35546     12   31  2002\n35546      35547     12   31  2002\n35547      35548     12   31  2002\n35548      35549     12   31  2002\n\n[35549 rows x 4 columns]\n\n\n\n\n\n\n\n7.3.4 Unselecting columns\nLastly, we can also unselect columns. This can be useful when you want most columns, apart from some.\n\nRPython\n\n\nTo do this, we use the - symbol before the column name.\n\n# returns all columns apart from record_id\nselect(surveys, -record_id)\n\n# A tibble: 35,549 × 8\n   month   day  year plot_id species_id sex   hindfoot_length weight\n   &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1     7    16  1977       2 NL         M                  32     NA\n 2     7    16  1977       3 NL         M                  33     NA\n 3     7    16  1977       2 DM         F                  37     NA\n 4     7    16  1977       7 DM         M                  36     NA\n 5     7    16  1977       3 DM         M                  35     NA\n 6     7    16  1977       1 PF         M                  14     NA\n 7     7    16  1977       2 PE         F                  NA     NA\n 8     7    16  1977       1 DM         M                  37     NA\n 9     7    16  1977       1 DM         F                  34     NA\n10     7    16  1977       6 PF         F                  20     NA\n# ℹ 35,539 more rows\n\n\n\n\nTo do this, we use the .drop attribute. Here, we only unselect one column, but we can easily extend this by providing a list of columns do the column = argument.\n\nsurveys.drop(columns = \"record_id\")\n\n       month  day  year  plot_id species_id  sex  hindfoot_length  weight\n0          7   16  1977        2         NL    M             32.0     NaN\n1          7   16  1977        3         NL    M             33.0     NaN\n2          7   16  1977        2         DM    F             37.0     NaN\n3          7   16  1977        7         DM    M             36.0     NaN\n4          7   16  1977        3         DM    M             35.0     NaN\n...      ...  ...   ...      ...        ...  ...              ...     ...\n35544     12   31  2002       15         AH  NaN              NaN     NaN\n35545     12   31  2002       15         AH  NaN              NaN     NaN\n35546     12   31  2002       10         RM    F             15.0    14.0\n35547     12   31  2002        7         DO    M             36.0    51.0\n35548     12   31  2002        5        NaN  NaN              NaN     NaN\n\n[35549 rows x 8 columns]",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html#renaming-and-reshuffling-columns",
+    "href": "materials/05-manipulating-columns.html#renaming-and-reshuffling-columns",
+    "title": "7  Manipulating columns",
+    "section": "7.4 Renaming and reshuffling columns",
+    "text": "7.4 Renaming and reshuffling columns\n\n7.4.1 Renaming columns\nFor example, we might want to change the weight column name to weight_g, to reflect that the values are in grams.\n\nRPython\n\n\nWe can use the rename() function to change a column name. We do this as follows:\n\nrename(surveys, weight_g = weight)\n\n# A tibble: 35,549 × 9\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight_g\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;    &lt;dbl&gt;\n 1         1     7    16  1977       2 NL         M                  32       NA\n 2         2     7    16  1977       3 NL         M                  33       NA\n 3         3     7    16  1977       2 DM         F                  37       NA\n 4         4     7    16  1977       7 DM         M                  36       NA\n 5         5     7    16  1977       3 DM         M                  35       NA\n 6         6     7    16  1977       1 PF         M                  14       NA\n 7         7     7    16  1977       2 PE         F                  NA       NA\n 8         8     7    16  1977       1 DM         M                  37       NA\n 9         9     7    16  1977       1 DM         F                  34       NA\n10        10     7    16  1977       6 PF         F                  20       NA\n# ℹ 35,539 more rows\n\n\n\n\nWe can use the .rename() attribute of the surveys Pandas data frame:\n\nsurveys.rename(columns = {'weight': 'weight_g'})\n\n       record_id  month  day  year  ...  species_id  sex hindfoot_length  weight_g\n0              1      7   16  1977  ...          NL    M            32.0       NaN\n1              2      7   16  1977  ...          NL    M            33.0       NaN\n2              3      7   16  1977  ...          DM    F            37.0       NaN\n3              4      7   16  1977  ...          DM    M            36.0       NaN\n4              5      7   16  1977  ...          DM    M            35.0       NaN\n...          ...    ...  ...   ...  ...         ...  ...             ...       ...\n35544      35545     12   31  2002  ...          AH  NaN             NaN       NaN\n35545      35546     12   31  2002  ...          AH  NaN             NaN       NaN\n35546      35547     12   31  2002  ...          RM    F            15.0      14.0\n35547      35548     12   31  2002  ...          DO    M            36.0      51.0\n35548      35549     12   31  2002  ...         NaN  NaN             NaN       NaN\n\n[35549 rows x 9 columns]\n\n\n\n\n\n\n\n7.4.2 Reshuffling columns\nIt might be that you want to reorder/reshuffle a column. Here, the year column is our fourth variable. Let’s say we’d want to move this to the second position (after record_id).\n\nRPython\n\n\nWe can use the relocate() function to do this. The function has several arguments, starting with ., such as .before = or .after =. These allow you to specify where you want to reinsert the column.\n\nrelocate(surveys, year, .after = record_id)\n\n# A tibble: 35,549 × 9\n   record_id  year month   day plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1         1  1977     7    16       2 NL         M                  32     NA\n 2         2  1977     7    16       3 NL         M                  33     NA\n 3         3  1977     7    16       2 DM         F                  37     NA\n 4         4  1977     7    16       7 DM         M                  36     NA\n 5         5  1977     7    16       3 DM         M                  35     NA\n 6         6  1977     7    16       1 PF         M                  14     NA\n 7         7  1977     7    16       2 PE         F                  NA     NA\n 8         8  1977     7    16       1 DM         M                  37     NA\n 9         9  1977     7    16       1 DM         F                  34     NA\n10        10  1977     7    16       6 PF         F                  20     NA\n# ℹ 35,539 more rows\n\n\n\n\nUnlike in R, there isn’t a very clear, straightforward way of reinserting columns in a Pandas data frame. We could show you convoluted ways of doing so, but at this point that’s just confusing. So, we’ll leave you with a link to a Stackoverflow solution.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html#creating-new-columns",
+    "href": "materials/05-manipulating-columns.html#creating-new-columns",
+    "title": "7  Manipulating columns",
+    "section": "7.5 Creating new columns",
+    "text": "7.5 Creating new columns\nSometimes we need to create new columns. For example, we might have a variable that is not in the unit of measurement we need (e.g. in millimeters, instead of centimeters).\nConceptually, that looks something like this:\n\n\n\n\n\n\nFigure 7.1: Creating a new column using data from an existing one.\n\n\n\nLet’s illustrate this with an example on our surveys data set. Let’s say we wanted to get hindfoot_length in centimeters, instead of millimeters. We’d have to go through each row, take the hindfoot_length value and divide it by 10. We then need to store this output in a column called, for example, hindfoot_length_cm.\n\nRPython\n\n\nWe can use the mutate() function to create new columns:\n\nmutate(surveys, hindfoot_length_cm = hindfoot_length / 10)\n\n# A tibble: 35,549 × 10\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1         1     7    16  1977       2 NL         M                  32     NA\n 2         2     7    16  1977       3 NL         M                  33     NA\n 3         3     7    16  1977       2 DM         F                  37     NA\n 4         4     7    16  1977       7 DM         M                  36     NA\n 5         5     7    16  1977       3 DM         M                  35     NA\n 6         6     7    16  1977       1 PF         M                  14     NA\n 7         7     7    16  1977       2 PE         F                  NA     NA\n 8         8     7    16  1977       1 DM         M                  37     NA\n 9         9     7    16  1977       1 DM         F                  34     NA\n10        10     7    16  1977       6 PF         F                  20     NA\n# ℹ 35,539 more rows\n# ℹ 1 more variable: hindfoot_length_cm &lt;dbl&gt;\n\n\n\n\nWe use the square brackets to define the name of the new column, then specify what needs to go in the new column:\n\nsurveys['hindfoot_length_cm'] = surveys['hindfoot_length'] / 10\n\n\n\n\nAlthough it has created the column, we can’t quite see it because we have too many columns. So, let’s save the new column to the data set and then select the relevant columns.\n\nRPython\n\n\nFirst, we update our data:\n\nsurveys &lt;- mutate(surveys, hindfoot_length_cm = hindfoot_length / 10)\n\nNext, we can select the columns.\n\nselect(surveys, record_id, hindfoot_length, hindfoot_length_cm)\n\n# A tibble: 35,549 × 3\n   record_id hindfoot_length hindfoot_length_cm\n       &lt;dbl&gt;           &lt;dbl&gt;              &lt;dbl&gt;\n 1         1              32                3.2\n 2         2              33                3.3\n 3         3              37                3.7\n 4         4              36                3.6\n 5         5              35                3.5\n 6         6              14                1.4\n 7         7              NA               NA  \n 8         8              37                3.7\n 9         9              34                3.4\n10        10              20                2  \n# ℹ 35,539 more rows\n\n\n\n\nOur previous step already added the new column to the DataFrame, so we can directly select the relevant columns, by giving a list of the columns we’re interested in:\n\nsurveys[['record_id', 'hindfoot_length', 'hindfoot_length_cm']]\n\n       record_id  hindfoot_length  hindfoot_length_cm\n0              1             32.0                 3.2\n1              2             33.0                 3.3\n2              3             37.0                 3.7\n3              4             36.0                 3.6\n4              5             35.0                 3.5\n...          ...              ...                 ...\n35544      35545              NaN                 NaN\n35545      35546              NaN                 NaN\n35546      35547             15.0                 1.5\n35547      35548             36.0                 3.6\n35548      35549              NaN                 NaN\n\n[35549 rows x 3 columns]\n\n\n\n\n\nWe can see that each value in hindfoot_length_cm is a tenth of the value of hindfoot_length. This is exactly what we expected!",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/05-manipulating-columns.html#summary",
+    "href": "materials/05-manipulating-columns.html#summary",
+    "title": "7  Manipulating columns",
+    "section": "7.6 Summary",
+    "text": "7.6 Summary\n\n\n\n\n\n\nKey points\n\n\n\n\nWe have several functions available that allow us to select, move, rename and create new columns",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>Manipulating columns</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-chaining-operations.html",
+    "href": "materials/06-chaining-operations.html",
+    "title": "8  Chaining operations",
+    "section": "",
+    "text": "8.1 Context\nIn the section above we performed several operations on a single data set. Often there is a sequence to this, where the output of one operation gets fed into the next. We can simplify this by chaining commands.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chaining operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-chaining-operations.html#pipes",
+    "href": "materials/06-chaining-operations.html#pipes",
+    "title": "8  Chaining operations",
+    "section": "8.2 Pipes",
+    "text": "8.2 Pipes\nLO: using pipes",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chaining operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/06-chaining-operations.html#summary",
+    "href": "materials/06-chaining-operations.html#summary",
+    "title": "8  Chaining operations",
+    "section": "8.3 Summary",
+    "text": "8.3 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>Chaining operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-manipulating-rows.html",
+    "href": "materials/07-manipulating-rows.html",
+    "title": "9  Manipulating rows",
+    "section": "",
+    "text": "9.1 Context\nData sets can contain large quantities of observations. Often we are only interested in part of the data at a given time. We can deal with this by manipulating rows.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Manipulating rows</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-manipulating-rows.html#setup_manipulating_rows",
+    "href": "materials/07-manipulating-rows.html#setup_manipulating_rows",
+    "title": "9  Manipulating rows",
+    "section": "9.2 Section setup",
+    "text": "9.2 Section setup\n\n\n\n\n\n\nClick to expand\n\n\n\n\n\n\nRPython\n\n\nWe’ll continue this section with the script named 05-manipulation.R. If needed, add the following code to the top of your script and run it.\n\n# A collection of R packages designed for data science\nlibrary(tidyverse)\n\nsurveys &lt;- read_csv(\"data/surveys.csv\")\n\n\n\nWe’ll continue this section with the script named 05-manipulation.py. If needed, add the following code to the top of your script and run it.\n\n# A Python data analysis and manipulation tool\nimport pandas as pd\n\n# Python equivalent of `ggplot2`\nfrom plotnine import *\n\nsurveys = pd.read_csv(\"data/surveys.csv\")",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Manipulating rows</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-manipulating-rows.html#manipulation-of-observations",
+    "href": "materials/07-manipulating-rows.html#manipulation-of-observations",
+    "title": "9  Manipulating rows",
+    "section": "9.3 Manipulation of observations",
+    "text": "9.3 Manipulation of observations\n\n9.3.1 Ordering rows\nWe often want to order data in a certain way, for example ordering by date or in alphabetically. The example below illustrates how we would order data based on weight:\n\n\n\n  \n  \n                \n          \n            \n          \n  \n  \n    \n\n  \n  \n    \n    Previous\n  \n  \n    \n    Next\n  \n\n\n  Ordering by weight in ascending order (click to toggle).\n\n\nLet’s illustrate this with the surveys data set, arranging the data based on year.\n\nRPython\n\n\n\nsurveys |&gt; \n  arrange(year)\n\n# A tibble: 35,549 × 9\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1         1     7    16  1977       2 NL         M                  32     NA\n 2         2     7    16  1977       3 NL         M                  33     NA\n 3         3     7    16  1977       2 DM         F                  37     NA\n 4         4     7    16  1977       7 DM         M                  36     NA\n 5         5     7    16  1977       3 DM         M                  35     NA\n 6         6     7    16  1977       1 PF         M                  14     NA\n 7         7     7    16  1977       2 PE         F                  NA     NA\n 8         8     7    16  1977       1 DM         M                  37     NA\n 9         9     7    16  1977       1 DM         F                  34     NA\n10        10     7    16  1977       6 PF         F                  20     NA\n# ℹ 35,539 more rows\n\n\nIf we’d want to arrange the data in descending order (most recent to oldest), we would employ the desc() helper function:\n\nsurveys |&gt; \n  arrange(desc(year))\n\n# A tibble: 35,549 × 9\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1     33321     1    12  2002       1 DM         M                  38     44\n 2     33322     1    12  2002       1 DO         M                  37     58\n 3     33323     1    12  2002       1 PB         M                  28     45\n 4     33324     1    12  2002       1 AB         &lt;NA&gt;               NA     NA\n 5     33325     1    12  2002       1 DO         M                  35     29\n 6     33326     1    12  2002       2 OT         F                  20     26\n 7     33327     1    12  2002       2 OT         M                  20     24\n 8     33328     1    12  2002       2 OT         F                  21     22\n 9     33329     1    12  2002       2 DM         M                  37     47\n10     33330     1    12  2002       2 DO         M                  35     51\n# ℹ 35,539 more rows\n\n\nWe can read that bit of code as “take the surveys data set, send it to the arrange() function and ask it to arrange the data in descending order (using desc()) based on the year column”.\nWe can also combine this approach with multiple variables, for example arranging data based on descending year and (ascending) hindfoot length:\n\nsurveys |&gt; \n  arrange(desc(year), hindfoot_length)\n\n# A tibble: 35,549 × 9\n   record_id month   day  year plot_id species_id sex   hindfoot_length weight\n       &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;   &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;           &lt;dbl&gt;  &lt;dbl&gt;\n 1     33647     3    14  2002       3 PF         M                   9      8\n 2     35301    12     8  2002       4 PF         M                  13      6\n 3     35506    12    31  2002       6 PF         M                  13      8\n 4     34281     6    15  2002      23 RM         F                  14      9\n 5     34663     7    14  2002      16 RM         M                  14      7\n 6     35101    11    10  2002       9 PF         M                  14      7\n 7     35487    12    29  2002      23 RO         F                  14     13\n 8     33429     2     9  2002       3 PF         M                  15      8\n 9     33535     2    10  2002      13 PF         F                  15      7\n10     33556     2    10  2002       5 RO         M                  15      9\n# ℹ 35,539 more rows\n\n\n\n\n\n\n\n\n\n\n9.3.2 Finding unique values\nLO: finding unique rows\n\n\n9.3.3 Filtering by condition\nLO: filtering rows by condition\n\n\n\n\n\n\nFigure 9.1: The logic behind filtering: for each row the condition is checked (here: hindfoot_length &gt; 31). If the outcome is TRUE then the row is returned.\n\n\n\n\n\n9.3.4 Missing data revisited\nLO: dealing with missing data",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Manipulating rows</span>"
+    ]
+  },
+  {
+    "objectID": "materials/07-manipulating-rows.html#summary",
+    "href": "materials/07-manipulating-rows.html#summary",
+    "title": "9  Manipulating rows",
+    "section": "9.4 Summary",
+    "text": "9.4 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>9</span>  <span class='chapter-title'>Manipulating rows</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html",
+    "href": "materials/08-grouped-operations.html",
+    "title": "10  Grouped operations",
+    "section": "",
+    "text": "10.1 Context\nWe’ve done different types of operations, all on the entire data set. Sometimes there is structure within the data, such as different groups (e.g. genotypes, patient cohorts, geographical areas etc). We might then want information on a group-by-group basis.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html#split-apply-combine",
+    "href": "materials/08-grouped-operations.html#split-apply-combine",
+    "title": "10  Grouped operations",
+    "section": "10.2 Split-apply-combine",
+    "text": "10.2 Split-apply-combine\nThis kind of operation can be referred to as split-apply-combine, because we split the data, apply some function and then combine the outcome.\nLet’s illustrate this with an example. Figure 10.1 shows a hypothetical data set, where we have temperature and rainfall measurements for different cities.\n\n\n\n\n\n\nFigure 10.1: An example of a table with groups\n\n\n\nLet’s assume we were interested in the average temperature for each city. We would have to do the following:\n\nSplit the data by city\nCalculate the average temperature\nCombine the outcome together in a new table\n\nThis is visualised in Figure 10.2.\n\n\n\n\n\n\nFigure 10.2: Split-apply-combine",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html#summary-operations",
+    "href": "materials/08-grouped-operations.html#summary-operations",
+    "title": "10  Grouped operations",
+    "section": "10.3 Summary operations",
+    "text": "10.3 Summary operations\n\n10.3.1 Summarising data\nLO: summarising data\n\n\n10.3.2 Grouped summaries\nLO: grouped summaries",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html#counting-data",
+    "href": "materials/08-grouped-operations.html#counting-data",
+    "title": "10  Grouped operations",
+    "section": "10.4 Counting data",
+    "text": "10.4 Counting data\n\n10.4.1 Counting\nLO: counting\n\n\n10.4.2 Counting by group\nLO: counting data by group\n\n\n10.4.3 Counting missing values\nLO: counting with missing values",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html#grouped-operations",
+    "href": "materials/08-grouped-operations.html#grouped-operations",
+    "title": "10  Grouped operations",
+    "section": "10.5 Grouped operations",
+    "text": "10.5 Grouped operations\n\n10.5.1 Grouped filters\nLO: grouped filters\n\n\n10.5.2 Grouped changes\nLO: grouped mutate\n\n\n10.5.3 To ungroup or not ungroup\nLO: the importance of ungrouping",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/08-grouped-operations.html#summary",
+    "href": "materials/08-grouped-operations.html#summary",
+    "title": "10  Grouped operations",
+    "section": "10.6 Summary",
+    "text": "10.6 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S3: Manipulating data",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>Grouped operations</span>"
+    ]
+  },
+  {
+    "objectID": "materials/09-reshaping-data.html",
+    "href": "materials/09-reshaping-data.html",
+    "title": "11  Reshaping data",
+    "section": "",
+    "text": "11.1 Context\nWe provided data in the best format. Not always the case, because people collect data in a format that works best for them - not the computer. Focus on columns (variables); rows (observations) and how this is needed for plotting, linking with the last part of day 1.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reshaping data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/09-reshaping-data.html#from-wide-to-long",
+    "href": "materials/09-reshaping-data.html#from-wide-to-long",
+    "title": "11  Reshaping data",
+    "section": "11.2 From wide to long",
+    "text": "11.2 From wide to long\nLO: reshape data from “wide” to “long” (practise this on two different, but linked data sets - leading into combining data)",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reshaping data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/09-reshaping-data.html#from-long-to-wide",
+    "href": "materials/09-reshaping-data.html#from-long-to-wide",
+    "title": "11  Reshaping data",
+    "section": "11.3 From long to wide",
+    "text": "11.3 From long to wide\nLO: reshape from long to wide",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reshaping data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/09-reshaping-data.html#summary",
+    "href": "materials/09-reshaping-data.html#summary",
+    "title": "11  Reshaping data",
+    "section": "11.4 Summary",
+    "text": "11.4 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>11</span>  <span class='chapter-title'>Reshaping data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/10-combining-data.html",
+    "href": "materials/10-combining-data.html",
+    "title": "12  Combining data",
+    "section": "",
+    "text": "12.1 Context\nData is often split over multiple tables. We saw this in the previous section. Sometimes we need to combine information from multiple sources.",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Combining data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/10-combining-data.html#joining-tables",
+    "href": "materials/10-combining-data.html#joining-tables",
+    "title": "12  Combining data",
+    "section": "12.2 Joining tables",
+    "text": "12.2 Joining tables\n\n12.2.1 The importance of an indentifier\nLO: a common identifier (more generally, unique identifiers are really important - e.g. mention LMM)\n\n\n12.2.2 Joining tables\nLO: joining tables",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Combining data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/10-combining-data.html#cleaning-data",
+    "href": "materials/10-combining-data.html#cleaning-data",
+    "title": "12  Combining data",
+    "section": "12.3 Cleaning data",
+    "text": "12.3 Cleaning data\n\n12.3.1 Variable naming\nLO: variable naming (janitor package)\n\n\n12.3.2 Encoding issues\nLO: encoding issues\n\n\n12.3.3 Missing data\nLO: dealing with missing data",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Combining data</span>"
+    ]
+  },
+  {
+    "objectID": "materials/10-combining-data.html#summary",
+    "href": "materials/10-combining-data.html#summary",
+    "title": "12  Combining data",
+    "section": "12.4 Summary",
+    "text": "12.4 Summary\n\n\n\n\n\n\nKey points",
+    "crumbs": [
+      "{{< iconify fa6-brands github size=lg title='CRIT GitHub' >}}",
+      "S4: Organise and combine",
+      "<span class='chapter-number'>12</span>  <span class='chapter-title'>Combining data</span>"
+    ]
+  }
+]
