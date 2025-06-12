@@ -221,18 +221,13 @@ Unlike in R, there isn't a very clear, straightforward way of reinserting column
 
 ## Creating new columns
 
-Sometimes we need to create new columns. For example, we might have a variable that is not in the unit of measurement we need (e.g. in millimeter, instead of centimeters).
+Sometimes we need to create new columns. For example, we might have a variable that is not in the unit of measurement we need (e.g. in millimeters, instead of centimeters).
 
-| month | day | year | plot_id | species_id | sex | hindfoot_length | weight |
-|-------|-----|------|---------|------------|-----|-----------------|--------|
-| 7     | 16  | 1977 | 2       | NL         | M   | 32              | NA     |
-| 7     | 16  | 1977 | 3       | NL         | M   | 33              | NA     |
-| 7     | 16  | 1977 | 2       | DM         | F   | 37              | NA     |
-| 7     | 16  | 1977 | 7       | DM         | M   | 36              | NA     |
-| 7     | 16  | 1977 | 3       | DM         | M   | 35              | NA     |
+Conceptually, that looks something like this:
 
-Let's say we wanted to get `hindfoot_length` in centimeters, instead of millimeters. We'd have to go through each row, take the `hindfoot_length` value and divide it by 10. We then need to store this output in a column called, for example, `hindfoot_length_cm`.
+![Creating a new column using data from an existing one.](images/manipulation-new_column.png){#fig-manipulation_new}
 
+Let's illustrate this with an example on our `surveys` data set. Let's say we wanted to get `hindfoot_length` in centimeters, instead of millimeters. We'd have to go through each row, take the `hindfoot_length` value and divide it by 10. We then need to store this output in a column called, for example, `hindfoot_length_cm`.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -280,6 +275,8 @@ surveys[['record_id', 'hindfoot_length', 'hindfoot_length_cm']]
 ```
 
 :::
+
+We can see that each value in `hindfoot_length_cm` is a tenth of the value of `hindfoot_length`. This is exactly what we expected!
 
 ## Summary
 

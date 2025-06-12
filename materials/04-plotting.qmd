@@ -406,7 +406,7 @@ p3 + p4 +
 
 ## Facets
 
-Plots can split into multiple panels using *facetting*. This is a very useful tool to quickly see data distributions across different groups. We can split them into two types:
+Plots can split into multiple panels using *faceting*. This is a very useful tool to quickly see data distributions across different groups. We can split them into two types:
 
 1. `facet_wrap()` arranges a one-dimensional sequence of panels (based on a single splitting variable) to fit on one page
 2. `facet_grid()` allows you to form a matrix of rows and columns of panels (based on two different variables)
