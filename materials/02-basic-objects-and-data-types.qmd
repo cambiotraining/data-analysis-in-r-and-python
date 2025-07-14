@@ -532,7 +532,7 @@ weather[1:]      # extract all apart from the first value
 :::
 
 
-## Dealing with missing data
+## Dealing with missing data {#missing-data}
 
 It may seem weird that you have to consider what isn't there, but that's exactly what we do when we have missing data. Ideally, when we're collecting data we entries for every single thing we measure. But, alas, life is messy. That one patient may have missed an appointment, or one eppendorf tube got dropped, or etc etc.
 

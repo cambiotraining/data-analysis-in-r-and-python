@@ -1,0 +1,261 @@
+---
+title: "data-analysis_data_synthesis"
+format: html
+---
+
+```{r}
+# message: false
+library(tidyverse)
+# Load MASS for mvrnorm
+library(MASS)
+# Load scales for scaling
+library(scales)
+# To check structure of missing values
+library(naniar)
+```
+
+
+```{r}
+set.seed(123)  # For reproducibility
+
+# Number of observations
+n <- 1400
+
+# Unique ID
+patient_id <- sprintf("ID_%04d", seq_len(n))
+
+# Grouping variables
+hospital <- factor(sample(paste0("hospital_", 1:5), n, replace = TRUE))
+quarter <- factor(sample(paste0("Q", 1:3), n, replace = TRUE))
+
+# Categorical variables
+infection_type <- factor(sample(c("none", "bacterial", "fungal", "viral"), n, replace = TRUE))
+vaccination_status <- factor(sample(c("unvaccinated", "vaccinated", "unknown"), n, replace = TRUE))
+age_group <- factor(sample(c("< 18", "18 - 64", "65+"), n, replace = TRUE))
+
+# Logical variable: icu_admission, dependent on vaccination status
+icu_admission <- mapply(function(vac, age) {
+  # Base probability by vaccination
+  base_prob <- switch(vac,
+                      "unvaccinated" = 0.4,
+                      "vaccinated" = 0.15,
+                      "unknown" = 0.25,
+                      0.25) # fallback default
+  
+  # Increment by age
+  age_increment <- switch(age,
+                          "< 18" = 0.0,
+                          "18 - 64" = 0.08,
+                          "65+" = 0.23,
+                          0.1) # fallback default
+  
+  # Total probability
+  prob <- min(base_prob + age_increment, 1.0)
+  
+  rbinom(1, 1, prob)
+},
+vac = as.character(vaccination_status),
+age = as.character(age_group))
+
+icu_admission <- icu_admission == 1
+
+# Count data ensuring non-infected observations have reduced symptom counts
+symptoms_count <- ifelse(
+  infection_type == "none",
+  rpois(n, lambda = 4),     # fewer symptoms for "none"
+  rpois(n, lambda = 10)     # more symptoms otherwise
+)
+
+
+# Systolic pressure
+systolic_pressure <- rnorm(n, mean = 125, sd = 10)
+systolic_pressure <- round(systolic_pressure)
+
+# Generate bivariate normal for body_temperature and log(CRP)
+rho <- 0.45
+Sigma <- matrix(c(1, rho, rho, 1), nrow = 2)
+bivnorm <- mvrnorm(n, mu = c(0,0), Sigma = Sigma)
+
+# Initialize vectors
+body_temperature <- numeric(n)
+log_crp <- numeric(n)
+
+# Apply scaling and group-based mean shifts
+for (v in c("vaccinated", "unknown", "unvaccinated")) {
+  idx <- which(as.character(vaccination_status) == v)
+  
+  if (v == "vaccinated") {
+    temp_shift <- 0
+    crp_shift <- 0
+  } else if (v == "unknown") {
+    temp_shift <- 0.3
+    crp_shift <- 0.2
+  } else if (v == "unvaccinated") {
+    temp_shift <- 0.6
+    crp_shift <- 0.5
+  }
+  
+  body_temperature[idx] <- bivnorm[idx,1]*0.7 + 37 + temp_shift
+  log_crp[idx] <- bivnorm[idx,2]*0.8 + log(10) + crp_shift
+}
+
+# Rescale temperatures to realistic range
+body_temperature <- rescale(body_temperature, to=c(36,41))
+body_temperature <- round(body_temperature, digits = 1)
+
+# Additional temperature increase if infected
+infected <- as.character(infection_type) != "none" & !is.na(infection_type)
+body_temperature[infected] <- body_temperature[infected] + 0.5
+
+# ensure higher crp levels in infected individuals
+infected <- as.character(infection_type) != "none" & !is.na(infection_type)
+log_crp[infected] <- log_crp[infected] + 0.4
+
+
+# Exponentiate to get skewed CRP levels and
+# truncate log_crp before exponentiation to avoid outliers
+log_crp <- pmin(log_crp, log(60))   # Cap log(CRP) at log(60) ~4.1
+log_crp <- pmax(log_crp, log(1))    # Floor at log(1)=0
+
+# Exponentiate
+crp_level <- exp(log_crp)
+# Replace values >=59 and <=60 with NA
+crp_level[crp_level >= 59] <- NA
+crp_level <- round(crp_level, digits = 2)
+
+
+# Function to introduce 5% missingness
+introduce_missingness <- function(x) {
+  is_na <- rbinom(length(x), 1, 0.05) == 1
+  x[is_na] <- NA
+  return(x)
+}
+
+# Assemble data frame before applying missingness
+df <- data.frame(
+  patient_id,
+  hospital,
+  quarter,
+  infection_type,
+  vaccination_status,
+  age_group,
+  icu_admission,
+  symptoms_count,
+  systolic_pressure,
+  body_temperature,
+  crp_level
+)
+
+# Apply 5% missingness to all variables except ID
+df[, -1] <- lapply(df[, -1], introduce_missingness)
+
+# Quick checks
+summary(df)
+cor(df$body_temperature, log(df$crp_level), use = "complete.obs")
+
+```
+
+
+```{r}
+df |> 
+  pivot_longer(
+    cols = c(symptoms_count, systolic_pressure, body_temperature, crp_level),
+    names_to = "variable",
+    values_to = "value"
+  ) |> 
+  ggplot(aes(x = value)) +
+  geom_histogram(bins = 30, fill = "steelblue", color = "white") +
+  facet_wrap(~ variable, scales = "free") +
+  theme_minimal() +
+  labs(title = "Distributions of Numeric Variables")
+
+```
+
+
+```{r}
+df |> 
+  ggplot(aes(x = vaccination_status, y = crp_level)) +
+  geom_boxplot(fill = "lightblue") +
+  theme_minimal() +
+  labs(title = "CRP Levels by Vaccination Status")
+```
+
+```{r}
+df |> 
+  ggplot(aes(x = infection_type, y = body_temperature)) +
+  geom_boxplot(fill = "lightpink") +
+  theme_minimal() +
+  labs(title = "Body Temperature by Infection Type")
+```
+
+```{r}
+df |> 
+  ggplot(aes(body_temperature, crp_level)) +
+  geom_point(alpha = 0.5) +
+  geom_smooth(method = "lm", se = FALSE, color = "red") +
+  theme_minimal() +
+  labs(title = "Body Temperature vs CRP Level")
+```
+
+```{r}
+df |> 
+  count(age_group, icu_admission) |> 
+  group_by(age_group) |> 
+  mutate(perc = n / sum(n)) |> 
+  filter(icu_admission == TRUE) |> 
+  ggplot(aes(x = age_group, y = perc)) +
+  geom_col(fill = "coral") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(
+    title = "Proportion of ICU Admissions by Age Group",
+    y = "Proportion ICU Admissions"
+  )
+```
+
+```{r}
+ggplot(df, aes(x = symptoms_count)) +
+  geom_histogram(binwidth = 1, fill = "steelblue", color = "white") +
+  theme_minimal() +
+  labs(title = "Distribution of Symptom Counts",
+       x = "Number of Symptoms",
+       y = "Count")
+```
+
+```{r}
+ggplot(df, aes(infection_type, symptoms_count)) +
+  geom_boxplot(fill = "lightgreen") +
+  theme_minimal() +
+  labs(title = "Symptoms Count by Infection Type")
+```
+
+```{r}
+df %>%
+  count(infection_type, icu_admission) %>%
+  group_by(infection_type) %>%
+  mutate(proportion = n / sum(n)) %>%
+  filter(icu_admission == TRUE) %>%
+  ggplot(aes(x = infection_type, y = proportion)) +
+  geom_col(fill = "coral") +
+  scale_y_continuous(labels = scales::percent) +
+  theme_minimal() +
+  labs(
+    title = "Proportion of ICU Admissions by Infection Type",
+    x = "Infection Type",
+    y = "ICU Admission Rate"
+  )
+
+```
+
+
+
+
+```{r}
+gg_miss_var(df) +
+  labs(title = "Missing Data per Variable")
+```
+
+```{r}
+write_csv(df, file = "infections.csv")
+```
+

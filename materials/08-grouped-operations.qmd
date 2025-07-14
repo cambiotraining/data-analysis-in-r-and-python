@@ -13,9 +13,44 @@ title: Grouped operations
 
 We’ve done different types of operations, all on the entire data set. Sometimes there is structure within the data, such as different groups (e.g. genotypes, patient cohorts, geographical areas etc). We might then want information on a group-by-group basis.
 
+## Section setup {#setup_grouped_operations}
+
+::: {.callout-note collapse="true"}
+## Click to expand
+
+::: {.panel-tabset group="language"}
+## R
+
+We'll continue this section with the script named `05-manipulation.R`. If needed, add the following code to the top of your script and run it.
+
+```{r}
+#| message: false
+# A collection of R packages designed for data science
+library(tidyverse)
+
+surveys <- read_csv("data/surveys.csv")
+```
+
+## Python
+
+We'll continue this section with the script named `05-manipulation.py`. If needed, add the following code to the top of your script and run it.
+
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+:::
+
 ## Split-apply-combine
 
-This kind of operation can be referred to as split-apply-combine, because we split the data, apply some function and then combine the outcome.
+Conceptually, this kind of operation can be referred to as split-apply-combine, because we split the data, apply some function and then combine the outcome.
 
 Let's illustrate this with an example. @fig-groupby_table shows a hypothetical data set, where we have temperature and rainfall measurements for different cities.
 
@@ -33,11 +68,56 @@ This is visualised in @fig-groupby_split.
 
 ## Summary operations
 
+Let's put this into practice with our data set.
+
 ### Summarising data
-LO: summarising data
+
+A common task in data analysis is to summarise variables to get a sense of their average and variation.
+
+For example, let’s calculate what the mean and standard deviation are for `weight`.
+
+::: {.panel-tabset group="language"}
+## R
+
+We can achieve this task using the `summarise()` function.
+
+```{r}
+surveys |> 
+  summarise(weight_mean = mean(weight, na.rm  = TRUE),
+            weight_sd = sd(weight, na.rm = TRUE))
+```
+
+A couple of things to notice:
+
+The output of `summarise` is a new table, where each column is named according to the input to `summarise()`.
+
+Within `summarise()` we should use functions for which the output is a single value.
+Also notice that, above, we used the `na.rm` option within the summary functions, so that they ignored missing values when calculating the respective statistics.
+
+## Python
+
+:::
 
 ### Grouped summaries
-LO: grouped summaries
+
+In most cases we want to calculate summary statistics within groups of our data. 
+
+::: {.panel-tabset group="language"}
+## R
+
+We can achieve this by combining `summarise()` with the `group_by()` function. For example, let’s modify the previous example to calculate the summary for each `sex` group:
+
+```{r}
+surveys |> 
+  group_by(sex) |> 
+  summarise(weight_mean = mean(weight, na.rm  = TRUE),
+            weight_sd = sd(weight, na.rm = TRUE))
+```
+
+The table output now includes both the columns we defined within `summarise()` as well as the grouping columns defined within `group_by()`.
+
+## Python
+:::
 
 ## Counting data
 

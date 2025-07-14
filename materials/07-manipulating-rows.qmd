@@ -32,7 +32,16 @@ surveys <- read_csv("data/surveys.csv")
 
 ## Python
 
-We'll continue this section with the script named `05-manipulation.py`. If needed, add the following code to the top of your script and run it.
+We'll continue this section with the script named `07-manipulating-rows.py`.
+
+We'll use a new package, so install if needed from the terminal:
+
+```{bash}
+#| eval: false
+conda install conda-forge::missingno
+```
+
+Then, if needed, add the following code to the top of your script and run it.
 
 ```{python}
 # A Python data analysis and manipulation tool
@@ -41,8 +50,12 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# Load missingno
+import missingno as msno
+
 surveys = pd.read_csv("data/surveys.csv")
 ```
+
 
 :::
 :::
@@ -87,19 +100,318 @@ surveys |>
 
 ## Python
 
+```{python}
+surveys.sort_values(by = "year")
+```
+
+If we'd want to arrange the data in *descending* order (most recent to oldest), we would specify this with the `ascending = False` argument:
+
+```{python}
+surveys.sort_values(by = "year", ascending = False)
+```
+
+We can also combine this approach with multiple variables, for example arranging data based on descending year *and* (ascending) hindfoot length:
+
+```{python}
+surveys.sort_values(
+    by=["year", "hindfoot_length"],
+    ascending=[False, True]
+)
+```
+
 :::
 
 ### Finding unique values
-LO: finding unique rows
+
+Sometimes it is useful to retain rows with unique combinations of some of our variables (i.e. remove any duplicated rows). 
+
+::: {.panel-tabset group="language"}
+## R
+
+This can be done with the `distinct()` function.
+
+```{r}
+surveys |> 
+  distinct(species_id, year)
+```
+
+
+## Python
+
+We can do this by specifying which column we'd like to get the unique values from (here, we're using `species_id` and `year` as an example). We then use `.drop_duplicates()` to remove all the duplicate values:
+
+```{python}
+surveys[["species_id", "year"]].drop_duplicates()
+```
+
+:::
 
 ### Filtering by condition
-LO: filtering rows by condition
+Often we want to filter our data based on specific conditions / properties in the data. For example, in our data set you might want to filter for certain years, a specific weight range or only get all the observations for the first 100 record IDs.
+
+Before we delve into this, it is important to understand that when we set a condition like above, the output 
+is a _logical vector_. Let's see an example using a small vector.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+some_years <- c(1985, 1990, 1999, 1995, 2010, 2000)
+some_years < 2000
+```
+
+## Python
+
+For this example we'll keep using Pandas, for consistency. Since we're only dealing with a simple, one-dimensional bunch of data, we create a `Series`:
+
+```{python}
+some_years = pd.Series([1985, 1990, 1999, 1995, 2010, 2000])
+result = some_years < 2000
+
+result
+```
+
+:::
+
+It is possible to combine several conditions by using the _logical operators_ 
+`&` (AND) and `|` (OR). For example, if we wanted the years between 1990 and 2000:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+# both conditions have to be true
+some_years > 1990 & some_years < 2000
+```
+
+And if we wanted the years below 1990 or above 2000, then:
+
+```{r}
+# only one or the other of the conditions has to be true
+some_years < 1990 | some_years > 2000
+```
+
+## Python
+
+```{python}
+result = (some_years > 1990) & (some_years < 2000)
+
+result
+```
+
+And if we wanted the years below 1990 or above 2000, then:
+
+```{python}
+result = (some_years < 1990) | (some_years > 2000)
+
+result
+```
+
+:::
+
+This concept is also applied to tables. We could filter across all rows in the `surveys` data set, for a `hindfoot_length` of larger than 31 mm:
 
 ![The logic behind filtering: for each row the condition is checked (here: `hindfoot_length > 31`). If the outcome is `TRUE` then the row is returned.](images/manipulation-filter_rows.png){#fig-manipulation_filter_rows}
 
-### Missing data revisited
-LO: dealing with missing data
+We could then do this as follows:
 
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys |> 
+  filter(hindfoot_length > 31)
+```
+
+## Python
+
+```{python}
+surveys[surveys["hindfoot_length"] > 31]
+```
+
+:::
+
+This then only keeps the observations where `hindfoot_length > 31`, in this case 
+`r surveys |> filter(hindfoot_length > 31) |> nrow()` observations.
+
+::: {.callout-important}
+## Conditional  operators
+
+::: {.panel-tabset group="language"}
+## R
+
+To set filtering conditions, use the following _relational operators_:
+ 
+- `>` is greater than
+- `>=` is greater than or equal to
+- `<` is less than
+- `<=` is less than or equal to
+- `==` is equal to
+- `!=` is different from
+- `%in%` is contained in
+
+To combine conditions, use the following _logical operators_:
+
+- `&` AND
+- `|` OR
+ 
+Some functions return logical results and can be used in filtering operations:
+ 
+- `is.na(x)` returns _TRUE_ if a value in _x_ is missing
+
+The `!` can be used to negate a logical condition:
+
+- `!is.na(x)` returns _TRUE_ if a value in _x_ is NOT missing
+- `!(x %in% y)` returns _TRUE_ if a value in _x_ is NOT present in _y_
+
+## Python
+
+To set filtering conditions, use the following _relational operators_:
+ 
+- `>` is greater than
+- `>=` is greater than or equal to
+- `<` is less than
+- `<=` is less than or equal to
+- `==` is equal to
+- `!=` is different from
+- `.isin([...])` is contained in
+
+To combine conditions, use the following _logical operators_:
+
+- `&` AND
+- `|` OR
+ 
+Some functions return logical results and can be used in filtering operations:
+ 
+- `df["x"].isna()` returns _True_ if a value in _x_ is missing
+
+The `!` can be used to negate a logical condition:
+
+- `~df["x"].isna()` returns _True_ if a value in _x_ is NOT missing
+- `~df["x"].isin(["y"])` returns _True_ if a value in _x_ is NOT present in `"y"`
+:::
+
+:::
+
+### Missing data revisited
+
+It's important to carefully consider how to deal with missing data, as we
+[have previously seen](#missing-data). It's easy enough to filter out all rows that contain missing data, however this is rarely the best course of action, because you might accidentally throw out useful data in columns that you'll need later.
+
+Furthermore, it's often a good idea to see if there is any **structure** in your missing data. Maybe certain variables are consistently absent, which could tell you something about your data.
+
+::: {.panel-tabset group="language"}
+
+## R
+
+We could filter out all the missing `weight` values as follows:
+
+```{r}
+surveys |> 
+  filter(!is.na(weight))
+```
+
+## Python
+
+```{python}
+surveys.dropna(subset=["weight"])
+```
+
+:::
+
+::: {.panel-tabset group="language"}
+
+## R
+
+We can combine this for multiple columns:
+
+```{r}
+surveys |> 
+  filter(!is.na(weight) & !is.na(hindfoot_length))
+```
+
+## Python
+
+```{python}
+surveys.dropna(subset = ["weight", "hindfoot_length"])
+```
+
+:::
+
+We can also combine that with other filters.
+
+::: {.panel-tabset group="language"}
+
+## R
+
+```{r}
+surveys |> 
+  filter(!is.na(weight) & !is.na(hindfoot_length)) |> 
+  filter(hindfoot_length > 40)
+```
+
+## Python
+
+To do this, we might prefer to use a slightly syntax: the `.notna()`. This allows us to chain operations a bit cleaner, making our code easier to read:
+
+```{python}
+surveys[
+    (surveys["weight"].notna()) &
+    (surveys["hindfoot_length"].notna()) &
+    (surveys["hindfoot_length"] > 40)
+]
+
+```
+:::
+
+Often it's not that easy to get a sense of how missing data are distributed in the data set. We can use summary statistics and visualisations to get a better sense.
+
+::: {.panel-tabset group="language"}
+
+## R
+
+The easiest way of getting some numbers on the missing data is by using the `summary()` function, which will report the number of `NA`'s for each column (for example: see the `hindfoot_length` column):
+
+```{r}
+summary(surveys)
+```
+
+Often it's nice to visualise where your missing values are, to see if there are any patterns that are obvious. There are several packages in R that can do this, of which `naniar` is one.
+
+```{r}
+#| eval: false
+# install if needed
+install.packages("naniar")
+```
+
+```{r}
+library(naniar)
+
+vis_miss(surveys)
+```
+
+## Python
+
+The easiest way of counting the number of missing values in Python is by combining `.isna()` and `.sum()`:
+
+```{python}
+# count missing values
+surveys.isna().sum()
+```
+
+Often it's nice to visualise where your missing values are, to see if there are any patterns that are obvious. There are several packages in Python that can do this, of which `missingno` is one.
+
+```{python}
+#| eval: false
+import missingno as msno
+```
+
+```{python}
+# visual matrix
+msno.matrix(surveys)
+```
+
+:::
 
 
 ## Summary

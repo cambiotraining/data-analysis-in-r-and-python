@@ -8,6 +8,7 @@ title: Working with tabular data
 - Understand the structure of tabular data
 - Be able to read in tabular data
 - Investigate properties of the data (e.g. types of variables, missing data)
+- Perform basic quality control checks
 :::
 
 
@@ -337,6 +338,32 @@ We also include the `index = False` argument, so that the row numbers are not wr
 ```{python}
 surveys_snippet.to_csv("data/surveys_snippet.csv", index = False)
 ```
+
+:::
+
+::: {.callout-tip}
+## Data tip: quality control checks
+ 
+Whenever you read in your data, it's always good practice to do some quality checks. Here's a list of things to look out for:
+
+- Do you have the expected number of rows and columns?
+- Are your variables (columns) of the expected type? (e.g. numeric, character)
+- Is the range of numeric data within expected boundaries? For example: a column with months should go from 1 to 12; a column with human heights in cm should not have values below 30 or so; etc...
+- Do you have the expected number of unique values in categorical (character) variables?
+- Do you have missing values in the data, and were these imported correctly?
+ 
+::: {.panel-tabset group="language"}
+## R
+
+In R, you can answer many of these questions with the help of the following 
+functions: `str()`, `summary()`, `length()` + `unique()`, `nrow()`, `ncol()`, `is.na()`.
+
+There are also some R packages that can help making these diagnostic analysis easier. One good one is the `skimr` package (which has a good [introduction document](https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html). 
+
+If you use the `skim()` function with your `data.frame` it will give you a tabular summary that will help you answer all these questions in one go!
+
+## Python
+:::
 
 :::
 
