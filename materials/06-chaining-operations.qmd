@@ -9,11 +9,133 @@ title: Chaining operations
 :::
 
 ## Context
+
 In the section above we performed several operations on a single data set. Often there is a sequence to this, where the output of one operation gets fed into the next. We can simplify this by chaining commands.
 
-## Pipes
-LO: using pipes
+## Section setup {#setup_chaining_operations}
 
+::: {.callout-note collapse="true"}
+## Click to expand
+
+::: {.panel-tabset group="language"}
+## R
+
+We'll continue this section with the script named `06-chaining-operations.R`. If needed, add the following code to the top of your script and run it.
+
+```{r}
+#| message: false
+# A collection of R packages designed for data science
+library(tidyverse)
+
+surveys <- read_csv("data/surveys.csv")
+```
+
+## Python
+
+We'll continue this section with the script named `06-chaining-operations.py`.
+
+If needed, add the following code to the top of your script and run it.
+
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+:::
+
+## Pipes
+
+So far, we've used single operations when we were manipulating our data. For example, we can select columns with:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(surveys, record_id, hindfoot_length)
+```
+
+Let's say we wanted combine that with creating a new column, for example hindfoot length in centimeters.
+
+We would have to do the following:
+
+```{r}
+# grab the relevant columns and store in a new object
+subset_surveys <- select(surveys, record_id, hindfoot_length)
+
+# create the new column
+mutate(subset_surveys, hindfoot_length_cm = hindfoot_length / 10)
+```
+
+We had to create a new *object* (here, called `subset_surveys`) to store the intermediate data we were interested in, and then continue with creating the new column.
+
+This clutters up your computer's memory rather quickly when dealing with lots of data. A much better way is that we **pipe** one after the other. To do this, we *start with the data* and use a pipe symbol (`|>` or `%>%`) as follows:
+
+```{r}
+surveys |> 
+  select(record_id, hindfoot_length) |>
+  mutate(hindfoot_length_cm = hindfoot_length / 10)
+```
+
+An easy way of remembering what the pipe does is to replace (in your head) the pipe symbol with the phrase "and then...".
+
+So, we `select()` the `record_id` and `hindfoot_length` columns *and then* use mutate to create a new column called `hindfoot_length_cm`.
+
+::: {.callout-note}
+## Which pipe symbol do I use?
+
+You'll find that people use two pipe symbols quite interchangeably in R: the `|>` pipe (native, built-in R) and `%>%` from the `magrittr` package.
+
+The native, built-in pipe is a rather new addition, since version 4.1. It is slightly different in its behaviour than the `%>%` pipe (if you want to know more, see [here](https://ivelasq.rbind.io/blog/understanding-the-r-pipe/#:~:text=A%20while%20back%2C%20I%20wrote,available%20since%20R%20version%204.1.)), but for most purposes they work the same.
+
+We tend to use the native, built-in pipe throughout the materials. But the `magrittr` pipe works just as well! You can change your preference in RStudio by going to `Tools > Global options > Code` and changing the tickbox enabling/disabling the native pipe operator.
+
+:::
+
+## Python
+
+```{python}
+surveys[["record_id", "hindfoot_length"]].copy()
+```
+
+Let's say we wanted combine that with creating a new column, for example hindfoot length in centimeters.
+
+We would have to do the following:
+
+```{python}
+# select the required columns and store in a new data set
+selected = surveys[["record_id", "hindfoot_length"]].copy()
+
+# take the new data set and calculate the new column
+selected["hindfoot_length_cm"] = selected["hindfoot_length"] / 10
+
+```
+
+We had to create a new *object* (here, called `subset_surveys`) to store the intermediate data we were interested in, and then continue with creating the new column.
+
+This clutters up your computer's memory rather quickly when dealing with lots of data. So, it'd be good if we could **pipe** these commands through, like we can do in R.
+
+But, a bit of sad news here. Python does not really have an equivalent to pipes in R. You can somewhat emulate it with a non-intuitive set of operations like this:
+
+```{python}
+(surveys
+  [["record_id", "hindfoot_length"]]
+  .assign(hindfoot_length_cm=lambda df: df["hindfoot_length"] / 10))
+```
+
+Here, we do the following:
+
+* `surveys[["record_id", "hindfoot_length"]]` selects the columns you want
+* `.assign(...)` then creates a new column
+* `lambda df` tells `pandas` to compute the new column using the current data frame in the chain
+
+But I guess you'll agree that this is not that much easier to read. There are some `dplyr`-style implementations in Python, that also include a pipe. One is [siuba](https://github.com/machow/siuba) but it does not seem to be actively maintained. Another one is [dfply](https://github.com/kieferk/dfply), which has not been updated for 7 years and counting...
+:::
 
 
 ## Summary
