@@ -72,7 +72,7 @@ Let's put this into practice with our data set.
 
 ### Summarising data
 
-A common task in data analysis is to summarise variables to get a sense of their average and variation.
+A common task in data analysis is to summarise variables to get the mean and the variation around it.
 
 For example, let’s calculate what the mean and standard deviation are for `weight`.
 
@@ -98,9 +98,35 @@ Also notice that, above, we used the `na.rm` option within the summary functions
 
 :::
 
+::: {.callout-tip}
+## Summary functions
+
+::: {.panel-tabset group="language"}
+## R
+
+There are many functions whose input is a vector (or a column in a table) and the output is a single number. Here are several common ones:
+
+* `mean(x)` - arithmetic mean
+* `median(x)` - median
+* `sd(x)` - standard deviation
+* `var(x)` - variance
+* `IQR(x)` - interquartile range
+* `mad(x)` - median absolute deviation
+* `min(x)` and `max(x)` - minimum and maximum
+* `quantile(x, probs = 0.75)` - [quantile](https://simple.wikipedia.org/wiki/Quantile) (use the `probs` option to set the quantile of your choosing)
+* `sum(x)` - addition of all values in `x`
+* `n_distinct(x)` (from `dplyr`) - the number of distinct values in the vector `x`
+
+All of these have the option `na.rm`, which tells the function remove missing values before doing the calculation.
+
+## Python
+
+:::
+:::
+
 ### Grouped summaries
 
-In most cases we want to calculate summary statistics within groups of our data. 
+In most cases we want to calculate summary statistics across groups of our data. 
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -121,23 +147,122 @@ The table output now includes both the columns we defined within `summarise()` a
 
 ## Counting data
 
-### Counting
-LO: counting
+Counting or tallying data is an extremely useful way of getting to know your data better.
+
+### Simple counting
+
+::: {.panel-tabset group="language"}
+## R
+
+We can use the `count()` function from `dplyr` to count data. It always returns the number of rows it counts.
+
+For example, this gives us the total number of observations (rows) in our data set:
+
+```{r}
+count(surveys)
+```
+
+We can also do that using conditional statements:
+
+```{r}
+# count the observations from the year 1982
+surveys |> 
+  filter(year == 1982) |> 
+  count()
+```
+
+
+## Python
+
+:::
 
 ### Counting by group
-LO: counting data by group
 
-### Counting missing values
-LO: counting with missing values
+Counting really comes into its own when we're combining this with some grouping. For example, we might be interested in the number of observations for each year.
 
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys |> 
+  count(year)
+```
+
+We can also easily visualise this (we can pipe straight into `ggplot()`). We use `geom_col()` to create a bar chart of the number of observations per year. We count by `sex` and use this variable to fill the colour of the bars.
+
+```{r}
+surveys |> 
+  count(sex, year) |> 
+  ggplot(aes(x = year, y = n, fill = sex)) +
+  geom_col()
+```
+
+::: {.callout-important}
+## Counting within a summary pipeline
+
+Often we want to do counting when we're creating summaries. The `count()` function can't be used within `summarise()`, but there is a special helper function called `n()`. Look at the following example, where we group by year, filter the data, create some summary statistic and also count the number of rows within each group.
+
+```{r}
+surveys |> 
+  group_by(year) |>                                   # group the data
+  filter(year %in% c(1981, 1982)) |>                  # filter a subset of years
+  summarise(mean_weight = mean(weight, na.rm = TRUE), # calculate mean weight
+            n_obs = n()) |>                           # number of rows
+  ungroup()                                           # drop the grouping
+```
+
+:::
+
+## Python
+
+:::
+
+### Counting missing data
+
+Oh, missing data! How we've missed you. For something that isn't there, is has quite the presence. But, it is an important consideration in data analysis. We've [already seen](#missingdata-revisited) how we can remove missing data from and also explored ways to visualise them.
+
+::: {.panel-tabset group="language"}
+## R
+
+We have seen how to use the `summary()` function to find missing values. Here we'll see (even more) ways to tally them.
+
+We can use the `is.na()` function to great effect, within a `summarise()` pipeline. We can negate with `!is.na()` to find non-missing values. Again, using the `sum()` function then enables us to tally how many missing / non-missing values there are.
+
+```{r}
+surveys |> 
+  summarise(obs_present = sum(!is.na(species_id)),    # count non-missing data
+            obs_absent = sum(is.na(species_id)),      # count missing data
+            n_obs = n(),                              # total number of rows
+            precentage_absent = 
+              (obs_absent / n_obs) * 100) |>          # percentage of missing data
+  ungroup()
+```
+
+## Python
+
+:::
 
 ## Grouped operations
 
 ### Grouped filters
 LO: grouped filters
 
+::: {.panel-tabset group="language"}
+## R
+
+## Python
+
+:::
+
 ### Grouped changes
 LO: grouped mutate
+
+::: {.panel-tabset group="language"}
+## R
+
+## Python
+
+:::
 
 ### To ungroup or not ungroup
 LO: the importance of ungrouping
@@ -149,5 +274,14 @@ LO: the importance of ungrouping
 ::: {.callout-tip}
 #### Key points
 
-- 
+::: {.panel-tabset group="language"}
+## R
+
+-
+
+## Python
+
+-
+:::
+
 :::

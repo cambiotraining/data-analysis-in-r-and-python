@@ -130,8 +130,8 @@ We can also combine this approach with multiple variables, for example arranging
 
 ```{python}
 surveys.sort_values(
-    by=["year", "hindfoot_length"],
-    ascending=[False, True]
+    by = ["year", "hindfoot_length"],
+    ascending = [False, True]
 )
 ```
 
@@ -309,7 +309,7 @@ The `~` (bitwise NOT) can be used to negate a logical condition:
 
 :::
 
-### Missing data revisited
+### Missing data revisited {#missingdata-revisited}
 
 It's important to carefully consider how to deal with missing data, as we
 [have previously seen](#missing-data). It's easy enough to filter out all rows that contain missing data, however this is rarely the best course of action, because you might accidentally throw out useful data in columns that you'll need later.
