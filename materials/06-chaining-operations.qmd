@@ -120,12 +120,12 @@ We had to create a new *object* (here, called `subset_surveys`) to store the int
 
 This clutters up your computer's memory rather quickly when dealing with lots of data. So, it'd be good if we could **pipe** these commands through, like we can do in R.
 
-But, a bit of sad news here. Python does not really have an equivalent to pipes in R. You can somewhat emulate it with a non-intuitive set of operations like this:
+But, a bit of sad news here. **Python does not really have an equivalent to pipes in R**. You can somewhat emulate it with a non-intuitive set of operations like this:
 
 ```{python}
 (surveys
   [["record_id", "hindfoot_length"]]
-  .assign(hindfoot_length_cm=lambda df: df["hindfoot_length"] / 10))
+  .assign(hindfoot_length_cm = lambda df: df["hindfoot_length"] / 10))
 ```
 
 Here, we do the following:
@@ -135,6 +135,8 @@ Here, we do the following:
 * `lambda df` tells `pandas` to compute the new column using the current data frame in the chain
 
 But I guess you'll agree that this is not that much easier to read. There are some `dplyr`-style implementations in Python, that also include a pipe. One is [siuba](https://github.com/machow/siuba) but it does not seem to be actively maintained. Another one is [dfply](https://github.com/kieferk/dfply), which has not been updated for 7 years and counting...
+
+So, rather than being frustrated about this, I suggest we accept the differences between the two languages and move on! :-)
 :::
 
 
@@ -143,5 +145,7 @@ But I guess you'll agree that this is not that much easier to read. There are so
 ::: {.callout-tip}
 #### Key points
 
-- 
+- In Python there is not a clear way to chain operations.
+- In R we can use `|>` (built-in) or `%>%` (via `magrittr` package) to chain operations.
+- This allows us to run multiple lines of code sequentially, simplifying pipelines and making them easier to read.
 :::
