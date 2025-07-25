@@ -86,7 +86,7 @@ We'll be using these libraries/modules here, but will also show you some example
 
 If needed, add and run the code from [Section setup](#setup_plotting).
 
-Here, we are using the `surveys` data set. Let's assume that we're interested in the relationship between two variables: `weight` and `hindfoot_length`. We can plot `weight` on the x-axis and `hindfoot_length` on the y-axis.
+Here we are using the `surveys` data set. Let's assume that we're interested in the relationship between two variables: `weight` and `hindfoot_length`. We can plot `weight` on the x-axis and `hindfoot_length` on the y-axis.
 
 Since they are both continuous data, a scatter plot would be a good way to represent these data.
 
@@ -108,11 +108,15 @@ ggplot(data = surveys,
 
 We use the `ggplot()` function to do this. Note that the whole code chunk below is wrapped inside another set of parentheses `( )`. This allows us to break up the code a bit for clarity. Also, the variable names that we're giving to `ggplot()` are inside quotes `" "` - this is different from R, where this is not necessary.
 
+Additionally, if you're running this directly from a Python script, it might not always output the plot inline. To avoid issues with this, we assign the plot to an object `p` and specifically ask Python to display it using `p.show()`.
+
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "weight", y = "hindfoot_length")) + 
   geom_point())
+
+p.show()
 ```
 
 :::
@@ -143,8 +147,10 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "weight", y = "hindfoot_length")))
+
+p.show()
 ```
 :::
 
@@ -166,9 +172,11 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_point())
+
+p.show()
 ```
 :::
 
@@ -190,10 +198,12 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_point() +
         geom_boxplot())
+
+p.show()
 ```
 :::
 
@@ -223,9 +233,11 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "weight", y = "hindfoot_length")) +
         geom_point(colour = "blue"))
+
+p.show()
 ```
 :::
 
@@ -251,9 +263,11 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_boxplot(fill = "magenta"))
+
+p.show()
 ```
 :::
 
@@ -285,9 +299,11 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "weight", y = "hindfoot_length", colour = "sex")) +
         geom_point())
+
+p.show()
 ```
 :::
 
@@ -306,6 +322,7 @@ ggplot(data = surveys,
        mapping = aes(x = sex, y = hindfoot_length)) +
   geom_jitter()
 ```
+
 ```{r}
 #| warning: false
 ggplot(data = surveys,
@@ -317,16 +334,20 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_jitter())
+
+p.show()
 ```
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_jitter(width = 0.1))
+
+p.show()
 ```
 :::
 
@@ -352,9 +373,11 @@ ggplot(data = surveys,
 
 ```{python}
 #| results: hide
-(ggplot(data = surveys,
+p = (ggplot(data = surveys,
         mapping = aes(x = "sex", y = "hindfoot_length")) +
         geom_jitter(width = 0.1, alpha = 0.4))
+
+p.show()
 ```
 :::
 
@@ -437,9 +460,11 @@ We used `facet_wrap()`, because we're only splitting the data by a single variab
 
 ```{python}
 #| results: hide
-(ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
         geom_point() +
         facet_wrap("~ sex"))
+
+p.show()
 ```
 
 Note the added code:
