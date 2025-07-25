@@ -245,29 +245,131 @@ surveys |>
 ## Grouped operations
 
 ### Grouped filters
-LO: grouped filters
+Sometimes it can be really handy to filter data, by group. In our `surveys` data, for example, you might be interested to find out what the minimum `weight` value is for each `year`. We can do that as follows: 
 
 ::: {.panel-tabset group="language"}
 ## R
+
+```{r}
+surveys |> 
+  group_by(year) |> 
+  filter(weight == min(weight, na.rm = TRUE)) |> 
+  ungroup()
+```
+
+You can see that this outputs the minimum value, but if there are multiple entries for each year (such as in `1978`), multiple rows returned. If we only wanted to get a single row per minimum value, per year, then we can use `slice(1)`. This slices the first row of each group:
+
+```{r}
+surveys |> 
+  group_by(year) |> 
+  filter(weight == min(weight, na.rm = TRUE)) |> 
+  slice(1) |> 
+  ungroup()
+```
+
 
 ## Python
 
 :::
 
 ### Grouped changes
-LO: grouped mutate
+Sometimes you might need to add a new variable to our table, based on different groups.
 
 ::: {.panel-tabset group="language"}
 ## R
+Let's assume we'd have the following summary data:
+
+```{r}
+surveys |> 
+  group_by(year) |> 
+  summarise(n_obs_f = sum(sex == "F", na.rm = TRUE),
+            n_obs_m = sum(sex == "M", na.rm = TRUE)) |> 
+  ungroup()
+```
+
+Now, let's say we'd be interested in the percentage of female observations out of the total of observations where it was scored. We'd have to add a new column. Adding new columns is, as we've seen before, a job for `mutate()`.
+
+```{r}
+surveys |> 
+  group_by(year) |> 
+  summarise(n_obs_f = sum(sex == "F", na.rm = TRUE),
+            n_obs_m = sum(sex == "M", na.rm = TRUE)) |> 
+  ungroup() |> 
+  mutate(female_pct = n_obs_f / (n_obs_f + n_obs_m) * 100)
+```
+
+The nice thing about chaining all these commands is that we can quickly build up what we want. We could, for example, easily plot the outcome of this.
+
+```{r}
+surveys |> 
+  group_by(year) |> 
+  summarise(n_obs_f = sum(sex == "F", na.rm = TRUE),
+            n_obs_m = sum(sex == "M", na.rm = TRUE)) |> 
+  ungroup() |> 
+  mutate(female_pct = n_obs_f / (n_obs_f + n_obs_m) * 100) |> 
+  ggplot(aes(x = year, y = female_pct)) +
+  geom_line()
+```
+
 
 ## Python
 
 :::
 
 ### To ungroup or not ungroup
-LO: the importance of ungrouping
+Each time you do a grouped operation, it's good practice to remove the grouping afterwards. If you don't, then you might unintentionally be doing operations within the groups later on. Let's illustrate this with an example.
+
+We'll take out any missing values, to simplify things.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+obs_count <- surveys |> 
+  drop_na() |> 
+  group_by(sex, year) |> 
+  summarise(n_obs = n())
+```
+
+```{r}
+obs_count
+```
+
+Let's say we now wanted to transform the `n_obs` variable to a percentage of the total number of observations in the entire data set (which is `r surveys |> drop_na() |> nrow()`).
+
+```{r}
+obs_count <- obs_count |> 
+  mutate(n_obs_pct = n_obs / sum(n_obs) * 100)
+```
+
+We'd expect these values in `n_obs_pct` to add up to 100%.
+
+```{r}
+sum(obs_count$n_obs_pct)
+```
+
+However, they add up to `r sum(obs_count$n_obs_pct)` instead! Why? That's because the table was still grouped by `sex` and as such, the percentages were calculated by each `sex` group. There are two of them (`F`, `M` - we filtered out the missing values), so the percentages add up to 100% *within* each `sex` group.
+
+The way to avoid this issue is to ensure we remove any groups from our table, which we can do with `ungroup()`. Here’s the full string of commands, with the ungrouping step added:
 
 
+```{r}
+obs_count <- surveys |> 
+  drop_na() |>                                  # remove all NAs
+  group_by(sex, year) |>                        # group by sex, year
+  summarise(n_obs = n()) |>                     # get number of rows
+  ungroup() |>                                  # ungroup here
+  mutate(n_obs_pct = n_obs / sum(n_obs) * 100)  # calculate percentage
+```
+
+We can check the percentages again and see that all is well:
+
+```{r}
+sum(obs_count$n_obs_pct)
+```
+
+## Python
+:::
 
 ## Summary
 
@@ -277,7 +379,12 @@ LO: the importance of ungrouping
 ::: {.panel-tabset group="language"}
 ## R
 
--
+- We can split our data into groups and apply operations to each group.
+- We can then combine the outcomes in a new table.
+- We use `summarise()` to calculate summary statistics (e.g. mean, median, maximum, etc)
+- Using pipes with groups (e.g. `group_by() |> summarise()`) we can calculate those summaries across groups.
+- We can also filter (`group_by() |>  filter()`) or create new columns (`group_by() |> mutate()`).
+- It is good practice to remove grouping (with `ungroup()`) from tables after `group_by()` operations, to avoid issues with retained groupings.
 
 ## Python
 
