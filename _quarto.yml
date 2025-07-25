@@ -12,6 +12,7 @@ project:
     - materials.md
     - materials/*
     - "!materials/*/no_render"
+    - references.qmd
 
 format:
   courseformat-html:
@@ -26,6 +27,8 @@ filters:
   - courseformat
   - auto-dark
   - quarto-bootstrap-carousel
+
+bibliography: references.bib
 
 execute:
   freeze: auto
@@ -58,15 +61,14 @@ book:
       - text: "{{< iconify fa6-brands bluesky size=lg title='CRIT Bluesky' >}}"
         href: https://bsky.app/profile/bioinfocambs.bsky.social
       - text: "{{< iconify fa6-brands mastodon size=lg title='CRIT Mastodon' >}}"
-        href: https://genomic.social/@BioInfoCambs
+        href: "https://genomic.social/%40BioInfoCambs"
       - text: "{{< iconify mdi web size=lg title='CRIT Website' >}}"
         href: https://bioinfotraining.bio.cam.ac.uk/
     title: "Data analysis in R and Python"
   chapters:
     - part: "Welcome"
       chapters:
-        - text: "Overview"
-          href: index.md
-        - text: "Data & Setup"
-          href: setup.md
+        - index.md
+        - setup.md
+        - references.md
     

@@ -111,7 +111,7 @@ R will show you your current working directory in the `Files` pane. Alternativel
 :::
 
 ::: {.callout-important}
-Complete @ex-createwd before proceeding.
+Complete [setting up a working directory](#ex-createwd) before proceeding.
 :::
 
 ## Working with R or Python
@@ -224,7 +224,7 @@ It's always a good idea to add lots of comments to your code. What makes sense t
 
 ::: {.callout-important}
 ## Complete before proceeding
-Please complete @ex-createscript and @ex-runningcode.
+Please complete the exercises to [create a script](#ex-createscript) and trial [running code](#ex-runningcode).
 :::
 
 ## Functions and their arguments
