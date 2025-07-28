@@ -2,19 +2,20 @@ book:
   chapters:
     - part: "S1: Getting started"
       chapters:
-        - materials/01-intro-software.qmd
-        - materials/02-basic-objects-and-data-types.qmd
+        - materials/da1-01-intro-software.qmd
+        - materials/da1-02-basic-objects-and-data-types.qmd
     - part: "S2: Data & plotting"
       chapters:
-        - materials/03-tabular-data.qmd
-        - materials/04-plotting.qmd
+        - materials/da2-03-tabular-data.qmd
+        - materials/da2-04-plotting.qmd
     - part: "S3: Manipulating data"
       chapters:
-        - materials/05-manipulating-columns.qmd
-        - materials/06-chaining-operations.qmd
-        - materials/07-manipulating-rows.qmd
-        - materials/08-grouped-operations.qmd
+        - materials/da3-05-manipulating-columns.qmd
+        - materials/da3-06-chaining-operations.qmd
+        - materials/da3-07-manipulating-rows.qmd
+        - materials/da3-08-grouped-operations.qmd
     - part: "S4: Organise and combine"
       chapters:
-        - materials/09-reshaping-data.qmd
-        - materials/10-combining-data.qmd
+        - materials/da4-09-reshaping-data.qmd
+        - materials/da4-10-combining-data.qmd
+        - materials/da4-11-cleaning-data.qmd

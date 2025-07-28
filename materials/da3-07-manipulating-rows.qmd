@@ -26,7 +26,7 @@ Data sets can contain large quantities of observations. Often we are only intere
 ::: {.panel-tabset group="language"}
 ## R
 
-We'll continue this section with the script named `07-manipulating-rows.R`. If needed, add the following code to the top of your script and run it.
+We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".R", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
 
 In this section we will use a new package, called `naniar`, to visualise where we have missing data. Install it as follows:
 
@@ -49,7 +49,7 @@ surveys <- read_csv("data/surveys.csv")
 
 ## Python
 
-We'll continue this section with the script named `07-manipulating-rows.py`.
+We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".py", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
 
 We'll use a new package, so install if needed from the terminal:
 

@@ -1,0 +1,139 @@
+---
+title: Combining data
+---
+
+::: {.callout-tip}
+#### Learning objectives
+
+- 
+:::
+
+
+## Context
+Data is often split over multiple tables. We saw this in the previous section. Sometimes we need to combine information from multiple sources.
+
+## Section setup {#setup_grouped_operations}
+
+::: {.callout-note collapse="true"}
+## Click to expand
+
+::: {.panel-tabset group="language"}
+## R
+
+We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".R", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
+
+```{r}
+#| message: false
+# A collection of R packages designed for data science
+library(tidyverse)
+
+surveys <- read_csv("data/surveys.csv")
+```
+
+## Python
+
+We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".py", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
+
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+:::
+
+## Joining tables
+
+### The importance of an indentifier
+LO: a common identifier (more generally, unique identifiers are really important - e.g. mention LMM)
+
+### Joining tables
+LO:  joining tables
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+plot_types <- read_csv("data/plots.csv")
+```
+
+```{r}
+head(plot_types)
+```
+
+```{r}
+surveys |> count(plot_id)
+```
+
+We'll be adding the data from `plot_types` to the existing `surveys` data. We can do this as follows:
+
+```{r}
+left_join(surveys, plot_types, by = "plot_id")
+```
+
+Let's assign that output to an object called `surveys_full`.
+
+```{r}
+surveys_full <- left_join(surveys, plot_types, by = "plot_id")
+```
+
+Having this information now allows us to plot the data by `plot_type` in a much more meaningful way than if we would have used `plot_id`. For example, let's look at the `hindfoot_length` for each `plot_type`.
+
+```{r}
+#| label: fig-plot_hind
+#| fig-cap: "Boxplot of hindfoot length for each plot type"
+ggplot(surveys_full, aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot()
+```
+
+
+## Python
+:::
+
+## Cleaning data
+
+### Changing `plot_id`
+
+In the example above we saw that it wasn't great practice to just use numbers to indicate `plot_id`, since they obviously have no numerical value.
+
+It would be better to encode them in the format `plot_xxx` where `xxx` is a number with leading zeros (so that it sorts nicely).
+
+We can do that as follows:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+plot_types |> 
+  mutate(plot_id = paste0("plot_", sprintf("%03d", plot_id)))
+```
+
+## Python
+
+:::
+
+Note: this means that you would also have to change the `plot_id` column values in the `surveys` data set, if you wanted to combine the data from these tables!
+
+
+### Variable naming
+LO: variable naming (janitor package)
+
+### Encoding issues
+LO: encoding issues
+
+### Missing data
+LO: dealing with missing data
+
+
+## Summary
+
+::: {.callout-tip}
+#### Key points
+
+- 
+:::
