@@ -259,3 +259,54 @@ gg_miss_var(df) +
 write_csv(df, file = "infections.csv")
 ```
 
+
+# survey joining data set
+
+```{r}
+set.seed(923)  # for reproducibility
+
+# Create 50 unique 3-digit record_ids
+record_ids <- sample(100:999, 50, replace = FALSE)
+
+# Define year levels
+years <- 2021:2024
+
+# Generate base weight per record_id (starting point for 2021)
+base_weights <- sample(170:200, 50, replace = TRUE)  # higher starting values
+
+# Expand into full dataset with 4 years per record_id
+df <- tibble(
+  record_id = rep(record_ids, each = 4),
+  year = rep(years, times = 50)
+) %>%
+  group_by(record_id) %>%
+  mutate(
+    # Decrease weight over years with some random noise
+    weight = base_weights[which(record_ids == record_id[1])] - 
+             (year - 2021) * sample(3:5, 1) +  # drop 3–5 units per year
+             rnorm(n(), mean = 0, sd = 2),     # small random noise
+    weight = round(pmin(pmax(weight, 83), 204), 1)  # keep within bounds
+  ) %>%
+  ungroup()
+```
+
+```{r}
+ggplot(df, aes(factor(year), weight)) +
+  geom_boxplot()
+```
+
+
+```{r}
+df |> 
+    pivot_wider(names_from = "year",
+              names_prefix = "yr_",
+              values_from = "weight") |>
+  ggplot(aes(x = yr_2021, y = yr_2022)) +
+  geom_point()
+```
+
+```{r}
+write_csv(df, file = "surveys_join.csv")
+```
+
+

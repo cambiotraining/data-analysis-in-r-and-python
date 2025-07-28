@@ -8,15 +8,159 @@ title: Reshaping data
 - 
 :::
 
-
 ## Context
-We provided data in the best format. Not always the case, because people collect data in a format that works best for them - not the computer. Focus on columns (variables); rows (observations) and how this is needed for plotting, linking with the last part of day 1.
+So far, we have provided data in the most convenient format. In real life, this is of course not always the case, because people collect data in a format that works best for them - not the computer. So, sometimes we need to change the shape of our data, so we can calculate or visualise the data we'd like.
 
-## From wide to long
-LO: reshape data from “wide” to “long” (practise this on two different, but linked data sets - leading into combining data)
+## Section setup {#setup_reshaping_data}
+
+::: {.callout-note collapse="true"}
+## Click to expand
+
+::: {.panel-tabset group="language"}
+## R
+
+We'll continue this section with the script named `09-reshaping-data.R`. If needed, add the following code to the top of your script and run it.
+
+```{r}
+#| message: false
+# A collection of R packages designed for data science
+library(tidyverse)
+
+surveys_join <- read_csv("data/surveys_join.csv")
+```
+
+## Python
+
+We'll continue this section with the script named `09-reshaping-data.py`. If needed, add the following code to the top of your script and run it.
+
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+surveys_join = pd.read_csv("data/surveys_join.csv")
+```
+
+:::
+:::
+
+## Data reshaping
+
+Let's look at a hypothetical data set, based on the type of variables we've come across in the `surveys` data.
+
+![Wide and long data formats contain the same information](images/long_and_wide.png){#fig-long_wide}
+
+The data that is present in both tables is the same - it's just encoded slightly differently.
+
+1. The "long" format is where we have a column for each of the types of things we measured or recorded in our data. In other words, each variable has its own column.
+2. The "wide" format occurs when we have data relating to the same measured thing in different columns. In this case, we have values related to our *metric* spread across multiple columns (a column each for a year).
+
+::: {.callout-note}
+## Wide or long?
+
+Neither of these formats is necessarily more correct than the other: it will depend on what analysis you intend on doing. However, it is worth mentioning that the "long" format is often preferred, as it is clearer how many distinct types of variables we have in the data.
+
+To figure out which format you might need, it may help to think of which visualisations you may want to build with `ggplot()` (or other packages, for that example). Taking the above example:
+
+* If you were interested in looking at the change of `weight` across years for each individual, then the long format is more suitable to define each aesthetic of such a graph: `aes(x = year, y = weight, colour = record_id)`.
+* If you were interested in the correlation of this metric between 2021 and 2022, then the wide format would be more suitable: `aes(x = yr_2021, y = yr_2022, colour = record_id)`.
+:::
 
 ## From long to wide
-LO: reshape from long to wide
+
+Let's illustrate that with a dummy data set, called `surveys_join`. In this synthetic data set we have `weight` measurements for individuals across four years: 2021 - 2024. This means that there are four measurements for each `record_id`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+surveys_join <- read_csv("data/surveys_join.csv")
+```
+
+```{r}
+surveys_join |> 
+  head()
+```
+
+We can reshape our data from long to wide as follows, where I do *not* overwrite the existing data, but instead just pipe it through to the `head()` function, so we can see what the `pivot_wider()` function is doing:
+
+```{r}
+surveys_join |> 
+  pivot_wider(names_from = "year",
+              values_from = "weight",
+              names_prefix = "yr_") |>
+  head()
+```
+
+Let's unpack that a bit. 
+
+The `pivot_wider()` function needs at least the first two arguments:
+
+1. `names_from =` the column who's values we want to use for our new column names (`year`)
+2. `values_from =` the column who's values we want to use to populate these new columns (`weight`)
+3. `names_prefix =` a prefix for our column names (optional)
+
+Here we also add `names_prefix = "yr_"`, otherwise the column names would contain only numbers and that's not very good programming habit.
+
+Let's assign it to a new object and then visualise some of the data.
+
+```{r}
+surveys_wide <- surveys_join |> 
+  pivot_wider(names_from = "year",
+              values_from = "weight",
+              names_prefix = "yr_")
+```
+
+We can then use this to visualise possible relationships between the different years:
+
+```{r}
+#| label: fig-weight_2122
+#| fig-cap: "Scatterplot of `weight` for 2021 and 2022"
+ggplot(surveys_wide, aes(x = yr_2021, y = yr_2022)) +
+  geom_point()
+```
+
+If you'd be interested in comparisons across all years, you'd have to use the original, long format because there isn't a single column in the wide table that contains all of the year information.
+
+```{r}
+#| label: fig-weight_by_year
+#| fig-cap: "Boxplot of `weight` for 2021 - 2024"
+ggplot(surveys_join, aes(x = factor(year), y =  weight)) +
+  geom_boxplot()
+```
+
+## Python
+
+:::
+
+## From wide to long
+We can reshape our data from wide to long. This is more or less the inverse of what we did above.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys_wide |> 
+  pivot_longer(cols = -record_id,
+               names_to = "year",
+               values_to = "weight",
+               names_prefix = "yr_")
+```
+
+Here we use the following arguments:
+
+1. `cols =` this tells `pivot_longer()` which columns to pivot - here we want to use all but the `record_id` column
+2. `names_to =` the name of the column that gets to hold the column names (e.g. `yr_2021`, `yr_2022` ...)
+3. `values_to =` the name of the column that will contain the measured values (here those are the `weight` measurements)
+4. `names_prefix =` here we tell it that all column names have a prefix `yr_`, which then gets removed prior to populating the column
+
+## Python
+:::
+
+
 
 
 ## Summary
