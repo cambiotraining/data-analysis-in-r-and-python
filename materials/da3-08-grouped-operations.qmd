@@ -192,6 +192,8 @@ surveys |>
 We can also easily visualise this (we can pipe straight into `ggplot()`). We use `geom_col()` to create a bar chart of the number of observations per year. We count by `sex` and use this variable to fill the colour of the bars.
 
 ```{r}
+#| label: fig-counts_year_sex
+#| fig-cap: "Number of observations per year, by `sex`."
 surveys |> 
   count(sex, year) |> 
   ggplot(aes(x = year, y = n, fill = sex)) +
