@@ -5,7 +5,9 @@ title: Combining data
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn how to join two tables together
+- Be able to distinguish between different types of joins
+- Use filtering joins to identify (mis)matches between tables
 :::
 
 
