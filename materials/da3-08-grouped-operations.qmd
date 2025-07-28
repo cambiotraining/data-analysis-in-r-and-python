@@ -5,7 +5,8 @@ title: Grouped operations
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn how to use grouped operations in data analysis.
+- Be able to distinguish between grouped summaries and other types of grouped operations.
 :::
 
 

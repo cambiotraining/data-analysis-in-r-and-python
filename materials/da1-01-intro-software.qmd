@@ -5,8 +5,8 @@ title: "Intro to software"
 ::: {.callout-tip}
 #### Learning objectives
 
-- Get familiar with the programming language
-- Get to know the interface software
+- Get familiar with the programming language.
+- Get to know the interface software.
 :::
 
 ## Context

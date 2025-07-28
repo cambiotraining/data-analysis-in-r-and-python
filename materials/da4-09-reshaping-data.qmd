@@ -5,7 +5,9 @@ title: Reshaping data
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn what long and wide data formats are.
+- Be able to recognise when best to use each.
+- Be able to switch from long to wide and back.
 :::
 
 ## Context

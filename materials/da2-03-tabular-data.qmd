@@ -5,10 +5,10 @@ title: Working with tabular data
 ::: {.callout-tip}
 #### Learning objectives
 
-- Understand the structure of tabular data
-- Be able to read in tabular data
-- Investigate properties of the data (e.g. types of variables, missing data)
-- Perform basic quality control checks
+- Understand the structure of tabular data.
+- Be able to read in tabular data.
+- Investigate properties of the data (e.g. types of variables, missing data).
+- Perform basic quality control checks.
 :::
 
 

@@ -5,8 +5,8 @@ title: Manipulating columns
 ::: {.callout-tip}
 #### Learning objectives
 
-- Learn how to select and/or rename specific columns from a data frame
-- Be able to create new columns and modify existing ones
+- Learn how to select and/or rename specific columns from a data frame.
+- Be able to create new columns and modify existing ones.
 :::
 
 

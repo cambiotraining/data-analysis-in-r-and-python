@@ -20,11 +20,11 @@ import patchworklib as pw
 ::: {.callout-tip}
 #### Learning objectives
 
-- Learn to create plots
-- Be able to build up plots in multiple layers
-- Make changes to plot colours and other aesthetics
-- Be able to create sub-panels based on data
-- Export/save plots to file
+- Learn to create plots.
+- Be able to build up plots in multiple layers.
+- Make changes to plot colours and other aesthetics.
+- Be able to create sub-panels based on data.
+- Export/save plots to file.
 :::
 
 ## Context

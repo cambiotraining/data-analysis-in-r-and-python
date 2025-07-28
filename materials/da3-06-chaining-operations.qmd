@@ -5,7 +5,7 @@ title: Chaining operations
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn how to chain operations together.
 :::
 
 ## Context

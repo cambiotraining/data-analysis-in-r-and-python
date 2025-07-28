@@ -5,11 +5,11 @@ title: Data types & structures
 ::: {.callout-tip}
 #### Learning objectives
 
-- Create familiarity with the most common data types
-- Know about basic data structures
-- Create, use and make changes to objects
-- Create, use and make changes to collections of data
-- Deal with missing data
+- Create familiarity with the most common data types.
+- Know about basic data structures.
+- Create, use and make changes to objects.
+- Create, use and make changes to collections of data.
+- Deal with missing data.
 :::
 
 

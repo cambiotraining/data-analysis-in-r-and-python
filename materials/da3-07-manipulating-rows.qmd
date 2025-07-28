@@ -5,11 +5,11 @@ title: Manipulating rows
 ::: {.callout-tip}
 #### Learning objectives
 
-- Learn to order and arrange rows
-- Be able to find and retain unique rows
-- Understand how logical operators are used
-- Implement conditional statements to filter specific data
-- Be able to identify and decide how to deal with missing data
+- Learn to order and arrange rows.
+- Be able to find and retain unique rows.
+- Understand how logical operators are used.
+- Implement conditional statements to filter specific data.
+- Be able to identify and decide how to deal with missing data.
 
 :::
 
