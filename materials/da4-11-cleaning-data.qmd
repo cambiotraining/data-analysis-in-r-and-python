@@ -28,6 +28,7 @@ We'll continue this section with the script named `r paste0(intToUtf8(96), sub("
 library(tidyverse)
 
 surveys <- read_csv("data/surveys.csv")
+plot_types <- read_csv("data/plots.csv")
 ```
 
 ## Python
@@ -43,57 +44,10 @@ import pandas as pd
 from plotnine import *
 
 surveys = pd.read_csv("data/surveys.csv")
+plot_types = pd.read_csv("data/plots.csv")
 ```
 
 :::
-:::
-
-## Joining tables
-
-### The importance of an indentifier
-LO: a common identifier (more generally, unique identifiers are really important - e.g. mention LMM)
-
-### Joining tables
-LO:  joining tables
-
-::: {.panel-tabset group="language"}
-## R
-
-```{r}
-plot_types <- read_csv("data/plots.csv")
-```
-
-```{r}
-head(plot_types)
-```
-
-```{r}
-surveys |> count(plot_id)
-```
-
-We'll be adding the data from `plot_types` to the existing `surveys` data. We can do this as follows:
-
-```{r}
-left_join(surveys, plot_types, by = "plot_id")
-```
-
-Let's assign that output to an object called `surveys_full`.
-
-```{r}
-surveys_full <- left_join(surveys, plot_types, by = "plot_id")
-```
-
-Having this information now allows us to plot the data by `plot_type` in a much more meaningful way than if we would have used `plot_id`. For example, let's look at the `hindfoot_length` for each `plot_type`.
-
-```{r}
-#| label: fig-plot_hind
-#| fig-cap: "Boxplot of hindfoot length for each plot type"
-ggplot(surveys_full, aes(x = plot_type, y = hindfoot_length)) +
-  geom_boxplot()
-```
-
-
-## Python
 :::
 
 ## Cleaning data

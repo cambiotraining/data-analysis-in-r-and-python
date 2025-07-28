@@ -28,6 +28,7 @@ We'll continue this section with the script named `r paste0(intToUtf8(96), sub("
 library(tidyverse)
 
 surveys <- read_csv("data/surveys.csv")
+plot_types <- read_csv("data/plots.csv")
 ```
 
 ## Python
@@ -42,6 +43,7 @@ import pandas as pd
 from plotnine import *
 
 surveys = pd.read_csv("data/surveys.csv")
+plot_types = pd.read_csv("data/plots.csv")
 ```
 
 :::
@@ -53,7 +55,7 @@ surveys = pd.read_csv("data/surveys.csv")
 LO: a common identifier (more generally, unique identifiers are really important - e.g. mention LMM)
 
 ### Joining tables
-LO:  joining tables
+There are different ways you can join tables, depending on which data you'd like to retain. The way these joins are named often depend on the *direction* in which you are joining. Let's look at this in more detail, using examples.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -62,72 +64,217 @@ LO:  joining tables
 plot_types <- read_csv("data/plots.csv")
 ```
 
+Let's look at the data. We can see that there are five distinct plot types encoded in these data, using `plot_id` as a key.
+
 ```{r}
-head(plot_types)
+plot_types
 ```
+
+Now let's look at our `surveys` data set. We know we have a `plot_id` column there, too. Let's check how many times the different `plot_id` values occur in our data. For this, we can use the `count()` function:
 
 ```{r}
 surveys |> count(plot_id)
 ```
 
-We'll be adding the data from `plot_types` to the existing `surveys` data. We can do this as follows:
-
-```{r}
-left_join(surveys, plot_types, by = "plot_id")
-```
-
-Let's assign that output to an object called `surveys_full`.
-
-```{r}
-surveys_full <- left_join(surveys, plot_types, by = "plot_id")
-```
-
-Having this information now allows us to plot the data by `plot_type` in a much more meaningful way than if we would have used `plot_id`. For example, let's look at the `hindfoot_length` for each `plot_type`.
-
-```{r}
-#| label: fig-plot_hind
-#| fig-cap: "Boxplot of hindfoot length for each plot type"
-ggplot(surveys_full, aes(x = plot_type, y = hindfoot_length)) +
-  geom_boxplot()
-```
-
+This shows that there are 24 `plot_id` values (there are 24 rows in the output). So, the `plot_types` data set won't contain information on *all* of these, since it only contains 5 distinct plots.
 
 ## Python
+
+```{python}
+plot_types = pd.read_csv("data/plots.csv")
+```
+
+Let’s look at the data. We can see that there are five distinct plot types encoded in these data, using `plot_id` as a key.
+
+```{python}
+plot_types
+```
+
+Now let’s look at our `surveys` data set. We know we have a `plot_id` column there, too. Let’s check how many times the different `plot_id` values occur in our data. 
+
+```{python}
+surveys.groupby('plot_id').size().reset_index(name='n')
+```
+
+This shows that there are 24 `plot_id` values (there are 24 rows in the output). So, the `plot_types` data set won’t contain information on all of these, since it only contains 5 distinct plots.
 :::
 
-## Cleaning data
+### Left joins
 
-### Changing `plot_id`
+We'll be adding the data from `plot_types` to the existing `surveys` data. This uses the following principle:
 
-In the example above we saw that it wasn't great practice to just use numbers to indicate `plot_id`, since they obviously have no numerical value.
+![Left join: table b to a](images/join_left.png){#fig-join_left}
 
-It would be better to encode them in the format `plot_xxx` where `xxx` is a number with leading zeros (so that it sorts nicely).
-
-We can do that as follows:
+This means that any `plot_id` that appears in `surveys`, but isn't present in `plot_types` will be empty or missing for its `plot_type` value.
 
 ::: {.panel-tabset group="language"}
 ## R
 
 ```{r}
-plot_types |> 
-  mutate(plot_id = paste0("plot_", sprintf("%03d", plot_id)))
+left_join(surveys, plot_types, by = "plot_id")
+```
+
+Let's assign that output to an object called `surveys_left`.
+
+```{r}
+surveys_left <- left_join(surveys, plot_types, by = "plot_id")
 ```
 
 ## Python
 
+```{python}
+surveys_left = pd.merge(surveys, plot_types, how = "left", on = "plot_id")
+```
+
+```{python}
+surveys_left
+```
+
 :::
 
-Note: this means that you would also have to change the `plot_id` column values in the `surveys` data set, if you wanted to combine the data from these tables!
+Having this information now allows us to plot the data by `plot_type` in a much more meaningful way than if we would have used `plot_id`. For example, let's look at the `hindfoot_length` for each `plot_type`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| label: fig-plot_hind
+#| fig-cap: "Boxplot of hindfoot length for each plot type"
+ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot()
+```
 
 
-### Variable naming
-LO: variable naming (janitor package)
+## Python
 
-### Encoding issues
-LO: encoding issues
+```{python}
+#| label: fig-plot_hind_py
+#| fig-cap: "Boxplot of hindfoot length for each plot type"
+p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
+  geom_boxplot())
+  
+p.show()
+```
 
-### Missing data
-LO: dealing with missing data
+:::
+
+### Right joins
+
+![Right join: table a to b](images/join_right.png){#fig-join_right}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+right_join(surveys, plot_types, by = "plot_id")
+```
+
+## Python
+
+```{python}
+surveys_right = pd.merge(surveys, plot_types, how = "right", on = "plot_id")
+```
+
+Let's see how many rows we've retained.
+
+```{python}
+len(surveys_right)
+```
+
+:::
+
+We can see that we have far fewer rows left (`r right_join(surveys, plot_types, by = "plot_id") |> nrow()`) than in the full data set (`r surveys |> nrow()`). This is because all the rows where there isn't a match for `plot_id` in the `surveys` data set are dropped.
+
+### Inner joins
+
+![Inner join: retain values present in both tables](images/join_inner.png){#fig-join_inner}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+inner_join(surveys, plot_types, by = "plot_id")
+```
+
+## Python
+
+```{python}
+surveys_inner = pd.merge(surveys, plot_types, how = "inner", on = "plot_id")
+```
+
+Let's see how many rows we've retained.
+
+```{python}
+len(surveys_inner)
+```
+
+:::
+
+This actually gives the same result as with the right join (`r right_join(surveys, plot_types, by = "plot_id") |> nrow()`  rows), which is because there aren't any rows in `plot_type` that *don't* have a match in `surveys`.
+
+### Full joins
+
+![Full join: retain all values](images/join_full.png){#fig-join_full}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+full_join(surveys, plot_types, by = "plot_id")
+```
+
+## Python
+
+The "full" join in pandas' `merge()` function is referred to as `"outer"`.
+
+```{python}
+surveys_full = pd.merge(surveys, plot_types, how = "outer", on = "plot_id")
+```
+
+Let's see how many rows we've retained.
+
+```{python}
+len(surveys_full)
+```
+
+:::
+
+This again gives us our entire `surveys` data set, including the additional `plot_type` information where available. The reason why this is not different to the left join is because there are no rows in `plot_types` that do not have a match in `surveys`.
+
+### Filtering joins
+
+There is one last set of joins we haven't discussed yet: filtering joins. These can be really helpful if you're comparing two tables and want to specifically extract the rows that are either present (**semi-join**) or absent (**anti-join**) in the other table.
+
+::: {.panel-tabset group="language"}
+## R
+
+Semi-join:
+
+```{r}
+semi_join(surveys, plot_types, by = "plot_id")
+```
+
+Anti-join:
+
+```{r}
+anti_join(surveys, plot_types, by = "plot_id")
+```
+
+## Python
+
+Semi-join:
+
+```{python}
+surveys[surveys["plot_id"].isin(plot_types["plot_id"])]
+```
+
+Anti-join:
+
+```{python}
+surveys[~surveys["plot_id"].isin(plot_types["plot_id"])]
+```
+
+:::
 
 
 ## Summary
@@ -135,5 +282,7 @@ LO: dealing with missing data
 ::: {.callout-tip}
 #### Key points
 
-- 
+- We can use left, right, inner and outer/full joins to merge two tables together.
+- There needs to be at least one matching column between the two tables that can be used as a key to link them.
+- We can also use filter joins to identify rows in a table that are present/absent in the other
 :::
