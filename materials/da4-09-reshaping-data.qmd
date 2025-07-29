@@ -212,15 +212,55 @@ Here we use the following arguments:
 4. `names_prefix =` here we tell it that all column names have a prefix `yr_`, which then gets removed prior to populating the column
 
 ## Python
+
+To go back to the long format, we use the `.melt()` function.
+
+```{python}
+surveys_long = surveys_wide.melt(
+    id_vars = "record_id",            # columns to keep fixed
+    var_name = "year",                # name of the new 'year' column
+    value_name = "weight"             # name of the new 'weight' column
+)
+
+surveys_long.head()
+```
+
+This uses the following arguments:
+
+1. `id_vars =` this tells it what the `id` column is - `record_id` in our case, which does not get pivoted.
+2. `var_name =` the name of the column that gets to hold the column names (e.g. `yr_2021`, `yr_2022` ...)
+3. `value_name =` the name of the column that will contain the measured values (here those are the `weight` measurements)
+
+This then creates a column `year` that contains the values `yr_2021`, `yr_2022`, `...`, since we added the prefix. If we want to remove the prefix we can do the following:
+
+```{python}
+# Remove 'yr_' prefix and convert year to integer
+surveys_long["year"] = surveys_long["year"].str.replace("yr_", "").astype(int)
+
+surveys_long.head()
+```
+
 :::
-
-
-
 
 ## Summary
 
 ::: {.callout-tip}
 #### Key points
 
-- 
+::: {.panel-tabset group="language"}
+## R
+
+- We can reshape data, going from long to wide (and back).
+- Which format you use depends on the aim: consider how you'd plot data.
+- We can use `pivot_wider()` to create a wide-format data set.
+- We can use `pivot_longer()` to create a long-format data set.
+
+## Python
+
+- We can reshape data, going from long to wide (and back).
+- Which format you use depends on the aim: consider how you'd plot data.
+- We can use `.pivot()` to create a wide-format data set.
+- We can use `.melt()` to create a long-format data set.
+
+:::
 :::

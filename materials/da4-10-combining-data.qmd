@@ -204,7 +204,7 @@ inner_join(surveys, plot_types, by = "plot_id")
 surveys_inner = pd.merge(surveys, plot_types, how = "inner", on = "plot_id")
 ```
 
-Let's see how many rows we've retained.
+Let's see how many rows we've retained. We can either use `.shape[0]` or `len()`.
 
 ```{python}
 len(surveys_inner)
