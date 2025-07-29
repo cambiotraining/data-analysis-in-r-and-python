@@ -79,12 +79,11 @@ Let's illustrate that with a dummy data set, called `surveys_join`. In this synt
 
 ```{r}
 #| message: false
+# Read in the data
 surveys_join <- read_csv("data/surveys_join.csv")
-```
 
-```{r}
-surveys_join |> 
-  head()
+# Look at the first few rows
+head(surveys_join)
 ```
 
 We can reshape our data from long to wide as follows, where I do *not* overwrite the existing data, but instead just pipe it through to the `head()` function, so we can see what the `pivot_wider()` function is doing:
@@ -116,7 +115,38 @@ surveys_wide <- surveys_join |>
               names_prefix = "yr_")
 ```
 
+## Python
+
+```{python}
+# Read in the data
+surveys_join = pd.read_csv("data/surveys_join.csv")
+
+# Look at the first few rows
+surveys_join.head()
+```
+
+```{python}
+surveys_wide = surveys_join.pivot(
+    index = "record_id",
+    columns = "year",
+    values = "weight"
+)
+
+# Add 'yr_' prefix to year columns
+surveys_wide.columns = [f"yr_{col}" for col in surveys_wide.columns]
+
+# Reset index to make 'record_id' a column again
+surveys_wide = surveys_wide.reset_index()
+
+surveys_wide.head()
+```
+
+:::
+
 We can then use this to visualise possible relationships between the different years:
+
+::: {.panel-tabset group="language"}
+## R
 
 ```{r}
 #| label: fig-weight_2122
@@ -135,6 +165,28 @@ ggplot(surveys_join, aes(x = factor(year), y =  weight)) +
 ```
 
 ## Python
+
+```{python}
+#| results: hide
+#| label: fig-weight_2122_py
+#| fig-cap: "Scatterplot of `weight` for 2021 and 2022"
+
+p = (ggplot(surveys_wide, aes(x = "yr_2021", y = "yr_2022")) +
+    geom_point())
+    
+p.show()
+
+```
+
+```{python}
+#| results: hide
+#| label: fig-weight_by_year_py
+#| fig-cap: "Boxplot of `weight` for 2021 - 2024"
+p = (ggplot(surveys_join, aes(x = "factor(year)", y = "weight")) +
+    geom_boxplot())
+
+p.show()
+```
 
 :::
 

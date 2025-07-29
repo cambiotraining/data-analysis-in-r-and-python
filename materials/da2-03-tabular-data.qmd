@@ -217,7 +217,7 @@ surveys$weight
 
 ## Python
 
-We can easily select an individual column in a pandas data frame using the `.` notation. We type the name of the object and then specify which column we're interested in:
+We can easily select an individual column in a `pandas` DataFrame using the `.` notation. We type the name of the object and then specify which column we're interested in:
 
 ```{python}
 surveys.weight

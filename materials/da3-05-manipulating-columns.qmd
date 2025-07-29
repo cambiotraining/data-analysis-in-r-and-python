@@ -192,7 +192,7 @@ rename(surveys, weight_g = weight)
 
 ## Python
 
-We can use the `.rename()` attribute of the `surveys` Pandas data frame:
+We can use the `.rename()` attribute of the `surveys` `pandas` DataFrame:
 
 ```{python}
 surveys.rename(columns = {'weight': 'weight_g'})
@@ -216,7 +216,7 @@ relocate(surveys, year, .after = record_id)
 
 ## Python
 
-Unlike in R, there isn't a very clear, straightforward way of reinserting columns in a Pandas data frame. We could show you convoluted ways of doing so, but at this point that's just confusing. So, we'll leave you with a [link to a Stackoverflow solution](https://stackoverflow.com/questions/13148429/how-to-change-the-order-of-dataframe-columns).
+Unlike in R, there isn't a very clear, straightforward way of reinserting columns in a `pandas` DataFrame. We could show you convoluted ways of doing so, but at this point that's just confusing. So, we'll leave you with a [link to a Stackoverflow solution](https://stackoverflow.com/questions/13148429/how-to-change-the-order-of-dataframe-columns).
 :::
 
 ## Creating new columns

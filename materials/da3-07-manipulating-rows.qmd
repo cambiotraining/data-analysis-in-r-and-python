@@ -178,7 +178,7 @@ some_years < 2000
 
 ## Python
 
-For this example we'll keep using Pandas, for consistency. Since we're only dealing with a simple, one-dimensional bunch of data, we create a `Series`:
+For this example we'll keep using `pandas`, for consistency. Since we're only dealing with a simple, one-dimensional bunch of data, we create a `Series`:
 
 ```{python}
 some_years = pd.Series([1985, 1990, 1999, 1995, 2010, 2000])

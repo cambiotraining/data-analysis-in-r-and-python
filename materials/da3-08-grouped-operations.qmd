@@ -97,7 +97,7 @@ Also notice that, above, we used the `na.rm` option within the summary functions
 
 ## Python
 
-For these kind of summary statistics we can use `.agg()` - the aggregate function in pandas. You can apply this to a DataFrame or Series. It works on standard summary functions, listed below. 
+For these kind of summary statistics we can use `.agg()` - the aggregate function in `pandas`. You can apply this to a DataFrame or Series. It works on standard summary functions, listed below. 
 
 ```{python}
 surveys["weight"].agg(
@@ -197,7 +197,7 @@ count(surveys)
 
 ## Python
 
-We can use the `.shape` attribute. In pandas, each DataFrame has a `.shape` attribute that returns a tuple in the format `(rows, columns)`.
+We can use the `.shape` attribute. In `pandas`, each DataFrame has a `.shape` attribute that returns a tuple in the format `(rows, columns)`.
 
 So, `.shape[0]` will return the number of rows, whereas `.shape[1]` returns the number of columns.
 
