@@ -150,6 +150,7 @@ ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
 ## Python
 
 ```{python}
+#| results: hide
 #| label: fig-plot_hind_py
 #| fig-cap: "Boxplot of hindfoot length for each plot type"
 p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +

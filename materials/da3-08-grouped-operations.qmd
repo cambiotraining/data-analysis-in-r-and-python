@@ -277,12 +277,11 @@ counts = surveys.groupby(["sex", "year"]).size().reset_index(name = "n")
 ```
 
 ```{python}
+#| results: hide
 #| label: fig-counts_year_sex_py
 #| fig-cap: "Number of observations per year, by `sex`."
-p = (
-    ggplot(counts, aes(x = "year", y = "n", fill = "sex")) +
-    geom_col()
-)
+p = (ggplot(counts, aes(x = "year", y = "n", fill = "sex")) +
+     geom_col())
 
 p.show()
 ```
@@ -510,10 +509,8 @@ Now we have the table, we can easily plot it to get a better sense of any trends
 #| results: hide
 #| label: fig-femalepct_year_py
 #| fig-cap: "Percentage of female observations across years."
-p = (
-    ggplot(summary, aes(x = "year", y = "female_pct")) +
-    geom_line()
-)
+p = (ggplot(summary, aes(x = "year", y = "female_pct")) +
+    geom_line())
 
 p.show()
 ```
