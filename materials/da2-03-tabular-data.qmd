@@ -356,13 +356,16 @@ Whenever you read in your data, it's always good practice to do some quality che
 ## R
 
 In R, you can answer many of these questions with the help of the following 
-functions: `str()`, `summary()`, `length()` + `unique()`, `nrow()`, `ncol()`, `is.na()`.
+functions: `str()`, `summary()`, `length()`, `unique()`, `nrow()`, `ncol()`, `is.na()`.
 
 There are also some R packages that can help making these diagnostic analysis easier. One good one is the `skimr` package (which has a good [introduction document](https://cran.r-project.org/web/packages/skimr/vignettes/skimr.html). 
 
 If you use the `skim()` function with your `data.frame` it will give you a tabular summary that will help you answer all these questions in one go!
 
 ## Python
+
+In Python, you can answer many of these questions with the help of the following functions, assuming a `pandas` DataFrame called `df` with column name `"col"` or a simple list `x`: `df.info()`, `df.describe()`, `df.shape[0]`, `df.shape[1]`, `len(df)`, `df["col"].unique()`, `data["col"].nunique()`, `x.isna()`, `x.isna().sum()`
+
 :::
 
 :::
