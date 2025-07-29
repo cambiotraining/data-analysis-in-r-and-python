@@ -56,7 +56,7 @@ We've already seen that some of our data sets have an identifier, for example th
 
 When it comes to joining data, these identifiers become extra important. After all, we need to be able to tell the computer *how* to join the data. We do this through a common key or variable between two data sets. We'll illustrate how this works below.
 
-### Setting up your joins
+### Setting up your joins {#setup_joins}
 There are different ways you can join tables, depending on which data you'd like to retain. The way these joins are named often depend on the *direction* in which you are joining. Let's look at this in more detail, using examples.
 
 ::: {.panel-tabset group="language"}

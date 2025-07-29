@@ -1,0 +1,101 @@
+ID,Age,Gender,Score,Income.in.GBP,country,employed.or.not,notes
+id001,50,NA,3,36495,United kingdom,FALSE,none
+id002,34,f,1,31794,NA,y,NA
+id003,33,f,4,37418,United Kingdom,TRUE,none
+id004,22,NA,2,33702,U.K.,no,ok
+id005,twenty-five,M,high,24622,United kingdom,yes,NA
+id006,unknown,NA,1,26982,NA,n,ok
+id007,56,NA,high,55768,U.K.,n,NA
+id008,33,NA,2,47478,United Kingdom,FALSE,error
+id009,44,Female,NA,23406,United Kingdom,n,good
+id010,45,NA,4,62616,UK,y,ok
+id011,46,Female,5,50633,United Kingdom,no,good
+id012,24,NA,NA,30584,U.K.,no,NA
+id013,46,M,1,39084,United Kingdom,y,ok
+id014,47,Female,1,19834,United Kingdom,TRUE,N/A
+id015,28,male,1,60220,UK,FALSE,ok
+id016,48,F,5,39098,U.K.,n,none
+id017,54,NA,high,59042,U.K.,y,none
+id018,27,NA,five,43441,U.K.,y,
+id019,45,Female,five,54939,United kingdom,yes,NA
+id020,26,F,five,58152,UK,NA,N/A
+id021,twenty-five,male,3,49918,NA,TRUE,
+id022,28,NA,1,28562,NA,TRUE,none
+id023,38,male,2,56264,United Kingdom,NA,error
+id024,55,Female,2,28847,United Kingdom,yes,ok
+id025,33,f,1,64437,NA,yes,none
+id026,36,f,2,27639,UK,NA,
+id027,unknown,NA,1,62127,United kingdom,yes,N/A
+id028,58,f,5,40924,U.K.,TRUE,error
+id029,31,male,2,21813,NA,TRUE,good
+id030,34,Female,3,26175,United kingdom,n,N/A
+id031,51,M,5,46582,NA,no,ok
+id032,twenty-five,NA,high,28832,UK,FALSE,N/A
+id033,26,F,4,35745,U.K.,no,none
+id034,28,M,5,63298,United Kingdom,n,none
+id035,60,F,2,47132,UK,no,N/A
+id036,29,male,1,18030,UK,NA,N/A
+id037,42,Female,4,64194,United Kingdom,NA,
+id038,46,f,five,63071,U.K.,FALSE,good
+id039,26,f,2,25587,United kingdom,yes,N/A
+id040,46,M,five,62448,NA,y,none
+id041,51,NA,high,22619,United Kingdom,TRUE,error
+id042,57,NA,5,63979,United kingdom,y,NA
+id043,44,f,1,21246,NA,NA,ok
+id044,53,M,NA,42015,United Kingdom,NA,error
+id045,48,NA,5,23241,UK,yes,NA
+id046,24,Female,1,29666,NA,no,good
+id047,27,f,4,51026,U.K.,NA,error
+id048,31,Female,3,40368,United kingdom,NA,none
+id049,32,male,1,23408,U.K.,n,N/A
+id050,37,f,five,43930,UK,n,ok
+id051,52,f,1,29255,NA,yes,NA
+id052,46,f,2,41899,U.K.,TRUE,NA
+id053,44,NA,4,20449,NA,yes,
+id054,57,M,2,62499,UK,n,
+id055,40,F,1,19672,UK,y,none
+id056,34,Female,5,37850,U.K.,NA,ok
+id057,60,f,5,63063,United kingdom,n,NA
+id058,45,Female,1,35992,U.K.,TRUE,error
+id059,50,M,NA,24006,UK,TRUE,error
+id060,35,NA,high,36143,UK,FALSE,N/A
+id061,49,male,1,43242,UK,n,none
+id062,25,male,5,31430,United kingdom,y,ok
+id063,unknown,F,5,56466,UK,y,ok
+id064,27,Female,2,52727,United Kingdom,no,N/A
+id065,41,male,2,19059,U.K.,TRUE,N/A
+id066,41,NA,high,31178,UK,NA,
+id067,58,NA,five,60845,UK,TRUE,none
+id068,50,M,high,45752,NA,yes,N/A
+id069,36,f,5,64467,NA,y,N/A
+id070,53,F,1,19203,United kingdom,no,good
+id071,23,f,NA,50116,United kingdom,NA,NA
+id072,32,male,1,42110,United kingdom,y,ok
+id073,24,male,5,27918,NA,n,NA
+id074,44,NA,5,61693,United kingdom,NA,none
+id075,41,male,4,56190,UK,no,NA
+id076,44,male,high,21983,United Kingdom,TRUE,NA
+id077,51,M,5,25879,NA,y,N/A
+id078,44,F,NA,40118,United kingdom,y,N/A
+id079,42,M,5,20095,U.K.,no,
+id080,54,F,high,62989,UK,no,
+id081,59,male,high,38872,United kingdom,n,
+id082,49,male,4,42521,UK,no,good
+id083,31,M,2,24332,United Kingdom,NA,good
+id084,50,F,5,20893,UK,NA,
+id085,49,male,1,42695,United Kingdom,FALSE,
+id086,54,f,1,41882,United Kingdom,yes,NA
+id087,33,F,2,37954,U.K.,n,N/A
+id088,48,NA,1,32416,United Kingdom,yes,good
+id089,51,F,2,45379,United kingdom,TRUE,N/A
+id090,26,Female,5,43243,U.K.,no,N/A
+id091,22,M,NA,59008,UK,TRUE,
+id092,42,M,1,23595,NA,no,error
+id093,34,male,high,58275,United Kingdom,no,good
+id094,40,male,3,55166,United kingdom,NA,none
+id095,56,Female,2,21695,NA,NA,none
+id096,27,F,2,40973,NA,NA,error
+id097,29,male,5,64706,United kingdom,y,N/A
+id098,twenty-five,NA,high,22912,UK,no,N/A
+id099,53,male,4,28300,UK,FALSE,ok
+id100,29,Female,1,29371,United kingdom,FALSE,none

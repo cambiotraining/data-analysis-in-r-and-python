@@ -1,5 +1,5 @@
 ---
-title: Cleaning data
+title: Clean, style & arrange
 ---
 
 ::: {.callout-tip}
@@ -27,6 +27,10 @@ We'll continue this section with the script named `r paste0(intToUtf8(96), sub("
 # A collection of R packages designed for data science
 library(tidyverse)
 
+# A package for cleaning up data
+library(janitor)
+
+messy_data <- read_csv("data/messy_data.csv")
 surveys <- read_csv("data/surveys.csv")
 plot_types <- read_csv("data/plots.csv")
 ```
@@ -43,6 +47,10 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# A package for cleaning up data
+import janitor
+
+messy_data = pd.read_csv("data/messy_data.csv")
 surveys = pd.read_csv("data/surveys.csv")
 plot_types = pd.read_csv("data/plots.csv")
 ```
@@ -52,11 +60,102 @@ plot_types = pd.read_csv("data/plots.csv")
 
 ## Cleaning data
 
-### Changing `plot_id`
+Perhaps it's not the most glamorous part of data analysis, but it is a very important one: cleaning data. If you need motivation for it, just think of the amount of time you can save yourself by recording your data consistently and correctly in the first place.
 
-In the example above we saw that it wasn't great practice to just use numbers to indicate `plot_id`, since they obviously have no numerical value.
+In the next few sections we'll go through some (very) common messy data issues you're likely to come across. We will revisit some of our previous data sets, but will mostly illustrate things using the `messy` data set. This data set has been synthesised for this exact purpose, so it's over-the-top bad. If you ever come across a real data set that looks like this, then a stern word with that researcher is in order!
 
-It would be better to encode them in the format `plot_xxx` where `xxx` is a number with leading zeros (so that it sorts nicely).
+We'll read in the data and take it from there:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data <- read_csv("data/messy_data.csv")
+```
+
+
+## Python
+
+```{python}
+messy_data = pd.read_csv("data/messy_data.csv")
+```
+
+:::
+
+### Variable naming
+
+The `messy` data set has many different issues with it. One of the issues is that the column headers are not consistent. This is an issue that you'll come across on a regular basis, since people have their own style (usually an inconsistent one!).
+
+In both R and Python we have access to a "janitor" package ([`janitor`](https://cran.r-project.org/web/packages/janitor/vignettes/janitor.html) in R and [`pyjanitor`](https://pypi.org/project/pyjanitor/) in Python). These are fantastic packages that can save you tons of time. 
+Here we'll just use one of the functions: `clean_names()`.
+
+First, let's see what we're dealing with.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data |> 
+  colnames()
+```
+
+## Python
+
+```{python}
+messy_data.columns.tolist()
+```
+
+:::
+
+That's not ideal. There is inconsistency in the use of capitalisation and there are full stops in the column names.
+
+Now, let's see what the `clean_names()` function makes of all of this (without updating the names just yet).
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data |> 
+  clean_names() |> 
+  colnames()
+```
+
+## Python
+
+```{python}
+(messy_data           # data
+  .clean_names()      # clean column names
+  .columns.tolist())  # put column names in list
+```
+
+:::
+
+We can see that the column names are now consistently lowercase and that the full stop `.` in the names have been replaced with `_` underscores.
+
+I'm happy with that, so I'll assign those new names to the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data <- messy_data |>
+  clean_names()
+```
+
+
+## Python
+
+```{python}
+messy_data = messy_data.clean_names()
+```
+
+:::
+
+### Adjusting numbers
+
+In the [joining section](#setup_joins) we saw that it wasn't great practice to just use numbers to indicate `plot_id`, since they obviously have no numerical value, but instead define a category. This is something that often occurs, so it's useful to know how to be able to format them differently.
+
+For example, we could encode them in the format `plot_xxx` where `xxx` is a number with leading zeros (so that it sorts nicely).
 
 We can do that as follows:
 
@@ -68,22 +167,192 @@ plot_types |>
   mutate(plot_id = paste0("plot_", sprintf("%03d", plot_id)))
 ```
 
+::: {.callout-tip collapse="true"}
+## Alternative: using the `stringr` package
+
+The `stringr` package is part of `tidyverse` and has a whole range of functions that allow you to change strings (text). The equivalent of the code above would be:
+
+```{r}
+plot_types |> 
+  mutate(plot_id = str_c("plot_", str_pad(plot_id, width = 3, pad = "0")))
+```
+
+You can read this as: "Use `mutate()` to update the `plot_id` column, where (`=`) the contents of `plot_id` is a combined string (`str_c`) containing the text `"plot_` and we pad out (`str_pad`) `plot_id` so it's 3 digits wide (`width = 3`) and we pad out with `"0"` (`pad = "0"`)."
+
+:::
+
+If you wanted to update the column, just add `plot_types <-` in front of this!
+
 ## Python
+
+```{python}
+plot_types["plot_id"].apply(
+    lambda x: f"plot_{x:03d}"
+)
+```
+
+::: {.callout-tip collapse="true"}
+## Alternative: using `.zfill()`
+
+If you're not keen on this method using the `lambda x:` approach, you can use `.zfill`:
+
+```{python}
+"plot_" + plot_types["plot_id"].astype(str).str.zfill(3)
+```
+
+You can read this as: "Take the `plot_id` column from `plot_types` (`plot_types["plot_id"]`) and update it (`=`) with a combination of the text `plot_` (`"plot_"`) and the value of `plot_types["plot_id"]`, which needs to be converted to a string (`.astype(str)`) before we can fill it with zeros up to a maximum of 3 digits (`.str.zfill(3)`)."
+:::
+
+If you wanted to update the column, just add `plot_types["plot_id"] =` in front of this!
 
 :::
 
 Note: this means that you would also have to change the `plot_id` column values in the `surveys` data set, if you wanted to combine the data from these tables!
 
-
-### Variable naming
-LO: variable naming (janitor package)
-
 ### Encoding issues
-LO: encoding issues
+
+In the `messy_data` data set it's not just the column names that are an issue. There are quite a few different encoding issues. We will address several of them now, but some of these you'll investigate later in the exercises.
+
+| Variable          | Problem(s)                                                                 |
+|-------------------|----------------------------------------------------------------------------|
+| `id`              | Clean — serves as a unique identifier                                      |
+| `age`             | (to investigate later) |
+| `gender`          | (to investigate later) |
+| `score`           | Numeric-like variable contains text entries: `"five"`, `"high"`, `NA`      |
+| `income_gbp`      | (to investigate later)                   |
+| `country`         | Inconsistent naming for UK: `"UK"`, `"U.K."`, `"United Kingdom"`, `"United kingdom"`, `NA` |
+| `employed_or_not` | Inconsistent boolean values: `"yes"`, `"y"`, `"TRUE"`, `"n"`, `NA`, etc. |
+| `notes`           | Free-text notes with mixed missing indicators: `"N/A"`, `""`, `"none"`, `NA` |
+
+Let's focus on the `country` column, which is a classical case of "different people have different ways of encoding the same thing".
+
+First, we check what entries we have in this column. Apart from just showing the different types of entries, we're also looking at how many times they occur.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data |> 
+  count(country)
+```
+
+## Python
+
+```{python}
+(messy_data["country"]
+  .value_counts(dropna = False)
+  .reset_index(name = "n")
+  .rename(columns = {"index": "country"}))
+```
+
+:::
+
+We've got quite some variation going on here. A convenient way of addressing this is to create a list of substitutions and then apply that to the data. This makes it easier in the future if you get more variations that you need to update.
+
+::: {.panel-tabset group="language"}
+## R
+
+In R we have the `case_when()` function, which can help you do exactly that. It's more general though: it allows you to re-encode values based on conditions. So, before we apply it to our data, let's go through a simplified example.
+
+::: {.callout-tip}
+## Using `case_when()` for recoding values
+It works in this way:
+
+```{r}
+# 1. create some dummy data
+df <- tibble(score = c(45, 67, 82, 90, 55))
+
+# 2. recode the values
+df <- df |> 
+  mutate(performance = case_when(
+    score < 60               ~ "fail",
+    score >= 60 & score < 80 ~ "pass",
+    TRUE                     ~ "excellent"
+  ))
+
+# 3. show the result
+df
+```
+
+In the mini-example above we create a simple data set with one column: `score`. There are 5 values in this column. We now want to assign a `performance` value to it, which will differ based on the score.
+
+The `case_when()` function goes through each possible defined comparison (e.g. `score < 60`, `...`) and then assigns the value based on that (`~  "fail"`). We put the whole thing in a `mutate()` because we are creating a new column: `performance`.
+
+At the end of the `case_when()` we have `TRUE ~ "excellent`. The `TRUE ~` designation means: "for everything else do...".
+
+:::
+
+Let's apply this to our `messy_data`.
+
+```{r}
+messy_data <- messy_data |> 
+  mutate(country = case_when(
+    country %in% c("United kingdom", "U.K.", "UK") ~ "United Kingdom",
+    TRUE ~ country
+  ))
+```
+
+1. `country = `indicates that we are updating our `country` column.
+2. `country %in% c("United kingdom", "U.K.", "UK")` says, for each value in `country`, compare it to the values within `c()`
+3. `~ "United Kingdom"` if it finds it, replace it with `"United Kingdom"
+4. `TRUE ~ country` otherwise, leave it unchanged (including the missing values)
+
+## Python
+
+Let's apply this to our `messy_data`.
+
+First we create a "translation" table: which values do we want to re-encode and how?
+
+```{python}
+# Define standard mapping for inconsistent names
+country_map = {
+    "United kingdom": "United Kingdom",
+    "U.K.": "United Kingdom",
+    "UK": "United Kingdom"
+    # Add more variations if needed
+}
+```
+
+Next, we apply this to our data:
+
+```{python}
+# Update the country names
+messy_data["country"] = (
+    messy_data["country"]
+    .replace(country_map))
+```
+:::
+
+We can view the end result:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data |> 
+  count(country)
+```
+
+## Python
+
+```{python}
+(messy_data["country"]
+  .value_counts(dropna = False)
+  .reset_index(name = "n")
+  .rename(columns = {"index": "country"}))
+```
+
+:::
 
 ### Missing data
 LO: dealing with missing data
 
+::: {.panel-tabset group="language"}
+## R
+
+## Python
+
+:::
 
 ## Summary
 

@@ -309,4 +309,51 @@ df |>
 write_csv(df, file = "surveys_join.csv")
 ```
 
+# Messy data
+
+```{r}
+set.seed(123)
+
+n <- 100
+
+messy_data <- data.frame(
+  ID = sprintf("id%03d", 1:n),
+  Age = sample(c(20:60, "twenty-five", "unknown"), n, replace = TRUE),
+  Gender = sample(c("M", "F", "Female", "f", "male", NA), n, replace = TRUE),
+  Score = sample(c(1:5, "five", "high", NA), n, replace = TRUE),
+  `Income in GBP` = sample(c(18000:65000, NA), n, replace = TRUE),  # renamed and UK-appropriate values
+  country = sample(
+    c("UK", "U.K.", "United Kingdom", "United kingdom", NA),
+    n,
+    replace = TRUE
+  ),
+  'employed or not' = sample(c("yes", "no", "y", "n", "TRUE", "FALSE", NA), n, replace = TRUE),
+  notes = sample(c("ok", "N/A", "none", "", "good", "error", NA), n, replace = TRUE)
+)
+```
+
+| Variable        | Problem(s)                                                                 |
+|-----------------|----------------------------------------------------------------------------|
+| `ID`            | Clean — serves as a unique identifier                                      |
+| `Age`           | Mixed data types: numeric values mixed with text (`"twenty-five"`, `"unknown"`) |
+| `Gender`        | Inconsistent categorical values: `"M"`, `"F"`, `"f"`, `"male"`, `"Female"`, `NA` |
+| `Score`         | Numeric-like variable contains text entries: `"five"`, `"high"`, `NA`      |
+| `Income (GBP)`  | Correct numeric format, but contains `NA` (missing data)                   |
+| `country`       | Inconsistent naming for UK: `"UK"`, `"U.K."`, `"United Kingdom"`, `"United kingdom"`, `NA` |
+| `employed or not`    | Messy column name; inconsistent boolean values: `"yes"`, `"y"`, `"TRUE"`, `"n"`, `NA`, etc. |
+| `notes`         | Free-text notes with mixed missing indicators: `"N/A"`, `""`, `"none"`, `NA` |
+
+```{r}
+write_csv(messy_data, file = "messy_data.csv")
+```
+
+```{r}
+messy_data <- read_csv("messy_data.csv")
+```
+
+```{r}
+library(janitor)
+messy_data |> clean_names()
+```
+
 
