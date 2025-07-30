@@ -336,23 +336,171 @@ messy_data |>
 ## Python
 
 ```{python}
-(messy_data["country"]
-  .value_counts(dropna = False)
-  .reset_index(name = "n")
-  .rename(columns = {"index": "country"}))
+counts = (
+    messy_data
+    .groupby("country")
+    .size()
+    .reset_index(name = "n")
+)
+
+counts
 ```
 
 :::
 
-### Missing data
-LO: dealing with missing data
+### Boolean values
+We have a column `employed_or_not`, which contains information on the employment status of each person. This is encoded inconsistently, as `"yes`, `"y"`, `"TRUE"`, ...
+
+Apart from being consistent, it's useful to keep columns that can only have 1 of 3 value (true, false, missing) as a boolean. This makes it easier to filter and tally contents than if we'd encode it as text.
+
+Let's tackle this issue in a similar approach as above. First, let's see what we're dealing with here, by looking up the column types and the contents of `employed_or_not`.
 
 ::: {.panel-tabset group="language"}
 ## R
 
+```{r}
+class(messy_data$employed_or_not)
+```
+
+```{r}
+messy_data |>
+  count(employed_or_not)
+```
+
+We can see that the column is viewed as a `"chr"` or character column.
+
 ## Python
 
+```{python}
+messy_data["employed_or_not"].dtype
+```
+
+```{python}
+(messy_data["employed_or_not"]
+  .value_counts(dropna = False)
+  .reset_index(name = "n")
+  .rename(columns = {"index": "employed_or_not"}))
+```
+
+We can see that the column is viewed as an `object` type (`'O'`). This type usually holds text, but can also be used for a mixture of Python objects.
 :::
+
+The reason why we end up with a generic data type is because there is a mixture of data in the column. Let's fixed that.
+
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+messy_data <- messy_data |> 
+  mutate(employed_or_not = case_when(
+    employed_or_not %in% c("no", "n") ~ "FALSE",
+    employed_or_not %in% c("yes", "y") ~ "TRUE",
+    TRUE ~ employed_or_not
+  ))
+```
+
+Let's count again:
+
+```{r}
+messy_data |> 
+  count(employed_or_not)
+```
+
+But the `employed_or_not` column is still viewed as `character`:
+
+```{r}
+class(messy_data$employed_or_not)
+```
+
+So, we need to force it to view it as such.
+
+To make it a boolean / logical column, we use the `as.logical()` function.
+
+```{r}
+messy_data <- messy_data |> 
+  mutate(employed_or_not = as.logical(employed_or_not))
+```
+
+We check one last time:
+
+```{r}
+class(messy_data$employed_or_not)
+```
+
+## Python
+
+```{python}
+# Define standard mapping for inconsistent names
+employment_map = {
+    "no": "False",
+    "n": "False",
+    "yes": "True",
+    "y": "True"
+    # Add more variations if needed
+}
+```
+
+Next, we apply this to our data:
+
+```{python}
+# Update the country names
+messy_data["employed_or_not"] = (
+    messy_data["employed_or_not"]
+    .replace(employment_map))
+```
+
+We count again to check what has happened:
+
+```{python}
+counts = (
+    messy_data
+    .groupby("employed_or_not", dropna = False)
+    .size()
+    .reset_index(name = "n")
+)
+
+counts
+```
+
+This still shows a difference between `FALSE` and `False`, and `TRUE` and `True`. That's because the all-caps words are interpreted as text. In fact, *all* of them are viewed as text, because we used `" "` in our mapping.
+
+Python's boolean phrases are `True` and `False`, so we need to adjust that.
+
+To do this, we first convert all the values to lower case with `.str.lower()`, and then convert those values to boolean (without `" "`). Lastly, we convert the column to `"boolean"`. We need to do that last step, because we have missing data. If we didn't, then Python would keep all the contents as text.
+
+```{python}
+messy_data["employed_or_not"] = (
+    messy_data["employed_or_not"]
+    .str.lower()
+    .map({"true": True, "false": False})
+    .astype("boolean")     # convert to boolean type
+)
+
+```
+
+We can see that we only have `True`, `False` or `<NA>`.
+
+```{python}
+counts = (
+    messy_data
+    .groupby("employed_or_not", dropna = False)
+    .size()
+    .reset_index(name = "n")
+)
+
+counts
+```
+
+And our data type is now correct.
+
+```{python}
+messy_data["employed_or_not"].dtype
+```
+
+:::
+
+Success!
 
 ## Summary
 
