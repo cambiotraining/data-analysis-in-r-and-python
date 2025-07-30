@@ -33,6 +33,7 @@ library(janitor)
 messy_data <- read_csv("data/messy_data.csv")
 surveys <- read_csv("data/surveys.csv")
 plot_types <- read_csv("data/plots.csv")
+surveys_left <- left_join(surveys, plot_types, by = "plot_id")
 ```
 
 ## Python
@@ -50,9 +51,13 @@ from plotnine import *
 # A package for cleaning up data
 import janitor
 
+# A package for text wrapping
+import textwrap
+
 messy_data = pd.read_csv("data/messy_data.csv")
 surveys = pd.read_csv("data/surveys.csv")
 plot_types = pd.read_csv("data/plots.csv")
+surveys_left = pd.merge(surveys, plot_types, how = "left", on = "plot_id")
 ```
 
 :::
@@ -501,6 +506,330 @@ messy_data["employed_or_not"].dtype
 :::
 
 Success!
+
+## Cleaning plots
+
+Often we need to put a bit of work into making plots more presentable. Perhaps default colours are not quite right, or labels need adjusting. Below we cover some common changes.
+
+Let's use the `surveys_left` data set for the next few sections.If you haven't done so already, please load the following:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| eval: false
+surveys <- read_csv("data/surveys.csv")
+plot_types <- read_csv("data/plots.csv")
+surveys_left <- left_join(surveys, plot_types, by = "plot_id")
+```
+
+## Python
+
+```{python}
+#| eval: false
+surveys = pd.read_csv("data/surveys.csv")
+plot_types = pd.read_csv("data/plots.csv")
+surveys_left = pd.merge(surveys, plot_types, how = "left", on = "plot_id")
+```
+
+:::
+
+### Adding titles and axis labels
+
+First we visualise some data. Here we are creating a [violin plot](https://en.wikipedia.org/wiki/Violin_plot). Partly because we can, but mostly because they are useful. They can tell you a lot about how your data are distributed.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| label: fig-violin_plottype
+#| fig-cap: "Violin plot of hindfoot_length for each plot type"
+ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
+         geom_violin()
+```
+
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-violin_plottype_py
+#| fig-cap: "Violin plot of hindfoot_length for each plot type"
+p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
+         geom_violin())
+
+p.show()
+```
+
+:::
+
+It'd be nice to have **plot title**, as well as some clearer (and nicer) **axis labels**. We can do this as follows:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+#| label: fig-violin_plottype_title
+#| fig-cap: "Violin plot of hindfoot_length for each plot type"
+ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
+         geom_violin() +
+  labs(title = "Violin plot for hindfoot length by plot type",
+       subtitle = "1977 - 2022",
+       x = "Plot type",
+       y = "Hindfoot length (mm)")
+```
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-violin_plottype_title_py
+#| fig-cap: "Violin plot of hindfoot_length for each plot type"
+p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
+         geom_violin() +
+       labs(title = "Violin plot for hindfoot length by plot type",
+            subtitle = "1977 - 2022",
+            x = "Plot type",
+            y = "Hindfoot length (mm)"))
+
+p.show()
+```
+
+:::
+
+### Text axis labels: rotate
+
+Another common issue is that axis text labels are poorly aligned. In the plots above the `plot_type` values are too long and the text overlaps. Let's fix this. We'll do this in two ways:
+
+1. Rotating the axis text
+2. Wrapping / inserting a line break in the axis text
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+#| label: fig-violin_plottype_textrotate
+#| fig-cap: "Rotating axis text labels."
+ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
+  geom_violin() +
+  labs(title = "Violin plot for hindfoot length by plot type",
+       subtitle = "1977 - 2022",
+       x = "Plot type",
+       y = "Hindfoot length (mm)") +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+```
+
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-violin_plottype_textrotate_py
+#| fig-cap: "Rotating axis text labels."
+p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
+         geom_violin() +
+       labs(title = "Violin plot for hindfoot length by plot type",
+            subtitle = "1977 - 2022",
+            x = "Plot type",
+            y = "Hindfoot length (mm)") +
+        theme(axis_text_x = element_text(rotation = 45, ha = "right")))
+
+p.show()
+```
+
+
+:::
+
+### Text axis labels: wrap
+
+Rotating the text labels can work in a lot of cases, but doesn't get round the issue of long strings. The `plot_type` values aren't exactly concise. So, it might be better to have some text wrapping instead.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+#| label: fig-violin_plottype_textwrap
+#| fig-cap: "Wrapping axis text labels."
+ggplot(surveys_left, aes(x = plot_type, y = hindfoot_length)) +
+  geom_violin() +
+  labs(
+    title = "Violin plot for hindfoot length by plot type",
+    subtitle = "1977 - 2022",
+    x = "Plot type",
+    y = "Hindfoot length (mm)") +
+  scale_x_discrete(labels = function(x) str_wrap(x, width = 10))
+```
+
+## Python
+
+Python has a packages called `textwrap` that can help here.
+
+```{python}
+import textwrap
+```
+
+Although the code is a bit convoluted (it's a case of copy/paste in future plots, really) it does result in a much cleaner plot:
+
+```{python}
+#| results: hide
+#| label: fig-violin_plottype_textwrap_py
+#| fig-cap: "Wrapping axis text labels."
+p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
+         geom_violin() +
+       labs(title = "Violin plot for hindfoot length by plot type",
+            subtitle = "1977 - 2022",
+            x = "Plot type",
+            y = "Hindfoot length (mm)") +
+       scale_x_discrete(labels = lambda labels: [
+                          textwrap.fill(str(l), 10) if l is not None else ""
+                          for l in labels]))
+
+p.show()
+```
+
+:::
+
+## Colour-blind friendly colours
+
+Colour blindness is a reasonably common occurrence, with around 4.5% of the U.K. population having some form, according to @colourblindawareness.
+
+So, it's good to pay attention to what colours you use in your plots. There are some default options, or you can use your own colour scheme. We'll cover both below. We'll use a small subset of the data so we can highlight the differences better.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys_y2k <- surveys_left |> 
+  filter(plot_type %in% c("Control", "Rodent Exclosure")) |> 
+  filter(year %in% c(2000, 2001, 2002)) |> 
+  drop_na()
+```
+
+## Python
+
+```{python}
+surveys_y2k = (
+    surveys_left[
+        surveys_left["plot_type"].isin(["Control", "Rodent Exclosure"])
+        & surveys_left["year"].isin([2000, 2001, 2002])]
+    .dropna())
+```
+
+:::
+
+The default here is various shades of grey.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| label: fig-scatbox_default
+#| fig-cap: "Boxplot and jittered points, default."
+ggplot(surveys_y2k, aes(x = plot_type, y = hindfoot_length)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1)
+```
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-scatbox_default_py
+#| fig-cap: "Boxplot and jittered points, default."
+p = (ggplot(surveys_y2k, aes(x = "plot_type", y = "hindfoot_length")) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1))
+  
+p.show()
+```
+
+:::
+
+Let's colour some of our data using the information from the `sex` variable.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| label: fig-scatbox_bysex
+#| fig-cap: "Boxplot and jittered points, default colours."
+ggplot(surveys_y2k, aes(x = plot_type, y = hindfoot_length, fill = sex)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1)
+```
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-scatbox_bysex_py
+#| fig-cap: "Boxplot and jittered points, default colours."
+p = (ggplot(surveys_y2k,
+            aes(x = "plot_type", y = "hindfoot_length", fill = "sex")) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, fill = "black"))
+  
+p.show()
+```
+:::
+
+We can see that some default colours get applied. Let's update this with some other default colour scheme.
+
+::: {.callout-note collapse=true}
+## Colour inheritance in `ggplot2` vs `plotnine`
+
+You might have noticed that we've specifically given the instruction to `geom_jitter()` to use black: `geom_jitter(width = 0.1, fill = "black"))`. This is because colour inheritance in `plotnine` works subtly different from `ggplot2`.
+
+In `ggplot2`, `geom_jitter()` by default uses the `colour` aesthetic (outline color) and does not inherit `fill` (which is used for boxplots and polygons). This is why points appear black in R. However, `plotnine` is less consistent and therefor you need to specify the colour yourself, otherwise the `geom_jitter()` data would also get coloured by `sex` in the example above.
+:::
+
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| label: fig-scatbox_bysex_brewer
+#| fig-cap: "Boxplot and jittered points, Brewer (Dark2) colours."
+ggplot(surveys_y2k, aes(x = plot_type, y = hindfoot_length, fill = sex)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  scale_fill_brewer(palette = "Dark2")
+```
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-scatbox_bysex_brewer_py
+#| fig-cap: "Boxplot and jittered points, Brewer (Dark2) colours."
+p = (ggplot(surveys_y2k,
+            aes(x = "plot_type", y = "hindfoot_length", fill = "sex")) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, fill = "black") +
+  scale_fill_brewer(type = "qual", palette = "Dark2"))
+  
+p.show()
+```
+:::
+
+## Arranging plots
+
+::: {.panel-tabset group="language"}
+## R
+
+## Python
+
+:::
+
+::: {.panel-tabset group="language"}
+## R
+
+## Python
+
+:::
 
 ## Summary
 
