@@ -244,10 +244,12 @@ messy_data |>
 ## Python
 
 ```{python}
-(messy_data["country"]
-  .value_counts(dropna = False)
-  .reset_index(name = "n")
-  .rename(columns = {"index": "country"}))
+counts = (messy_data
+          .groupby("country")
+          .size()
+          .reset_index(name = "n"))
+
+counts
 ```
 
 :::
@@ -341,12 +343,10 @@ messy_data |>
 ## Python
 
 ```{python}
-counts = (
-    messy_data
-    .groupby("country")
-    .size()
-    .reset_index(name = "n")
-)
+counts = (messy_data
+         .groupby("country")
+         .size()
+         .reset_index(name = "n"))
 
 counts
 ```
@@ -380,14 +380,19 @@ We can see that the column is viewed as a `"chr"` or character column.
 messy_data["employed_or_not"].dtype
 ```
 
+We can see that the column is viewed as an `object` type (`'O'`). This type usually holds text, but can also be used for a mixture of Python objects.
+
+Let's see what kind of values we have in our column:
+
 ```{python}
-(messy_data["employed_or_not"]
-  .value_counts(dropna = False)
-  .reset_index(name = "n")
-  .rename(columns = {"index": "employed_or_not"}))
+counts = (messy_data
+          .groupby("employed_or_not", dropna = False)
+          .size()
+          .reset_index(name = "n"))
+
+counts
 ```
 
-We can see that the column is viewed as an `object` type (`'O'`). This type usually holds text, but can also be used for a mixture of Python objects.
 :::
 
 The reason why we end up with a generic data type is because there is a mixture of data in the column. Let's fixed that.
