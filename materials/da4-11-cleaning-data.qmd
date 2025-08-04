@@ -5,7 +5,12 @@ title: Clean, style & arrange
 ::: {.callout-tip}
 #### Learning objectives
 
-- 
+- Learn how to deal with messy variables names.
+- Be able to update `id` columns.
+- Show confidence in fixing common encoding issues.
+- Know how to tidy plot labels.
+- Be able to change plot colours.
+- Learn how to arrange composite plots (in `R`).
 :::
 
 
@@ -29,6 +34,9 @@ library(tidyverse)
 
 # A package for cleaning up data
 library(janitor)
+
+# A package for creating composite plots
+library(patchwork)
 
 messy_data <- read_csv("data/messy_data.csv")
 surveys <- read_csv("data/surveys.csv")
@@ -898,15 +906,105 @@ p.show()
 
 ## Arranging plots
 
+We've already seen that we can use facetting to divide plots into sub-plots. Sometimes it can be very useful to combine completely separate plots into a single figure. We'll show how to do this below.
+
+Let's keep using our `surveys_y2k` data set. We'll first create three plots (randomly chosen) to play around with. Just copy/paste the code below.
+
 ::: {.panel-tabset group="language"}
 ## R
 
+```{r}
+p1 <- ggplot(surveys_y2k, aes(x = plot_type, y = weight)) +
+  geom_boxplot() +
+  labs(title = "plot 1")
+
+p2 <- ggplot(surveys_y2k, aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  labs(title = "plot 2")
+
+p3 <- ggplot(surveys_y2k, aes(x = factor(month), y = weight)) +
+  geom_boxplot() +
+  labs(title = "plot 3")
+```
+
+
 ## Python
+
+```{python}
+#| results: hide
+
+p1 = (ggplot(surveys_y2k, aes(x='plot_type', y='weight')) +
+      geom_boxplot() +
+      labs(title="plot 1"))
+
+p2 = (ggplot(surveys_y2k, aes(x='weight', y='hindfoot_length')) +
+      geom_point() +
+      labs(title="plot 2"))
+
+p3 = (ggplot(surveys_y2k, aes(x='factor(month)', y='weight')) +
+      geom_boxplot() +
+      labs(title="plot 3"))
+```
 
 :::
 
 ::: {.panel-tabset group="language"}
 ## R
+
+In R we can use the `patchwork` package. Install it, if needed, with:
+
+```{r}
+#| eval: false
+install.packages("patchwork")
+```
+
+And then load it:
+
+```{r}
+library(patchwork)
+```
+
+::: {.callout-note}
+We're not covering the functionality of `patchwork` extensively here, since there is a very good [vignette](https://patchwork.data-imaginist.com) doing that. So, for more details, please refer to that link!
+:::
+
+## Python
+
+In Python there is a `patchworklib` that tries to emulate what R's `patchwork` is doing. However, it seems to run into issues quite quickly when `plotnine` gets updated.
+
+So, we don't provide code for this for the time being. We'll revisit this once the package is more stable.
+
+:::
+
+
+We can easily combine the 3 plots we created into a single panel.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+(p1 + p2) / p3
+```
+
+
+## Python
+
+:::
+
+Often it's helpful to add labels, either to the figure itself and/or to the subpanels.
+
+::: {.panel-tabset group="language"}
+## R
+
+We can add a title using the `title =` and add tags using `tag_levels =` arguments. These get added to the plot, using `plot_annotation()`:
+
+```{r}
+(p1 + p2) / p3 +
+  plot_annotation(title = "Fig. 1: Trialling composite plots",
+                  tag_levels = "a")
+```
+
+You can change the `tag_levels =` value to `"A"` for uppercase tags, or `"1"` for numbers (which wouldn't be very clear).
 
 ## Python
 
@@ -917,5 +1015,27 @@ p.show()
 ::: {.callout-tip}
 #### Key points
 
-- 
+::: {.panel-tabset group="language"}
+## R
+
+- We can use the `clean_names()` function from the `janitor` package to clean up column names, avoiding spaces, inconsistent case use etc.
+- Try to avoid ID columns with numbers only, but instead use a prefix, so the data are not viewed as numerical.
+- Common encoding issues include: inconsistent (upper) case use (e.g. `Belgium` vs `belgium`); poorly defined boolean values (`y` / `yes` instead of `TRUE` or `FALSE`).
+- It is good practice to include a plot `title` and well-defined `x` and `y` axis labels.
+- Ensure axes labels are clear by wrapping text or, less ideal, rotating them.
+- Use colours wisely, ensuring separation between groups.
+- Consider colour blindness in your audience and use colour-blind safe colour schemes.
+- Arrange plots using `patchwork`
+
+## Python
+
+- We can use the `clean_names()` function from the `pyjanitor` package to clean up column names, avoiding spaces, inconsistent case use etc.
+- Try to avoid ID columns with numbers only, but instead use a prefix, so the data are not viewed as numerical.
+- Common encoding issues include: inconsistent (upper) case use (e.g. `Belgium` vs `belgium`); poorly defined boolean values (`y` / `yes` instead of `True` or `False`).
+- It is good practice to include a plot `title` and well-defined `x` and `y` axis labels.
+- Ensure axes labels are clear by wrapping text or, less ideal, rotating them.
+- Use colours wisely, ensuring separation between groups.
+- Consider colour blindness in your audience and use colour-blind safe colour schemes.
+
+:::
 :::
