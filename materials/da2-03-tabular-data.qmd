@@ -363,12 +363,261 @@ The table below gives an overview of common functions, where `df` denotes a tabl
 | Number of elements in a vector      | `length(x)`            | `len(x)` or `x.size` (for arrays)            |
 | Unique values in a column           | `unique(df$col)`       | `df["col"].unique()`                         |
 | Count unique values                 | `length(unique(x))`    | `df["col"].nunique()`                        |
-| Missing values (logical)            | `is.na(x)`             | `x.isna()`                                   |
-| Count missing values                | `sum(is.na(x))`        | `x.isna().sum()`                             |
+| Missing values (logical)            | `is.na(x)`             | `df["col"].isna()`                           |
+| Count missing values                | `sum(is.na(x))`        | `df["col"].isna().sum()`                     |
 
 :::
 
 
+## Exercises
+
+### Data structure: `surveys` {#sec-exr_structure}
+
+::: {.callout-exercise #ex-structure}
+#### Data structure
+
+{{< level 1 >}}
+
+For this exercise we'll be using the data from `data/surveys.csv`. Read in the data and answer the following:
+
+1. How many rows are in `surveys`?
+2. How many columns are in `surveys`?
+3. How many unique values do we have in the `species_id` column?
+4. How many missing values are there in `weight` and `hindfoot_length`?
+
+::: {.callout-answer collapse="true"}
+#### Load the data
+
+First we load the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys <- read_csv("data/surveys.csv")
+```
+
+## Python
+
+```{python}
+surveys = pd.read_csv("data/surveys.csv")
+```
+
+:::
+
+We can then answer the following questions:
+
+#### 1. How many rows are in `surveys`?
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+nrow(surveys)
+```
+
+
+## Python
+
+```{python}
+surveys.shape[0]
+```
+
+
+:::
+
+#### 2. How many columns are in `surveys`?
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ncol(surveys)
+```
+
+## Python
+
+```{python}
+surveys.shape[1]
+```
+
+:::
+
+#### 3. How many unique values do we have in the `species_id` column?
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+unique(surveys$species_id)
+```
+
+This gives us the unique values, but doesn't count them. To do this we use the `length()` function:
+
+```{r}
+length(unique(surveys$species_id))
+```
+
+Note that one of the entries is `NA` - missing data. We can tell it's different, because it's not in quotes (`" "`). So, there are actually `r length(unique(surveys$species_id)) - 1` unique values in `species_id`!
+
+## Python
+
+```{python}
+surveys["species_id"].unique()
+```
+
+This gives us the unique values, but doesn't count them. We can use the `len()` function to count the number of items in the array:
+
+```{python}
+len(surveys["species_id"].unique())
+```
+
+Or we can use the `.nunique()` function to do this directly on the column:
+
+```{python}
+surveys["species_id"].nunique()
+```
+
+This gives a slightly different result! Why? Well, there are missing data in the `species_id` column, which get counted as an entry if we get the unique values. With the `.nunique()` function missing values are automatically ignored.
+:::
+
+#### 4. How many missing values are there in `weight` and `hindfoot_length`?
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+sum(is.na(surveys$weight))
+
+sum(is.na(surveys$hindfoot_length))
+```
+
+
+## Python
+
+```{python}
+surveys["weight"].isna().sum()
+surveys["hindfoot_length"].isna().sum()
+```
+
+:::
+
+:::
+:::
+
+### Subsetting data: `parasites` {#sec-exr_subsetting}
+
+::: {.callout-exercise #ex-subsetting}
+#### Subsetting data
+
+{{< level 2 >}}
+
+For this exercise we'll be using the data from `data/parasites.csv`. Please do the following:
+
+1. Load the data.
+2. Check the structure of the data.
+3. Select the `lake` column.
+4. Select rows 12 to 29 of the `fish_length` column.
+
+::: {.callout-answer collapse="true"}
+#### 1. Load the data.
+
+First we load the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+parasites <- read_csv("data/parasites.csv")
+```
+
+
+## Python
+
+```{python}
+parasites = pd.read_csv("data/parasites.csv")
+```
+
+:::
+
+#### 2. Check the structure of the data.
+
+Now we can check the structure of the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+str(parasites)
+```
+
+## Python
+
+```{python}
+parasites.info()
+```
+
+:::
+
+We can see that we have 3 columns and 64 rows. The `parasite_count` column is numerical (an integer - whole numbers); the `lake' column is text and `fish_length` is numerical (continuous).
+
+#### 3. Select the `lake` column.
+
+Let's select the `lake` column.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+parasites$lake
+```
+
+
+## Python
+
+We can define the column explicitly, using the `["col"]` notation.
+
+```{python}
+parasites["lake"]
+```
+
+Or just use the `.` notation.
+
+```{python}
+parasites.lake
+```
+
+:::
+
+#### 4. Select rows 12 to 29 of the `fish_length` column.
+
+We need to do two things: just select the `fish_length` column and then specifically rows 12 to 29.
+
+::: {.panel-tabset group="language"}
+## R
+
+We can use the `[ ]` notation to subset our data. This takes the order `[rows, columns]`.
+
+```{r}
+parasites[12:29, "fish_length"]
+```
+
+
+## Python
+
+We can use the `[ ]` notation to subset our data. This takes the order `[rows, columns]`.
+
+Remember that Python has zero-based indexing. So, if we want rows 12 to 29 (included), we need to select index `[11:28]`. We're using `.loc` because we are using label-based indexing (by selecting the `fish_length` column using it's name).
+
+```{python}
+parasites.loc[11:28, "fish_length"]
+```
+
+
+:::
+
+:::
+:::
 
 ## Summary
 
