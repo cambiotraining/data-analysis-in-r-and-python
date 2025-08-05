@@ -386,7 +386,6 @@ For this exercise we'll be using the data from `data/surveys.csv`. Read in the d
 4. How many missing values are there in `weight` and `hindfoot_length`?
 
 ::: {.callout-answer collapse="true"}
-#### Load the data
 
 First we load the data.
 

@@ -13,7 +13,6 @@ library(patchwork)
 #| echo: false
 #| message: false
 import shutup;shutup.please()
-import patchworklib as pw
 ```
 
 
@@ -579,6 +578,78 @@ plot_python = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
 Here, I've added a few extra arguments to demonstrate what you can change. The only two things that are required are (1) the plot you want to save and (2) the name of the plot, including the filename extension.
 
 The other arguments, such as `units =`, `width =` and `height =` are used to define the units size (inches in this case) and corresponding width/height values.
+
+## Exercises
+
+### Plot colours: `parasites` {#sec-exr_plotcol_parasites}
+
+::: {.callout-exercise #ex-plotcol_parasites}
+#### Plot colours
+
+{{< level 2 >}}
+
+For this exercise we'll revisit the data from `data/parasites.csv`. We'll use the data to practise changing colours. After loading the data, do the following:
+
+1. Create the plot: (create a violin plot for `fish_length` and colour by `lake` - include the data points, avoiding overlap)
+2. Change the colours to a colour-blind friendly palette
+
+::: {.callout-answer collapse="true"}
+
+First we load the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+parasites <- read_csv("data/parasites.csv")
+```
+
+
+## Python
+
+```{python}
+parasites = pd.read_csv("data/parasites.csv")
+```
+
+:::
+
+#### 1. Create the plot
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ggplot(parasites, aes(x = lake, y = fish_length)) +
+  geom_violin(aes(fill = lake)) +
+  geom_jitter(width = 0.05)
+```
+
+## Python
+
+```{python}
+#| results: hide
+p = (ggplot(parasites, aes(x = "lake", y = "fish_length")) +
+  geom_violin(aes(fill = "lake")) +
+  geom_jitter(width = 0.05))
+  
+p.show()
+```
+
+:::
+
+#### 2. Change the colours to a colour-blind friendly palette
+
+::: {.panel-tabset group="language"}
+## R
+
+
+## Python
+
+:::
+
+:::
+:::
 
 ## Summary
 
