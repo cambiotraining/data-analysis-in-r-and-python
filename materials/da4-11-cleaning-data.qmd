@@ -845,7 +845,7 @@ p.show()
 ```
 :::
 
-### Colours: colour-blind friendly
+### Colours: colour-blind friendly {#cb_friendly}
 
 Colour blindness is a reasonably common occurrence, with around 4.5% of the U.K. population having some form, according to @colourblindawareness.
 

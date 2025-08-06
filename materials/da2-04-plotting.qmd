@@ -586,12 +586,11 @@ The other arguments, such as `units =`, `width =` and `height =` are used to def
 ::: {.callout-exercise #ex-plotcol_parasites}
 #### Plot colours
 
-{{< level 2 >}}
+{{< level 1 >}}
 
 For this exercise we'll revisit the data from `data/parasites.csv`. We'll use the data to practise changing colours. After loading the data, do the following:
 
-1. Create the plot: (create a violin plot for `fish_length` and colour by `lake` - include the data points, avoiding overlap)
-2. Change the colours to a colour-blind friendly palette
+Create the plot: create a violin plot for `fish_length` and colour by `lake` - include the data points, avoiding overlap.
 
 ::: {.callout-answer collapse="true"}
 
@@ -613,8 +612,6 @@ parasites = pd.read_csv("data/parasites.csv")
 ```
 
 :::
-
-#### 1. Create the plot
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -638,14 +635,41 @@ p.show()
 
 :::
 
-#### 2. Change the colours to a colour-blind friendly palette
+:::
+:::
+
+### Facetting plots: `parasites` {#sec-exr_facets}
+
+::: {.callout-exercise #ex-title}
+#### Facetting plots
+
+{{< level 1 >}}
+
+For this exercise we'll again use the data from `data/parasites.csv`.
+
+To practice creating sub panels using facetting, you'll 
+
+::: {.callout-answer collapse="true"}
+We'll assume you still have the data loaded.
 
 ::: {.panel-tabset group="language"}
 ## R
 
+```{r}
+ggplot(parasites, aes(x = fish_length, y = parasite_count)) +
+  geom_point() +
+  facet_wrap(facets = vars(lake))
+```
 
 ## Python
 
+```{python}
+p = (ggplot(parasites, aes(x = "fish_length", y = "parasite_count")) +
+  geom_point() +
+  facet_wrap("lake"))
+
+p.show()
+```
 :::
 
 :::
