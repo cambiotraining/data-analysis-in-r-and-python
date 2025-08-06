@@ -109,6 +109,12 @@ The `select()` function becomes particularly useful when we combine it with othe
 select(surveys, contains("_id"))
 ```
 
+Another thing we often want to do is select columns by their data type. For example, if we wanted to select all numerical columns we could do this:
+
+```{r}
+select(surveys, where(is.numeric))
+```
+
 ## Python
 
 The subsetting becomes a bit tedious when we're looking for patterns in the column names. Here, we can instead use the `.filter` attribute of the surveys data set, and look for a string (text) where the column name contains `"_id"`.
@@ -117,6 +123,11 @@ The subsetting becomes a bit tedious when we're looking for patterns in the colu
 surveys.filter(like = "_id")
 ```
 
+Another thing we often want to do is select columns by their data type. For example, if we wanted to select all numerical columns we could do this:
+
+```{python}
+surveys.select_dtypes(include = ["number"])
+```
 
 :::
 
@@ -277,6 +288,320 @@ surveys[['record_id', 'hindfoot_length', 'hindfoot_length_cm']]
 :::
 
 We can see that each value in `hindfoot_length_cm` is a tenth of the value of `hindfoot_length`. This is exactly what we expected!
+
+## Exercises
+
+### Selecting columns: `infections` {#sec-exr_selectcols}
+
+::: {.callout-exercise #ex-selectcols}
+#### Selecting columns
+
+{{< level 2 >}}
+
+For this exercise we'll be using a new data set, called `infections`. These are synthetic data (see the [script](https://github.com/cambiotraining/data-analysis-in-r-and-python/blob/main/materials/no_render/data-analysis_data_synthesis.qmd) if you would like to know more).
+
+Please do the following:
+
+1. Read in the data
+2. Get to grips with the structure of the data
+3. Select the `patient_id`, `systolic_pressure` and `body_temperature` columns
+4. Select all numerical columns
+5. Unselect all logical columns
+
+::: {.callout-answer collapse="true"}
+#### 1. Read in the data
+
+First we load the data, and have a glimpse of it.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+infections <- read_csv("data/infections.csv")
+```
+
+```{r}
+head(infections)
+```
+
+
+## Python
+
+```{python}
+infections = pd.read_csv("data/infections.csv")
+
+infections.head()
+```
+
+:::
+
+#### 2. Get to grips with the structure of the data
+
+Before delving into any analysis, it's always good to have a good look at your data, so you know what you're dealing with. We can look at the overall structure (focussing on the column types & checking if they make sense), at number of columns/observations, column names, summary statistics etc.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+str(infections) # overall structure
+```
+
+```{r}
+nrow(infections) # row number
+ncol(infections) # column number
+```
+
+```{r}
+colnames(infections) # column names
+```
+
+```{r}
+summary(infections) # summary statistics
+```
+
+## Python
+
+```{python}
+infections.info() # overall structure
+```
+
+```{python}
+infections.shape[0] # row number
+infections.shape[1] # column number
+```
+
+```{python}
+infections.columns # column names
+```
+
+```{python}
+infections.describe() # summary statistics
+```
+
+:::
+
+Now that we have a much better view of what our data looks like, let's play around with selecting and manipulating columns.
+
+#### 3. Select the `patient_id`, `systolic_pressure` and `body_temperature` columns
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(infections, patient_id, systolic_pressure, body_temperature)
+```
+
+
+## Python
+
+We use the `[[ ]]` notations, because we are subsetting the DataFrame (`infections[ ]`) and we are subsetting it by using a list of column names `["patient_id", "systolic_pressure", "body_temperature"]`:
+
+```{python}
+infections[["patient_id", "systolic_pressure", "body_temperature"]]
+```
+
+:::
+
+#### 4. Select all numerical columns
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(infections, where(is.numeric))
+```
+
+
+## Python
+
+```{python}
+infections.select_dtypes(include = ["number"])
+```
+
+:::
+
+#### 5. Unselect all logical columns
+
+::: {.panel-tabset group="language"}
+## R
+
+We can do something similar as with the numerical column, just specifying the `logical` type and then negating it:
+
+```{r}
+select(infections, -where(is.logical))
+```
+
+## Python
+
+We can do something similar as with the numerical column, just specifying the `bool` type and now excluding it:
+
+```{python}
+infections.select_dtypes(exclude = ["bool"])
+```
+
+:::
+:::
+:::
+
+### Creating columns: `body_temperature_f` {#sec-exr_bodytempf}
+
+::: {.callout-exercise #ex-bodytempf}
+#### Creating columns
+
+{{< level 2 >}}
+
+For this exercise we'll again use the data from `data/infections.csv`. We'll assume you've still have it read in. Please try the following:
+
+Create a `body_temperature_f` that contains the body temperature measurements in Fahrenheit.
+
+
+::: {.callout-hint collapse="true"}
+To convert Celsius to Fahrenheit, do the following:
+
+$$
+F = \left( C \times \frac{9}{5} \right) + 32
+$$
+
+:::
+
+::: {.callout-answer collapse="true"}
+
+We need to update the existing table, so we view the result.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections <- mutate(infections, body_temperature_f = body_temperature * (9/5) + 32)
+```
+
+Let's check if the result is what we expected.
+
+```{r}
+select(infections, body_temperature, body_temperature_f)
+```
+
+## Python
+
+```{python}
+infections["body_temperature_f"] = infections["body_temperature"] * (9/5) + 32
+```
+
+Let's check if the result is what we expected.
+
+```{python}
+infections[["body_temperature", "body_temperature_f"]]
+```
+
+:::
+
+:::
+:::
+
+### Creating and plotting columns {#sec-exr_createplotcols}
+
+::: {.callout-exercise #ex-createplotcols}
+#### Creating and plotting columns
+
+{{< level 2 >}}
+
+We'll again use the `infections` data set, but this time we want you to fix the code below to recreate the image. To do so, please change all the `<FIXME>` entries to the correct code.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| eval: false
+# create the column for the y-axis values
+infections <- mutate(infections, systolic_pressure_kpa = <FIXME> / 7.5006)
+
+# plot the data
+ggplot(infections, aes(x = <FIXME>, y = systolic_pressure_kpa)) +
+  geom_<FIXME>(aes(fill = <FIXME>))
+```
+```{r}
+#| echo: false
+#| warning: false
+# create the column for the y-axis values
+infections <- mutate(infections, systolic_pressure_kpa = systolic_pressure / 7.5006)
+
+# plot the data
+ggplot(infections, aes(x = age_group, y = systolic_pressure_kpa)) +
+  geom_boxplot(aes(fill = icu_admission))
+```
+
+## Python
+
+```{python}
+#| eval: false
+# create the column for the y-axis values
+infections["systolic_pressure_kpa"] = infections["<FIXME>"] / 7.5006
+
+# plot the data
+p = (ggplot(infections, aes(x = "<FIXME>", y = "systolic_pressure_kpa")) +
+  geom_<FIXME>(aes(fill = "<FIXME>")))
+  
+p.show()
+```
+
+```{python}
+#| echo: false
+#| results: hide
+# create the column for the y-axis values
+infections["systolic_pressure_kpa"] = infections["systolic_pressure"] / 7.5006
+
+# plot the data
+p = (ggplot(infections, aes(x = "age_group", y = "systolic_pressure_kpa")) +
+  geom_boxplot(aes(fill = "icu_admission")))
+  
+p.show()
+```
+
+:::
+
+::: {.callout-note collapse="true"}
+## mmHg to kPa
+$$
+1\ \text{kPa} \approx 7.5006\ \text{mmHg}
+$$
+
+:::
+
+::: {.callout-answer collapse="true"}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| eval: false
+# create the column for the y-axis values
+infections <- mutate(infections,
+                     systolic_pressure_kpa = systolic_pressure / 7.5006)
+
+# plot the data
+ggplot(infections, aes(x = age_group, y = systolic_pressure_kpa)) +
+  geom_boxplot(aes(fill = icu_admission))
+```
+
+## Python
+
+```{python}
+#| eval: false
+# create the column for the y-axis values
+infections["systolic_pressure_kpa"] = infections["systolic_pressure"] / 7.5006
+
+# plot the data
+p = (ggplot(infections, aes(x = "age_group", y = "systolic_pressure_kpa")) +
+  geom_boxplot(aes(fill = "icu_admission")))
+  
+p.show()
+```
+
+:::
+
+:::
+:::
 
 ## Summary
 

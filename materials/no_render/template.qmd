@@ -11,6 +11,8 @@ title: Basic objects and data types
 
 ## Context
 
+## Exercises
+
 ### exercise_title {#sec-exr_title}
 
 ::: {.callout-exercise #ex-title}
