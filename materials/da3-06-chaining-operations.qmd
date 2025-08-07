@@ -47,7 +47,7 @@ surveys = pd.read_csv("data/surveys.csv")
 :::
 :::
 
-## Pipes
+## Pipes or chaining commands
 
 So far, we've used single operations when we were manipulating our data. For example, we can select columns with:
 
@@ -107,10 +107,10 @@ We would have to do the following:
 
 ```{python}
 # select the required columns and store in a new data set
-selected = surveys[["record_id", "hindfoot_length"]].copy()
+subset_surveys = surveys[["record_id", "hindfoot_length"]].copy()
 
 # take the new data set and calculate the new column
-selected["hindfoot_length_cm"] = selected["hindfoot_length"] / 10
+subset_surveys["hindfoot_length_cm"] = subset_surveys["hindfoot_length"] / 10
 
 ```
 
@@ -118,32 +118,167 @@ We had to create a new *object* (here, called `subset_surveys`) to store the int
 
 This clutters up your computer's memory rather quickly when dealing with lots of data. So, it'd be good if we could **pipe** these commands through, like we can do in R.
 
-But, a bit of sad news here. **Python does not really have an equivalent to pipes in R**. You can somewhat emulate it with a non-intuitive set of operations like this:
+Python does not have an exact equivalent to pipes in R, but you can chain methods in `pandas`, which can make your life a lot easier. Let's explore that a bit further.
+
+In the code below we are using `.loc[:, ["col1", "col2"]]` to select columns. This is a bit more chain-friendly than using `[["col1", "col2"]]` because it also allows filtering (more on this in the next chapter).
 
 ```{python}
-(surveys
-  [["record_id", "hindfoot_length"]]
-  .assign(hindfoot_length_cm = lambda df: df["hindfoot_length"] / 10))
+(
+  surveys
+  .loc[:, ['record_id', 'hindfoot_length']]
+  .assign(hindfoot_length_cm = lambda df: df["hindfoot_length"] / 10)
+)
+
 ```
 
 Here, we do the following:
 
-* `surveys[["record_id", "hindfoot_length"]]` selects the columns you want
+* `.loc[:, ['record_id', 'hindfoot_length']]` selects the columns you want
 * `.assign(...)` then creates a new column
 * `lambda df` tells `pandas` to compute the new column using the current data frame in the chain
 
-But I guess you'll agree that this is not that much easier to read. There are some `dplyr`-style implementations in Python, that also include a pipe. One is [siuba](https://github.com/machow/siuba) but it does not seem to be actively maintained. Another one is [dfply](https://github.com/kieferk/dfply), which has not been updated for 7 years and counting...
+::: {.callout-important}
+## Oh, `lambda`!
+
+**Why Use `lambda` in Pandas `.assign()`?**
+
+In Python, a `lambda` is an **anonymous function** — a quick, in-place function without a name.
+
+**Why is `lambda` important in method chaining?**
+
+This all relates to the evaluation order: `.assign()` evaluates its arguments **before** the previous steps in the chain are fully applied.
+
+So if you reference a column that was renamed or created earlier in the chain, `pandas` won’t find it unless you use `lambda` to delay evaluation.
+
+Using `lambda` in `.assign()` ensures that pandas waits to evaluate the new column **until the DataFrame is fully updated** by the earlier steps.
+
+Suppose we want to:
+
+- Select two columns
+- Rename `weight` → `weight_g`
+- Create a new column `weight_kg` as `weight_g / 1000`
+
+Without `lambda` — this will raise an error:
+
+```python
+(
+  surveys
+  .loc[:, ["record_id", "weight"]]
+  .rename(columns = {"weight": "weight_g"})
+  .assign(weight_kg = surveys["weight_g"] / 1000)  # KeyError: "weight_g"
+)
+```
+:::
+
+::: {.callout-note}
+## Pipe-style packages in Python
+
+There are some `dplyr`-style implementations in Python, that also include a pipe. One is [siuba](https://github.com/machow/siuba) but it does not seem to be actively maintained. Another one is [dfply](https://github.com/kieferk/dfply), which has not been updated for 7 years and counting...
 
 So, rather than being frustrated about this, I suggest we accept the differences between the two languages and move on! :-)
 :::
 
+:::
+
+## Chaining different commands
+
+We can extend this a bit further, beyond just the creation of new columns.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys |> 
+  select(record_id, weight) |>  # select columns
+  rename(weight_g = weight) |>  # rename weight
+  head()                        # show the first few rows
+```
+
+## Python
+
+```{python}
+(
+  surveys
+  .loc[:, ['record_id', 'weight']]          # select columns
+  .rename(columns = {'weight': 'weight_g'}) # rename column
+  .head()                                   # show first few rows
+)
+
+```
+
+:::
+
+### Chaining {#sec-exr_chaining}
+
+::: {.callout-exercise #ex-chaining}
+#### Chaining
+
+{{< level 1 >}}
+
+For this exercise we'll be using the data from `data/parasites.csv`.
+
+The `fish_length` variable is the length of the fish measured in centimetres. Do the following:
+
+* select all but the `parasite_count` column
+* rename the `fish_length` column to `fish_length_cm`
+* create a new column that contains the fish length in inches (divide by `2.54`)
+* do all of this in a single chain
+
+::: {.callout-answer collapse="true"}
+
+Load the data, if needed.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+parasites <- read_csv("data/parasites.csv")
+```
+
+
+## Python
+
+```{python}
+parasites = pd.read_csv("data/parasites.csv")
+```
+
+:::
+
+Perform chaining operations:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+parasites |> 
+  select(lake, fish_length) |> 
+  rename(fish_length_cm = fish_length) |> 
+  mutate(fish_length_in = fish_length_cm / 2.54)
+```
+
+## Python
+
+```{python}
+(
+  parasites
+  .loc[:, ["lake", "fish_length"]]
+  .rename(columns = {"fish_length": "fish_length_cm"})
+  .assign(fish_length_in = lambda df: df["fish_length_cm"] / 2.54)
+)
+```
+
+:::
+
+:::
+:::
 
 ## Summary
 
 ::: {.callout-tip}
 #### Key points
 
-- In Python there is not a clear way to chain operations.
-- In R we can use `|>` (built-in) or `%>%` (via `magrittr` package) to chain operations.
-- This allows us to run multiple lines of code sequentially, simplifying pipelines and making them easier to read.
+- In Python we use method chaining, which apply a series of transformations to a `pandas` DataFrame.
+- In R we have dedicated pipe symbols and we can use `|>` (built-in) or `%>%` (via `magrittr` package) to chain operations.
+- Both of these approaches allow us to run multiple lines of code sequentially, simplifying pipelines and making them easier to read.
 :::

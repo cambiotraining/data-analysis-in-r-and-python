@@ -2,12 +2,11 @@
 title: Basic objects and data types
 ---
 
-::: {.callout-tip}
+::: callout-tip
 #### Learning objectives
 
-- 
+-   
 :::
-
 
 ## Context
 
@@ -15,14 +14,14 @@ title: Basic objects and data types
 
 ### exercise_title {#sec-exr_title}
 
-::: {.callout-exercise #ex-title}
+::::: {#ex-title .callout-exercise}
 #### exercise_title
 
 {{< level 2 >}}
 
 For this exercise we'll be using the data from `data/surveys.csv`.
 
-::: {.callout-answer collapse="true"}
+:::: {.callout-answer collapse="true"}
 #### Load and visualise the data
 
 First we load the data, then we visualise it.
@@ -31,16 +30,14 @@ First we load the data, then we visualise it.
 ## R
 
 ## Python
-
 :::
-
-:::
-:::
+::::
+:::::
 
 ## Summary
 
-::: {.callout-tip}
+::: callout-tip
 #### Key points
 
-- 
+-   
 :::
