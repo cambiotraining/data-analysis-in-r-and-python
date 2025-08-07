@@ -431,6 +431,39 @@ msno.matrix(surveys)
 
 :::
 
+## Exercises
+
+### Filtering data: `infections` {#sec-exr_filter}
+
+::::: {#ex-title .callout-exercise}
+#### Filtering data
+
+{{< level 2 >}}
+
+For this exercise we'll be using the data from `data/infections.csv`.
+
+:::: {.callout-answer collapse="true"}
+
+First we load the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+infections <- read_csv("data/infections.csv")
+```
+
+
+## Python
+
+```{python}
+infections = pd.read_csv("data/infections.csv")
+```
+
+:::
+::::
+:::::
 
 ## Summary
 
