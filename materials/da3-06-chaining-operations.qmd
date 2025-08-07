@@ -55,6 +55,7 @@ So far, we've used single operations when we were manipulating our data. For exa
 ## R
 
 ```{r}
+#| eval: false
 select(surveys, record_id, hindfoot_length)
 ```
 
@@ -72,7 +73,7 @@ mutate(subset_surveys, hindfoot_length_cm = hindfoot_length / 10)
 
 We had to create a new *object* (here, called `subset_surveys`) to store the intermediate data we were interested in, and then continue with creating the new column.
 
-This clutters up your computer's memory rather quickly when dealing with lots of data. A much better way is that we **pipe** one after the other. To do this, we *start with the data* and use a pipe symbol (`|>` or `%>%`) as follows:
+This clutters up your computer's memory rather quickly when dealing with lots of data. A much better way is that we **pipe** or **chain** one after the other. To do this, we *start with the data* and use a pipe symbol (`|>` or `%>%`) as follows:
 
 ```{r}
 surveys |> 
@@ -82,7 +83,7 @@ surveys |>
 
 An easy way of remembering what the pipe does is to replace (in your head) the pipe symbol with the phrase "and then...".
 
-So, we `select()` the `record_id` and `hindfoot_length` columns *and then* use mutate to create a new column called `hindfoot_length_cm`.
+So, we `select()` the `record_id` and `hindfoot_length` columns *and then* use `mutate()` to create a new column called `hindfoot_length_cm`.
 
 ::: {.callout-note}
 ## Which pipe symbol do I use?
@@ -116,7 +117,7 @@ subset_surveys["hindfoot_length_cm"] = subset_surveys["hindfoot_length"] / 10
 
 We had to create a new *object* (here, called `subset_surveys`) to store the intermediate data we were interested in, and then continue with creating the new column.
 
-This clutters up your computer's memory rather quickly when dealing with lots of data. So, it'd be good if we could **pipe** these commands through, like we can do in R.
+This clutters up your computer's memory rather quickly when dealing with lots of data. So, it'd be good if we could **pipe** or **chain** these commands, like we can do in R.
 
 Python does not have an exact equivalent to pipes in R, but you can chain methods in `pandas`, which can make your life a lot easier. Let's explore that a bit further.
 
@@ -155,7 +156,6 @@ Using `lambda` in `.assign()` ensures that pandas waits to evaluate the new colu
 Suppose we want to:
 
 - Select two columns
-- Rename `weight` → `weight_g`
 - Create a new column `weight_kg` as `weight_g / 1000`
 
 Without `lambda` — this will raise an error:
@@ -164,7 +164,6 @@ Without `lambda` — this will raise an error:
 (
   surveys
   .loc[:, ["record_id", "weight"]]
-  .rename(columns = {"weight": "weight_g"})
   .assign(weight_kg = surveys["weight_g"] / 1000)  # KeyError: "weight_g"
 )
 ```
@@ -182,7 +181,7 @@ So, rather than being frustrated about this, I suggest we accept the differences
 
 ## Chaining different commands
 
-We can extend this a bit further, beyond just the creation of new columns.
+We can extend this concept a bit further, beyond just the creation of new columns.
 
 ::: {.panel-tabset group="language"}
 ## R
