@@ -474,6 +474,11 @@ infections = pd.read_csv("data/infections.csv")
 
 #### 1. Bacterial and non-ICU
 
+To get the data we want, we need to filter for rows where:
+
+1. `infection_type` contains the text `"bacterial"`
+2. `icu_admission` is equal to `TRUE` (R) / `True` (Python)
+
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -493,7 +498,13 @@ infections |>
 
 :::
 
-## 2. Patients in 65+ group
+#### 2. Patients in 65+ group with certain CRP levels
+
+Here we need to filter for three things:
+
+1. `age_group` values of `"65+"` (string/text)
+2. `crp_level > 10` and `crp_level < 15`
+3. `crp_level > 50` and `crp_level < 60`
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -518,9 +529,10 @@ Using `.query()`:
 )
 ```
 
-or a more explicit version using normal subsetting (which becomes quite convoluted, quite quickly!):
+We can also use a more explicit version using normal subsetting (which becomes quite convoluted, quite quickly!):
 
 ```{python}
+#| echo: false
 (
   infections
   .loc[
