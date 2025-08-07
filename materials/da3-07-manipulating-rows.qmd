@@ -245,6 +245,12 @@ surveys |>
 surveys[surveys["hindfoot_length"] > 31]
 ```
 
+Another option would be to use the `.query()` function. This is functionally equivalent, but a bit easier to read.
+
+```{python}
+surveys.query("hindfoot_length > 31")
+```
+
 :::
 
 This then only keeps the observations where `hindfoot_length > 31`, in this case 
@@ -442,6 +448,9 @@ msno.matrix(surveys)
 
 For this exercise we'll be using the data from `data/infections.csv`.
 
+1. Filter for all the rows where the infection type is `bacterial` and the patient was not admitted to the ICU (Intensive Care Unit).
+2. Filter for all the rows where the patient is older than 65 and CRP levels are either between 10-15 or 50-60.
+
 :::: {.callout-answer collapse="true"}
 
 First we load the data.
@@ -462,6 +471,71 @@ infections = pd.read_csv("data/infections.csv")
 ```
 
 :::
+
+#### 1. Bacterial and non-ICU
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  filter(infection_type == "bacterial" & icu_admission == FALSE)
+```
+
+## Python
+
+```{python}
+(
+  infections
+  .query("infection_type == 'bacterial' and icu_admission == False")
+)
+```
+
+:::
+
+## 2. Patients in 65+ group
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  filter(age_group == "65+") |> 
+  filter(crp_level > 10 & crp_level < 15 |
+           crp_level > 50 & crp_level < 60)
+```
+
+
+## Python
+
+Using `.query()`:
+
+```{python}
+(
+  infections
+  .query(
+    "age_group == '65+' and ((10 < crp_level < 15) or (50 < crp_level < 60))")
+)
+```
+
+or a more explicit version using normal subsetting (which becomes quite convoluted, quite quickly!):
+
+```{python}
+(
+  infections
+  .loc[
+    (infections["age_group"] == "65+") &
+    (
+      ((infections["crp_level"] > 10) & (infections["crp_level"] < 15)) |
+      ((infections["crp_level"] > 50) & (infections["crp_level"] < 60))
+      )
+    ]
+)
+
+```
+
+:::
+
 ::::
 :::::
 
