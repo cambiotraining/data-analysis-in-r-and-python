@@ -14,7 +14,7 @@ title: Basic objects and data types
 
 ### exercise_title {#sec-exr_title}
 
-::::: {#ex-title .callout-exercise}
+::::: {.callout-exercise #ex-title}
 #### exercise_title
 
 {{< level 2 >}}

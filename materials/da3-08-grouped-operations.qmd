@@ -44,6 +44,9 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# A package to deal with arrays
+import numpy as np
+
 surveys = pd.read_csv("data/surveys.csv")
 infections = pd.read_csv("data/infections.csv")
 ```
@@ -585,7 +588,7 @@ So, things are easier in Python in this respect. Sometimes it's nice to be smug.
 
 ### Grouped summaries: `infections` {#sec-exr_groupedsummaries}
 
-::::: {#ex-title .callout-exercise}
+::::: {.callout-exercise #ex-groupedsummaries}
 #### Grouped summaries
 
 {{< level 1 >}}
@@ -746,6 +749,115 @@ infections |>
 )
 
 ```
+
+:::
+::::
+:::::
+
+### Grouped operations: `infections` {#sec-exr_groupedoperations}
+
+::::: {.callout-exercise #ex-groupedoperations}
+#### Grouped operations
+
+{{< level 3 >}}
+
+We'll keep using the `infections` data set.
+
+To add a bit of fun, we'll combine the filtering with making some changes to our data and plotting these. These are the kind of operations you'll be doing a lot when exploring and analysis your data, so it's good to practise!
+
+Have a look at the plot below and try to recreate it as accurately as possible:
+
+```{r}
+#| message: false
+#| warning: false
+#| echo: false
+infections |> 
+  filter(!is.na(hospital)) |>
+  group_by(hospital) |> 
+  arrange(desc(crp_level)) |> 
+  slice(1:10) |> 
+  summarise(mean_crp = mean(crp_level, na.rm = TRUE),
+            log_crp = log(mean_crp)) |> 
+  ungroup() |> 
+  ggplot(aes(x = hospital, y = log_crp)) +
+  geom_point() +
+  geom_segment(aes(xend = hospital, y = 3.8, yend = log_crp)) +
+  labs(title = "Average log values for CRP",
+       subtitle = "calculated on top 10 highest values within each hospital",
+       x = "",
+       y = "CRP level (log values)")
+```
+
+:::{.callout-hint}
+
+Follows this logic:
+
+1. What data is being displayed?
+2. Which variable(s) do I need to calculate?
+  a. top 10 > think about arranging your data and subsetting it
+  b. log values can be calculated, use search engine
+3. Is any missing data present/absent?
+4. What kind of plot am I looking at (search for: *lollipop plot in `ggplot`* (R) / *lollipop plot in `plotnine`* (Python))
+:::
+
+:::: {.callout-answer collapse="true"}
+We'll assume you still have the data loaded.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  filter(!is.na(hospital)) |>
+  group_by(hospital) |> 
+  arrange(desc(crp_level)) |> 
+  slice(1:10) |> 
+  summarise(mean_crp = mean(crp_level, na.rm = TRUE),
+            log_crp = log(mean_crp)) |> 
+  ungroup() |> 
+  ggplot(aes(x = hospital, y = log_crp)) +
+  geom_point() +
+  geom_segment(aes(x = hospital, xend = hospital, y = 3.8, yend = log_crp)) +
+  labs(title = "Average log values for CRP",
+       subtitle = "calculated on top 10 highest values within each hospital",
+       x = "",
+       y = "CRP level (log values)")
+```
+
+## Python
+
+```{python}
+import numpy as np
+
+infections_result = (
+    infections
+    .dropna(subset=["hospital"])
+    .sort_values("crp_level", ascending = False)        # arrange data
+    .groupby("hospital", as_index = False)              # group data         
+    .head(10)                                           # get first 10 rows
+    .groupby("hospital", as_index = False)              # group again
+    .agg(mean_crp = ("crp_level", "mean"))              # mean values
+    .assign(log_crp = lambda d: np.log(d["mean_crp"]))  # calculate log
+)
+```
+
+```{python}
+#| results: hide
+p = (
+    ggplot(infections_result, aes(x = "hospital", y = "log_crp")) +
+    geom_point() +
+    geom_segment(aes(x = "hospital", xend = "hospital", y = 3.8, yend = "log_crp")) +
+    labs(
+        title = "Average log values for CRP",
+        subtitle = "calculated on top 10 highest values within each hospital",
+        x = "",
+        y = "CRP level (log values)"
+    )
+)
+
+p.show()
+```
+
 
 :::
 ::::
