@@ -30,6 +30,7 @@ We'll continue this section with the script named `r paste0(intToUtf8(96), sub("
 library(tidyverse)
 
 surveys <- read_csv("data/surveys.csv")
+infections <- read_csv("data/infections.csv")
 ```
 
 ## Python
@@ -44,6 +45,7 @@ import pandas as pd
 from plotnine import *
 
 surveys = pd.read_csv("data/surveys.csv")
+infections = pd.read_csv("data/infections.csv")
 ```
 
 :::
@@ -578,6 +580,176 @@ In `pandas`, grouping only affects the aggregation step. Once you run `.groupby(
 So, things are easier in Python in this respect. Sometimes it's nice to be smug.
 :::
 :::
+
+## Exercises
+
+### Grouped summaries: `infections` {#sec-exr_groupedsummaries}
+
+::::: {#ex-title .callout-exercise}
+#### Grouped summaries
+
+{{< level 1 >}}
+
+For this exercise we'll be using the data from `data/infections.csv`.
+
+Please find the following:
+
+1. The average CRP level for each age group
+2. The average CRP level for each age group by ICU admission status
+3. The number of observations per hospital by quarter
+4. The minimum, average and maximum number of symptoms per age group
+
+:::: {.callout-answer collapse="true"}
+We'll assume you've still got the data loaded. For all of the output we'll just display the first few rows.
+
+#### 1. The average CRP level for each age group
+
+If we want to do this, we need to group our data by `age_group` and then calculate the average (mean) value for each of those groups.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  group_by(age_group) |> 
+  summarise(avg_crp_level = mean(crp_level, na.rm = TRUE)) |> 
+  ungroup() |> 
+  head()
+```
+
+* We use the `summarise()` function since we want a summary of the average.
+* We specify `na.rm = TRUE` inside the `mean()` function, to ensure that any missing values within `crp_level` are ignored.
+* We `ungroup()` at the end to remove the grouping.
+
+## Python
+
+```{python}
+(
+  infections
+  .groupby("age_group", as_index = False)
+  .agg(avg_crp_level = ("crp_level", "mean"))
+  .head()
+)
+```
+
+* We use `.groupby()` to specify the `age_group` as the grouping variable.
+* We set `as_index = False` to ensure we keep it as a column, not an index.
+* We use `.agg()` to calculate the `"mean"` for `"crp_level"`.
+
+::: {.callout-note collapse="true"}
+## Including missing values or not?
+
+By default, `.groupby()` skips missing values. We have missing values in our `age_group` variable, which you might still be interested in. If you want to include them, then you need to be explicit about this:
+
+```{python}
+(
+  infections
+  .groupby("age_group", dropna = False, as_index = False)
+  .agg(avg_crp_level = ("crp_level", "mean"))
+  .head()
+)
+```
+
+:::
+
+:::
+
+#### 2. The average CRP level for each age group by ICU admission status
+
+Here we can just add to our previous example, but instead of grouping by only `age_group`, we also group by `icu_admission`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  group_by(age_group, icu_admission) |> 
+  summarise(avg_crp_level = mean(crp_level, na.rm = TRUE)) |> 
+  ungroup() |> 
+  head()
+```
+
+
+## Python
+
+We can do this by passing a list with the column names to `.groupby()`:
+
+```{python}
+(
+  infections
+  .groupby(["age_group", "icu_admission"], dropna = False, as_index = False)
+  .agg(avg_crp_level = ("crp_level", "mean"))
+  .head()
+)
+```
+
+:::
+
+#### 3. The number of observations per hospital by quarter
+
+To get these values, we need to tally the number of rows (each row is an observation). We're asked to do this per hospital (encoded in the `hospital` column) and for each `quarter`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  count(hospital, quarter) |> 
+  head()
+```
+
+
+## Python
+
+```{python}
+(
+  infections
+  .groupby(["hospital", "quarter"], as_index = False)
+  .size()
+  .rename(columns = {"size": "n"})
+  .head()
+)
+```
+
+:::
+
+#### 4. The minimum, average and maximum number of symptoms per age group
+
+Here we again need to aggregate/summarise our data, because we're being asked to calculate some summary statistics. We need to group our data by `age_group` and then determine the minimum (`min`), average (`mean`) and maximum (`max`).
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> 
+  group_by(age_group) |> 
+  summarise(min_symptoms = min(symptoms_count, na.rm = TRUE),
+            mean_symptoms = mean(symptoms_count, na.rm = TRUE),
+            max_symptoms = max(symptoms_count, na.rm = TRUE)) |> 
+  ungroup() |> 
+  head()
+```
+
+
+## Python
+
+```{python}
+(
+  infections
+  .groupby("age_group", dropna = False, as_index=False)
+  .agg(
+      min_symptoms = ("symptoms_count", "min"),
+      mean_symptoms = ("symptoms_count", "mean"),
+      max_symptoms = ("symptoms_count", "max")
+      )
+  .head()
+)
+
+```
+
+:::
+::::
+:::::
 
 ## Summary
 
