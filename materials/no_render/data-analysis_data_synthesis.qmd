@@ -399,3 +399,38 @@ head(parasites)
 ```{r}
 write_csv(parasites, file = "parasites.csv")
 ```
+
+
+## Auxin
+
+```{r}
+set.seed(7231)
+
+# Parameters for each group
+params <- tribble(
+  ~genotype, ~concentration, ~n,  ~mean, ~sd,
+  "control", "high",         34,  31,    3.62,
+  "control", "low",          43,  38,    3.67,
+  "control", "none",         56,  45,    2.47,
+  "mutant",  "high",         47,  35,    2.09,
+  "mutant",  "low",          43,  37,    3.06,
+  "mutant",  "none",         52,  40,    2.27
+)
+
+auxin_response <- params %>%
+  mutate(
+    plant_height = map2(n, mean, ~ rnorm(.x, .y, sd[which(n == .x & mean == .y)])),
+    replicate_id = map(n, ~ seq_len(.x))
+  ) %>%
+  unnest(c(plant_height, replicate_id)) %>%
+  mutate(plant_height = round(plant_height, 1)) |> 
+  select(replicate_id, genotype, concentration, plant_height)
+
+auxin_response
+
+```
+
+```{r}
+write_csv(auxin_response, "auxin.csv")
+```
+

@@ -797,7 +797,7 @@ Follows this logic:
   a. top 10 > think about arranging your data and subsetting it
   b. log values can be calculated, use search engine
 3. Is any missing data present/absent?
-4. What kind of plot am I looking at (search for: *lollipop plot in `ggplot`* (R) / *lollipop plot in `plotnine`* (Python))
+4. What kind of plot am I looking at (search for: *lollipop plot in `ggplot`*  for R and *lollipop plot in `plotnine`* for Python)
 :::
 
 :::: {.callout-answer collapse="true"}

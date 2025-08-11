@@ -242,6 +242,234 @@ surveys_long.head()
 
 :::
 
+## Exercises
+
+### Reshaping: `auxin` {#sec-exr_reshape_auxin}
+
+::::: {.callout-exercise #ex-reshape_auxin}
+#### Reshaping data
+
+{{< level 2 >}}
+
+For this exercise we'll be using the data from `data/auxin.csv`.
+
+These are synthetic data that measure the plant height of *Arabidopsis thaliana*, in different genotypes (variants of the same species, here: `control` and `mutant`). It measures the effect the plant hormone auxin has on the growth of these plants.
+
+This is done across different auxin concentrations (`none`, `low`, `high`).
+
+Please do the following:
+
+1. Check the data structure.
+2. Create a "wide" table where, for each `replicate_id` / `genotype` pair, we have a column for each auxin concentration category. The data in these columns should be the `plant_height` measurements.
+3. Use this wide format to calculate the average plant height for each row.
+4. Change the data back to "long" format & check if you have your original data back.
+
+:::: {.callout-answer collapse="true"}
+First, let's read in the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+auxin <- read_csv("data/auxin.csv")
+```
+
+
+## Python
+
+```{python}
+auxin = pd.read_csv("data/auxin.csv")
+```
+
+:::
+
+#### 1. Data structure
+
+Before we make any changes, it's important to get a sense of how the data is currently shaped.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+head(auxin)
+```
+
+
+## Python
+
+```{python}
+auxin.head()
+```
+
+:::
+
+We have `r auxin |> distinct(replicate_id) |> nrow()` distinct `replicate_id` values, with at least `r auxin |> count(replicate_id) |> filter(n == min(n)) |> slice(1) |> pull(n)` and up to `r auxin |> count(replicate_id) |> filter(n == max(n)) |> slice(1) |> pull(n)` observations.
+
+There are also three distinct concentration categories: `r auxin |> distinct(concentration) |> pull()`
+
+:::{.callout-important}
+Check this yourself!
+:::
+
+#### 2. From long to wide
+
+So what we want to do is get a table where for each `replicate_id` and `genotype` combination we have a separate column for each `concentration` category. That would allow us, for example, to calculate the average plant height for each measurement across the different concentration types.
+
+The data should look something like:
+
+| replicate_id | genotype |  high |  low  |  none |
+|--------------|----------|-------|-------|-------|
+| 1            | control  |  31.7 |  38.5 |  42.7 |
+| 2            | control  |  33.6 |  35.9 |  46.8 |
+| 3            | control  |  31.3 |  38.4 |  42.8 |
+
+So, let's do that.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+auxin_wide <- pivot_wider(auxin,
+            names_from = concentration,
+            values_from = plant_height)
+
+head(auxin_wide)
+```
+
+
+## Python
+
+```{python}
+auxin_wide = auxin.pivot(
+    index = ["replicate_id", "genotype"],
+    columns = "concentration",
+    values = "plant_height"
+).reset_index()
+
+auxin_wide.head()
+```
+
+:::
+
+#### 3. Calculating average `plant_height`
+
+Having the data in this format allows us to do:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+auxin_wide |> 
+  mutate(avg_height = round((high + low + none) / 3, 1)) |> 
+  head()
+```
+
+## Python
+
+```{python}
+auxin_wide.assign(
+    avg_height = ((auxin_wide["high"] + auxin_wide["low"] + auxin_wide["none"]) / 3).round(1)
+).head()
+```
+
+:::
+
+#### 4. From wide to long
+
+We can also revert back to our original "long" format data. The data then has its original shape back, which follows:
+
+| replicate_id | genotype | concentration | plant_height |
+|--------------|----------|---------------|--------------|
+| 1            | control  | high          | 31.7         |
+| 2            | control  | high          | 33.6         |
+| 3            | control  | high          | 31.3         |
+
+So, let's do that.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+auxin_long <- pivot_longer(auxin_wide,
+             cols = c("high", "low", "none"),
+             names_to = "concentration",
+             values_to = "plant_height")
+```
+
+
+## Python
+
+```{python}
+auxin_long = auxin_wide.melt(
+    id_vars = ["replicate_id", "genotype"],  # columns to keep as identifiers
+    value_vars = ["high", "low", "none"],    # columns to unpivot
+    var_name = "concentration",              # new column for old column names
+    value_name = "plant_height"              # new column for values
+)
+```
+
+:::
+
+However, the eagle-eyed among you might have noticed that there are more rows in our data than we started with:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+nrow(auxin)
+nrow(auxin_long)
+```
+
+
+## Python
+
+```{python}
+auxin.shape[0]      # original data
+auxin_long.shape[0] # wide-and-back
+```
+
+:::
+
+This is because in some of the `replicate_id` / `genotype` combinations there were no measured values for all three concentration types. This introduced missing values, which are then propagated when going back to a long format.
+
+So, to deal with this, we can simply remove the values where the `plant_height` value is missing:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+auxin_long <- pivot_longer(auxin_wide,
+             cols = c("high", "low", "none"),
+             names_to = "concentration",
+             values_to = "plant_height",
+             values_drop_na = TRUE)
+
+nrow(auxin_long)
+```
+
+## Python
+
+```{python}
+auxin_long = (auxin_wide.melt(
+    id_vars = ["replicate_id", "genotype"],  # columns to keep as identifiers
+    value_vars = ["high", "low", "none"],    # columns to unpivot
+    var_name = "concentration",              # new column for old column names
+    value_name = "plant_height"              # new column for values
+)
+.dropna(subset = ["plant_height"])
+)
+
+auxin_long.shape[0]
+```
+
+:::
+
+Success!
+
+::::
+:::::
+
 ## Summary
 
 ::: {.callout-tip}

@@ -21,10 +21,12 @@ title: Basic objects and data types
 
 For this exercise we'll be using the data from `data/surveys.csv`.
 
-:::: {.callout-answer collapse="true"}
-#### Load and visualise the data
+Exercise description.
 
-First we load the data, then we visualise it.
+:::: {.callout-answer collapse="true"}
+#### heading
+
+Answer
 
 ::: {.panel-tabset group="language"}
 ## R
