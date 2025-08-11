@@ -31,6 +31,7 @@ library(tidyverse)
 
 surveys <- read_csv("data/surveys.csv")
 plot_types <- read_csv("data/plots.csv")
+species <- read_csv("data/species.csv")
 ```
 
 ## Python
@@ -46,6 +47,7 @@ from plotnine import *
 
 surveys = pd.read_csv("data/surveys.csv")
 plot_types = pd.read_csv("data/plots.csv")
+species = pd.read_csv("data/species.csv")
 ```
 
 :::
@@ -279,6 +281,97 @@ surveys[~surveys["plot_id"].isin(plot_types["plot_id"])]
 
 :::
 
+## Exercises
+
+### Simple joins: `surveys` {#sec-exr_simple_joins}
+
+::::: {.callout-exercise #ex-simple_joins}
+#### Simple joins
+
+{{< level 1 >}}
+
+For this exercise we'll be using the data from `data/surveys.csv` and `data/species.csv`.
+
+We've of course seen the `surveys` data set more times than we can remember, but it's still got more to give. In fact, we are going to add to it. We currently have a rather uninformative `species_id` column.
+
+For this exercise, we're going to link that with the data from `species`, which has more useful descriptions and additional data.
+
+As an aside, this is not a bad data strategy at all - splitting your data across multiple tables. That way you don't end up with gigantic tables that contain lots of data you might only need for very specific purposes. Or data that you might not want to share freely (e.g. patient or customer data).
+
+Without further ado, please do the following:
+
+1. Load the data
+2. Join the two tables (consider *how*!) & inspect the output
+
+:::: {.callout-answer collapse="true"}
+#### 1. Loading the data
+
+First, we read in the data and have a look at the structure of `species`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+species <- read_csv("data/species.csv")
+```
+
+## Python
+
+```{python}
+species = pd.read_csv("data/species.csv")
+```
+
+:::
+
+Let's look at what we've got.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+head(species)
+```
+
+
+## Python
+
+```{python}
+species.head()
+```
+
+:::
+
+So, the column we have in common between `species` and `surveys` is the `species_id` column. That will be our **key** column that we'll use to join the data.
+
+#### 2. Joining the tables and inspecting the output
+
+We'll be joining the `species` table to the `surveys` table, so we'll join **left**: `surveys <<< species`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys_species <- left_join(surveys, species, by = "species_id")
+
+head(surveys_species)
+```
+
+
+## Python
+
+```{python}
+surveys_species = surveys.merge(species, on = "species_id", how = "left")
+
+surveys_species.head()
+```
+
+:::
+
+We can see that the data from `species` has been joined with `surveys`, since we now have `genus`, `species` and `taxa` columns in our data set.
+
+::::
+:::::
 
 ## Summary
 
