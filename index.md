@@ -5,20 +5,40 @@ date: today
 number-sections: false
 ---
 
-These sessions provide an introduction to coding in R and Python. The aim is to get you comfortable with coding techniques commonly used in scientific research.
+These sessions provide an introduction to coding in R and Python, focussing on data exploration and analysis. Both languages are leading in the field of data science and widely used for data visualisation, analyses, statistics and machine learning.
+
+Both languages are open-source software and all the software we use during the course is free. We frequently run courses based on these materials, focussing on either R or Python (learning two languages at once is not ideal!).
+
+These courses have been developed and are organised by the Cambridge Centre for Research Informatics Training (University of Cambridge, UK).
+
+Have a look at our [timetable](https://www.training.cam.ac.uk/bioinformatics/event-timetable) to see when the next iteration is scheduled. We run in-person and online versions of these courses.
+
+**Courses are open to everyone.** 
+
+Please see our [guidelines](https://www.training.cam.ac.uk/bioinformatics/info/eligibility) for more details on eligibility and potential charges.
+
 
 ::: {.callout-tip}
 ### Learning objectives
 
-- Get familiar with the R or Python programming language
-- Learn to visualise data
-- Be able to manipulate and transform data
+- Get familiar with the programming language.
+- Be able to use appropriate interface software.
+- Be familiar with different data types & structures and know when to use them.
+- Read in and investigate tabular data and perform basic quality control checks.
+- Create plots and be able to manipulate plot aesthetics.
+- Feel confident manipulating columns (variables in the data) and rows (observations in the data).
+- Perform operations on groups within your data.
+- Reshape data (long <> wide) and know when each format is appropriate.
+- Combine different tables of data, based on a common identifier.
+- Clean up common issues in data (column names, encoding issues etc).
+- Fine-tune plot settings to create publication-ready figures.
+
 :::
 
 
 ### Target audience
 
-This course is aimed at people without any prior programming experience. It does however, allow people with some experience to further enhance their knowledge through different level exercises.
+The course is aimed at beginners, so no prior knowledge is required. If you already have some coding experience, but look to refresh your knowledge, this course is also for you. Different exercise levels will help challenge you at the appropriate level.
 
 
 ### Prerequisites
