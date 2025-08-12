@@ -613,8 +613,14 @@ parasites = pd.read_csv("data/parasites.csv")
 
 :::
 
+Now we can create the plot. We are creating a violin plot and colouring by `lake`. We're also asked to include the data points and to avoid overlap.
+
 ::: {.panel-tabset group="language"}
 ## R
+
+We can use `geom_violin()` to create a violin plot. We use the `aes()` to assign a colour (`fill =` because we're colouring a surface area) to our data. 
+
+Adding the data points could be done with `geom_point()` but then we'd end up with quite a bit of overlap. We could fix this using transparency (`alpha =`) but that would probably only solve part of the issue. We're better off using `geom_jitter()`, where we add a tiny bit of noise to the data to avoid overlap. We can set the width of this to make sure the jittered points are not too visually overbearing.
 
 ```{r}
 ggplot(parasites, aes(x = lake, y = fish_length)) +
@@ -623,6 +629,10 @@ ggplot(parasites, aes(x = lake, y = fish_length)) +
 ```
 
 ## Python
+
+In `plotnine` we can use `geom_violin()` to create a violin plot. We use the `aes()` to assign a colour (`fill =` because we're colouring a surface area) to our data. 
+
+Adding the data points could be done with `geom_point()` but then we'd end up with quite a bit of overlap. We could fix this using transparency (`alpha =`) but that would probably only solve part of the issue. We're better off using `geom_jitter()`, where we add a tiny bit of noise to the data to avoid overlap. We can set the width of this to make sure the jittered points are not too visually overbearing.
 
 ```{python}
 #| results: hide
