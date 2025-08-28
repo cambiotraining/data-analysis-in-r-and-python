@@ -444,7 +444,7 @@ We often need to create sequences of numbers when analysing data. There are some
 10:1                                # integers from 10 to 1
 seq(1, 10, by = 2)                  # from 1 to 10 by steps of 2
 seq(10, 1, by = -0.5)               # from 10 to 1 by steps of -0.5
-seq(1, 10, length.out = 20)         # 20 equally spaced values from 1 to 10
+seq(1, 10, length.out = 21)         # 21 equally spaced values from 1 to 10
 ```
 
 
@@ -465,7 +465,7 @@ list(range(1, 11))                 # integers from 1 to 10
 list(range(10, 0, -1))             # integers from 10 to 1
 list(range(1, 11, 2))              # from 1 to 10 by steps of 2
 list(np.arange(10, 1, -0.5))       # from 10 to 1 by steps of -0.5
-list(np.linspace(1, 10, num = 20)) # 20 equally spaced values from 1 to 10
+list(np.linspace(1, 10, num = 21)) # 21 equally spaced values from 1 to 10
 ```
 
 

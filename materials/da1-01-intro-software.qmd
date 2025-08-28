@@ -44,6 +44,11 @@ In bold we've highlighted the tabs we'll be using most.
 In the **Console** we can directly run code - more on that soon. The **Environment** shows any information that is stored in R's memory (empty in the figure above). The **Files** tab is a mini-browser; **Plots** shows you any plots that have been created and **Help** is where you can go for... well, help.
 
 ## Python
+
+For Python, the [JupyterLab](https://jupyter.org) software is a very popular choice - and one we'll be using here. It's free, open-source and well-supported. What more can you ask for?
+
+![The welcome screen of JupyterLab](images/jupyterlab-main.png){#fig-jupyterlab_main}
+
 :::
 
 ## Working directory
@@ -108,6 +113,30 @@ R will show you your current working directory in the `Files` pane. Alternativel
 
 ## Python
 
+In @fig-jupyterlab_main we can see the file browser on the left and the Launcher window on the right. The file browser has a folder called `data-analysis`, with three subfolders: `data`, `images` and `scripts`.
+
+To recreate this, launch JupyterLab by opening the terminal, activating your environment (`mamba activate pycourse`) and launching JupyterLab (`jupyter lab`).
+
+Navigate to the folder you want to store your working directory (here we've put it under `Desktop`) and create a new folder called `data-analysis`. Within this folder you can create the necessary subfolders.
+
+To check which folder is currently your working directory, run:
+
+```{python}
+#| eval: false
+
+import os
+print(os.getcwd())
+```
+
+If it's incorrect, then the easiest way of setting it correctly is to close JupyterLab, go to the terminal, navigate to the `data-analysis` folder and launch JupyterLab from there, e.g.
+
+```{python}
+#| eval: false
+
+cd /Desktop/data-analysis
+jupyter lab
+```
+
 :::
 
 ::: {.callout-important}
@@ -124,7 +153,7 @@ There are two main ways of interacting with the language: by using the console o
 
 Instead, we uses scripts to write all the commands. That way there is a complete record of what we did, and anyone (including our future selves!) can easily replicate the results on their computer.
 
-| Console/terminal <i class="fa fa-terminal fa-1x"></i>| Script <i class="fa-regular fa-file-lines fa-1x"></i>|
+| Console/terminal <i class="fa fa-terminal fa-1x"></i>| Script/Notebook <i class="fa-regular fa-file-lines fa-1x"></i>|
 |-------------------------------------|-------------------------------------|
 | runs code directly | in essence, a text file |
 | interactive | needs to be told to run |
@@ -157,6 +186,16 @@ inside the console window and press {{< kbd Escape >}}. This will cancel the inc
 :::
 
 ## Python
+
+We can open a **Console** from the **Launcher window** and directly type and execute code. We simply type the code and press {{< kbd Shift >}} + {{< kbd Enter >}} (or the "play" button in the top-left).
+
+::: {.carousel data-caption="Running code from the console (click to toggle)."}
+
+![](images/jupyterlab-launcher.png)
+![](images/jupyterlab-console.png)
+
+:::
+
 :::
 
 ## Running code {#running-code}
@@ -186,6 +225,10 @@ For example, you can use Python as a glorified calculator:
 
 Running code like this directly in the console is generally not a good idea, because then we can't keep track of what we are doing. So, we first need to create a script to save our code in. Then, we can then play around. Let's focus on that next.
 
+::: {.callout-important}
+Complete [creating a script](#ex-createscript) before proceeding.
+:::
+
 ### Splitting code {#sec-splitting_code}
 
 As your analysis grows, so does your code. So,often we want to split analyses into multiple scripts, for example:
@@ -205,6 +248,14 @@ This creates a little table of contents in the bottom-left corner of the script 
 ![Code headings](images/rstudio-codeheadings.png)
 
 ## Python
+
+Each of these files could be hundreds of lines long. So, keeping track of your code makes sense. We can do that with **code headings**, which use the `markdown` syntax. We won't go into details on how markdown works (see [here](https://www.markdownguide.org/basic-syntax/) for basic syntax), but suffice for now is that you can even add different heading levels, by increasing the number of `#` at the start.
+
+We define these by clicking on a cell, and changing the type from `Code` to `Markdown` (next to the fast-forward icon at the top).
+
+This creates a table of contents, accessible in the TOC pane on the left:
+
+![Code headings](images/jupyterlab-codeheadings.png)
 
 :::
 
@@ -426,9 +477,29 @@ Create a working directory called `data-analysis`. When you've done this, add th
 
 Create a script and save it as `session_01` in the `scripts` folder within your working directory.
 
-:::{.callout-hint}
-Remember, you will need to add an extension to the file. This is `.R` for R scripts or `.py` for Python ones.
+::: {.callout-answer collapse="true"}
+
+::: {.panel-tabset group="language"}
+## R
+
+Go to `File` > `New File` > `R Script` in RStudio and save the script. Remember to add the `.R` extension.
+
+## Python
+
+In the Launcher window, click on `Notebook`, `Python 3` and save the file (Save symbol at the top-left):
+
+::: {.carousel data-caption="Creating a new Notebook (click to toggle)."}
+
+![](images/jupyterlab-notebook-01.png)
+![](images/jupyterlab-notebook-02.png)
+![](images/jupyterlab-notebook-03.png)
+![](images/jupyterlab-notebook-04.png)
+![](images/jupyterlab-notebook-05.png)
 :::
+
+:::
+:::
+
 :::
 
 :::{.callout-exercise #ex-runningcode}
@@ -455,5 +526,10 @@ Remember, you run the code using <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>Com
 ::: {.callout-tip}
 #### Key points
 
-- 
+- We using a working directory as a starting point for our analysis
+- Although we can run code interactively in the console, it's best to create a **script** to run your code, so you can keep a record.
+- Functions allows you to automate more complicated sets of commands and many are predefined.
+- Functions often have arguments that allow you to control how the function behaves.
+- We can add additional functionality to our programming language using packages.
+- Packages need to be **installed once** and **loaded every time** we restart our session.
 :::
