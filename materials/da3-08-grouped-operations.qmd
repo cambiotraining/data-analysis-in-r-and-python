@@ -16,9 +16,6 @@ We’ve done different types of operations, all on the entire data set. Sometime
 
 ## Section setup {#setup_grouped_operations}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -51,7 +48,6 @@ surveys = pd.read_csv("data/surveys.csv")
 infections = pd.read_csv("data/infections.csv")
 ```
 
-:::
 :::
 
 ## Split-apply-combine

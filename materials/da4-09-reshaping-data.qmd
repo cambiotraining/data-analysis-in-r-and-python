@@ -15,9 +15,6 @@ So far, we have provided data in the most convenient format. In real life, this 
 
 ## Section setup {#setup_reshaping_data}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -45,7 +42,6 @@ from plotnine import *
 surveys_join = pd.read_csv("data/surveys_join.csv")
 ```
 
-:::
 :::
 
 ## Data reshaping

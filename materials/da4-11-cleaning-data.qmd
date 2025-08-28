@@ -19,9 +19,6 @@ Often data is in a messy state before you can work with it. So, it is useful to 
 
 ## Section setup {#setup_grouped_operations}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -68,7 +65,6 @@ plot_types = pd.read_csv("data/plots.csv")
 surveys_left = pd.merge(surveys, plot_types, how = "left", on = "plot_id")
 ```
 
-:::
 :::
 
 ## Cleaning data

@@ -31,9 +31,6 @@ We now have a good grasp of how data is commonly structured, with variables in c
 
 ## Section setup {#setup_plotting}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -61,7 +58,6 @@ from plotnine import *
 surveys = pd.read_csv("data/surveys.csv")
 ```
 
-:::
 :::
 
 ## Introducing plotting

@@ -14,9 +14,6 @@ In the section above we performed several operations on a single data set. Often
 
 ## Section setup {#setup_chaining_operations}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -44,7 +41,6 @@ from plotnine import *
 surveys = pd.read_csv("data/surveys.csv")
 ```
 
-:::
 :::
 
 ## Pipes or chaining commands

@@ -16,9 +16,6 @@ In the [tabular data](#tabular-data) section we learned to deal with, well, tabu
 
 ## Section setup {#setup_plotting}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -46,7 +43,6 @@ from plotnine import *
 surveys = pd.read_csv("data/surveys.csv")
 ```
 
-:::
 :::
 
 ## Selecting columns

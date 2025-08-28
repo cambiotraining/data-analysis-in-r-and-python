@@ -16,9 +16,6 @@ Data is often split over multiple tables. We saw this in the previous section. S
 
 ## Section setup {#setup_grouped_operations}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -50,7 +47,6 @@ plot_types = pd.read_csv("data/plots.csv")
 species = pd.read_csv("data/species.csv")
 ```
 
-:::
 :::
 
 ## Joining tables

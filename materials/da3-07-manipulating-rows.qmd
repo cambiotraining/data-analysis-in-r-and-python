@@ -20,9 +20,6 @@ Data sets can contain large quantities of observations. Often we are only intere
 
 ## Section setup {#setup_manipulating_rows}
 
-::: {.callout-note collapse="true"}
-## Click to expand
-
 ::: {.panel-tabset group="language"}
 ## R
 
@@ -73,7 +70,6 @@ import missingno as msno
 surveys = pd.read_csv("data/surveys.csv")
 ```
 
-:::
 :::
 
 
