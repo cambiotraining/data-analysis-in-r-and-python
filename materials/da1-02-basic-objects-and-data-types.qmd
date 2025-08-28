@@ -162,6 +162,10 @@ In R we use `<-` as the assignment operator.
 
 In RStudio, typing <kbd>Alt</kbd> + <kbd>-</kbd> (push <kbd>Alt</kbd> at the same time as the <kbd>-</kbd> key) will write ` <- ` in a single keystroke on a PC, while typing <kbd>Option</kbd> + <kbd>-</kbd> (push <kbd>Option</kbd> at the same time as the <kbd>-</kbd> key) does the same on a Mac. <br /><br />
 
+::: {.callout-note}
+Although R also supports the use of `=` as an assignment operator, there are some very slight differences in their use, as [illustrated here](https://stackoverflow.com/questions/1741820/what-are-the-differences-between-and-assignment-operators). Generally, people just stick to `<-` for those reasons.
+:::
+
 ## Python
 In Python we use `=` as the assignment operator. <br /><br />
 
