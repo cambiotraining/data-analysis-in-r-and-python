@@ -399,9 +399,10 @@ Additional packages can be installed to extend the functionality of Python. In t
 !mamba install -c conda-forge numpy -y
 ```
 
+This uses the `mamba` package manager to install `numpy`. It gets the information from the `conda-forge` channel and the `-y` simply auto-confirms the installation.
 :::
 
-This uses the `mamba` package manager to install `numpy`. It gets the information from the `conda-forge` channel and the `-y` simply auto-confirms the installation.
+
 
 
 ## Exercises
