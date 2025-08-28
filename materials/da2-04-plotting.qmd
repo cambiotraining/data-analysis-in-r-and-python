@@ -55,6 +55,10 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 surveys = pd.read_csv("data/surveys.csv")
 ```
 
@@ -95,7 +99,7 @@ We use the `ggplot()` function to do this:
 ```{r}
 #| warning: false
 #| label: fig-weight_hind_scatter
-#| fig-cap: "Scatterplot of hindfoot length against weight"
+#| fig-cap: "Scatterplot of weight vs hindfoot_length"
 ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point()
@@ -110,13 +114,33 @@ Additionally, if you're running this directly from a Python script, it might not
 ```{python}
 #| results: hide
 #| label: fig-weight_hind_scatter_py
-#| fig-cap: "Scatterplot of hindfoot length against weight"
+#| fig-cap: "Scatterplot of weight vs hindfoot_length"
 p = (ggplot(data = surveys,
         mapping = aes(x = "weight", y = "hindfoot_length")) + 
   geom_point())
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-weight_hind_scatter_seaborn
+#| fig-cap: "Scatterplot of weight vs hindfoot_length"
+
+sns.scatterplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length"
+)
+
+plt.title("Scatterplot of weight vs hindfoot_length")
+plt.show()
+```
+
+:::
 
 :::
 
@@ -144,6 +168,7 @@ The good thing about `ggplot()` is that it builds up the plot layer-by-layer. We
 ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length))
 ```
+
 ## Python
 
 ```{python}
@@ -185,6 +210,29 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-sex_hind_scatter_seaborn
+#| fig-cap: "Scatterplot of hindfoot length for each sex."
+
+sns.stripplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    jitter = True    # to spread points horizontally like geom_point on a category
+)
+
+plt.title("Hindfoot length by sex")
+plt.show()
+
+```
+
+:::
+
 :::
 
 A lot of the points are overlapping, which makes it a bit hard to see how the data are distributed. We can do something about that (more on that in the next session), but we can also add some summary statistics in the form of a boxplot. We can simply add a layer to the plot that displays the boxes.
@@ -216,6 +264,38 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-sex_hind_scatter_box_seaborn
+#| fig-cap: "Scatterplot and boxplot of hindfoot length for each sex."
+
+# boxplot first
+sns.boxplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    showfliers = False  # hide outliers, since we’ll show raw points
+)
+
+# points overlaid
+sns.stripplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    color = "black",  # colour points for contrast
+    jitter = True,    # add jitter to avoid overlap
+    alpha = 0.6       # use transparency for clarity
+)
+
+plt.title("Hindfoot length by sex (points + boxplot)")
+plt.show()
+```
+
+:::
 :::
 
 The layers are added in the order we provide them, so here the boxes are on top of the individual data points. You might want to rearrange that, so that the boxes are *behind* the data.
@@ -254,6 +334,28 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-weight_hind_scatter_blue_seaborn
+#| fig-cap: "Colouring points by a defined colour."
+
+sns.scatterplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    color = "blue"   # fixed color for all points
+)
+
+plt.title("Scatterplot of weight vs hindfoot_length (blue points)")
+plt.show()
+```
+
+:::
+
 :::
 
 ### Fill
@@ -288,6 +390,30 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-sex_hind_boxplot_fill_seaborn
+#| fig-cap: "Geometries with surfaces use `fill` for colours."
+
+sns.boxplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    color = "magenta"   # sets the fill color of the box
+)
+
+plt.title("Hindfoot length by sex (magenta boxplot)")
+plt.show()
+
+```
+
+:::
+
+
 :::
 
 ### Aesthetics based on data
@@ -328,6 +454,28 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-weight_hind_fill_sex_seaborn
+#| fig-cap: "Colouring data based on another variable."
+
+sns.scatterplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    hue = "sex"   # map colors to sex
+)
+
+plt.title("Scatterplot of weight vs hindfoot_length by sex")
+plt.show()
+```
+
+:::
+
 :::
 
 ### Dealing with overlap
@@ -653,7 +801,9 @@ p.show()
 
 For this exercise we'll again use the data from `data/parasites.csv`.
 
-To practice creating sub panels using facetting, you'll 
+To practice creating sub panels using facetting, you'll be plotting `fish_length` against `parasite_count` for each `lake`.
+
+Which lake has the highest parasite count?
 
 ::: {.callout-answer collapse="true"}
 We'll assume you still have the data loaded.
@@ -677,6 +827,8 @@ p = (ggplot(parasites, aes(x = "fish_length", y = "parasite_count")) +
 p.show()
 ```
 :::
+
+Lake `C` has the highest parasite count (over 225).
 
 :::
 :::
