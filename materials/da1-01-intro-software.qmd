@@ -366,8 +366,42 @@ It's good practice be explicit about the names of the arguments. That way you ca
 
 
 ## Adding functionality using packages
-LO: adding functionality (installing + loading packages)
-LO: For Python: requires `numpy` for next section
+
+::: {.panel-tabset group="language"}
+## R
+
+Additional packages can be installed to extend the functionality of R. Most packages are available in a central repository called CRAN and can be installed from within R using the `install.packages()` function.
+
+For example, to install (or update) the `tidyverse` package, you would run the following command on the console:
+
+```{r}
+#| eval: false
+install.packages("tidyverse")
+```
+
+Because the install process accesses the CRAN repository, you will need an Internet connection to install packages.
+
+After this, you can then load the package to use it in your analysis. You load packages using the `library()` command (note the lack of quotation marks):
+
+```{r}
+#| eval: false
+library(tidyverse)
+```
+
+There are other repositories available. A very popular one is the Bioconductor project, which contains thousands of packages for bioinformatics applications. These use a different installation command, but the instructions are always given in each package’s page.
+
+## Python
+
+Additional packages can be installed to extend the functionality of Python. In the next section we'll need some functionality from the `numpy` package, so we'll install it here. We can do this directly from within JupyterLab:
+
+```{python}
+#| eval: false
+!mamba install -c conda-forge numpy -y
+```
+
+:::
+
+This uses the `mamba` package manager to install `numpy`. It gets the information from the `conda-forge` channel and the `-y` simply auto-confirms the installation.
 
 
 ## Exercises
