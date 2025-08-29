@@ -42,6 +42,10 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 surveys = pd.read_csv("data/surveys.csv")
 plot_types = pd.read_csv("data/plots.csv")
 species = pd.read_csv("data/species.csv")
@@ -156,6 +160,27 @@ p = (ggplot(surveys_left, aes(x = "plot_type", y = "hindfoot_length")) +
   
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-plot_hind_seaborn
+#| fig-cap: "Boxplot of hindfoot length for each plot type"
+
+sns.boxplot(
+    data = surveys_left,
+    x = "plot_type",
+    y = "hindfoot_length"
+)
+
+plt.title("Hindfoot length by plot type")
+plt.show()
+
+```
+
+:::
 
 :::
 
