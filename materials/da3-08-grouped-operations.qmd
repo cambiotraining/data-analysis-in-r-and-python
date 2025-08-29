@@ -44,6 +44,10 @@ from plotnine import *
 # A package to deal with arrays
 import numpy as np
 
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 surveys = pd.read_csv("data/surveys.csv")
 infections = pd.read_csv("data/infections.csv")
 ```
@@ -287,6 +291,32 @@ p = (ggplot(counts, aes(x = "year", y = "n", fill = "sex")) +
 p.show()
 ```
 
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+This is not an exact equivalent to the plot above, because `sns.barplot()` gives dodged (side-by-side) groupings by default.
+
+There is no native stacked bars in Seaborn, so you'd have to use the underlying `matplotlib`. We're not covering this here, but feel free to search or use ChatGPT.
+
+```{python}
+#| results: hide
+#| label: fig-counts_year_sex_seaborn
+#| fig-cap: "Number of observations per year, by `sex`."
+
+sns.barplot(
+    data = counts,
+    x = "year",
+    y = "n",
+    hue = "sex"   # fill = sex in ggplot
+)
+
+plt.title("Counts by year and sex")
+plt.show()
+
+```
+
+:::
+
 :::
 
 ::: {.callout-important}
@@ -516,6 +546,24 @@ p = (ggplot(summary, aes(x = "year", y = "female_pct")) +
 p.show()
 ```
 
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+```{python}
+#| results: hide
+#| label: fig-femalepct_year_seaborn
+#| fig-cap: "Percentage of female observations across years."
+
+# seaborn lineplot
+sns.lineplot(
+    data = summary,
+    x = "year",
+    y = "female_pct"
+)
+
+plt.title("Female percentage by year")
+plt.show()
+```
+:::
 
 :::
 
