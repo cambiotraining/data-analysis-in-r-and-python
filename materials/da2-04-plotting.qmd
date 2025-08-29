@@ -530,6 +530,45 @@ p.show()
 ```
 :::
 
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-avoiding_overlap_jitter_seaborn
+#| fig-cap: "Adding jitter to the data can help with overlapping data."
+
+sns.stripplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    jitter = True,    # add horizontal jitter
+    alpha = 0.6       # add transparency
+)
+
+plt.title("Hindfoot length by sex (jittered points)")
+plt.show()
+```
+
+```{python}
+#| results: hide
+#| label: fig-avoiding_overlap_jitter_width_seaborn
+#| fig-cap: "You can control the amount of jitter."
+
+sns.stripplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    jitter = 0.05,   # controls the amount of horizontal jitter
+    alpha = 0.6     # add transparency
+)
+
+plt.title("Hindfoot length by sex (jitter = 0.05)")
+plt.show()
+
+```
+:::
+
 ### Transparency
 
 Even with jittering the data, we still have quite some overlap. There probably is a limit to what we can do about it, but adding some transparency can also help. Here, where there is more overlap, areas will appear darker whereas less overlap will appear lighter.
@@ -562,6 +601,29 @@ p = (ggplot(data = surveys,
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-avoiding_overlap_jitter_alpha_seaborn
+#| fig-cap: "You can also use transparency to deal with overlapping data."
+
+sns.stripplot(
+    data = surveys,
+    x = "sex",
+    y = "hindfoot_length",
+    jitter = 0.1,     # horizontal jitter
+    alpha = 0.4       # transparency of 40%
+)
+
+plt.title("Hindfoot length by sex (jitter=0.1, alpha=0.4)")
+plt.show()
+
+```
+
+:::
 :::
 
 ### Point size and line width
@@ -570,49 +632,210 @@ The `size =` argument is used to control the size of points, whereas the `linewi
 
 In the next two panels we're using `geom_point()` with different sizes.
 
+::: {.panel-tabset group="language"}
+## R
+
 ```{r}
-#| echo: false
 #| warning: false
 #| results: hide
-#| label: fig-controlling_sizes
+#| label: fig-controlling_sizes1
 #| fig-cap: "Data point sizes can be adjusted."
-p1 <- ggplot(data = surveys,
+ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point(size = 1) +
   labs(title = "geom_point(size = 1)")
+```
 
-p2 <- ggplot(data = surveys,
+```{r}
+#| warning: false
+#| results: hide
+#| label: fig-controlling_sizes2
+#| fig-cap: "Data point sizes can be adjusted."
+ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point(size = 3) +
   labs(title = "geom_point(size = 3)")
-
-p1 + p2 +
-  plot_annotation(tag_levels = "A")
 ```
 
-The following two panels use a different geometry: `geom_smooth()`. This creates a smoothed line across the data. The width of the line can be changed with the `linewidth =` argument.
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-controlling_sizes_py1
+#| fig-cap: "Data point sizes can be adjusted."
+
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+      geom_point(size = 1) +
+      labs(title = "geom_point(size = 1)"))
+      
+p.show()
+```
+
+```{python}
+#| results: hide
+#| label: fig-controlling_sizes_py2
+#| fig-cap: "Data point sizes can be adjusted."
+
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+      geom_point(size = 3) +
+      labs(title = "geom_point(size = 3)"))
+      
+p.show()
+```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-controlling_sizes_seaborn
+#| fig-cap: "Data point sizes can be adjusted."
+
+fig, axes = plt.subplots(1, 2, figsize = (12, 5), sharey = True)
+
+# p1: small points
+sns.scatterplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    s = 20,             # size of points (similar to size=1 in ggplot)
+    ax = axes[0]
+)
+axes[0].set_title("point size 20")
+
+# p2: larger points
+sns.scatterplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    s = 70,             # larger points (similar to size=3 in ggplot)
+    ax = axes[1]
+)
+axes[1].set_title("point size 70")
+
+plt.tight_layout()
+plt.show()
+```
+
+:::
+:::
+
+To illustrate the change in line width, we're using a line across the data.
+
+::: {.panel-tabset group="language"}
+## R
+
+To achieve this, we use a different geometry: `geom_smooth()`. The width of the line can be changed with the `linewidth =` argument.
 
 ```{r}
-#| echo: false
 #| warning: false
 #| results: hide
-#| label: fig-controlling_linesize
+#| label: fig-controlling_linesize1
 #| fig-cap: "Line sizes can also be adjusted."
-p3 <- ggplot(data = surveys,
+ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point() +
   geom_smooth(linewidth = 1) +
   labs(title = "geom_smooth(linewidth = 1)")
-  
-p4 <- ggplot(data = surveys,
+```
+
+```{r}
+#| warning: false
+#| results: hide
+#| label: fig-controlling_linesize2
+#| fig-cap: "Line sizes can also be adjusted."
+ggplot(data = surveys,
        mapping = aes(x = weight, y = hindfoot_length)) +
   geom_point() +
   geom_smooth(linewidth = 3) +
   labs(title = "geom_smooth(linewidth = 3)")
-  
-p3 + p4 +
-  plot_annotation(tag_levels = "A")
 ```
+
+## Python
+
+To achieve this, we use a different geometry: `geom_smooth()`. The width of the line can be changed with the `size =` argument.
+
+```{python}
+#| results: hide
+#| label: fig-controlling_sizes_py3
+#| fig-cap: "Data point sizes can be adjusted."
+
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+      geom_point() +
+      geom_smooth(size = 1, colour = "blue") +
+      labs(title = "size = 1"))
+      
+p.show()
+```
+
+```{python}
+#| results: hide
+#| label: fig-controlling_sizes_py4
+#| fig-cap: "Data point sizes can be adjusted."
+
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+      geom_point() +
+      geom_smooth(size = 3, colour = "blue") +
+      labs(title = "size = 3"))
+      
+p.show()
+```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-controlling_linesize_seaborn1
+#| fig-cap: "Line sizes can also be adjusted."
+
+sns.regplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    scatter = True,
+    color = "black",
+    scatter_kws = {'s': 20},                      # point size
+    line_kws = {'color': 'blue', 'linewidth': 1}  # smooth line style
+)
+
+plt.title("size = 1")
+plt.show()
+```
+
+```{python}
+#| results: hide
+#| label: fig-controlling_linesize_seaborn2
+#| fig-cap: "Line sizes can also be adjusted."
+
+sns.regplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    scatter = True,
+    color = "black",
+    scatter_kws = {'s': 20},                      # point size
+    line_kws = {'color': 'blue', 'linewidth': 3}  # smooth line style
+)
+
+plt.title("size = 3")
+plt.show()
+```
+
+:::
+:::
+
+::: {.callout-important}
+### Note on `geom_smooth()` in R vs Python
+
+When comparing **R** and **Python**, you may notice that the smooth line drawn by `geom_smooth()` looks different between **ggplot2** and **plotnine** (or **seaborn**).
+
+- In **R/ggplot2**, the default smoother is **LOESS** (*Locally Estimated Scatterplot Smoothing*).  
+- In **Python/plotnine**, the default is a **linear regression** (`method = "lm"`).  
+- In **Python/seaborn**, the default is also a **linear regression**, just like plotnine.
+
+This is why the default smooth lines look different, even though the function name is the same.
+:::
 
 ## Facets
 
@@ -667,9 +890,29 @@ facet_wrap("~ sex")
 
 We used `facet_wrap()`, because we're only splitting the data by a single variable: `sex`. We also need to tell the function which variable to split by, which we do by using the `~` symbol. I completely agree that this is a weird notation. Just read it as *split by...*
 
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-facetting_seaborn
+#| fig-cap: "Facetting data splits it into mini-panels."
+
+# Using relplot (shorthand for FacetGrid + scatterplot)
+p = sns.relplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    col = "sex",           # facet by sex
+    kind = "scatter"       # scatterplot
+)
+```
+
 :::
 
-In the end, our data is split into three sub-panels - one for each group. This makes it easy to see trends across the groups. Or, in this case, that there doesn't seem to be much difference in the distribution across the female and male observations.
+:::
+
+In the end, our data is split into three sub-panels - one for each group (if missing values are included). This makes it easy to see trends across the groups. Or, in this case, that there doesn't seem to be much difference in the distribution across the female and male observations.
 
 ## Saving plots
 
@@ -693,7 +936,7 @@ plot_r <- ggplot(data = surveys,
 
 ```{r}
 #| warning: false
-ggsave(filename = "images/height_vs_hindfootlength.png",
+ggsave(filename = "images/weight_vs_hindfootlength.png",
        plot = plot_r,
        width = 7,
        height = 5,
@@ -711,12 +954,34 @@ plot_python = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
 
 ```{python}
 (ggsave(plot_python,
-        filename = "images/height_vs_hindfootlength.png",
+        filename = "images/weight_vs_hindfootlength.png",
         units = "in",
         width = 7,
         height = 5))
 ```
 
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| fig.show: hide
+
+# Create faceted scatterplot
+plot_seaborn = sns.relplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    col = "sex",
+    kind = "scatter"
+)
+```
+
+
+```{python}
+plot_seaborn.savefig("images/weight_vs_hindfootlength_sns.png", dpi = 300, bbox_inches = "tight")
+```
+
+:::
 :::
 
 Here, I've added a few extra arguments to demonstrate what you can change. The only two things that are required are (1) the plot you want to save and (2) the name of the plot, including the filename extension.
