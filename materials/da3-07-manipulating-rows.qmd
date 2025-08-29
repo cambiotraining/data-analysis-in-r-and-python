@@ -46,13 +46,13 @@ surveys <- read_csv("data/surveys.csv")
 
 ## Python
 
-We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".py", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
+We'll continue this section with the Notebook named `r paste0(intToUtf8(96), sub("\\..*$", ".ipynb", knitr::current_input()), intToUtf8(96))`. Add the following code to the first cell and run it.
 
 We'll use a new package, so install if needed from the terminal:
 
 ```{bash}
 #| eval: false
-conda install conda-forge::missingno
+mamba install conda-forge::missingno
 ```
 
 Then, if needed, add the following code to the top of your script and run it.
@@ -63,6 +63,10 @@ import pandas as pd
 
 # Python equivalent of `ggplot2`
 from plotnine import *
+
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
 
 # Load missingno
 import missingno as msno
