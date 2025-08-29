@@ -39,6 +39,10 @@ import pandas as pd
 # Python equivalent of `ggplot2`
 from plotnine import *
 
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
+
 surveys_join = pd.read_csv("data/surveys_join.csv")
 ```
 
@@ -171,8 +175,27 @@ p = (ggplot(surveys_wide, aes(x = "yr_2021", y = "yr_2022")) +
     geom_point())
     
 p.show()
+```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-weight_2122_seaborn
+#| fig-cap: "Scatterplot of `weight` for 2021 and 2022"
+
+sns.scatterplot(
+    data = surveys_wide,
+    x = "yr_2021",
+    y = "yr_2022"
+)
+
+plt.title("Scatterplot of yr_2021 vs yr_2022")
+plt.show()
 
 ```
+:::
 
 ```{python}
 #| results: hide
@@ -183,6 +206,26 @@ p = (ggplot(surveys_join, aes(x = "factor(year)", y = "weight")) +
 
 p.show()
 ```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-weight_by_year_seaborn
+#| fig-cap: "Boxplot of `weight` for 2021 - 2024"
+
+sns.boxplot(
+    data = surveys_join,
+    x = "year", # seaborn treats numeric as categorical automatically if discrete
+    y = "weight"
+)
+
+plt.title("Weight by year (boxplot)")
+plt.show()
+
+```
+:::
 
 :::
 
