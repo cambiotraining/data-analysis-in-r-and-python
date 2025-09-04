@@ -1,0 +1,125 @@
+---
+title: "Trainer resources"
+---
+
+## Section setup
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+library(tidyverse)
+```
+
+## Python
+
+:::
+
+## DA1: Getting started
+
+## DA2: Data & plotting
+
+### Live demo: exploring `infections`
+
+::: {.panel-tabset group="language"}
+## R
+
+Read in the data:
+
+```{r}
+#| message: false
+infections <- read_csv("data/infections.csv")
+```
+
+
+## Python
+:::
+
+#### Data structure
+
+::: {.panel-tabset group="language"}
+## R
+
+Number of rows & columns:
+
+```{r}
+#| eval: false
+nrow(infections)
+```
+
+```{r}
+#| eval: false
+ncol(infections)
+```
+
+It's good to look at the column attributes: what type of columns are we dealing with and is it what we expect?
+
+```{r}
+#| eval: false
+summary(infections)
+```
+
+```{r}
+#| eval: false
+str(infections)
+```
+
+## Python
+:::
+
+#### Quality control checks
+
+It's good to do some basic sanity / quality control checks. For example, if there are different categories in a column, do all the categories we expect show up or are there missing ones / misspelled etc.?
+
+::: {.panel-tabset group="language"}
+## R
+
+For example, we can check the unique values in a column:
+
+```{r}
+unique(infections$infection_type)
+```
+
+We can count the number of missing values in the column `infection_type`.
+You read the code "inside-out":
+
+```{r}
+sum(is.na(infections$infection_type))
+```
+
+## Python
+
+:::
+
+### Live demo: subsetting `infections`
+
+::: {.panel-tabset group="language"}
+## R
+
+Let's select `patient_id`:
+
+```{r}
+#| eval: false
+infections$patient_id
+```
+
+Or more than 1 column, by column name:
+
+```{r}
+infections[, c("patient_id", "systolic_pressure")]
+```
+
+Combine this with selecting only a subset of rows:
+
+```{r}
+infections[1:3, c("patient_id", "systolic_pressure")]
+```
+
+## Python
+:::
+
+## DA3: Manipulating data
+
+## DA4: Organise and combine
+

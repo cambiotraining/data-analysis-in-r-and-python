@@ -397,7 +397,7 @@ p.show()
 ```{python}
 #| results: hide
 #| label: fig-sex_hind_boxplot_fill_seaborn
-#| fig-cap: "Geometries with surfaces use `fill` for colours."
+#| fig-cap: "Seaborn uses `color` for fill colours."
 
 sns.boxplot(
     data = surveys,
@@ -412,8 +412,6 @@ plt.show()
 ```
 
 :::
-
-
 :::
 
 ### Aesthetics based on data
