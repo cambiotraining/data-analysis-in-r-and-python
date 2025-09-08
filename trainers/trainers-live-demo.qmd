@@ -29,6 +29,8 @@ library(tidyverse)
 
 ## DA2: Data & plotting
 
+Live demo's.
+
 ### Live demo: exploring `infections`
 
 ::: {.panel-tabset group="language"}
