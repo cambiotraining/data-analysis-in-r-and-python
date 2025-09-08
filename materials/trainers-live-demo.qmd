@@ -17,6 +17,18 @@ library(tidyverse)
 
 ## Python
 
+```{python}
+# A Python data analysis and manipulation tool
+import pandas as pd
+
+# Python equivalent of `ggplot2`
+from plotnine import *
+
+# If using seaborn for plotting
+import seaborn as sns
+import matplotlib.pyplot as plt
+```
+
 :::
 
 ## DA1: Getting started
@@ -34,11 +46,16 @@ Read in the data:
 
 ```{r}
 #| message: false
-infections <- read_csv("../materials/data/infections.csv")
+infections <- read_csv("data/infections.csv")
 ```
 
 
 ## Python
+
+```{python}
+infections = pd.read_csv("data/infections.csv")
+```
+
 :::
 
 #### Data structure
