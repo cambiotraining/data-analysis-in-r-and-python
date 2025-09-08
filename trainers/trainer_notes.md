@@ -7,6 +7,6 @@ In general, there three two main resources:
   - For participants: it's a reference to use after the course (course notes).
   - For trainers: useful to prepare the delivery of materials, i.e. knowing what you should be demonstrating interactively during the course.
   - For exercises during the course - at the relevant point of the course you can point participants to section X for the exercise.
-- A document with [live demo exercises](trainers-live-demo.qmd).
+- A document with [live demo exercises](trainers-live-demo.html).
 
 Below, we give details to help you prepare each section of the materials.
