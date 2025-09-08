@@ -2,9 +2,6 @@
 title: "Live demo exercises"
 ---
 
-
-[Return to course materials page](https://cambiotraining.github.io/data-analysis-in-r-and-python/)
-
 ## Section setup
 
 ::: {.panel-tabset group="language"}
@@ -35,8 +32,6 @@ import matplotlib.pyplot as plt
 
 ## DA2: Data & plotting
 
-Live demo's.
-
 ### Live demo: exploring `infections`
 
 ::: {.panel-tabset group="language"}
@@ -49,21 +44,37 @@ Read in the data:
 infections <- read_csv("data/infections.csv")
 ```
 
+And have a look:
+
+```{r}
+#| eval: false
+head(infections)
+```
+
 
 ## Python
 
+Read in the data:
+
 ```{python}
 infections = pd.read_csv("data/infections.csv")
+```
+
+And have a look:
+
+```{python}
+#| eval: false
+infections.head()
 ```
 
 :::
 
 #### Data structure
 
+Number of rows & columns:
+
 ::: {.panel-tabset group="language"}
 ## R
-
-Number of rows & columns:
 
 ```{r}
 #| eval: false
@@ -75,7 +86,25 @@ nrow(infections)
 ncol(infections)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+infections.shape[0]
+```
+
+```{python}
+#| eval: false
+infections.shape[1]
+```
+
+
+:::
+
 It's good to look at the column attributes: what type of columns are we dealing with and is it what we expect?
+
+::: {.panel-tabset group="language"}
+## R
 
 ```{r}
 #| eval: false
@@ -88,57 +117,116 @@ str(infections)
 ```
 
 ## Python
+
+```{python}
+#| eval: false
+infections.describe()
+```
+
 :::
 
 #### Quality control checks
 
 It's good to do some basic sanity / quality control checks. For example, if there are different categories in a column, do all the categories we expect show up or are there missing ones / misspelled etc.?
 
+For example, we can check the unique values in a column:
+
 ::: {.panel-tabset group="language"}
 ## R
 
-For example, we can check the unique values in a column:
-
 ```{r}
+#| eval: false
 unique(infections$infection_type)
 ```
 
+## Python
+
+```{python}
+#| eval: false
+infections["infection_type"].unique()
+```
+
+:::
+
 We can count the number of missing values in the column `infection_type`.
+
+::: {.panel-tabset group="language"}
+## R
+
 You read the code "inside-out":
 
 ```{r}
+#| eval: false
 sum(is.na(infections$infection_type))
 ```
 
 ## Python
 
+```{python}
+#| eval: false
+infections["infection_type"].isna().sum()
+```
+
 :::
 
 ### Live demo: subsetting `infections`
 
+Let's select `patient_id`:
+
 ::: {.panel-tabset group="language"}
 ## R
-
-Let's select `patient_id`:
 
 ```{r}
 #| eval: false
 infections$patient_id
 ```
 
+## Python
+
+```{python}
+#| eval: false
+infections.patient_id
+```
+
+:::
+
 Or more than 1 column, by column name:
+
+::: {.panel-tabset group="language"}
+## R
 
 ```{r}
 infections[, c("patient_id", "systolic_pressure")]
 ```
 
-Combine this with selecting only a subset of rows:
+## Python
+
+```{python}
+#| eval: false
+infections[["patient_id", "systolic_pressure"]]
+```
+
+:::
+
+Combine this with selecting only a subset of rows, let's say the first three rows.
+
+::: {.panel-tabset group="language"}
+## R
 
 ```{r}
+#| eval: false
 infections[1:3, c("patient_id", "systolic_pressure")]
 ```
 
 ## Python
+
+We need to be aware of the zero-based indexing, also noting that the value after the `:` is *not* included:
+
+```{python}
+#| eval: false
+infections[["patient_id", "systolic_pressure"]].iloc[0:3]
+```
+
 :::
 
 ## DA3: Manipulating data
