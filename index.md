@@ -78,3 +78,5 @@ If you think you should be added as an author, please get in touch with us.
 <!-- if there are no acknowledgements we can delete this section -->
 
 Some parts of these materials are loosely based on the original course contents of the ["Data Carpentry lesson in Ecology"](http://datacarpentry.org/R-ecology-lesson/), as released by @michonneau2019.
+
+We thank [Raquel Manzano Garcia](https://github.com/RaqManzano) and [Mark Fernandes](https://github.com/mfernandes61) for valuable feedback on the initial manuscript.
