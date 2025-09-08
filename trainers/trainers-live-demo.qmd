@@ -29,7 +29,7 @@ Read in the data:
 
 ```{r}
 #| message: false
-infections <- read_csv("data/infections.csv")
+infections <- read_csv("../materials/data/infections.csv")
 ```
 
 
