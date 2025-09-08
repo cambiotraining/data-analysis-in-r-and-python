@@ -1,13 +1,7 @@
 ---
 title: "Live demo exercises"
-format:
-  html:
-    toc: true
-    toc-location: left
-    toc-title: "On this page"
-    toc-float: true
-    toc-depth: 3
 ---
+
 
 [Return to course materials page](https://cambiotraining.github.io/data-analysis-in-r-and-python/)
 
