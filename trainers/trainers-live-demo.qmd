@@ -6,7 +6,6 @@ format:
     toc-location: left
     toc-title: "On this page"
     toc-float: true
-    toc-expand: true
     toc-depth: 3
 ---
 
