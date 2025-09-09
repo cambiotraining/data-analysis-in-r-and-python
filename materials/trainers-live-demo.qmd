@@ -47,7 +47,7 @@ infections <- read_csv("data/infections.csv")
 And have a look:
 
 ```{r}
-#| eval: false
+#| eval: true
 head(infections)
 ```
 
@@ -63,7 +63,7 @@ infections = pd.read_csv("data/infections.csv")
 And have a look:
 
 ```{python}
-#| eval: false
+#| eval: true
 infections.head()
 ```
 
@@ -77,24 +77,24 @@ Number of rows & columns:
 ## R
 
 ```{r}
-#| eval: false
+#| eval: true
 nrow(infections)
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 ncol(infections)
 ```
 
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections.shape[0]
 ```
 
 ```{python}
-#| eval: false
+#| eval: true
 infections.shape[1]
 ```
 
@@ -107,19 +107,19 @@ It's good to look at the column attributes: what type of columns are we dealing 
 ## R
 
 ```{r}
-#| eval: false
+#| eval: true
 summary(infections)
 ```
 
 ```{r}
-#| eval: false
+#| eval: true
 str(infections)
 ```
 
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections.describe()
 ```
 
@@ -135,14 +135,14 @@ For example, we can check the unique values in a column:
 ## R
 
 ```{r}
-#| eval: false
+#| eval: true
 unique(infections$infection_type)
 ```
 
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections["infection_type"].unique()
 ```
 
@@ -156,14 +156,14 @@ We can count the number of missing values in the column `infection_type`.
 You read the code "inside-out":
 
 ```{r}
-#| eval: false
+#| eval: true
 sum(is.na(infections$infection_type))
 ```
 
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections["infection_type"].isna().sum()
 ```
 
@@ -184,7 +184,7 @@ infections$patient_id
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections.patient_id
 ```
 
@@ -202,7 +202,7 @@ infections[, c("patient_id", "systolic_pressure")]
 ## Python
 
 ```{python}
-#| eval: false
+#| eval: true
 infections[["patient_id", "systolic_pressure"]]
 ```
 
@@ -214,7 +214,7 @@ Combine this with selecting only a subset of rows, let's say the first three row
 ## R
 
 ```{r}
-#| eval: false
+#| eval: true
 infections[1:3, c("patient_id", "systolic_pressure")]
 ```
 
@@ -223,8 +223,87 @@ infections[1:3, c("patient_id", "systolic_pressure")]
 We need to be aware of the zero-based indexing, also noting that the value after the `:` is *not* included:
 
 ```{python}
-#| eval: false
+#| eval: true
 infections[["patient_id", "systolic_pressure"]].iloc[0:3]
+```
+
+:::
+
+### Live demo: simple plot `infections`
+
+Let's start with a simple scatterplot, where we plot `body_temperature` on the x-axis and `crp_level` on the y-axis.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ggplot(infections, aes(x = body_temperature, y = crp_level)) +
+  geom_point()
+```
+
+## Python
+
+```{python}
+#| results: hide
+
+p = (ggplot(infections, aes(x = "body_temperature", y = "crp_level")) +
+  geom_point())
+  
+p.show()
+```
+
+:::
+
+We can explore this a bit further. For example, we can colour the points based on the `hospital` variable, to see if there are any patterns across the different hospitals:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ggplot(infections, aes(x = body_temperature, y = crp_level,
+                       colour = hospital)) +
+  geom_point()
+```
+
+## Python
+
+```{python}
+#| results: hide
+
+p = (ggplot(infections, aes(x = "body_temperature", y = "crp_level",
+                            colour = "hospital")) +
+  geom_point())
+  
+p.show()
+```
+
+:::
+
+### Live demo: facetting `infections`
+
+When we plotted `body_temperature` and `crp_level` against each other and coloured the data based on `hospital`, we ended up with a rather unclear plot. This is probably because there are no clear differences between the hospitals. However, we can separate these data a bit more clearly by using facets.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ggplot(infections, aes(x = body_temperature, y = crp_level,
+                       colour = hospital)) +
+  geom_point() +
+  facet_wrap(facets = vars(hospital))
+```
+
+## Python
+
+```{python}
+#| results: hide
+
+p = (ggplot(infections, aes(x = "body_temperature", y = "crp_level",
+                            colour = "hospital")) +
+  geom_point() +
+  facet_wrap("~ hospital"))
+  
+p.show()
 ```
 
 :::
