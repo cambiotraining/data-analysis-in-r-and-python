@@ -514,9 +514,9 @@ surveys["hindfoot_length"].isna().sum()
 For this exercise we'll be using the data from `data/parasites.csv`. Please do the following:
 
 1. Load the data.
-2. Check the structure of the data.
-3. Select the `lake` column.
-4. Select rows 12 to 29 of the `fish_length` column.
+2. Check the structure of the data. What column types do we have?
+3. Select the `lake` column. How many lakes are there?
+4. Select rows 12 to 29 of the `fish_length` column. Using code, what are the minimum and maximum values?
 
 ::: {.callout-answer collapse="true"}
 #### 1. Load the data.
@@ -601,6 +601,15 @@ We can use the `[ ]` notation to subset our data. This takes the order `[rows, c
 parasites[12:29, "fish_length"]
 ```
 
+We can find the minimum and maximum values with:
+
+```{r}
+min(parasites[12:29, "fish_length"])
+```
+
+```{r}
+max(parasites[12:29, "fish_length"])
+```
 
 ## Python
 
@@ -612,6 +621,15 @@ Remember that Python has zero-based indexing. So, if we want rows 12 to 29 (incl
 parasites.loc[11:28, "fish_length"]
 ```
 
+We can find the minimum and maximum values with:
+
+```{python}
+parasites.loc[11:28, "fish_length"].min()
+```
+
+```{python}
+parasites.loc[11:28, "fish_length"].max()
+```
 
 :::
 
