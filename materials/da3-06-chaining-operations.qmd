@@ -203,6 +203,8 @@ surveys |>
 
 :::
 
+## Exercises
+
 ### Chaining {#sec-exr_chaining}
 
 ::: {.callout-exercise #ex-chaining}
@@ -212,7 +214,7 @@ surveys |>
 
 For this exercise we'll be using the data from `data/parasites.csv`.
 
-The `fish_length` variable is the length of the fish measured in centimetres. Do the following:
+The `fish_length` variable is the length of the fish measured in centimeters. Do the following:
 
 * select all but the `parasite_count` column
 * rename the `fish_length` column to `fish_length_cm`
