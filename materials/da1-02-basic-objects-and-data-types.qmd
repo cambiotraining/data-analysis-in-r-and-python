@@ -614,6 +614,96 @@ We could remove all the rows that contain *any* missing data, thereby getting ri
 Instead, it would be better to tell the computer to ignore missing values on a variable-by-variable basis and calculate the averages on the data that *is* there.
 :::
 
+## Exercises
+
+### Creating objects {#sec-creating_objects}
+
+::::: {.callout-exercise #ex-creating_objects}
+#### Creating objects
+
+{{< level 1 >}}
+
+Create an object that contains a sequence of even numbers between 1 and 21.
+
+Using code, how many numbers are in the sequence?
+
+:::: {.callout-answer collapse="true"}
+
+We can do this as follows:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+num_seq <- seq(2, 21, by = 2)
+```
+
+Determine the length:
+
+```{r}
+length(num_seq)
+```
+
+
+## Python
+
+```{python}
+num_seq = list(range(2, 21, 2))
+```
+
+Determine the length:
+
+```{python}
+len(num_seq)
+```
+
+:::
+
+There are `r length(seq(2, 21, by = 2))` numbers in the sequence.
+::::
+:::::
+
+### Subsetting {#sec-exr_subsetting}
+
+::::: {.callout-exercise #ex-subsetting}
+#### Subsetting
+
+{{< level 1 >}}
+
+For this exercise you need to use the number sequence you created in @sec-creating_objects.
+
+Using subsetting, select the second half of the sequence.
+
+:::: {.callout-answer collapse="true"}
+
+We determined that we have `r length(seq(2, 21, by = 2))` numbers in the sequence, so we need to select the last 5.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+num_seq[6:10]
+```
+
+
+## Python
+
+We need to select items 5 to 10, which corresponds to start index `5` (inclusive) and stop index `10` (exclusive):
+
+```{python}
+num_seq[5:10]
+```
+
+Or using negative slicing:
+
+```{python}
+num_seq[-5:]
+```
+
+:::
+::::
+:::::
+
 ## Summary
 
 ::: {.callout-tip}

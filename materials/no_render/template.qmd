@@ -24,7 +24,6 @@ For this exercise we'll be using the data from `data/surveys.csv`.
 Exercise description.
 
 :::: {.callout-answer collapse="true"}
-#### heading
 
 Answer
 
