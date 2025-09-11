@@ -28,11 +28,114 @@ import matplotlib.pyplot as plt
 
 :::
 
-## DA1: Getting started
+## DA1: getting started
 
-## DA2: Data & plotting
+This is a hands-on demo.
 
-### Live demo: exploring `infections`
+::: {.panel-tabset group="language"}
+## R
+
+Live demo RStudio:
+
+* open RStudio
+* highlight panels
+* change default settings (`.Rdata` and not save workspace)
+* set up new RProject  `data-analysis`
+* create the subfolders (`data`, `images`, `scripts`)
+* create a script
+* download and copy the data files into `data`
+
+
+## Python
+
+Live demo JupyterLab:
+
+* open JupyterLab
+* highlight Launcher
+* show how to check working directory, change if needed (`data-analysis`)
+* create the subfolders (`data`, `images`, `scripts`) 
+* create a Notebook
+* download and copy the data files into `data`
+
+
+:::
+
+## DA1: data types
+
+Important to realise that there often is some order to how data types are interpreted. For example, look at the following:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+example <- c(22, 87, NA, 32)
+```
+
+```{r}
+class(example)
+```
+
+```{r}
+example <- c(22, 87, NA, "unsure")
+```
+
+```{r}
+class(example)
+```
+
+
+## Python
+
+:::
+
+## DA1: indexing
+
+A bit of a technical detail, but an important one, particularly if you're using both R and Python. The main focus of the example is **not** on the subsetting, it's on the fact that R has 1-based indexing and Python has 0-based indexing.
+
+Furthermore, that R's indexing is inclusive, and Python's exclusive (comparing `1:3` in R vs Python). That said, it's to create awareness of the fact that indexing has to start somewhere and that it can be different between programming languages.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+winnings <- c("first", "second", "third", "fourth")
+```
+
+The positional index is as follows:
+
+```{r}
+seq_along(winnings)
+```
+
+So, if we wanted to select the first and third values, we'd do:
+
+```{r}
+winnings[c(1, 3)]
+```
+
+## Python
+
+```{python}
+winnings = ["first", "second", "third", "fourth"]
+```
+
+The positional index is as follows:
+
+```{python}
+list(range(len(winnings)))
+```
+
+So, if we wanted to select the first and third values, we'd do:
+
+```{python}
+winnings[0]
+winnings[2]
+```
+
+:::
+
+
+## DA2: data exploration
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -69,7 +172,7 @@ infections.head()
 
 :::
 
-#### Data structure
+### Data structure
 
 Number of rows & columns:
 
@@ -125,7 +228,7 @@ infections.describe()
 
 :::
 
-#### Quality control checks
+### Quality control checks
 
 It's good to do some basic sanity / quality control checks. For example, if there are different categories in a column, do all the categories we expect show up or are there missing ones / misspelled etc.?
 
@@ -169,7 +272,7 @@ infections["infection_type"].isna().sum()
 
 :::
 
-### Live demo: subsetting `infections`
+## DA2: subsetting data
 
 Let's select `patient_id`:
 
@@ -229,7 +332,7 @@ infections[["patient_id", "systolic_pressure"]].iloc[0:3]
 
 :::
 
-### Live demo: simple plot `infections`
+### DA2: simple plots
 
 Let's start with a simple scatterplot, where we plot `body_temperature` on the x-axis and `crp_level` on the y-axis.
 
@@ -279,7 +382,7 @@ p.show()
 
 :::
 
-### Live demo: facetting `infections`
+## DA2: facetting data
 
 When we plotted `body_temperature` and `crp_level` against each other and coloured the data based on `hospital`, we ended up with a rather unclear plot. This is probably because there are no clear differences between the hospitals. However, we can separate these data a bit more clearly by using facets.
 
@@ -308,11 +411,226 @@ p.show()
 
 :::
 
-## DA3: Manipulating data
+## DA3: selecting columns
 
-## DA4: Organise and combine
+We're practising two things:
 
-## Live demo: joining `hospital_info`
+1. selecting columns
+2. creating columns (and highlight the use by plotting)
+
+Let's see which columns we have:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+colnames(infections)
+```
+
+
+## Python
+
+:::
+
+Let's say we only wanted to select some of these.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(infections, patient_id, body_temperature)
+```
+
+
+## Python
+
+:::
+
+Or select by data type:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(infections, where(is.numeric))
+```
+
+## Python
+
+:::
+
+Or based on a certain phrase within the column heading:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+select(infections, contains("_id"))
+```
+
+
+## Python
+
+:::
+
+## DA3: creating columns
+
+There aren't too many variables in our data set that we can transform. However, the CRP levels are a good example. The CRP (C-reactive protein) is a continuous biomarker, often used clinically to indicate inflammation or infection severity. It can be skewed at times, so scaling it could be useful if you're making comparisons across groups.
+
+::: {.callout-note}
+## Scaling vs log-transforming
+
+This falls well outside the scope of this course, but it's possible that the question comes up. We could also log-transform our data if there is an issue with skewing etc. Very simply & briefly put:
+
+* use `log()` when the distribution shape is the issue (e.g. skew, tails)
+* use `scale()` when the unit or range is the issue (often when comparing across different variables with different units)
+* using **both** can also be helpful, where you log-transform first, then scale the data to use in modelling.
+
+:::
+
+We can scale the data where, for each value, we subtract the mean and divide by the standard deviation.
+
+::: {.panel-tabset group="language"}
+## R
+
+In R, we can use the `scale()` function to do this.
+
+```{r}
+mutate(infections, crp_scaled = scale(crp_level))
+```
+
+Let's store this in a temporary object, so we can visualise it.
+
+```{r}
+example <- mutate(infections, crp_scaled = scale(crp_level))
+```
+
+We can then plot it, adding a reference line at `y = 0`.
+
+```{r}
+ggplot(example, aes(x = quarter, y = crp_scaled)) +
+  geom_jitter(width = 0.1) +
+  geom_hline(yintercept = 0, colour = "blue", linewidth = 1)
+```
+
+
+## Python
+
+:::
+
+## DA3: creating columns (conditional)
+
+Sometimes we need to create new columns based on certain conditions. Let's say we wanted to flag if patients not vaccinated and have been admitted to ICU we consider them as high risk.
+
+We want to encode this in a column `risk_factor`, where we label them as `"high"`. This would then allow us to add other values, such as `"low"` or `"medium"` at a later time.
+
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+mutate(infections,
+       risk_factor = ifelse(vaccination_status == "unvaccinated" & icu_admission == TRUE, "high", NA))
+```
+
+
+## Python
+
+:::
+
+## DA4: reshaping data
+
+To illustrate reshaping data, we're going to simplify our data set a little bit. First, we'll calculate the **average CRP levels** for each hospital, quarter, infection type, vaccination status and age group.
+
+We'll use that summary table to highlight some use cases for reshaping data from a long to a wide format - and back.
+
+### Creating a summary table for CRP
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_summary <- infections |> 
+  drop_na() |> 
+  group_by(hospital, quarter, infection_type, vaccination_status, age_group) |> 
+  summarise(mean_crp = round(mean(crp_level, na.rm = TRUE), 2)) |> 
+  ungroup()
+```
+
+Let's look at the output. We now have `r ncol(infections_summary)` columns, one for each of our grouping variables and at the end the `mean_crp` column containing the average CRP levels (rounded to two digits).
+
+```{r}
+head(infections_summary)
+```
+
+## Python
+
+:::
+
+### Wide table by quarter
+
+Let's say we'd be interested how the (average) CRP levels change over time across the different groupings. We'd be interested in having the `mean_crp` values for each `quarter` next to each other. That way we'd be able to plot quarterly average CRP levels against each other.
+
+We can do this as follows:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_wide <- infections_summary |> 
+  pivot_wider(names_from = "quarter",
+              values_from = "mean_crp")
+```
+
+```{r}
+head(infections_wide)
+```
+
+
+## Python
+
+:::
+
+This then allows us to plot the data, for example:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+#| warning: false
+ggplot(infections_wide, aes(x = Q1, y = Q2)) +
+  geom_point() +
+  geom_smooth(method = "lm", se = FALSE)
+```
+
+
+## Python
+
+:::
+
+### Back to long format
+
+We can revert back to a long format with the following:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+pivot_longer(infections_wide,
+             cols = Q1:Q3,           # columns to pivot
+             names_to = "quarter",   # column for headings
+             values_to = "mean_crp") # column for values
+```
+
+
+## Python
+
+:::
+
+And all is well with the world again.
+
+## DA4: joining data
 
 In the `infections` data set we have a variable called `hospital`. This contains the following unique entries:
 
