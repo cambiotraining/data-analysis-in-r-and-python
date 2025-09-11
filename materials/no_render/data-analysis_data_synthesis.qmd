@@ -259,6 +259,56 @@ gg_miss_var(df) +
 write_csv(df, file = "infections.csv")
 ```
 
+# Hospital data set for joining
+
+```{r}
+set.seed(456)  # reproducibility
+
+# Unique hospital IDs (matching those in df)
+hospital_id <- paste0("hospital_", 1:5)
+
+# Add some attributes
+hospital_name <- c("Royal London Hospital", 
+                   "Manchester General", 
+                   "Bristol Royal Infirmary", 
+                   "Edinburgh Medical Centre", 
+                   "Cardiff University Hospital")
+
+location <- c("London", "Manchester", "Bristol", "Edinburgh", "Cardiff")
+
+bed_capacity <- sample(300:900, size = 5, replace = FALSE)
+
+teaching_hospital <- sample(c(TRUE, FALSE), size = 5, replace = TRUE)
+
+# Assemble hospital info dataset
+hospital_info <- data.frame(
+  hospital = hospital_id,
+  hospital_name,
+  location,
+  bed_capacity,
+  teaching_hospital
+)
+
+# Add one "extra" hospital not in df to show join behaviour
+hospital_info <- rbind(
+  hospital_info,
+  data.frame(
+    hospital = "hospital_6",
+    hospital_name = "Leeds General Infirmary",
+    location = "Leeds",
+    bed_capacity = 750,
+    teaching_hospital = TRUE
+  )
+)
+
+hospital_info
+
+```
+
+```{r}
+write_csv(hospital_info, file = "hospital_info.csv")
+```
+
 
 # survey joining data set
 

@@ -1,0 +1,7 @@
+hospital,hospital_name,location,bed_capacity,teaching_hospital
+hospital_1,Royal London Hospital,London,784,TRUE
+hospital_2,Manchester General,Manchester,849,FALSE
+hospital_3,Bristol Royal Infirmary,Bristol,768,TRUE
+hospital_4,Edinburgh Medical Centre,Edinburgh,551,FALSE
+hospital_5,Cardiff University Hospital,Cardiff,582,TRUE
+hospital_6,Leeds General Infirmary,Leeds,750,TRUE
