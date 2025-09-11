@@ -312,3 +312,179 @@ p.show()
 
 ## DA4: Organise and combine
 
+## Live demo: joining `hospital_info`
+
+In the `infections` data set we have a variable called `hospital`. This contains the following unique entries:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |> count(hospital)
+```
+
+## Python
+:::
+
+Note that for some of the `hospital` entries there are missing data. This is relevant later on, when we're joining.
+
+We're now going to add information on the hospitals, which are stored in `hospital_info.csv`. Let's read in the data:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| message: false
+hospital_info <- read_csv("data/hospital_info.csv")
+```
+
+
+## Python
+:::
+
+Look at the data. There are `r hospital_info |> distinct(hospital) |> nrow()` distinct hospital entries, with additional information for each hospital. We have the following variables:
+
+| Variable           | Type        | Description                                                                 |
+|--------------------|-------------|-----------------------------------------------------------------------------|
+| `hospital`         | character (id) | Unique hospital identifier (`hospital_1` … `hospital_6`).                   |
+| `hospital_name`    | character   | Official hospital name (e.g., *Royal London Hospital*).                     |
+| `location`         | character   | City where the hospital is located (e.g., London, Manchester).              |
+| `bed_capacity`     | integer     | Approximate number of inpatient beds available at the hospital.             |
+| `teaching_hospital`| logical     | Indicates if the hospital is a teaching hospital (`TRUE` / `FALSE`).   |
+
+
+
+### Left join
+
+First, we'll add the `hospital_info` data to the `infections` data set. We do this with a left-join. We expect hospital info data to be added to our main `infections` table, if the `hospital` value in `infections` matches with the one in `hospital_info`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_left <- left_join(infections, hospital_info, by = "hospital")
+```
+
+Let's just select the ID column from `infections`, together with all the columns that have been added.
+
+```{r}
+infections_left |> 
+  select(patient_id, hospital, hospital_name, location, bed_capacity, teaching_hospital) |> 
+  head()
+```
+
+We can see that the hospital information is now added to the data. We don't expect any data to have dropped, so the number of observations/rows in `infections_left` should match the original `r nrow(infections)` from `infections`.
+
+```{r}
+nrow(infections_left)
+```
+
+## Python
+
+:::
+
+### Right join
+
+So, how does a right join then differ from a left join? Well, here we'd be adding the `infections` data to the `hospital_info` data (so, in the other direction). That means that for each `hospital` value that exists in `hospital_info` it will try and find the values that match the `hospital` column in `infections`.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_right <- right_join(infections, hospital_info, by = "hospital")
+```
+
+Again, the resulting table contains the data from both `infections` and `hospital_info`:
+
+```{r}
+head(infections_right)
+```
+
+How many observations do we expect? Let's have a look at how many we've got.
+
+```{r}
+nrow(infections_right)
+```
+
+
+## Python
+
+:::
+
+Here we see that we have fewer than the original `r nrow(infections)` observations, because we are joining in the other direction. Remember, there are missing values in our `infections` data set (`r sum(is.na(infections$hospital))` in total). When we're joining `infections` **to** `hospital_info`, these entries get dropped, because there is no missing value entry in the `hospital` column of `hospital_info`.
+
+For the eagle-eyed amongst you: we have `r nrow(infections_right)` observations/rows in `infections_right`, whereas there are `r sum(is.na(infections$hospital))` missing values. We might have expected there to be `r nrow(infections) - sum(is.na(infections$hospital))` rows (the difference between the number of rows in `infections` and the number of missing values), but there are `r nrow(infections_right)`.
+
+Why? Well, there is one entry in `hospital_info` that does not appear in `infections`: `hospital_6`. When we right join, this value gets retained, so this adds one additional row to the final output.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_right |> count(hospital)
+```
+
+
+## Python
+
+:::
+
+If we wouldn't want that, we'd use inner join.
+
+### Inner join
+
+Inner join will join two tables and only retain values (based on the joining ID) that exist in *both* tables.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_inner <- inner_join(infections, hospital_info, by = "hospital")
+```
+
+```{r}
+nrow(infections_inner)
+```
+
+Only the 5 hospitals that appear in the `infections` data set are retained:
+
+```{r}
+infections_inner |> count(hospital)
+```
+
+
+## Python
+
+:::
+
+This is entirely expected, since we don't have missing data in `hospital_info` (so all the missing data from `infections` are dropped), nor do we have a `hospital_6` entry in `infections` (so that is dropped too).
+
+### Full join
+
+If we wanted to retain *all* observations, regardless of which table they're from, we'd use a full join.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections_full <- full_join(infections, hospital_info, by = "hospital")
+```
+
+How many rows do we expect? Well, the `r nrow(infections)` from `infections` plus the one extra (`hospital_6` entry) from `hospital_info`:
+
+```{r}
+nrow(infections_full)
+```
+
+We can check that we've retained all values, by counting the number of observations for each `hospital` value:
+
+```{r}
+infections_full |> count(hospital)
+```
+
+
+## Python
+
+:::
+
+We see that **all** `hospital` values are retained, including the missing values *and* the one `hospital_6` value coming from the `hospital_info` data set. Success!
