@@ -23,13 +23,14 @@ There, each **column** contains a variable (a thing that we've measured). Each *
 ![An example of tabular data](images/tabular_data.png){#fig-tabular_data}
 
 ## Working with data
+
 Tabular data sets are often created in spreadsheet programmes, such as Excel. These programmes are actually very well-suited, since they make it easy to enter data and keep an overview. When it comes to *analysing* these data, we're better off using coding - that way we can keep track of our analysis.
 
 The default Excel format is not great, since it's a propriety format and not natively readable by other computer programmes. Good alternatives are `.csv` (comma-separated values) files or `.tsv` (tab-separated values) files.
 
 For the next few sections we'll be using the `surveys.csv` data set (which you should now have in your `data-analysis/data` sub folder).
 
-We'll read in these data now.
+We'll read in these data now. Some of the functions we use are not available natively, so we need to load some additional packages.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -40,7 +41,7 @@ If you haven't done so already, make sure to load the `tidyverse` package:
 library(tidyverse)
 ```
 
-Next, we read in the file using the `read_csv()` function. Note that there is also a `read.csv()` function, but that one behaves slightly differently, so ensure you use the correct function name!
+Next, we read in the file using the `read_csv()` function from `tidyverse`. Note that there is also a `read.csv()` function, but that one behaves slightly differently, so ensure you use the correct function name!
 
 ```{r}
 read_csv("data/surveys.csv")
@@ -484,6 +485,8 @@ This gives a slightly different result! Why? Well, there are missing data in the
 
 ::: {.panel-tabset group="language"}
 ## R
+
+We can count the number of missing values, by asking how many times the value in the `weight` column is missing. The answer you get is either `TRUE` or `FALSE` and R counts `TRUE` as `1` and `FALSE` as `0`. This is why you can use the `sum()` function to tally the number of `TRUE` values.
 
 ```{r}
 sum(is.na(surveys$weight))

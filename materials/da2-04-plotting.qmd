@@ -1012,7 +1012,8 @@ plot_python = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
         filename = "images/weight_vs_hindfootlength.png",
         units = "in",
         width = 7,
-        height = 5))
+        height = 5,
+        dpi = 300))
 ```
 
 ::: {.callout-note collapse="true"}
@@ -1041,7 +1042,7 @@ plot_seaborn.savefig("images/weight_vs_hindfootlength_sns.png", dpi = 300, bbox_
 
 Here, I've added a few extra arguments to demonstrate what you can change. The only two things that are required are (1) the plot you want to save and (2) the name of the plot, including the filename extension.
 
-The other arguments, such as `units =`, `width =` and `height =` are used to define the units size (inches in this case) and corresponding width/height values.
+The other arguments, such as `units =`, `width =` and `height =` are used to define the units size (inches in this case) and corresponding width/height values. It's a good idea to add the `dpi =` argument (dots-per-inch) to specify the resolution, particularly when there are minimum resolution requirements when publishing!
 
 ## Exercises
 

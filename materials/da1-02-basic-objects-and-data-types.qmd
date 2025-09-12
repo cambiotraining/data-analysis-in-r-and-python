@@ -569,6 +569,19 @@ mean(systolic_pressure, na.rm = TRUE)
 
 There are quite a few ways that you can deal with missing data and we'll discuss more of them in later sessions.
 
+We can also count the number of missing values we have, by using the `is.na()` function, together with `sum()`. Look at the following code:
+
+```{r}
+is.na(systolic_pressure)
+```
+
+For each value in `systolic_pressure` we get a `TRUE` or `FALSE` value. If the value is `NA`, it returns `TRUE`. If not missing, `FALSE`. Behind the scenes R sees `TRUE` as a value of `1` and `FALSE` as a value of `0`. We can thus count the number of `TRUE` values with:
+
+```{r}
+sum(is.na(systolic_pressure))
+```
+
+
 ## Python
 
 The built-in functionality of Python is not very good at dealing with missing data. This means that you normally need to deal with them manually.

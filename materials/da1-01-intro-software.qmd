@@ -79,6 +79,8 @@ Relative paths are relative to a certain location on your computer. Absolute pat
 
 ![Relative vs absolute paths](images/working_directory_example.png){#fig-working_directory_example}
 
+The advantage of using relative paths instead of absolute paths is that they still work if you move your analysis to another computer (or you send your analysis to a collaborator). This means that it greatly **improves reproducibility of the code**, since your code will still work on other people's computers!
+
 :::
 
 ### Creating a working directory
