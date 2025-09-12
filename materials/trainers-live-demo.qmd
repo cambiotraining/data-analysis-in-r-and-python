@@ -272,7 +272,7 @@ infections["infection_type"].isna().sum()
 
 :::
 
-## DA2: subsetting data
+## DA2: subsetting tables
 
 Let's select `patient_id`:
 

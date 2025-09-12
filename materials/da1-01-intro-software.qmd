@@ -458,6 +458,8 @@ This uses the `mamba` package manager to install `numpy`. It gets the informatio
 
 ## Exercises
 
+### Creating a working directory {#sec-exr_createwd}
+
 :::{.callout-exercise #ex-createwd}
 #### Creating a working directory
 {{< level 1 >}}
@@ -470,6 +472,8 @@ Create a working directory called `data-analysis`. When you've done this, add th
 
 **Note**: programming languages are case-sensitive, so `data` is not treated the same way as `Data`.
 :::
+
+### Creating a script {#sec-exr_createscript}
 
 :::{.callout-exercise #ex-createscript}
 #### Creating a script
@@ -502,6 +506,8 @@ In the Launcher window, click on `Notebook`, `Python 3` and save the file (Save 
 
 :::
 
+### Running code {#sec-exr_runningcode}
+
 :::{.callout-exercise #ex-runningcode}
 #### Running code
 {{< level 1 >}}
@@ -517,6 +523,35 @@ In your new script `session_01`, run some mathematical operations, such as:
 
 :::{.callout-hint}
 Remember, you run the code using <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>Command</kbd> + <kbd>Enter</kbd> on Mac).
+:::
+
+:::
+
+### Functions {#sec-exr_functions}
+
+:::{.callout-exercise #ex-functions}
+#### Functions
+
+{{< level 2 >}}
+
+In your new script `session_01`, find the absolute value for `-11`. Use Google or a chatbot to find which function you need.
+
+:::{.callout-answer collapse="true"}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+abs(-11)
+```
+
+## Python
+
+```{python}
+abs(-11)
+```
+
+:::
 :::
 
 :::
