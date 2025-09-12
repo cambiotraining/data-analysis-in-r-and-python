@@ -18,7 +18,7 @@ book:
       chapters:
         - materials/da4-09-reshaping-data.qmd
         - materials/da4-10-combining-data.qmd
-        - materials/da4-11-cleaning-data.qmd
     - part: "Additional resources"
       chapters:
+        - materials/da4-11-cleaning-data.qmd
         - materials/trainers-live-demo.qmd

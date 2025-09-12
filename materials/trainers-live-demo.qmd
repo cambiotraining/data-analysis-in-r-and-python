@@ -332,7 +332,7 @@ infections[["patient_id", "systolic_pressure"]].iloc[0:3]
 
 :::
 
-### DA2: simple plots
+## DA2: simple plots
 
 Let's start with a simple scatterplot, where we plot `body_temperature` on the x-axis and `crp_level` on the y-axis.
 
@@ -394,6 +394,13 @@ ggplot(infections, aes(x = body_temperature, y = crp_level,
                        colour = hospital)) +
   geom_point() +
   facet_wrap(facets = vars(hospital))
+```
+
+```{r}
+  ggplot(infections, aes(x = body_temperature, y = crp_level,
+                         colour = hospital)) +
+    geom_point() +
+    facet_grid(rows = vars(icu_admission), cols = vars(hospital))
 ```
 
 ## Python

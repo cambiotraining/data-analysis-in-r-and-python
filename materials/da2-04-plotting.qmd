@@ -904,6 +904,8 @@ p = sns.relplot(
     col = "sex",           # facet by sex
     kind = "scatter"       # scatterplot
 )
+
+plt.show()
 ```
 
 :::
@@ -911,6 +913,61 @@ p = sns.relplot(
 :::
 
 In the end, our data is split into three sub-panels - one for each group (if missing values are included). This makes it easy to see trends across the groups. Or, in this case, that there doesn't seem to be much difference in the distribution across the female and male observations.
+
+Lastly, we can also split by two variables.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| warning: false
+#| label: fig-facetgrid
+#| fig-cap: "Splitting into rows and columns."
+ggplot(data = surveys,
+       mapping = aes(x = weight, y = hindfoot_length)) +
+  geom_point() +
+  facet_grid(rows = vars(plot_id), cols = vars(sex))
+```
+
+## Python
+
+```{python}
+#| results: hide
+#| label: fig-facetgrid_py
+#| fig-cap: "Splitting into rows and columns."
+p = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
+        geom_point() +
+        facet_grid("plot_id ~ sex"))
+
+p.show()
+```
+
+::: {.callout-note collapse="true"}
+## Seaborn equivalent
+
+```{python}
+#| results: hide
+#| label: fig-facetgrid_seaborn
+#| fig-cap: "Splitting into rows and columns."
+
+# Using relplot (shorthand for FacetGrid + scatterplot)
+p = sns.relplot(
+    data = surveys,
+    x = "weight",
+    y = "hindfoot_length",
+    col = "sex",           # facet by sex
+    row = "plot_id",
+    kind = "scatter"       # scatterplot
+)
+
+plt.show()
+```
+
+:::
+
+:::
+
+Truly a terrible plot, because there are far too many groups in `plot_id`! We'll see how to deal with this in later chapters.
 
 ## Saving plots
 
