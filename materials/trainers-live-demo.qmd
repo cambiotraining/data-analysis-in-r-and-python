@@ -43,8 +43,6 @@ Live demo RStudio:
 * set up new RProject  `data-analysis`
 * create the subfolders (`data`, `images`, `scripts`)
 * create a script
-* download and copy the data files into `data`
-
 
 ## Python
 
@@ -55,8 +53,6 @@ Live demo JupyterLab:
 * show how to check working directory, change if needed (`data-analysis`)
 * create the subfolders (`data`, `images`, `scripts`) 
 * create a Notebook
-* download and copy the data files into `data`
-
 
 :::
 
