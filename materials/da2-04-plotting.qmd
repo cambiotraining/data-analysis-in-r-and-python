@@ -156,7 +156,7 @@ We don't have to add any information within the `geom_point()` function, because
 
 ### Building up plots
 
-The good thing about `ggplot()` is that it builds up the plot layer-by-layer. We don't even have to provide it with a geometry to start with and it'll still create the outline of a plot.
+The good thing about `ggplot()` is that it builds up the plot layer-by-layer. We don't even have to provide it with a geometry to start with and it'll still create the outline of a plot. Let's illustrate this with another example, where we plot `hindfoot_length` on the y-axis for each `sex` group.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -166,7 +166,7 @@ The good thing about `ggplot()` is that it builds up the plot layer-by-layer. We
 #| label: fig-weight_hind_scatter_no_geom
 #| fig-cap: "Geometries are needed to visualise the data."
 ggplot(data = surveys,
-       mapping = aes(x = weight, y = hindfoot_length))
+       mapping = aes(x = sex, y = hindfoot_length))
 ```
 
 ## Python
@@ -176,13 +176,13 @@ ggplot(data = surveys,
 #| label: fig-weight_hind_scatter_no_geom_py
 #| fig-cap: "Geometries are needed to visualise the data."
 p = (ggplot(data = surveys,
-        mapping = aes(x = "weight", y = "hindfoot_length")))
+        mapping = aes(x = "sex", y = "hindfoot_length")))
 
 p.show()
 ```
 :::
 
-However, that obviously is not very useful. The nice thing is that we can add multiple layers to a single plot. Let's illustrate this with a different example. We have a column `sex` in the data. This contains three possible values:`F` (female),  `M` (male) and `NA` (not recorded).
+However, that obviously is not very useful. The nice thing is that we can add multiple layers to a single plot. We have a column `sex` in the data. This contains three possible values:`F` (female),  `M` (male) and `NA` (not recorded).
 
 Let's look at the hindfoot length distribution across these groups.
 
