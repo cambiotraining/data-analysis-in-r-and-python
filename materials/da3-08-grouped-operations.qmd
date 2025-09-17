@@ -385,7 +385,7 @@ surveys |>
   summarise(obs_present = sum(!is.na(species_id)),    # count non-missing data
             obs_absent = sum(is.na(species_id)),      # count missing data
             n_obs = n(),                              # total number of rows
-            precentage_absent = 
+            percentage_absent = 
               (obs_absent / n_obs) * 100) |>          # percentage of missing data
   ungroup()
 ```
