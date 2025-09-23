@@ -348,12 +348,10 @@ We need to do this in two steps:
 Here we're using `(  )` around the pipeline, so we can break up the code into different lines. This aids with readability, but doesn't change how the code works!
 
 ```{python}
-# Filter years 1981 and 1982
-filtered = surveys[surveys["year"].isin([1981, 1982])]
-
 # Group by year and summarise
 summary = (
-    filtered                               # input DataFrame
+     surveys
+    .query("year in [1981, 1982]")         # filter data based on year
     .groupby("year")                       # group by year
     .agg(                                  # create summary statistics
         mean_weight = ("weight", "mean"),  # calculate mean weights
@@ -448,7 +446,7 @@ first_min_per_year = (
 first_min_per_year.head()
 ```
 
-Here we're adding `group_keys = False`, so we're not adding the group labels to the index.
+Here we're adding `group_keys = False` to the `groupby()` function, so we're not adding the group labels to the index. We are using `.idxmin()` to find the minimum index id.
 :::
 
 ### Grouped changes
