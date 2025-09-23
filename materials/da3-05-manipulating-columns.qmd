@@ -122,7 +122,7 @@ surveys.filter(like = "_id")
 Another thing we often want to do is select columns by their data type. For example, if we wanted to select all numerical columns we could do this:
 
 ```{python}
-surveys.select_dtypes(include = ["number"])
+surveys.select_dtypes(include = "number")
 ```
 
 :::

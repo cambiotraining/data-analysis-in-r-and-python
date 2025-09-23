@@ -437,33 +437,18 @@ surveys |>
 ## Python
 
 ```{python}
-# Drop rows where weight is missing
-surveys_filtered = surveys.dropna(subset = ["weight"])  # get non-NA weights
-
-# For each year, get rows with the minimum weight
-min_weights_by_year = (
-    surveys_filtered.loc[
-        surveys_filtered.groupby("year")["weight"]      # group by year
-        .transform("min") == surveys_filtered["weight"] # get min weight
-    ]
+#| warning: false
+first_min_per_year = (
+    surveys.dropna(subset=["weight"])                     # 1. remove rows with missing weight
+           .groupby("year", group_keys = False)           # 2. split data into groups by year
+           .apply(lambda g: g.loc[g["weight"].idxmin()])  # 3. in each group, pick row with min weight
+           .reset_index(drop = True)                      # 4. clean up index
 )
 
-# Look at the first few rows
-min_weights_by_year.head()
-```
-
-You can see that this outputs the minimum value, but if there are multiple entries for each year (such as in `1978`), multiple rows returned. If we only wanted to get a single row per minimum value, per year, then we can do the following:
-
-```{python}
-# Retain only the first occurrence of the minimum value
-first_min_per_year = surveys_filtered.loc[
-    surveys_filtered.groupby("year")["weight"].idxmin()
-].reset_index(drop = True)
-
-# Look at the first few rows
 first_min_per_year.head()
 ```
 
+Here we're adding `group_keys = False`, so we're not adding the group labels to the index.
 :::
 
 ### Grouped changes

@@ -233,7 +233,7 @@ Complete [creating a script](#ex-createscript) before proceeding.
 
 ### Splitting code {#sec-splitting_code}
 
-As your analysis grows, so does your code. So,often we want to split analyses into multiple scripts, for example:
+As your analysis grows, so does your code. So, often we want to split analyses into multiple scripts, for example:
 
 * `01_preprocessing` may contain data cleaning steps
 * `02_exploration` may contain exploratory plots of your data
