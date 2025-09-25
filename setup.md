@@ -44,7 +44,7 @@ Download and unzip the folder to your Desktop, then copy it into your working di
 
 ### Python
 
-- First install Mamba following [these instructions](file:///C:/Users/hugot/Documents/crit/repos/software-installation/_site/materials/mamba.html).
+- First install Mamba following [these instructions](https://cambiotraining.github.io/software-installation/materials/mamba.html).
   - **Windows users:** Make sure to first install WSL2 as instructed on that page.
 - Then, open a terminal and run the following command to install the required packages:
 
