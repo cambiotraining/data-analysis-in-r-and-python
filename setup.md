@@ -34,8 +34,32 @@ Download and unzip the folder to your Desktop, then copy it into your working di
 
 ### R
 
-You can find R installation instructions [here](https://cambiotraining.github.io/software-installation/materials/r-base.html).
+- First install R and RStudio following [these instructions](https://cambiotraining.github.io/software-installation/materials/r-base.html).
+- Then, open RStudio and run the following commands on the Console (bottom left panel) to install the required packages:
+
+    ```r
+    install.packages(c("MASS", "janitor", "naniar", 
+                      "patchwork", "scales", "tidyverse"))
+    ```
 
 ### Python
 
-You can find Python installation instructions [here](https://cambiotraining.github.io/software-installation/materials/python-base.html).
+- First install Mamba following [these instructions](file:///C:/Users/hugot/Documents/crit/repos/software-installation/_site/materials/mamba.html).
+  - **Windows users:** Make sure to first install WSL2 as instructed on that page.
+- Then, open a terminal and run the following command to install the required packages:
+
+  ```bash
+  mamba create -n data-analysis-course -y -c conda-forge python plotnine pyjanitor matplotlib missingno numpy pandas seaborn textwrap jupyterlab
+  ```
+
+- Once installation completes, activate the environment (your prompt should change to indicate you are in the `data-analysis-course` environment):
+
+  ```bash
+  mamba activate data-analysis-course
+  ```
+  
+- Finally, launch JupyterLab:
+
+  ```bash
+  jupyter lab
+  ```
