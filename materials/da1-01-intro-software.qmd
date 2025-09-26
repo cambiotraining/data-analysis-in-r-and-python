@@ -481,7 +481,7 @@ Create a working directory called `data-analysis`. When you've done this, add th
 #### Creating a script
 {{< level 1 >}}
 
-Create a script and save it as `session_01` in the `scripts` folder within your working directory.
+Create a script and save it as `01_session` in the `scripts` folder within your working directory.
 
 ::: {.callout-answer collapse="true"}
 
@@ -514,7 +514,7 @@ In the Launcher window, click on `Notebook`, `Python 3` and save the file (Save 
 #### Running code
 {{< level 1 >}}
 
-In your new script `session_01`, run some mathematical operations, such as:
+In your new script `01_session`, run some mathematical operations, such as:
 
 ```{r}
 #| eval: false
@@ -536,7 +536,7 @@ Remember, you run the code using <kbd>Ctrl</kbd> + <kbd>Enter</kbd> (or <kbd>Com
 
 {{< level 2 >}}
 
-In your new script `session_01`, find the absolute value for `-11`. Use Google or a chatbot to find which function you need.
+In your new script `01_session`, find the absolute value for `-11`. Use Google or a chatbot to find which function you need.
 
 :::{.callout-answer collapse="true"}
 

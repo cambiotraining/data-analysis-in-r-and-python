@@ -19,7 +19,7 @@ We’ve done different types of operations, all on the entire data set. Sometime
 ::: {.panel-tabset group="language"}
 ## R
 
-We'll continue this section with the script named `r paste0(intToUtf8(96), sub("\\..*$", ".R", knitr::current_input()), intToUtf8(96))`. If needed, add the following code to the top of your script and run it.
+We'll continue this section with the script named `03_session`. If needed, add the following code to the top of your script and run it.
 
 ```{r}
 #| message: false
@@ -32,7 +32,7 @@ infections <- read_csv("data/infections.csv")
 
 ## Python
 
-We'll continue this section with the Notebook named `r paste0(intToUtf8(96), sub("\\..*$", ".ipynb", knitr::current_input()), intToUtf8(96))`. Add the following code to the first cell and run it.
+We'll continue this section with the Notebook named `03_session`. Add the following code to the first cell and run it.
 
 ```{python}
 # A Python data analysis and manipulation tool
