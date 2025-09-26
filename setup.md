@@ -49,13 +49,13 @@ Download and unzip the folder to your Desktop, then copy it into your working di
 - Then, open a terminal and run the following command to install the required packages:
 
   ```bash
-  mamba create -n data-analysis-course -y -c conda-forge python plotnine pyjanitor matplotlib missingno numpy pandas seaborn textwrap jupyterlab
+  mamba create -n data-analysis -y -c conda-forge python plotnine pyjanitor matplotlib missingno numpy pandas seaborn textwrap jupyterlab
   ```
 
-- Once installation completes, activate the environment (your prompt should change to indicate you are in the `data-analysis-course` environment):
+- Once installation completes, activate the environment (your prompt should change to indicate you are in the `data-analysis` environment):
 
   ```bash
-  mamba activate data-analysis-course
+  mamba activate data-analysis
   ```
   
 - Finally, launch JupyterLab:
