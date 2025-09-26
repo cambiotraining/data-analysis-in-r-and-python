@@ -70,7 +70,7 @@ To figure out which format you might need, it may help to think of which visuali
 * If you were interested in the correlation of this metric between 2021 and 2022, then the wide format would be more suitable: `aes(x = yr_2021, y = yr_2022, colour = record_id)`.
 :::
 
-## From long to wide
+## From long to wide {#sec-long_to_wide}
 
 Let's illustrate that with a dummy data set, called `surveys_join`. In this synthetic data set we have `weight` measurements for individuals across four years: 2021 - 2024. This means that there are four measurements for each `record_id`.
 
@@ -140,6 +140,13 @@ surveys_wide = surveys_wide.reset_index()
 
 surveys_wide.head()
 ```
+
+
+:::{.callout-note}
+## More on adding the prefix
+
+We explain the `f` notation in more detail in @sec-variable_naming. Briefly, in the example above we take all the column names (`surveys_wide.columns` and for each column (`for col in`) we add the `yr_` prefix.
+:::
 
 :::
 

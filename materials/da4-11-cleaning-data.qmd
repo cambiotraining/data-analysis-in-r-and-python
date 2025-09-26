@@ -91,7 +91,7 @@ messy_data = pd.read_csv("data/messy_data.csv")
 
 :::
 
-### Variable naming
+### Variable naming {#sec-variable_naming}
 
 The `messy` data set has many different issues with it. One of the issues is that the column headers are not consistent. This is an issue that you'll come across on a regular basis, since people have their own style (usually an inconsistent one!).
 
@@ -157,6 +157,34 @@ messy_data <- messy_data |>
 ```{python}
 messy_data = messy_data.clean_names()
 ```
+
+Sometimes we also want to include generic prefixes to our column names. We can do this with f-strings.
+
+::: {.callout-note}
+## Formatted string literals (f-strings)
+
+These let you insert variables or expressions directly into a string by prefixing it with `f` or `F`.
+
+Have a look at this example:
+
+```{python}
+course = "Data analysis in"
+language = "Python"
+
+message = f"This is the {course} in {language} course."
+
+print(message)
+```
+
+We already used f-strings earlier in @sec-long_to_wide. There we created a prefix `yr_` for each column.
+
+```{python}
+#| eval: false
+surveys_wide.columns = [f"yr_{col}" for col in surveys_wide.columns]
+```
+
+This example uses list comprehension: `[f"yr_{col}" for col in surveys_wide.columns]`. It loops through each `col` in `surveys_wide.columns` and for each column it creates an f-string `f"yr_{col}`. The value of `col` gets taken from whatever the column name is, in our case a number representing the year.
+:::
 
 :::
 
