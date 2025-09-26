@@ -408,8 +408,10 @@ auxin_wide |>
 
 ```{python}
 auxin_wide.assign(
-    avg_height = ((auxin_wide["high"] + auxin_wide["low"] + auxin_wide["none"]) / 3).round(1)
-).head()
+    avg_height = auxin_wide[["high", "low", "none"]] # select columns
+    .mean(axis = 1)                                  # calculate mean
+    .round(1)                                        # round to 1 decimal
+).head()                                             # display first few rows
 ```
 
 :::

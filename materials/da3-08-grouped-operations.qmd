@@ -500,10 +500,8 @@ surveys |>
 summary = (
     surveys
     .groupby("year")
-    .agg(
-        n_obs_f = ("sex", lambda x: (x == "F").sum()),
-        n_obs_m = ("sex", lambda x: (x == "M").sum())
-    )
+    .agg(n_obs_f = ("sex", lambda x: (x == "F").sum()),
+         n_obs_m = ("sex", lambda x: (x == "M").sum()))
     .reset_index()
 )
 
