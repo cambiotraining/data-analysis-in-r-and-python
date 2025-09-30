@@ -57,6 +57,31 @@ We'll be using the `read_csv()` function from `pandas`, so make sure to load thi
 import pandas as pd
 ```
 
+From hereon, when using tabular data, we'll be using the `pandas` package. We will cover its idiosyncrasies as and when we encounter them, but there are two general concepts to be aware of at this stage.
+
+::: {.callout-important}
+## Views versus copies
+
+When you select parts of a table in `pandas` you don't get a completely new object, but you get a *view* of the original data. This is great when you're just inspecting or viewing the data. 
+
+However, if you're making changes to the object that you've stored the table in (in our case `surveys`) then you might want to save these changes in a new object. If you want to do this, you create a *copy* of the data using the `.copy()` method.
+
+Which one you use is dependent on what you're trying to achieve. Don't worry - we'll be explicit when we need to make copies!
+
+:::
+
+::: {.callout-important}
+## Methods versus attributes
+
+When interacting with `pandas` tables (called DataFrames) we often use methods and attributes. The difference between the two can appear a bit subtle, so we illustrate the difference below.
+
+* *Methods* are functions that belong to an object. They are always used with parentheses, because they *do* something (e.g. `surveys.head()` gives the first few rows of the `surveys` object).
+* *Attributes* are properties of an object and are accessed *without* parentheses. They describe the object (e.g. `surveys.shape` returns the dimensions of `surveys`).
+
+:::
+
+Right, with that out of the way we can read in the data:
+
 ```{python}
 pd.read_csv("data/surveys.csv")
 ```
