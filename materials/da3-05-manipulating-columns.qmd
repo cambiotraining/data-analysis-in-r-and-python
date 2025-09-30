@@ -375,6 +375,10 @@ infections.columns # column names
 infections.describe() # summary statistics
 ```
 
+::: {.callout-note}
+We can see that the `icu_admission` column has a data type of `object` (text). This is not correct: it should be logical / boolean (`True` or `False`). Think about why this might have happened and how to fix this. You'll need to consider this later on in the exercise!
+:::
+
 :::
 
 Now that we have a much better view of what our data looks like, let's play around with selecting and manipulating columns.
@@ -430,7 +434,33 @@ select(infections, -where(is.logical))
 
 ## Python
 
-We can do something similar as with the numerical column, just specifying the `bool` type and now excluding it:
+We can do something similar as with the numerical column, just specifying the `bool` type and now excluding it. However, as we saw earlier, the only column that is supposed to have logical / boolean data (`icu_admission`) did not get read in accordingly. So, we need to (1) find out why and (2) fix it.
+
+Let's see what kind of data we have in the column.
+
+```{python}
+infections.icu_admission.dtype 
+```
+
+This gives us a data type of `O` for `object`. Let's see what categories we have in the column. We can count the number of occurrences using `.value_counts()`, but als include the missing data - if there are any present.
+
+```{python}
+infections["icu_admission"].value_counts(dropna = False)
+```
+
+We can see that we have 'True' and 'False' (as expected). But we also have missing data, which is the reason why `pandas` is reading the column in as text. We can coerce (force) the column to be viewed as logical data.
+
+```{python}
+infections["icu_admission"] = infections["icu_admission"].astype("boolean")
+```
+
+We can see that the `dtype` has changed:
+
+```{python}
+infections.icu_admission.dtype
+```
+
+Lastly, we can now *finally* unselect our column:
 
 ```{python}
 infections.select_dtypes(exclude = ["bool"])
@@ -536,7 +566,7 @@ infections["systolic_pressure_kpa"] = infections["<FIXME>"] / 7.5006
 
 # plot the data
 p = (ggplot(infections, aes(x = "<FIXME>", y = "systolic_pressure_kpa")) +
-  geom_<FIXME>(aes(fill = "<FIXME>")))
+  geom_<FIXME>(aes(fill = infections["<FIXME>"].astype(str))))
   
 p.show()
 ```
@@ -549,7 +579,7 @@ infections["systolic_pressure_kpa"] = infections["systolic_pressure"] / 7.5006
 
 # plot the data
 p = (ggplot(infections, aes(x = "age_group", y = "systolic_pressure_kpa")) +
-  geom_boxplot(aes(fill = "icu_admission")))
+  geom_boxplot(aes(fill = infections["icu_admission"].astype(str))))
   
 p.show()
 ```
@@ -589,7 +619,7 @@ infections["systolic_pressure_kpa"] = infections["systolic_pressure"] / 7.5006
 
 # plot the data
 p = (ggplot(infections, aes(x = "age_group", y = "systolic_pressure_kpa")) +
-  geom_boxplot(aes(fill = "icu_admission")))
+  geom_boxplot(aes(fill = infections["icu_admission"].astype(str))))
   
 p.show()
 ```
