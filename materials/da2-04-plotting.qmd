@@ -136,6 +136,21 @@ plt.show()
 
 :::
 
+::: {.callout-note collapse="true"}
+## Pandas equivalent
+
+For simple plots you can also use the built-in plotting functionality from `pandas`. We'll only show this once, because there are so many different ways to plot data that we don't want to clutter the materials. However, it can be useful if you want to have a quick preview of your data. More information on this can be found in the [official documentation](https://pandas.pydata.org/docs/reference/api/pandas.DataFrame.plot.html).
+
+```{python}
+#| results: hide
+#| label: fig-weight_hind_scatter_pandas
+#| fig-cap: "Scatterplot of weight vs hindfoot_length"
+
+surveys.plot(x = "weight", y = "hindfoot_length", kind = "scatter")
+```
+
+:::
+
 :::
 
 Let's unpack that a bit. We specify which data to use with the `data =` argument (our `surveys` data set in this case).
