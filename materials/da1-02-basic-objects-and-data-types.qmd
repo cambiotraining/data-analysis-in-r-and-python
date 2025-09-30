@@ -645,39 +645,10 @@ list(np.linspace(1, 10, num = 21)) # 21 equally spaced values from 1 to 10
 
 Sometimes we want to extract one or more values from a collection of data. We will go into more detail later, but for now we'll see how to do this on the simple data structures we've covered so far.
 
-::: {.callout-warning collapse="true"}
-## Technical: Differences in indexing between R and Python
-
-In the course materials we keep R and Python separate in most cases. However, if you end up using both languages at some point then it's important to be aware about some key differences. One of them is **indexing**.
-
-Each item in a collection of data has a number, called an *index*. Now, it would be great if this was consistent across all programming languages, but it's not.
-
-R uses **1-based indexing** whereas Python uses **zero-based indexing**. What does this mean? Compare the following:
-
-```{r}
-#| eval: false
-
-plants <- c("tree", "shrub", "grass") # the index of "tree" is 1, "shrub" is 2 etc.
-```
-
-```{python}
-#| eval: false
-
-plants = ["tree", "shrub", "grass"]   # the index of "tree" is 0, "shrub" is 1 etc.  
-```
-
-
-Behind the scenes of any programming language there is a lot of counting going on. So, it matters if you count starting at zero or one. So, if I'd ask:
-
-"Hey, R - give me the items with index 1 and 2 in `plants`" then I'd get `tree` and `shrub`. 
-
-If I'd ask that question in Python, then I'd get `shrub` and `grass`. Fun times.
-:::
+For simple subsetting we can use square brackets `[ ]` to extract values. Let's explore this using our `weather` object.
 
 ::: {.panel-tabset group="language"}
 ## R
-
-In R we can use square brackets `[ ]` to extract values. Let's explore this using our `weather` object.
 
 ```{r}
 weather          # remind ourselves of the data
@@ -689,16 +660,40 @@ weather[-1]      # extract all apart from the first value
 
 ## Python
 
-Let's explore this using our `weather` object.
-
 ```{python}
 weather          # remind ourselves of the data
 weather[1]       # extract the second value
 weather[1:4]     # extract the second to fourth value (end index is exclusive)
-weather[2], weather[0] # extract the third and first value
 weather[1:]      # extract all apart from the first value
 ```
 
+:::
+
+::: {.callout-warning collapse="true"}
+## Technical: Differences in indexing between R and Python
+
+In the course materials we keep R and Python separate in most cases. However, if you end up using both languages at some point then it's important to be aware about some key differences. One of them is **indexing**.
+
+Each item in a collection of data has a number, called an *index*. Now, it would be great if this was consistent across all programming languages, but it's not.
+
+R uses **1-based indexing** whereas Python uses **zero-based indexing**. What does this mean? Compare the following:
+
+```{r}
+#| eval: false
+plants <- c("tree", "shrub", "grass") # the index of "tree" is 1, "shrub" is 2 etc.
+```
+
+```{python}
+#| eval: false
+plants = ["tree", "shrub", "grass"]   # the index of "tree" is 0, "shrub" is 1 etc.  
+```
+
+
+Behind the scenes of any programming language there is a lot of counting going on. So, it matters if you count starting at zero or one. So, if I'd ask:
+
+"Hey, R - give me the items with index 1 and 2 in `plants`" then I'd get `tree` and `shrub`. 
+
+If I'd ask that question in Python, then I'd get `shrub` and `grass`. Fun times.
 :::
 
 
@@ -752,7 +747,7 @@ sum(is.na(systolic_pressure))
 
 The built-in functionality of Python is not very good at dealing with missing data. This means that you normally need to deal with them manually.
 
-One of the ways you can denote missing data in Python is with `None`. Let's look at the following data, where we have measured six different patients and recorded their systolic blood pressure.
+One of the ways you can denote missing data in Python is with `None` or `NaN` ("Not A Number"). Let's look at the following data, where we have measured six different patients and recorded their systolic blood pressure.
 
 ```{python}
 systolic_pressure = [125, 134, None, 145, None, 141]
