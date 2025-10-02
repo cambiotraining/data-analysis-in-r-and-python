@@ -60,6 +60,7 @@ Then, if needed, add the following code to the top of your script and run it.
 ```{python}
 # A Python data analysis and manipulation tool
 import pandas as pd
+import numpy as np
 
 # Python equivalent of `ggplot2`
 from plotnine import *
@@ -448,8 +449,10 @@ msno.matrix(surveys)
 
 For this exercise we'll be using the data from `data/infections.csv`.
 
-1. Filter for all the rows where the infection type is `bacterial` and the patient was not admitted to the ICU (Intensive Care Unit).
-2. Filter for all the rows where the patient is older than 65 and CRP levels are either between 10-15 or 50-60.
+Using these data, please answer the following questions:
+
+1. How many patients had a bacterial infection, but were not admitted to the ICU (Intensive Care Unit)?
+2. In patients older than 65, how many have CRP levels between 10-15 mg/L or 50-60 mg/L?
 
 :::: {.callout-answer collapse="true"}
 
@@ -484,7 +487,8 @@ To get the data we want, we need to filter for rows where:
 
 ```{r}
 infections |> 
-  filter(infection_type == "bacterial" & icu_admission == FALSE)
+  filter(infection_type == "bacterial" & icu_admission == FALSE) |> 
+  nrow()
 ```
 
 ## Python
@@ -493,6 +497,7 @@ infections |>
 (
   infections
   .query("infection_type == 'bacterial' and icu_admission == False")
+  .shape[0]
 )
 ```
 
@@ -513,7 +518,8 @@ Here we need to filter for three things:
 infections |> 
   filter(age_group == "65+") |> 
   filter(crp_level > 10 & crp_level < 15 |
-           crp_level > 50 & crp_level < 60)
+           crp_level > 50 & crp_level < 60) |> 
+  nrow()
 ```
 
 
@@ -526,6 +532,7 @@ Using `.query()`:
   infections
   .query(
     "age_group == '65+' and ((10 < crp_level < 15) or (50 < crp_level < 60))")
+    .shape[0]
 )
 ```
 
@@ -542,12 +549,127 @@ We can also use a more explicit version using normal subsetting (which becomes q
       ((infections["crp_level"] > 50) & (infections["crp_level"] < 60))
       )
     ]
+    .shape[0]
 )
 
 ```
 
 :::
 
+::::
+:::::
+
+### Creating categories: `risk_group` {#sec-creating_categories}
+
+::::: {.callout-exercise #arranging_data}
+#### Creating categories
+
+{{< level 3 >}}
+
+For this exercise we'll again be using the data from `data/infections.csv`.
+
+We are interested in creating a new category, based on the original data. Patients that are over 65 years of age and have a relatively high systolic blood pressure (over 140 mmHg) are considered "high" risk.
+
+Create a new column that contains the risk group (high, low) and count how many patients fall within each category.
+
+We've not yet covered counting observations, so you'll have to do a quick search!
+
+:::{.callout-hint}
+Make sure you consider how to deal with missing data!
+:::
+
+:::: {.callout-answer collapse="true"}
+
+We can do this in two steps:
+
+1. Create a new column that contains the risk group
+2. Count the number of rows within each group
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+infections |>
+  mutate(risk_group = case_when(
+    # if age_group AND systolic_pressure are not missing
+    !is.na(age_group) & !is.na(systolic_pressure) &
+      # AND age_group is 65+ AND systolic_pressure > 140
+      # then assign a risk group "high"
+      age_group == "65+" & systolic_pressure > 140 ~ "high",
+    # if age_group AND systolic_pressure are not missing
+    # then assign a risk group "low"
+    !is.na(age_group) & !is.na(systolic_pressure) ~ "low",
+    # otherwise, assign the missing value character
+    TRUE ~ NA_character_)) |>
+  count(risk_group)
+```
+
+A more intuitive way would have been to do something like this:
+
+```{r}
+infections |> 
+  mutate(risk_group = ifelse(age_group == "65+" & systolic_pressure > 140, "high", "low")) |> 
+  count(risk_group)
+```
+
+Which would read something like "if age group is 65+ and systolic pressure is more than 140, assign "high", otherwise assign "low". Which, at first glance, should really result in the same assignments.
+
+However, the results here are different. Why? This is because of the way that missing values are being handled.
+
+In the latter, simpler, syntax the condition where `NA` is returned is different. Let's look a bit closer into how R handles these conditions. Consider the following:
+
+```{r}
+#| eval: false
+TRUE  & TRUE    # TRUE
+TRUE  & FALSE   # FALSE
+FALSE & FALSE   # FALSE
+NA    & TRUE    # NA
+NA    & FALSE   # FALSE   <-- important
+NA    & NA      # NA
+```
+
+Whenever the `ifelse()` statement results in `TRUE`, it returns `"high"`. When it results in a `FALSE`, it returns `"low"`. If it encounters `NA`, it returns `NA`.
+
+This means that if either of the value of `age_group` or `systolic_pressure` is missing (`NA`) AND the other condition is `FALSE` (i.e. `age_group` is *not* `"65+"` or `systolic_pressure` is *not* `> 140`) then the resulting output is `FALSE`. Then, `"low"` is assigned.
+
+This doesn't make sense in our context. Because if either of the two values are missing we shouldn't even continue with the conditional statement, because a patient with high blood pressure - but no data on the age group - should not be classified as `"high"` in the risk group.
+
+## Python
+
+```{python}
+# The default risk_group value is missing data
+infections["risk_group"] = pd.Series(pd.NA, dtype = "object")
+
+# Assign "high" when both conditions are satisfied
+infections.loc[
+    (infections["age_group"] == "65+") & (infections["systolic_pressure"] > 140),
+    "risk_group"
+] = "high"
+
+# Assign "low" when both values are known AND condition is not met
+# using ~(...), which negates / inverses the condition
+infections.loc[
+    (infections["age_group"].notna()) & 
+    (infections["systolic_pressure"].notna()) & 
+    ~((infections["age_group"] == "65+") & (infections["systolic_pressure"] > 140)),
+    "risk_group"
+] = "low"
+
+# Count occurrences
+risk_counts = infections["risk_group"].value_counts(dropna = False).reset_index()
+risk_counts.columns = ["risk_group", "n"]
+
+risk_counts
+```
+
+Note that when we define the initial `risk_group` column, we fill the column with missing values (as a default). We do this with:
+
+`infections["risk_group"] = pd.Series(pd.NA, dtype = "object")`
+
+We can read this as "create a column called `risk_group`, in the `infections` data set, which contains a pandas Series, filled with missing data (`pd.NA`) and the type of column is text (`dtype = "object"`). 
+
+Following that, we then populate the column based on the conditions we check against. We have to explicitly check if we are dealing with missing data, or not.
+:::
 ::::
 :::::
 
