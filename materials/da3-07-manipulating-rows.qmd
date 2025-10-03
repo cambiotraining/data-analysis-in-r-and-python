@@ -77,10 +77,8 @@ surveys = pd.read_csv("data/surveys.csv")
 
 :::
 
+## Arranging data
 
-## Manipulation of observations
-
-### Ordering rows
 We often want to order data in a certain way, for example ordering by date or in alphabetically. The example below illustrates how we would order data based on `weight`:
 
 ::: {.carousel data-caption="Ordering by weight in ascending order (click to toggle)."}
@@ -115,6 +113,19 @@ surveys |>
   arrange(desc(year), hindfoot_length)
 ```
 
+:::{.callout-tip}
+## Shorthand for `desc()`
+
+We can also use a shorthand for `desc()`, by using preceding the variable with `-`:
+
+```{r}
+#| eval: false
+surveys |> 
+  arrange(-year)
+```
+
+:::
+
 ## Python
 
 ```{python}
@@ -138,36 +149,59 @@ surveys.sort_values(
 
 :::
 
-### Finding unique values
+## Finding unique values
 
-Sometimes it is useful to retain rows with unique combinations of some of our variables (i.e. remove any duplicated rows). 
+Sometimes it is useful to retain rows with unique combinations of some of our variables (i.e. remove any duplicated rows). We often use this to get a quick view on what groups we have in the data.
+
+Let's say we wanted to see which groups we have within the `sex` column in our `surveys` data set.
 
 ::: {.panel-tabset group="language"}
 ## R
 
-This can be done with the `distinct()` function.
+This can be do this with the `distinct()` function.
 
 ```{r}
 surveys |> 
-  distinct(species_id, year)
+  distinct(sex)
 ```
 
 
 ## Python
 
-We can do this by specifying which column we'd like to get the unique values from (here, we're using `species_id` and `year` as an example). We then use `.drop_duplicates()` to remove all the duplicate values:
+We can do this by specifying which column we'd like to get the unique values from. We then use `.drop_duplicates()` to remove all the duplicate values:
 
 ```{python}
-surveys[["species_id", "year"]].drop_duplicates()
+surveys[["sex"]].drop_duplicates()
 ```
 
 :::
 
-### Filtering by condition
+We can also combine this approach across multiple variables. For example, we could check which `sex` groups appear across which years. We simply add `year` to our original code.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+surveys |> 
+  distinct(sex, year)
+```
+
+
+## Python
+
+```{python}
+surveys[["sex", "year"]].drop_duplicates()
+```
+
+:::
+
+## Filtering by condition
+
 Often we want to filter our data based on specific conditions / properties in the data. For example, in our data set you might want to filter for certain years, a specific weight range or only get all the observations for the first 100 record IDs.
 
-Before we delve into this, it is important to understand that when we set a condition like above, the output 
-is a _logical vector_. Let's see an example using a small vector.
+Before we delve into this, it is important to understand that when we set a condition like above, the output is a _logical vector_. Let's illustrate this with a very basic example.
+
+Assume we have a series of year values, stored in an object called `some_years`. If we'd be interested in all the values where the year is before 2000, we would do the following:
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -177,9 +211,11 @@ some_years <- c(1985, 1990, 1999, 1995, 2010, 2000)
 some_years < 2000
 ```
 
+What is happening is that, for each value in `some_years`, the computer checks against the condition: is that value smaller than 2000? If it is, it returns `TRUE`. If not, it returns `FALSE`.
+
 ## Python
 
-For this example we'll keep using `pandas`, for consistency. Since we're only dealing with a simple, one-dimensional bunch of data, we create a `Series`:
+For this example we'll keep using `pandas`, for consistency. Since we're only dealing with a simple, one-dimensional bunch of data, we create a pandas `Series`:
 
 ```{python}
 some_years = pd.Series([1985, 1990, 1999, 1995, 2010, 2000])
@@ -188,9 +224,10 @@ result = some_years < 2000
 result
 ```
 
+What is happening is that, for each value in `some_years`, the computer checks against the condition: is that value smaller than 2000? If it is, it returns `True`. If not, it returns `False`.
 :::
 
-It is possible to combine several conditions by using the _logical operators_ 
+We can expand on this and supply multiple conditions. We do this by using the _logical operators_ 
 `&` (AND) and `|` (OR). For example, if we wanted the years between 1990 and 2000:
 
 ::: {.panel-tabset group="language"}
@@ -211,6 +248,7 @@ some_years < 1990 | some_years > 2000
 ## Python
 
 ```{python}
+# both conditions have to be true
 result = (some_years > 1990) & (some_years < 2000)
 
 result
@@ -219,6 +257,7 @@ result
 And if we wanted the years below 1990 or above 2000, then:
 
 ```{python}
+# only one or the other of the conditions has to be true
 result = (some_years < 1990) | (some_years > 2000)
 
 result
@@ -226,11 +265,11 @@ result
 
 :::
 
-This concept is also applied to tables. We could filter across all rows in the `surveys` data set, for a `hindfoot_length` of larger than 31 mm:
+This concept is also applied to tables. We could filter across all rows in the `surveys` data set, for a `hindfoot_length` of larger than 31 mm. Conceptually, the computer does what is displayed in the @fig-manipulation_filter_rows.
 
 ![The logic behind filtering: for each row the condition is checked (here: `hindfoot_length > 31`). If the outcome is `TRUE` then the row is returned.](images/manipulation-filter_rows.png){#fig-manipulation_filter_rows}
 
-We could then do this as follows:
+We implement this as follows.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -254,7 +293,7 @@ surveys.query("hindfoot_length > 31")
 
 :::
 
-This then only keeps the observations where `hindfoot_length > 31`, in this case 
+This only keeps the observations where `hindfoot_length > 31`, in this case 
 `r surveys |> filter(hindfoot_length > 31) |> nrow()` observations.
 
 ::: {.callout-important}
@@ -316,7 +355,7 @@ The `~` (bitwise NOT) can be used to negate a logical condition:
 
 :::
 
-### Missing data revisited {#missingdata-revisited}
+## Missing data revisited {#missingdata-revisited}
 
 It's important to carefully consider how to deal with missing data, as we
 [have previously seen](#missing-data). It's easy enough to filter out all rows that contain missing data, however this is rarely the best course of action, because you might accidentally throw out useful data in columns that you'll need later.
@@ -337,7 +376,7 @@ surveys |>
 ## Python
 
 ```{python}
-surveys.dropna(subset=["weight"])
+surveys.dropna(subset = ["weight"])
 ```
 
 :::
