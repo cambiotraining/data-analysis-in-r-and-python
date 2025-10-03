@@ -17,9 +17,11 @@ There are three main resources:
 
 - Canonical [recordings](https://drive.google.com/drive/folders/1bhdaPMeVgmFNBS8qOBd5VfG8yb-BIyAI?usp=sharing) of the lecture parts, to use as preparation for trainers and to share with students afterwards - where applicable. Each set of recordings corresponds to the version of the slides (e.g. `DA1_2526.01_recording_getting-started.mp4` corresponds to the first session (`DA1`), using the `2526.01` slide deck).
 
-## Timings
+## Course structure and timings
 
-Below is a very rough breakdown of the approximate timings. This is mainly useful to gauge how long to spend on each short lecture. The live coding and the time given to the students to work through the materials can vary a lot, depending on their background.
+Below is an overview of the course structure and a very rough breakdown of the approximate timings. This is mainly useful to gauge how long to spend on each short lecture. The live coding and the time given to the students to work through the materials can vary a lot, depending on their background.
+
+Of course there is ample flexibility regarding the timing of breaks etc. Just make sure that you do include the short lecture part for each individual section, since this gives the background information on the topic that is being covered.
 
 | Session | Topic                          | Start | End   |
 |---------|--------------------------------|-------|-------|
