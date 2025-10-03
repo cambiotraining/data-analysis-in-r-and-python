@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.8.25">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>15&nbsp; Live demo exercises</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
+  vertical-align: middle;
+}
+/* CSS for syntax highlighting */
+html { -webkit-text-size-adjust: 100%; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+  }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+</style>
+
+
+<script src="../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../">
+<link href="../materials/da4-11-cleaning-data.html" rel="prev">
+<link href="../site_libs/quarto-contrib/quarto-project/cambiotraining/courseformat/img/university-of-cambridge-favicon.ico" rel="icon">
+<script src="../site_libs/quarto-html/quarto.js" type="module"></script>
+<script src="../site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="../site_libs/quarto-html/axe/axe-check.js" type="module"></script>
+<script src="../site_libs/quarto-html/popper.min.js"></script>
+<script src="../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../site_libs/bootstrap/bootstrap-81f84cf81e7be26a9e56cdc8b581fe7e.min.css" rel="stylesheet" append-hash="true" id="quarto-bootstrap" data-mode="light">
+<link href="../site_libs/quarto-contrib/quarto-auto-dark-mode-1.0.0/auto-dark-mode.css" rel="stylesheet">
+<script src="../site_libs/quarto-contrib/iconify-2.1.0/iconify-icon.min.js"></script>
+<script src="../site_libs/quarto-contrib/glightbox/glightbox.min.js"></script>
+<link href="../site_libs/quarto-contrib/glightbox/glightbox.min.css" rel="stylesheet">
+<link href="../site_libs/quarto-contrib/glightbox/lightbox.css" rel="stylesheet">
+<script id="quarto-search-options" type="application/json">{
+  "location": "sidebar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "start",
+  "type": "textbox",
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
+  }
+}</script>
+
+
+</head>
+
+<body class="nav-sidebar floating nav-fixed quarto-light">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container mx-auto">
+    <a href="../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/courseformat/img/university_crest_reversed.png" alt="" class="navbar-logo light-content">
+    <img src="../site_libs/quarto-contrib/quarto-project/cambiotraining/courseformat/img/university_crest_reversed.png" alt="" class="navbar-logo dark-content">
+    </a>
+    <a class="navbar-brand" href="../index.html">
+    <span class="navbar-title">Data analysis in R and Python</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" role="menu" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="https://github.com/cambiotraining/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:github" style="font-size: 1.25em;" aria-label="Icon github from fa6-brands Iconify.design set." title="CRIT GitHub"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bsky.app/profile/bioinfocambs.bsky.social"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:bluesky" style="font-size: 1.25em;" aria-label="Icon bluesky from fa6-brands Iconify.design set." title="CRIT Bluesky"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://genomic.social/%40BioInfoCambs"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="fa6-brands:mastodon" style="font-size: 1.25em;" aria-label="Icon mastodon from fa6-brands Iconify.design set." title="CRIT Mastodon"></iconify-icon></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://bioinfotraining.bio.cam.ac.uk/"> 
+<span class="menu-text"><iconify-icon role="img" inline="" icon="mdi:web" style="font-size: 1.25em;" aria-label="Icon web from mdi Iconify.design set." title="CRIT Website"></iconify-icon></span></a>
+  </li>  
+</ul>
+          </div> <!-- /navcollapse -->
+            <div class="quarto-navbar-tools">
+</div>
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <a class="flex-grow-1 no-decor" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+          <h1 class="quarto-secondary-nav-title"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Live demo exercises</span></h1>
+        </a>     
+      <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation floating overflow-auto">
+    <div class="pt-lg-2 mt-2 text-left sidebar-header">
+      <a href="../index.html" class="sidebar-logo-link">
+      </a>
+      </div>
+        <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+        </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true">
+ <span class="menu-text">Welcome</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../index.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">1</span>&nbsp; <span class="chapter-title">Data analysis in R and Python</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../setup.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">2</span>&nbsp; <span class="chapter-title">Data &amp; Setup</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../references.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">3</span>&nbsp; <span class="chapter-title">References</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true">
+ <span class="menu-text">DA1: Getting started</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da1-01-intro-software.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">4</span>&nbsp; <span class="chapter-title">Intro to software</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da1-02-basic-objects-and-data-types.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">5</span>&nbsp; <span class="chapter-title">Data types &amp; structures</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true">
+ <span class="menu-text">DA2: Data &amp; plotting</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da2-03-tabular-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">6</span>&nbsp; <span class="chapter-title">Working with tabular data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da2-04-plotting.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">7</span>&nbsp; <span class="chapter-title">Plotting data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true">
+ <span class="menu-text">DA3: Manipulating data</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da3-05-manipulating-columns.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">8</span>&nbsp; <span class="chapter-title">Manipulating columns</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da3-06-chaining-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">9</span>&nbsp; <span class="chapter-title">Chaining operations</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da3-07-manipulating-rows.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">10</span>&nbsp; <span class="chapter-title">Manipulating rows</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da3-08-grouped-operations.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">11</span>&nbsp; <span class="chapter-title">Grouped operations</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true">
+ <span class="menu-text">DA4: Organise and combine</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da4-09-reshaping-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">12</span>&nbsp; <span class="chapter-title">Reshaping data</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da4-10-combining-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">13</span>&nbsp; <span class="chapter-title">Combining data</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true">
+ <span class="menu-text">Additional resources</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" role="navigation" aria-expanded="true" aria-label="Toggle section">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/da4-11-cleaning-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Clean, style &amp; arrange</span></span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../materials/trainers-live-demo.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Live demo exercises</span></span></a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">Table of contents</h2>
+   
+  <ul>
+  <li><a href="#section-setup" id="toc-section-setup" class="nav-link active" data-scroll-target="#section-setup"><span class="header-section-number">15.1</span> Section setup</a></li>
+  <li><a href="#da1-getting-started" id="toc-da1-getting-started" class="nav-link" data-scroll-target="#da1-getting-started"><span class="header-section-number">15.2</span> DA1: getting started</a></li>
+  <li><a href="#da1-data-types" id="toc-da1-data-types" class="nav-link" data-scroll-target="#da1-data-types"><span class="header-section-number">15.3</span> DA1: data types</a></li>
+  <li><a href="#da1-indexing" id="toc-da1-indexing" class="nav-link" data-scroll-target="#da1-indexing"><span class="header-section-number">15.4</span> DA1: indexing</a></li>
+  <li><a href="#da2-data-exploration" id="toc-da2-data-exploration" class="nav-link" data-scroll-target="#da2-data-exploration"><span class="header-section-number">15.5</span> DA2: data exploration</a>
+  <ul class="collapse">
+  <li><a href="#data-structure" id="toc-data-structure" class="nav-link" data-scroll-target="#data-structure"><span class="header-section-number">15.5.1</span> Data structure</a></li>
+  <li><a href="#quality-control-checks" id="toc-quality-control-checks" class="nav-link" data-scroll-target="#quality-control-checks"><span class="header-section-number">15.5.2</span> Quality control checks</a></li>
+  </ul></li>
+  <li><a href="#da2-subsetting-tables" id="toc-da2-subsetting-tables" class="nav-link" data-scroll-target="#da2-subsetting-tables"><span class="header-section-number">15.6</span> DA2: subsetting tables</a></li>
+  <li><a href="#da2-simple-plots" id="toc-da2-simple-plots" class="nav-link" data-scroll-target="#da2-simple-plots"><span class="header-section-number">15.7</span> DA2: simple plots</a></li>
+  <li><a href="#da2-facetting-data" id="toc-da2-facetting-data" class="nav-link" data-scroll-target="#da2-facetting-data"><span class="header-section-number">15.8</span> DA2: facetting data</a></li>
+  <li><a href="#da3-selecting-columns" id="toc-da3-selecting-columns" class="nav-link" data-scroll-target="#da3-selecting-columns"><span class="header-section-number">15.9</span> DA3: selecting columns</a></li>
+  <li><a href="#da3-creating-columns" id="toc-da3-creating-columns" class="nav-link" data-scroll-target="#da3-creating-columns"><span class="header-section-number">15.10</span> DA3: creating columns</a></li>
+  <li><a href="#da3-creating-columns-conditional" id="toc-da3-creating-columns-conditional" class="nav-link" data-scroll-target="#da3-creating-columns-conditional"><span class="header-section-number">15.11</span> DA3: creating columns (conditional)</a></li>
+  <li><a href="#da4-reshaping-data" id="toc-da4-reshaping-data" class="nav-link" data-scroll-target="#da4-reshaping-data"><span class="header-section-number">15.12</span> DA4: reshaping data</a>
+  <ul class="collapse">
+  <li><a href="#creating-a-summary-table-for-crp" id="toc-creating-a-summary-table-for-crp" class="nav-link" data-scroll-target="#creating-a-summary-table-for-crp"><span class="header-section-number">15.12.1</span> Creating a summary table for CRP</a></li>
+  <li><a href="#wide-table-by-quarter" id="toc-wide-table-by-quarter" class="nav-link" data-scroll-target="#wide-table-by-quarter"><span class="header-section-number">15.12.2</span> Wide table by quarter</a></li>
+  <li><a href="#back-to-long-format" id="toc-back-to-long-format" class="nav-link" data-scroll-target="#back-to-long-format"><span class="header-section-number">15.12.3</span> Back to long format</a></li>
+  </ul></li>
+  <li><a href="#da4-joining-data" id="toc-da4-joining-data" class="nav-link" data-scroll-target="#da4-joining-data"><span class="header-section-number">15.13</span> DA4: joining data</a>
+  <ul class="collapse">
+  <li><a href="#left-join" id="toc-left-join" class="nav-link" data-scroll-target="#left-join"><span class="header-section-number">15.13.1</span> Left join</a></li>
+  <li><a href="#right-join" id="toc-right-join" class="nav-link" data-scroll-target="#right-join"><span class="header-section-number">15.13.2</span> Right join</a></li>
+  <li><a href="#inner-join" id="toc-inner-join" class="nav-link" data-scroll-target="#inner-join"><span class="header-section-number">15.13.3</span> Inner join</a></li>
+  <li><a href="#full-join" id="toc-full-join" class="nav-link" data-scroll-target="#full-join"><span class="header-section-number">15.13.4</span> Full join</a></li>
+  </ul></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block"><span class="chapter-number">15</span>&nbsp; <span class="chapter-title">Live demo exercises</span></h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+
+</header>
+
+
+<section id="section-setup" class="level2" data-number="15.1">
+<h2 data-number="15.1" class="anchored" data-anchor-id="section-setup"><span class="header-section-number">15.1</span> Section setup</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb2"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># A Python data analysis and manipulation tool</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> pandas <span class="im">as</span> pd</span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="co"># Python equivalent of `ggplot2`</span></span>
+<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="im">from</span> plotnine <span class="im">import</span> <span class="op">*</span></span>
+<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="co"># If using seaborn for plotting</span></span>
+<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> seaborn <span class="im">as</span> sns</span>
+<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="im">import</span> matplotlib.pyplot <span class="im">as</span> plt</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="da1-getting-started" class="level2" data-number="15.2">
+<h2 data-number="15.2" class="anchored" data-anchor-id="da1-getting-started"><span class="header-section-number">15.2</span> DA1: getting started</h2>
+<p>This is a hands-on demo.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-2-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-1" role="tab" aria-controls="tabset-2-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-2-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-2-2" role="tab" aria-controls="tabset-2-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-2-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-2-1-tab">
+<p>Live demo RStudio:</p>
+<ul>
+<li>open RStudio</li>
+<li>highlight panels</li>
+<li>change default settings (<code>.Rdata</code> and not save workspace)</li>
+<li>set up new RProject <code>data-analysis</code></li>
+<li>create the subfolders (<code>data</code>, <code>images</code>, <code>scripts</code>)</li>
+<li>create a script</li>
+</ul>
+</div>
+<div id="tabset-2-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-2-tab">
+<p>Live demo JupyterLab:</p>
+<ul>
+<li>open JupyterLab</li>
+<li>highlight Launcher</li>
+<li>show how to check working directory, change if needed (<code>data-analysis</code>)</li>
+<li>create the subfolders (<code>data</code>, <code>images</code>, <code>scripts</code>)</li>
+<li>create a Notebook</li>
+</ul>
+</div>
+</div>
+</div>
+</section>
+<section id="da1-data-types" class="level2" data-number="15.3">
+<h2 data-number="15.3" class="anchored" data-anchor-id="da1-data-types"><span class="header-section-number">15.3</span> DA1: data types</h2>
+<p>Important to realise that there often is some order to how data types are interpreted. For example, look at the following:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-3-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-1" role="tab" aria-controls="tabset-3-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-3-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-3-2" role="tab" aria-controls="tabset-3-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-3-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-3-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">87</span>, <span class="cn">NA</span>, <span class="dv">32</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "numeric"</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="dv">22</span>, <span class="dv">87</span>, <span class="cn">NA</span>, <span class="st">"unsure"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(example)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "character"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-3-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-3-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="da1-indexing" class="level2" data-number="15.4">
+<h2 data-number="15.4" class="anchored" data-anchor-id="da1-indexing"><span class="header-section-number">15.4</span> DA1: indexing</h2>
+<p>A bit of a technical detail, but an important one, particularly if you’re using both R and Python. The main focus of the example is <strong>not</strong> on the subsetting, it’s on the fact that R has 1-based indexing and Python has 0-based indexing.</p>
+<p>Furthermore, that R’s indexing is inclusive, and Python’s exclusive (comparing <code>1:3</code> in R vs Python). That said, it’s to create awareness of the fact that indexing has to start somewhere and that it can be different between programming languages.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-4-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-1" role="tab" aria-controls="tabset-4-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-4-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-4-2" role="tab" aria-controls="tabset-4-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-4-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-4-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>winnings <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"first"</span>, <span class="st">"second"</span>, <span class="st">"third"</span>, <span class="st">"fourth"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The positional index is as follows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">seq_along</span>(winnings)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1 2 3 4</code></pre>
+</div>
+</div>
+<p>So, if we wanted to select the first and third values, we’d do:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>winnings[<span class="fu">c</span>(<span class="dv">1</span>, <span class="dv">3</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "first" "third"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-4-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-4-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb14"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>winnings <span class="op">=</span> [<span class="st">"first"</span>, <span class="st">"second"</span>, <span class="st">"third"</span>, <span class="st">"fourth"</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>The positional index is as follows:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb15"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="bu">list</span>(<span class="bu">range</span>(<span class="bu">len</span>(winnings)))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[0, 1, 2, 3]</code></pre>
+</div>
+</div>
+<p>So, if we wanted to select the first and third values, we’d do:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb17"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a>winnings[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'first'</code></pre>
+</div>
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb19"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>winnings[<span class="dv">2</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>'third'</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="da2-data-exploration" class="level2" data-number="15.5">
+<h2 data-number="15.5" class="anchored" data-anchor-id="da2-data-exploration"><span class="header-section-number">15.5</span> DA2: data exploration</h2>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-5-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-1" role="tab" aria-controls="tabset-5-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-5-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-5-2" role="tab" aria-controls="tabset-5-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-5-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-5-1-tab">
+<p>Read in the data:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>infections <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/infections.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And have a look:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 11
+  patient_id hospital   quarter infection_type vaccination_status age_group
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;    
+1 ID_0001    hospital_3 Q2      none           &lt;NA&gt;               65+      
+2 ID_0002    hospital_3 Q2      viral          &lt;NA&gt;               18 - 64  
+3 ID_0003    hospital_2 Q2      none           unknown            65+      
+4 ID_0004    hospital_2 Q3      fungal         unvaccinated       &lt; 18     
+5 ID_0005    hospital_3 Q2      fungal         vaccinated         65+      
+6 ID_0006    hospital_5 Q3      none           vaccinated         65+      
+# ℹ 5 more variables: icu_admission &lt;lgl&gt;, symptoms_count &lt;dbl&gt;,
+#   systolic_pressure &lt;dbl&gt;, body_temperature &lt;dbl&gt;, crp_level &lt;dbl&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-5-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-5-2-tab">
+<p>Read in the data:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb24"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a>infections <span class="op">=</span> pd.read_csv(<span class="st">"data/infections.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>And have a look:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb25"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb25-1"><a href="#cb25-1" aria-hidden="true" tabindex="-1"></a>infections.head()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  patient_id    hospital  ... body_temperature crp_level
+0    ID_0001  hospital_3  ...             37.8     12.05
+1    ID_0002  hospital_3  ...             39.1      8.11
+2    ID_0003  hospital_2  ...             38.5      5.24
+3    ID_0004  hospital_2  ...             39.4     41.73
+4    ID_0005  hospital_3  ...             36.9     10.51
+
+[5 rows x 11 columns]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section id="data-structure" class="level3" data-number="15.5.1">
+<h3 data-number="15.5.1" class="anchored" data-anchor-id="data-structure"><span class="header-section-number">15.5.1</span> Data structure</h3>
+<p>Number of rows &amp; columns:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-6-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-1" role="tab" aria-controls="tabset-6-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-6-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-6-2" role="tab" aria-controls="tabset-6-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-6-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-6-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb27"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb27-1"><a href="#cb27-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1400</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ncol</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 11</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-6-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-6-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb31"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>infections.shape[<span class="dv">0</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>1400</code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb33"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>infections.shape[<span class="dv">1</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>11</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>It’s good to look at the column attributes: what type of columns are we dealing with and is it what we expect?</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-7-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-1" role="tab" aria-controls="tabset-7-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-7-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-7-2" role="tab" aria-controls="tabset-7-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-7-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-7-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">summary</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  patient_id          hospital           quarter          infection_type    
+ Length:1400        Length:1400        Length:1400        Length:1400       
+ Class :character   Class :character   Class :character   Class :character  
+ Mode  :character   Mode  :character   Mode  :character   Mode  :character  
+                                                                            
+                                                                            
+                                                                            
+                                                                            
+ vaccination_status  age_group         icu_admission   symptoms_count  
+ Length:1400        Length:1400        Mode :logical   Min.   : 0.000  
+ Class :character   Class :character   FALSE:814       1st Qu.: 6.000  
+ Mode  :character   Mode  :character   TRUE :513       Median : 9.000  
+                                       NA's :73        Mean   : 8.549  
+                                                       3rd Qu.:11.000  
+                                                       Max.   :21.000  
+                                                       NA's   :67      
+ systolic_pressure body_temperature   crp_level     
+ Min.   : 87.0     Min.   :36.30    Min.   : 1.000  
+ 1st Qu.:118.0     1st Qu.:38.20    1st Qu.: 9.117  
+ Median :125.0     Median :38.80    Median :16.215  
+ Mean   :125.1     Mean   :38.75    Mean   :19.465  
+ 3rd Qu.:132.0     3rd Qu.:39.40    3rd Qu.:26.433  
+ Max.   :163.0     Max.   :41.50    Max.   :58.860  
+ NA's   :74        NA's   :67       NA's   :156     </code></pre>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb37"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb37-1"><a href="#cb37-1" aria-hidden="true" tabindex="-1"></a><span class="fu">str</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>spc_tbl_ [1,400 × 11] (S3: spec_tbl_df/tbl_df/tbl/data.frame)
+ $ patient_id        : chr [1:1400] "ID_0001" "ID_0002" "ID_0003" "ID_0004" ...
+ $ hospital          : chr [1:1400] "hospital_3" "hospital_3" "hospital_2" "hospital_2" ...
+ $ quarter           : chr [1:1400] "Q2" "Q2" "Q2" "Q3" ...
+ $ infection_type    : chr [1:1400] "none" "viral" "none" "fungal" ...
+ $ vaccination_status: chr [1:1400] NA NA "unknown" "unvaccinated" ...
+ $ age_group         : chr [1:1400] "65+" "18 - 64" "65+" "&lt; 18" ...
+ $ icu_admission     : logi [1:1400] FALSE FALSE TRUE TRUE TRUE FALSE ...
+ $ symptoms_count    : num [1:1400] 1 6 3 7 7 5 10 12 13 7 ...
+ $ systolic_pressure : num [1:1400] 117 115 120 129 114 124 133 120 124 127 ...
+ $ body_temperature  : num [1:1400] 37.8 39.1 38.5 39.4 36.9 36.8 39.4 39.3 39.6 39.1 ...
+ $ crp_level         : num [1:1400] 12.05 8.11 5.24 41.73 10.51 ...
+ - attr(*, "spec")=
+  .. cols(
+  ..   patient_id = col_character(),
+  ..   hospital = col_character(),
+  ..   quarter = col_character(),
+  ..   infection_type = col_character(),
+  ..   vaccination_status = col_character(),
+  ..   age_group = col_character(),
+  ..   icu_admission = col_logical(),
+  ..   symptoms_count = col_double(),
+  ..   systolic_pressure = col_double(),
+  ..   body_temperature = col_double(),
+  ..   crp_level = col_double()
+  .. )
+ - attr(*, "problems")=&lt;externalptr&gt; </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-7-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-7-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb39"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb39-1"><a href="#cb39-1" aria-hidden="true" tabindex="-1"></a>infections.describe()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>       symptoms_count  systolic_pressure  body_temperature    crp_level
+count     1333.000000        1326.000000       1333.000000  1244.000000
+mean         8.549137         125.070136         38.751988    19.464751
+std          3.825004          10.346761          0.883689    13.083907
+min          0.000000          87.000000         36.300000     1.000000
+25%          6.000000         118.000000         38.200000     9.117500
+50%          9.000000         125.000000         38.800000    16.215000
+75%         11.000000         132.000000         39.400000    26.432500
+max         21.000000         163.000000         41.500000    58.860000</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="quality-control-checks" class="level3" data-number="15.5.2">
+<h3 data-number="15.5.2" class="anchored" data-anchor-id="quality-control-checks"><span class="header-section-number">15.5.2</span> Quality control checks</h3>
+<p>It’s good to do some basic sanity / quality control checks. For example, if there are different categories in a column, do all the categories we expect show up or are there missing ones / misspelled etc.?</p>
+<p>For example, we can check the unique values in a column:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-8-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-1" role="tab" aria-controls="tabset-8-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-8-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-8-2" role="tab" aria-controls="tabset-8-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-8-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-8-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb41"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb41-1"><a href="#cb41-1" aria-hidden="true" tabindex="-1"></a><span class="fu">unique</span>(infections<span class="sc">$</span>infection_type)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] "none"      "viral"     "fungal"    NA          "bacterial"</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-8-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-8-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb43"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb43-1"><a href="#cb43-1" aria-hidden="true" tabindex="-1"></a>infections[<span class="st">"infection_type"</span>].unique()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>array(['none', 'viral', 'fungal', nan, 'bacterial'], dtype=object)</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>We can count the number of missing values in the column <code>infection_type</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-9-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-1" role="tab" aria-controls="tabset-9-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-9-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-9-2" role="tab" aria-controls="tabset-9-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-9-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-9-1-tab">
+<p>You read the code “inside-out”:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb45"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb45-1"><a href="#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">sum</span>(<span class="fu">is.na</span>(infections<span class="sc">$</span>infection_type))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 74</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-9-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-9-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb47"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb47-1"><a href="#cb47-1" aria-hidden="true" tabindex="-1"></a>infections[<span class="st">"infection_type"</span>].isna().<span class="bu">sum</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>74</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+</section>
+<section id="da2-subsetting-tables" class="level2" data-number="15.6">
+<h2 data-number="15.6" class="anchored" data-anchor-id="da2-subsetting-tables"><span class="header-section-number">15.6</span> DA2: subsetting tables</h2>
+<p>Let’s select <code>patient_id</code>:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-10-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-1" role="tab" aria-controls="tabset-10-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-10-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-10-2" role="tab" aria-controls="tabset-10-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-10-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-10-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb49"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb49-1"><a href="#cb49-1" aria-hidden="true" tabindex="-1"></a>infections<span class="sc">$</span>patient_id</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-10-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-10-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb50"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb50-1"><a href="#cb50-1" aria-hidden="true" tabindex="-1"></a>infections.patient_id</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>0       ID_0001
+1       ID_0002
+2       ID_0003
+3       ID_0004
+4       ID_0005
+         ...   
+1395    ID_1396
+1396    ID_1397
+1397    ID_1398
+1398    ID_1399
+1399    ID_1400
+Name: patient_id, Length: 1400, dtype: object</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Or more than 1 column, by column name:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-11-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-1" role="tab" aria-controls="tabset-11-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-11-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-11-2" role="tab" aria-controls="tabset-11-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-11-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-11-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb52"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb52-1"><a href="#cb52-1" aria-hidden="true" tabindex="-1"></a>infections[, <span class="fu">c</span>(<span class="st">"patient_id"</span>, <span class="st">"systolic_pressure"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 2
+   patient_id systolic_pressure
+   &lt;chr&gt;                  &lt;dbl&gt;
+ 1 ID_0001                  117
+ 2 ID_0002                  115
+ 3 ID_0003                  120
+ 4 ID_0004                  129
+ 5 ID_0005                  114
+ 6 ID_0006                  124
+ 7 ID_0007                  133
+ 8 ID_0008                  120
+ 9 ID_0009                  124
+10 ID_0010                  127
+# ℹ 1,390 more rows</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-11-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-11-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb54"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb54-1"><a href="#cb54-1" aria-hidden="true" tabindex="-1"></a>infections[[<span class="st">"patient_id"</span>, <span class="st">"systolic_pressure"</span>]]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>     patient_id  systolic_pressure
+0       ID_0001              117.0
+1       ID_0002              115.0
+2       ID_0003              120.0
+3       ID_0004              129.0
+4       ID_0005              114.0
+...         ...                ...
+1395    ID_1396              118.0
+1396    ID_1397              117.0
+1397    ID_1398              137.0
+1398    ID_1399              135.0
+1399    ID_1400              129.0
+
+[1400 rows x 2 columns]</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>Combine this with selecting only a subset of rows, let’s say the first three rows.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-12-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-1" role="tab" aria-controls="tabset-12-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-12-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-12-2" role="tab" aria-controls="tabset-12-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-12-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-12-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb56"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb56-1"><a href="#cb56-1" aria-hidden="true" tabindex="-1"></a>infections[<span class="dv">1</span><span class="sc">:</span><span class="dv">3</span>, <span class="fu">c</span>(<span class="st">"patient_id"</span>, <span class="st">"systolic_pressure"</span>)]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 3 × 2
+  patient_id systolic_pressure
+  &lt;chr&gt;                  &lt;dbl&gt;
+1 ID_0001                  117
+2 ID_0002                  115
+3 ID_0003                  120</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-12-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-12-2-tab">
+<p>We need to be aware of the zero-based indexing, also noting that the value after the <code>:</code> is <em>not</em> included:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb58"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb58-1"><a href="#cb58-1" aria-hidden="true" tabindex="-1"></a>infections[[<span class="st">"patient_id"</span>, <span class="st">"systolic_pressure"</span>]].iloc[<span class="dv">0</span>:<span class="dv">3</span>]</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  patient_id  systolic_pressure
+0    ID_0001              117.0
+1    ID_0002              115.0
+2    ID_0003              120.0</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="da2-simple-plots" class="level2" data-number="15.7">
+<h2 data-number="15.7" class="anchored" data-anchor-id="da2-simple-plots"><span class="header-section-number">15.7</span> DA2: simple plots</h2>
+<p>Let’s start with a simple scatterplot, where we plot <code>body_temperature</code> on the x-axis and <code>crp_level</code> on the y-axis.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-13-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-1" role="tab" aria-controls="tabset-13-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-13-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-13-2" role="tab" aria-controls="tabset-13-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-13-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-13-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb60"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb60-1"><a href="#cb60-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(infections, <span class="fu">aes</span>(<span class="at">x =</span> body_temperature, <span class="at">y =</span> crp_level)) <span class="sc">+</span></span>
+<span id="cb60-2"><a href="#cb60-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 215 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-34-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-1"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-34-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-13-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-13-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb62"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb62-1"><a href="#cb62-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (ggplot(infections, aes(x <span class="op">=</span> <span class="st">"body_temperature"</span>, y <span class="op">=</span> <span class="st">"crp_level"</span>)) <span class="op">+</span></span>
+<span id="cb62-2"><a href="#cb62-2" aria-hidden="true" tabindex="-1"></a>  geom_point())</span>
+<span id="cb62-3"><a href="#cb62-3" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb62-4"><a href="#cb62-4" aria-hidden="true" tabindex="-1"></a>p.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-35-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-2"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-35-1.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<p>We can explore this a bit further. For example, we can colour the points based on the <code>hospital</code> variable, to see if there are any patterns across the different hospitals:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-14-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-1" role="tab" aria-controls="tabset-14-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-14-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-14-2" role="tab" aria-controls="tabset-14-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-14-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-14-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb63"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb63-1"><a href="#cb63-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(infections, <span class="fu">aes</span>(<span class="at">x =</span> body_temperature, <span class="at">y =</span> crp_level,</span>
+<span id="cb63-2"><a href="#cb63-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">colour =</span> hospital)) <span class="sc">+</span></span>
+<span id="cb63-3"><a href="#cb63-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 215 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-36-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-3"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-36-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-14-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-14-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb65"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb65-1"><a href="#cb65-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (ggplot(infections, aes(x <span class="op">=</span> <span class="st">"body_temperature"</span>, y <span class="op">=</span> <span class="st">"crp_level"</span>,</span>
+<span id="cb65-2"><a href="#cb65-2" aria-hidden="true" tabindex="-1"></a>                            colour <span class="op">=</span> <span class="st">"hospital"</span>)) <span class="op">+</span></span>
+<span id="cb65-3"><a href="#cb65-3" aria-hidden="true" tabindex="-1"></a>  geom_point())</span>
+<span id="cb65-4"><a href="#cb65-4" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb65-5"><a href="#cb65-5" aria-hidden="true" tabindex="-1"></a>p.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-37-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-4"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-37-1.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="da2-facetting-data" class="level2" data-number="15.8">
+<h2 data-number="15.8" class="anchored" data-anchor-id="da2-facetting-data"><span class="header-section-number">15.8</span> DA2: facetting data</h2>
+<p>When we plotted <code>body_temperature</code> and <code>crp_level</code> against each other and coloured the data based on <code>hospital</code>, we ended up with a rather unclear plot. This is probably because there are no clear differences between the hospitals. However, we can separate these data a bit more clearly by using facets.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-15-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-1" role="tab" aria-controls="tabset-15-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-15-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-15-2" role="tab" aria-controls="tabset-15-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-15-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-15-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb66"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb66-1"><a href="#cb66-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(infections, <span class="fu">aes</span>(<span class="at">x =</span> body_temperature, <span class="at">y =</span> crp_level,</span>
+<span id="cb66-2"><a href="#cb66-2" aria-hidden="true" tabindex="-1"></a>                       <span class="at">colour =</span> hospital)) <span class="sc">+</span></span>
+<span id="cb66-3"><a href="#cb66-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb66-4"><a href="#cb66-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="at">facets =</span> <span class="fu">vars</span>(hospital))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 215 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-38-3.png" class="lightbox" data-gallery="quarto-lightbox-gallery-5"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-38-3.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb68"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb68-1"><a href="#cb68-1" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(infections, <span class="fu">aes</span>(<span class="at">x =</span> body_temperature, <span class="at">y =</span> crp_level,</span>
+<span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>                         <span class="at">colour =</span> hospital)) <span class="sc">+</span></span>
+<span id="cb68-3"><a href="#cb68-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb68-4"><a href="#cb68-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">facet_grid</span>(<span class="at">rows =</span> <span class="fu">vars</span>(icu_admission), <span class="at">cols =</span> <span class="fu">vars</span>(hospital))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 215 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-39-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-6"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-39-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-15-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-15-2-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb70"><pre class="sourceCode python code-with-copy"><code class="sourceCode python"><span id="cb70-1"><a href="#cb70-1" aria-hidden="true" tabindex="-1"></a>p <span class="op">=</span> (ggplot(infections, aes(x <span class="op">=</span> <span class="st">"body_temperature"</span>, y <span class="op">=</span> <span class="st">"crp_level"</span>,</span>
+<span id="cb70-2"><a href="#cb70-2" aria-hidden="true" tabindex="-1"></a>                            colour <span class="op">=</span> <span class="st">"hospital"</span>)) <span class="op">+</span></span>
+<span id="cb70-3"><a href="#cb70-3" aria-hidden="true" tabindex="-1"></a>  geom_point() <span class="op">+</span></span>
+<span id="cb70-4"><a href="#cb70-4" aria-hidden="true" tabindex="-1"></a>  facet_wrap(<span class="st">"~ hospital"</span>))</span>
+<span id="cb70-5"><a href="#cb70-5" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb70-6"><a href="#cb70-6" aria-hidden="true" tabindex="-1"></a>p.show()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-40-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-7"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-40-1.png" class="img-fluid figure-img" width="614"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="da3-selecting-columns" class="level2" data-number="15.9">
+<h2 data-number="15.9" class="anchored" data-anchor-id="da3-selecting-columns"><span class="header-section-number">15.9</span> DA3: selecting columns</h2>
+<p>We’re practising two things:</p>
+<ol type="1">
+<li>selecting columns</li>
+<li>creating columns (and highlight the use by plotting)</li>
+</ol>
+<p>Let’s see which columns we have:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-16-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-1" role="tab" aria-controls="tabset-16-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-16-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-16-2" role="tab" aria-controls="tabset-16-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-16-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-16-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb71"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb71-1"><a href="#cb71-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colnames</span>(infections)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code> [1] "patient_id"         "hospital"           "quarter"           
+ [4] "infection_type"     "vaccination_status" "age_group"         
+ [7] "icu_admission"      "symptoms_count"     "systolic_pressure" 
+[10] "body_temperature"   "crp_level"         </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-16-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-16-2-tab">
+
+</div>
+</div>
+</div>
+<p>Let’s say we only wanted to select some of these.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-17-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-1" role="tab" aria-controls="tabset-17-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-17-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-17-2" role="tab" aria-controls="tabset-17-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-17-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-17-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb73"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb73-1"><a href="#cb73-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(infections, patient_id, body_temperature)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 2
+   patient_id body_temperature
+   &lt;chr&gt;                 &lt;dbl&gt;
+ 1 ID_0001                37.8
+ 2 ID_0002                39.1
+ 3 ID_0003                38.5
+ 4 ID_0004                39.4
+ 5 ID_0005                36.9
+ 6 ID_0006                36.8
+ 7 ID_0007                39.4
+ 8 ID_0008                39.3
+ 9 ID_0009                39.6
+10 ID_0010                39.1
+# ℹ 1,390 more rows</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-17-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-17-2-tab">
+
+</div>
+</div>
+</div>
+<p>Or select by data type:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-18-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-1" role="tab" aria-controls="tabset-18-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-18-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-18-2" role="tab" aria-controls="tabset-18-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-18-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-18-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb75"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb75-1"><a href="#cb75-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(infections, <span class="fu">where</span>(is.numeric))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 4
+   symptoms_count systolic_pressure body_temperature crp_level
+            &lt;dbl&gt;             &lt;dbl&gt;            &lt;dbl&gt;     &lt;dbl&gt;
+ 1              1               117             37.8     12.0 
+ 2              6               115             39.1      8.11
+ 3              3               120             38.5      5.24
+ 4              7               129             39.4     41.7 
+ 5              7               114             36.9     10.5 
+ 6              5               124             36.8      6.57
+ 7             10               133             39.4     53.1 
+ 8             12               120             39.3     NA   
+ 9             13               124             39.6     50.3 
+10              7               127             39.1     13.0 
+# ℹ 1,390 more rows</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-18-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-18-2-tab">
+
+</div>
+</div>
+</div>
+<p>Or based on a certain phrase within the column heading:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-19-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-1" role="tab" aria-controls="tabset-19-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-19-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-19-2" role="tab" aria-controls="tabset-19-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-19-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-19-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb77"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb77-1"><a href="#cb77-1" aria-hidden="true" tabindex="-1"></a><span class="fu">select</span>(infections, <span class="fu">contains</span>(<span class="st">"_id"</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 1
+   patient_id
+   &lt;chr&gt;     
+ 1 ID_0001   
+ 2 ID_0002   
+ 3 ID_0003   
+ 4 ID_0004   
+ 5 ID_0005   
+ 6 ID_0006   
+ 7 ID_0007   
+ 8 ID_0008   
+ 9 ID_0009   
+10 ID_0010   
+# ℹ 1,390 more rows</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-19-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-19-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="da3-creating-columns" class="level2" data-number="15.10">
+<h2 data-number="15.10" class="anchored" data-anchor-id="da3-creating-columns"><span class="header-section-number">15.10</span> DA3: creating columns</h2>
+<p>There aren’t too many variables in our data set that we can transform. However, the CRP levels are a good example. The CRP (C-reactive protein) is a continuous biomarker, often used clinically to indicate inflammation or infection severity. It can be skewed at times, so scaling it could be useful if you’re making comparisons across groups.</p>
+<div class="callout callout-style-default callout-note callout-titled">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-title-container flex-fill">
+<span class="screen-reader-only">Note</span>Scaling vs log-transforming
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This falls well outside the scope of this course, but it’s possible that the question comes up. We could also log-transform our data if there is an issue with skewing etc. Very simply &amp; briefly put:</p>
+<ul>
+<li>use <code>log()</code> when the distribution shape is the issue (e.g.&nbsp;skew, tails)</li>
+<li>use <code>scale()</code> when the unit or range is the issue (often when comparing across different variables with different units)</li>
+<li>using <strong>both</strong> can also be helpful, where you log-transform first, then scale the data to use in modelling.</li>
+</ul>
+</div>
+</div>
+<p>We can scale the data where, for each value, we subtract the mean and divide by the standard deviation.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-20-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-1" role="tab" aria-controls="tabset-20-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-20-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-20-2" role="tab" aria-controls="tabset-20-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-20-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-20-1-tab">
+<p>In R, we can use the <code>scale()</code> function to do this.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb79"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb79-1"><a href="#cb79-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(infections, <span class="at">crp_scaled =</span> <span class="fu">scale</span>(crp_level))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 12
+   patient_id hospital   quarter infection_type vaccination_status age_group
+   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;    
+ 1 ID_0001    hospital_3 Q2      none           &lt;NA&gt;               65+      
+ 2 ID_0002    hospital_3 Q2      viral          &lt;NA&gt;               18 - 64  
+ 3 ID_0003    hospital_2 Q2      none           unknown            65+      
+ 4 ID_0004    hospital_2 Q3      fungal         unvaccinated       &lt; 18     
+ 5 ID_0005    hospital_3 Q2      fungal         vaccinated         65+      
+ 6 ID_0006    hospital_5 Q3      none           vaccinated         65+      
+ 7 ID_0007    hospital_4 Q1      fungal         unvaccinated       18 - 64  
+ 8 ID_0008    hospital_1 Q1      &lt;NA&gt;           unvaccinated       18 - 64  
+ 9 ID_0009    hospital_2 Q1      viral          &lt;NA&gt;               65+      
+10 ID_0010    hospital_3 Q3      none           unvaccinated       &lt;NA&gt;     
+# ℹ 1,390 more rows
+# ℹ 6 more variables: icu_admission &lt;lgl&gt;, symptoms_count &lt;dbl&gt;,
+#   systolic_pressure &lt;dbl&gt;, body_temperature &lt;dbl&gt;, crp_level &lt;dbl&gt;,
+#   crp_scaled &lt;dbl[,1]&gt;</code></pre>
+</div>
+</div>
+<p>Let’s store this in a temporary object, so we can visualise it.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb81"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb81-1"><a href="#cb81-1" aria-hidden="true" tabindex="-1"></a>example <span class="ot">&lt;-</span> <span class="fu">mutate</span>(infections, <span class="at">crp_scaled =</span> <span class="fu">scale</span>(crp_level))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>We can then plot it, adding a reference line at <code>y = 0</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb82"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb82-1"><a href="#cb82-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(example, <span class="fu">aes</span>(<span class="at">x =</span> quarter, <span class="at">y =</span> crp_scaled)) <span class="sc">+</span></span>
+<span id="cb82-2"><a href="#cb82-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_jitter</span>(<span class="at">width =</span> <span class="fl">0.1</span>) <span class="sc">+</span></span>
+<span id="cb82-3"><a href="#cb82-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_hline</span>(<span class="at">yintercept =</span> <span class="dv">0</span>, <span class="at">colour =</span> <span class="st">"blue"</span>, <span class="at">linewidth =</span> <span class="dv">1</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 156 rows containing missing values or values outside the scale range
+(`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-47-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-8"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-47-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-20-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-20-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="da3-creating-columns-conditional" class="level2" data-number="15.11">
+<h2 data-number="15.11" class="anchored" data-anchor-id="da3-creating-columns-conditional"><span class="header-section-number">15.11</span> DA3: creating columns (conditional)</h2>
+<p>Sometimes we need to create new columns based on certain conditions. Let’s say we wanted to flag if patients not vaccinated and have been admitted to ICU we consider them as high risk.</p>
+<p>We want to encode this in a column <code>risk_factor</code>, where we label them as <code>"high"</code>. This would then allow us to add other values, such as <code>"low"</code> or <code>"medium"</code> at a later time.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-21-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-1" role="tab" aria-controls="tabset-21-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-21-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-21-2" role="tab" aria-controls="tabset-21-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-21-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-21-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb84"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb84-1"><a href="#cb84-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mutate</span>(infections,</span>
+<span id="cb84-2"><a href="#cb84-2" aria-hidden="true" tabindex="-1"></a>       <span class="at">risk_factor =</span> <span class="fu">ifelse</span>(vaccination_status <span class="sc">==</span> <span class="st">"unvaccinated"</span> <span class="sc">&amp;</span> icu_admission <span class="sc">==</span> <span class="cn">TRUE</span>, <span class="st">"high"</span>, <span class="cn">NA</span>))</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1,400 × 12
+   patient_id hospital   quarter infection_type vaccination_status age_group
+   &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;    
+ 1 ID_0001    hospital_3 Q2      none           &lt;NA&gt;               65+      
+ 2 ID_0002    hospital_3 Q2      viral          &lt;NA&gt;               18 - 64  
+ 3 ID_0003    hospital_2 Q2      none           unknown            65+      
+ 4 ID_0004    hospital_2 Q3      fungal         unvaccinated       &lt; 18     
+ 5 ID_0005    hospital_3 Q2      fungal         vaccinated         65+      
+ 6 ID_0006    hospital_5 Q3      none           vaccinated         65+      
+ 7 ID_0007    hospital_4 Q1      fungal         unvaccinated       18 - 64  
+ 8 ID_0008    hospital_1 Q1      &lt;NA&gt;           unvaccinated       18 - 64  
+ 9 ID_0009    hospital_2 Q1      viral          &lt;NA&gt;               65+      
+10 ID_0010    hospital_3 Q3      none           unvaccinated       &lt;NA&gt;     
+# ℹ 1,390 more rows
+# ℹ 6 more variables: icu_admission &lt;lgl&gt;, symptoms_count &lt;dbl&gt;,
+#   systolic_pressure &lt;dbl&gt;, body_temperature &lt;dbl&gt;, crp_level &lt;dbl&gt;,
+#   risk_factor &lt;chr&gt;</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-21-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-21-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="da4-reshaping-data" class="level2" data-number="15.12">
+<h2 data-number="15.12" class="anchored" data-anchor-id="da4-reshaping-data"><span class="header-section-number">15.12</span> DA4: reshaping data</h2>
+<p>To illustrate reshaping data, we’re going to simplify our data set a little bit. First, we’ll calculate the <strong>average CRP levels</strong> for each hospital, quarter, infection type, vaccination status and age group.</p>
+<p>We’ll use that summary table to highlight some use cases for reshaping data from a long to a wide format - and back.</p>
+<section id="creating-a-summary-table-for-crp" class="level3" data-number="15.12.1">
+<h3 data-number="15.12.1" class="anchored" data-anchor-id="creating-a-summary-table-for-crp"><span class="header-section-number">15.12.1</span> Creating a summary table for CRP</h3>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-22-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-1" role="tab" aria-controls="tabset-22-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-22-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-22-2" role="tab" aria-controls="tabset-22-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-22-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-22-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb86"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb86-1"><a href="#cb86-1" aria-hidden="true" tabindex="-1"></a>infections_summary <span class="ot">&lt;-</span> infections <span class="sc">|&gt;</span> </span>
+<span id="cb86-2"><a href="#cb86-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb86-3"><a href="#cb86-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(hospital, quarter, infection_type, vaccination_status, age_group) <span class="sc">|&gt;</span> </span>
+<span id="cb86-4"><a href="#cb86-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_crp =</span> <span class="fu">round</span>(<span class="fu">mean</span>(crp_level, <span class="at">na.rm =</span> <span class="cn">TRUE</span>), <span class="dv">2</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb86-5"><a href="#cb86-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`summarise()` has grouped output by 'hospital', 'quarter', 'infection_type',
+'vaccination_status'. You can override using the `.groups` argument.</code></pre>
+</div>
+</div>
+<p>Let’s look at the output. We now have 6 columns, one for each of our grouping variables and at the end the <code>mean_crp</code> column containing the average CRP levels (rounded to two digits).</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb88"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb88-1"><a href="#cb88-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(infections_summary)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  hospital   quarter infection_type vaccination_status age_group mean_crp
+  &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;        &lt;dbl&gt;
+1 hospital_1 Q1      bacterial      unknown            65+          23.7 
+2 hospital_1 Q1      bacterial      unknown            &lt; 18         25.8 
+3 hospital_1 Q1      bacterial      unvaccinated       18 - 64       8.35
+4 hospital_1 Q1      bacterial      unvaccinated       65+          23.2 
+5 hospital_1 Q1      bacterial      unvaccinated       &lt; 18         26.8 
+6 hospital_1 Q1      bacterial      vaccinated         18 - 64      22.4 </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-22-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-22-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="wide-table-by-quarter" class="level3" data-number="15.12.2">
+<h3 data-number="15.12.2" class="anchored" data-anchor-id="wide-table-by-quarter"><span class="header-section-number">15.12.2</span> Wide table by quarter</h3>
+<p>Let’s say we’d be interested how the (average) CRP levels change over time across the different groupings. We’d be interested in having the <code>mean_crp</code> values for each <code>quarter</code> next to each other. That way we’d be able to plot quarterly average CRP levels against each other.</p>
+<p>We can do this as follows:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-23-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-1" role="tab" aria-controls="tabset-23-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-23-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-23-2" role="tab" aria-controls="tabset-23-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-23-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-23-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb90"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb90-1"><a href="#cb90-1" aria-hidden="true" tabindex="-1"></a>infections_wide <span class="ot">&lt;-</span> infections_summary <span class="sc">|&gt;</span> </span>
+<span id="cb90-2"><a href="#cb90-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> <span class="st">"quarter"</span>,</span>
+<span id="cb90-3"><a href="#cb90-3" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> <span class="st">"mean_crp"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb91"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb91-1"><a href="#cb91-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(infections_wide)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 7
+  hospital   infection_type vaccination_status age_group    Q1    Q2    Q3
+  &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;     &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
+1 hospital_1 bacterial      unknown            65+       23.7   NA    26.8
+2 hospital_1 bacterial      unknown            &lt; 18      25.8   54.5  NA  
+3 hospital_1 bacterial      unvaccinated       18 - 64    8.35  NA    NA  
+4 hospital_1 bacterial      unvaccinated       65+       23.2   28.6  NA  
+5 hospital_1 bacterial      unvaccinated       &lt; 18      26.8   25.0  17.1
+6 hospital_1 bacterial      vaccinated         18 - 64   22.4   12.7  NA  </code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-23-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-23-2-tab">
+
+</div>
+</div>
+</div>
+<p>This then allows us to plot the data, for example:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-24-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-1" role="tab" aria-controls="tabset-24-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-24-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-24-2" role="tab" aria-controls="tabset-24-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-24-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-24-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb93"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb93-1"><a href="#cb93-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(infections_wide, <span class="fu">aes</span>(<span class="at">x =</span> Q1, <span class="at">y =</span> Q2)) <span class="sc">+</span></span>
+<span id="cb93-2"><a href="#cb93-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb93-3"><a href="#cb93-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><a href="trainers-live-demo_files/figure-html/unnamed-chunk-53-1.png" class="lightbox" data-gallery="quarto-lightbox-gallery-9"><img src="trainers-live-demo_files/figure-html/unnamed-chunk-53-1.png" class="img-fluid figure-img" width="672"></a></p>
+</figure>
+</div>
+</div>
+</div>
+</div>
+<div id="tabset-24-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-24-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="back-to-long-format" class="level3" data-number="15.12.3">
+<h3 data-number="15.12.3" class="anchored" data-anchor-id="back-to-long-format"><span class="header-section-number">15.12.3</span> Back to long format</h3>
+<p>We can revert back to a long format with the following:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-25-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-1" role="tab" aria-controls="tabset-25-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-25-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-25-2" role="tab" aria-controls="tabset-25-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-25-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-25-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb94"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb94-1"><a href="#cb94-1" aria-hidden="true" tabindex="-1"></a><span class="fu">pivot_longer</span>(infections_wide,</span>
+<span id="cb94-2"><a href="#cb94-2" aria-hidden="true" tabindex="-1"></a>             <span class="at">cols =</span> Q1<span class="sc">:</span>Q3,           <span class="co"># columns to pivot</span></span>
+<span id="cb94-3"><a href="#cb94-3" aria-hidden="true" tabindex="-1"></a>             <span class="at">names_to =</span> <span class="st">"quarter"</span>,   <span class="co"># column for headings</span></span>
+<span id="cb94-4"><a href="#cb94-4" aria-hidden="true" tabindex="-1"></a>             <span class="at">values_to =</span> <span class="st">"mean_crp"</span>) <span class="co"># column for values</span></span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 534 × 6
+   hospital   infection_type vaccination_status age_group quarter mean_crp
+   &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;     &lt;chr&gt;      &lt;dbl&gt;
+ 1 hospital_1 bacterial      unknown            65+       Q1         23.7 
+ 2 hospital_1 bacterial      unknown            65+       Q2         NA   
+ 3 hospital_1 bacterial      unknown            65+       Q3         26.8 
+ 4 hospital_1 bacterial      unknown            &lt; 18      Q1         25.8 
+ 5 hospital_1 bacterial      unknown            &lt; 18      Q2         54.5 
+ 6 hospital_1 bacterial      unknown            &lt; 18      Q3         NA   
+ 7 hospital_1 bacterial      unvaccinated       18 - 64   Q1          8.35
+ 8 hospital_1 bacterial      unvaccinated       18 - 64   Q2         NA   
+ 9 hospital_1 bacterial      unvaccinated       18 - 64   Q3         NA   
+10 hospital_1 bacterial      unvaccinated       65+       Q1         23.2 
+# ℹ 524 more rows</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-25-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-25-2-tab">
+
+</div>
+</div>
+</div>
+<p>And all is well with the world again.</p>
+</section>
+</section>
+<section id="da4-joining-data" class="level2" data-number="15.13">
+<h2 data-number="15.13" class="anchored" data-anchor-id="da4-joining-data"><span class="header-section-number">15.13</span> DA4: joining data</h2>
+<p>In the <code>infections</code> data set we have a variable called <code>hospital</code>. This contains the following unique entries:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-26-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-1" role="tab" aria-controls="tabset-26-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-26-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-26-2" role="tab" aria-controls="tabset-26-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-26-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-26-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb96"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb96-1"><a href="#cb96-1" aria-hidden="true" tabindex="-1"></a>infections <span class="sc">|&gt;</span> <span class="fu">count</span>(hospital)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  hospital       n
+  &lt;chr&gt;      &lt;int&gt;
+1 hospital_1   277
+2 hospital_2   259
+3 hospital_3   280
+4 hospital_4   245
+5 hospital_5   271
+6 &lt;NA&gt;          68</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-26-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-26-2-tab">
+
+</div>
+</div>
+</div>
+<p>Note that for some of the <code>hospital</code> entries there are missing data. This is relevant later on, when we’re joining.</p>
+<p>We’re now going to add information on the hospitals, which are stored in <code>hospital_info.csv</code>. Let’s read in the data:</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-27-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-1" role="tab" aria-controls="tabset-27-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-27-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-27-2" role="tab" aria-controls="tabset-27-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-27-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-27-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb98"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb98-1"><a href="#cb98-1" aria-hidden="true" tabindex="-1"></a>hospital_info <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/hospital_info.csv"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+</div>
+<div id="tabset-27-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-27-2-tab">
+
+</div>
+</div>
+</div>
+<p>Look at the data. There are 6 distinct hospital entries, with additional information for each hospital. We have the following variables:</p>
+<table class="caption-top table">
+<colgroup>
+<col style="width: 18%">
+<col style="width: 11%">
+<col style="width: 70%">
+</colgroup>
+<thead>
+<tr class="header">
+<th>Variable</th>
+<th>Type</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td><code>hospital</code></td>
+<td>character (id)</td>
+<td>Unique hospital identifier (<code>hospital_1</code> … <code>hospital_6</code>).</td>
+</tr>
+<tr class="even">
+<td><code>hospital_name</code></td>
+<td>character</td>
+<td>Official hospital name (e.g., <em>Royal London Hospital</em>).</td>
+</tr>
+<tr class="odd">
+<td><code>location</code></td>
+<td>character</td>
+<td>City where the hospital is located (e.g., London, Manchester).</td>
+</tr>
+<tr class="even">
+<td><code>bed_capacity</code></td>
+<td>integer</td>
+<td>Approximate number of inpatient beds available at the hospital.</td>
+</tr>
+<tr class="odd">
+<td><code>teaching_hospital</code></td>
+<td>logical</td>
+<td>Indicates if the hospital is a teaching hospital (<code>TRUE</code> / <code>FALSE</code>).</td>
+</tr>
+</tbody>
+</table>
+<section id="left-join" class="level3" data-number="15.13.1">
+<h3 data-number="15.13.1" class="anchored" data-anchor-id="left-join"><span class="header-section-number">15.13.1</span> Left join</h3>
+<p>First, we’ll add the <code>hospital_info</code> data to the <code>infections</code> data set. We do this with a left-join. We expect hospital info data to be added to our main <code>infections</code> table, if the <code>hospital</code> value in <code>infections</code> matches with the one in <code>hospital_info</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-28-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-1" role="tab" aria-controls="tabset-28-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-28-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-28-2" role="tab" aria-controls="tabset-28-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-28-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-28-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb99"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb99-1"><a href="#cb99-1" aria-hidden="true" tabindex="-1"></a>infections_left <span class="ot">&lt;-</span> <span class="fu">left_join</span>(infections, hospital_info, <span class="at">by =</span> <span class="st">"hospital"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Let’s just select the ID column from <code>infections</code>, together with all the columns that have been added.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb100"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb100-1"><a href="#cb100-1" aria-hidden="true" tabindex="-1"></a>infections_left <span class="sc">|&gt;</span> </span>
+<span id="cb100-2"><a href="#cb100-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(patient_id, hospital, hospital_name, location, bed_capacity, teaching_hospital) <span class="sc">|&gt;</span> </span>
+<span id="cb100-3"><a href="#cb100-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">head</span>()</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 6
+  patient_id hospital   hospital_name    location bed_capacity teaching_hospital
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;            &lt;chr&gt;           &lt;dbl&gt; &lt;lgl&gt;            
+1 ID_0001    hospital_3 Bristol Royal I… Bristol           768 TRUE             
+2 ID_0002    hospital_3 Bristol Royal I… Bristol           768 TRUE             
+3 ID_0003    hospital_2 Manchester Gene… Manches…          849 FALSE            
+4 ID_0004    hospital_2 Manchester Gene… Manches…          849 FALSE            
+5 ID_0005    hospital_3 Bristol Royal I… Bristol           768 TRUE             
+6 ID_0006    hospital_5 Cardiff Univers… Cardiff           582 TRUE             </code></pre>
+</div>
+</div>
+<p>We can see that the hospital information is now added to the data. We don’t expect any data to have dropped, so the number of observations/rows in <code>infections_left</code> should match the original 1400 from <code>infections</code>.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb102"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb102-1"><a href="#cb102-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(infections_left)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1400</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-28-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-28-2-tab">
+
+</div>
+</div>
+</div>
+</section>
+<section id="right-join" class="level3" data-number="15.13.2">
+<h3 data-number="15.13.2" class="anchored" data-anchor-id="right-join"><span class="header-section-number">15.13.2</span> Right join</h3>
+<p>So, how does a right join then differ from a left join? Well, here we’d be adding the <code>infections</code> data to the <code>hospital_info</code> data (so, in the other direction). That means that for each <code>hospital</code> value that exists in <code>hospital_info</code> it will try and find the values that match the <code>hospital</code> column in <code>infections</code>.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-29-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-1" role="tab" aria-controls="tabset-29-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-29-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-29-2" role="tab" aria-controls="tabset-29-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-29-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-29-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb104"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb104-1"><a href="#cb104-1" aria-hidden="true" tabindex="-1"></a>infections_right <span class="ot">&lt;-</span> <span class="fu">right_join</span>(infections, hospital_info, <span class="at">by =</span> <span class="st">"hospital"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>Again, the resulting table contains the data from both <code>infections</code> and <code>hospital_info</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb105"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb105-1"><a href="#cb105-1" aria-hidden="true" tabindex="-1"></a><span class="fu">head</span>(infections_right)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 15
+  patient_id hospital   quarter infection_type vaccination_status age_group
+  &lt;chr&gt;      &lt;chr&gt;      &lt;chr&gt;   &lt;chr&gt;          &lt;chr&gt;              &lt;chr&gt;    
+1 ID_0001    hospital_3 Q2      none           &lt;NA&gt;               65+      
+2 ID_0002    hospital_3 Q2      viral          &lt;NA&gt;               18 - 64  
+3 ID_0003    hospital_2 Q2      none           unknown            65+      
+4 ID_0004    hospital_2 Q3      fungal         unvaccinated       &lt; 18     
+5 ID_0005    hospital_3 Q2      fungal         vaccinated         65+      
+6 ID_0006    hospital_5 Q3      none           vaccinated         65+      
+# ℹ 9 more variables: icu_admission &lt;lgl&gt;, symptoms_count &lt;dbl&gt;,
+#   systolic_pressure &lt;dbl&gt;, body_temperature &lt;dbl&gt;, crp_level &lt;dbl&gt;,
+#   hospital_name &lt;chr&gt;, location &lt;chr&gt;, bed_capacity &lt;dbl&gt;,
+#   teaching_hospital &lt;lgl&gt;</code></pre>
+</div>
+</div>
+<p>How many observations do we expect? Let’s have a look at how many we’ve got.</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb107"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb107-1"><a href="#cb107-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(infections_right)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1333</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-29-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-29-2-tab">
+
+</div>
+</div>
+</div>
+<p>Here we see that we have fewer than the original 1400 observations, because we are joining in the other direction. Remember, there are missing values in our <code>infections</code> data set (68 in total). When we’re joining <code>infections</code> <strong>to</strong> <code>hospital_info</code>, these entries get dropped, because there is no missing value entry in the <code>hospital</code> column of <code>hospital_info</code>.</p>
+<p>For the eagle-eyed amongst you: we have 1333 observations/rows in <code>infections_right</code>, whereas there are 68 missing values. We might have expected there to be 1332 rows (the difference between the number of rows in <code>infections</code> and the number of missing values), but there are 1333.</p>
+<p>Why? Well, there is one entry in <code>hospital_info</code> that does not appear in <code>infections</code>: <code>hospital_6</code>. When we right join, this value gets retained, so this adds one additional row to the final output.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-30-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-1" role="tab" aria-controls="tabset-30-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-30-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-30-2" role="tab" aria-controls="tabset-30-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-30-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-30-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb109"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb109-1"><a href="#cb109-1" aria-hidden="true" tabindex="-1"></a>infections_right <span class="sc">|&gt;</span> <span class="fu">count</span>(hospital)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 6 × 2
+  hospital       n
+  &lt;chr&gt;      &lt;int&gt;
+1 hospital_1   277
+2 hospital_2   259
+3 hospital_3   280
+4 hospital_4   245
+5 hospital_5   271
+6 hospital_6     1</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-30-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-30-2-tab">
+
+</div>
+</div>
+</div>
+<p>If we wouldn’t want that, we’d use inner join.</p>
+</section>
+<section id="inner-join" class="level3" data-number="15.13.3">
+<h3 data-number="15.13.3" class="anchored" data-anchor-id="inner-join"><span class="header-section-number">15.13.3</span> Inner join</h3>
+<p>Inner join will join two tables and only retain values (based on the joining ID) that exist in <em>both</em> tables.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-31-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-1" role="tab" aria-controls="tabset-31-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-31-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-31-2" role="tab" aria-controls="tabset-31-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-31-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-31-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb111"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb111-1"><a href="#cb111-1" aria-hidden="true" tabindex="-1"></a>infections_inner <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(infections, hospital_info, <span class="at">by =</span> <span class="st">"hospital"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb112"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb112-1"><a href="#cb112-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(infections_inner)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1332</code></pre>
+</div>
+</div>
+<p>Only the 5 hospitals that appear in the <code>infections</code> data set are retained:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb114"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb114-1"><a href="#cb114-1" aria-hidden="true" tabindex="-1"></a>infections_inner <span class="sc">|&gt;</span> <span class="fu">count</span>(hospital)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 5 × 2
+  hospital       n
+  &lt;chr&gt;      &lt;int&gt;
+1 hospital_1   277
+2 hospital_2   259
+3 hospital_3   280
+4 hospital_4   245
+5 hospital_5   271</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-31-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-31-2-tab">
+
+</div>
+</div>
+</div>
+<p>This is entirely expected, since we don’t have missing data in <code>hospital_info</code> (so all the missing data from <code>infections</code> are dropped), nor do we have a <code>hospital_6</code> entry in <code>infections</code> (so that is dropped too).</p>
+</section>
+<section id="full-join" class="level3" data-number="15.13.4">
+<h3 data-number="15.13.4" class="anchored" data-anchor-id="full-join"><span class="header-section-number">15.13.4</span> Full join</h3>
+<p>If we wanted to retain <em>all</em> observations, regardless of which table they’re from, we’d use a full join.</p>
+<div class="tabset-margin-container"></div><div class="panel-tabset" data-group="language">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-32-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-1" role="tab" aria-controls="tabset-32-1" aria-selected="true" href="">R</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-32-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-32-2" role="tab" aria-controls="tabset-32-2" aria-selected="false" href="">Python</a></li></ul>
+<div class="tab-content" data-group="language">
+<div id="tabset-32-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-32-1-tab">
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb116"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb116-1"><a href="#cb116-1" aria-hidden="true" tabindex="-1"></a>infections_full <span class="ot">&lt;-</span> <span class="fu">full_join</span>(infections, hospital_info, <span class="at">by =</span> <span class="st">"hospital"</span>)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+</div>
+<p>How many rows do we expect? Well, the 1400 from <code>infections</code> plus the one extra (<code>hospital_6</code> entry) from <code>hospital_info</code>:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb117"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb117-1"><a href="#cb117-1" aria-hidden="true" tabindex="-1"></a><span class="fu">nrow</span>(infections_full)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 1401</code></pre>
+</div>
+</div>
+<p>We can check that we’ve retained all values, by counting the number of observations for each <code>hospital</code> value:</p>
+<div class="cell">
+<div class="code-copy-outer-scaffold"><div class="sourceCode cell-code" id="cb119"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb119-1"><a href="#cb119-1" aria-hidden="true" tabindex="-1"></a>infections_full <span class="sc">|&gt;</span> <span class="fu">count</span>(hospital)</span></code></pre></div><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 7 × 2
+  hospital       n
+  &lt;chr&gt;      &lt;int&gt;
+1 hospital_1   277
+2 hospital_2   259
+3 hospital_3   280
+4 hospital_4   245
+5 hospital_5   271
+6 hospital_6     1
+7 &lt;NA&gt;          68</code></pre>
+</div>
+</div>
+</div>
+<div id="tabset-32-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-32-2-tab">
+
+</div>
+</div>
+</div>
+<p>We see that <strong>all</strong> <code>hospital</code> values are retained, including the missing values <em>and</em> the one <code>hospital_6</code> value coming from the <code>hospital_info</code> data set. Success!</p>
+
+
+</section>
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+  window.document.addEventListener("DOMContentLoaded", function (event) {
+    const icon = "";
+    const anchorJS = new window.AnchorJS();
+    anchorJS.options = {
+      placement: 'right',
+      icon: icon
+    };
+    anchorJS.add('.anchored');
+    const isCodeAnnotation = (el) => {
+      for (const clz of el.classList) {
+        if (clz.startsWith('code-annotation-')) {                     
+          return true;
+        }
+      }
+      return false;
+    }
+    const onCopySuccess = function(e) {
+      // button target
+      const button = e.trigger;
+      // don't keep focus
+      button.blur();
+      // flash "checked"
+      button.classList.add('code-copy-button-checked');
+      var currentTitle = button.getAttribute("title");
+      button.setAttribute("title", "Copied!");
+      let tooltip;
+      if (window.bootstrap) {
+        button.setAttribute("data-bs-toggle", "tooltip");
+        button.setAttribute("data-bs-placement", "left");
+        button.setAttribute("data-bs-title", "Copied!");
+        tooltip = new bootstrap.Tooltip(button, 
+          { trigger: "manual", 
+            customClass: "code-copy-button-tooltip",
+            offset: [0, -8]});
+        tooltip.show();    
+      }
+      setTimeout(function() {
+        if (tooltip) {
+          tooltip.hide();
+          button.removeAttribute("data-bs-title");
+          button.removeAttribute("data-bs-toggle");
+          button.removeAttribute("data-bs-placement");
+        }
+        button.setAttribute("title", currentTitle);
+        button.classList.remove('code-copy-button-checked');
+      }, 1000);
+      // clear code selection
+      e.clearSelection();
+    }
+    const getTextToCopy = function(trigger) {
+      const outerScaffold = trigger.parentElement.cloneNode(true);
+      const codeEl = outerScaffold.querySelector('code');
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
+    }
+    const clipboard = new window.ClipboardJS('.code-copy-button:not([data-in-quarto-modal])', {
+      text: getTextToCopy
+    });
+    clipboard.on('success', onCopySuccess);
+    if (window.document.getElementById('quarto-embedded-source-code-modal')) {
+      const clipboardModal = new window.ClipboardJS('.code-copy-button[data-in-quarto-modal]', {
+        text: getTextToCopy,
+        container: window.document.getElementById('quarto-embedded-source-code-modal')
+      });
+      clipboardModal.on('success', onCopySuccess);
+    }
+      var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+      var mailtoRegex = new RegExp(/^mailto:/);
+        var filterRegex = new RegExp('/' + window.location.host + '/');
+      var isInternal = (href) => {
+          return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+      }
+      // Inspect non-navigation links and adorn them if external
+     var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool):not(.about-link)');
+      for (var i=0; i<links.length; i++) {
+        const link = links[i];
+        if (!isInternal(link.href)) {
+          // undo the damage that might have been done by quarto-nav.js in the case of
+          // links that we want to consider external
+          if (link.dataset.originalHref !== undefined) {
+            link.href = link.dataset.originalHref;
+          }
+        }
+      }
+    function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
+      const config = {
+        allowHTML: true,
+        maxWidth: 500,
+        delay: 100,
+        arrow: false,
+        appendTo: function(el) {
+            return el.parentElement;
+        },
+        interactive: true,
+        interactiveBorder: 10,
+        theme: 'quarto',
+        placement: 'bottom-start',
+      };
+      if (contentFn) {
+        config.content = contentFn;
+      }
+      if (onTriggerFn) {
+        config.onTrigger = onTriggerFn;
+      }
+      if (onUntriggerFn) {
+        config.onUntrigger = onUntriggerFn;
+      }
+      window.tippy(el, config); 
+    }
+    const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+    for (var i=0; i<noterefs.length; i++) {
+      const ref = noterefs[i];
+      tippyHover(ref, function() {
+        // use id or data attribute instead here
+        let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+        try { href = new URL(href).hash; } catch {}
+        const id = href.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note) {
+          return note.innerHTML;
+        } else {
+          return "";
+        }
+      });
+    }
+    const xrefs = window.document.querySelectorAll('a.quarto-xref');
+    const processXRef = (id, note) => {
+      // Strip column container classes
+      const stripColumnClz = (el) => {
+        el.classList.remove("page-full", "page-columns");
+        if (el.children) {
+          for (const child of el.children) {
+            stripColumnClz(child);
+          }
+        }
+      }
+      stripColumnClz(note)
+      if (id === null || id.startsWith('sec-')) {
+        // Special case sections, only their first couple elements
+        const container = document.createElement("div");
+        if (note.children && note.children.length > 2) {
+          container.appendChild(note.children[0].cloneNode(true));
+          for (let i = 1; i < note.children.length; i++) {
+            const child = note.children[i];
+            if (child.tagName === "P" && child.innerText === "") {
+              continue;
+            } else {
+              container.appendChild(child.cloneNode(true));
+              break;
+            }
+          }
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(container);
+          }
+          return container.innerHTML
+        } else {
+          if (window.Quarto?.typesetMath) {
+            window.Quarto.typesetMath(note);
+          }
+          return note.innerHTML;
+        }
+      } else {
+        // Remove any anchor links if they are present
+        const anchorLink = note.querySelector('a.anchorjs-link');
+        if (anchorLink) {
+          anchorLink.remove();
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        if (note.classList.contains("callout")) {
+          return note.outerHTML;
+        } else {
+          return note.innerHTML;
+        }
+      }
+    }
+    for (var i=0; i<xrefs.length; i++) {
+      const xref = xrefs[i];
+      tippyHover(xref, undefined, function(instance) {
+        instance.disable();
+        let url = xref.getAttribute('href');
+        let hash = undefined; 
+        if (url.startsWith('#')) {
+          hash = url;
+        } else {
+          try { hash = new URL(url).hash; } catch {}
+        }
+        if (hash) {
+          const id = hash.replace(/^#\/?/, "");
+          const note = window.document.getElementById(id);
+          if (note !== null) {
+            try {
+              const html = processXRef(id, note.cloneNode(true));
+              instance.setContent(html);
+            } finally {
+              instance.enable();
+              instance.show();
+            }
+          } else {
+            // See if we can fetch this
+            fetch(url.split('#')[0])
+            .then(res => res.text())
+            .then(html => {
+              const parser = new DOMParser();
+              const htmlDoc = parser.parseFromString(html, "text/html");
+              const note = htmlDoc.getElementById(id);
+              if (note !== null) {
+                const html = processXRef(id, note);
+                instance.setContent(html);
+              } 
+            }).finally(() => {
+              instance.enable();
+              instance.show();
+            });
+          }
+        } else {
+          // See if we can fetch a full url (with no hash to target)
+          // This is a special case and we should probably do some content thinning / targeting
+          fetch(url)
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.querySelector('main.content');
+            if (note !== null) {
+              // This should only happen for chapter cross references
+              // (since there is no id in the URL)
+              // remove the first header
+              if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+                note.children[0].remove();
+              }
+              const html = processXRef(null, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      }, function(instance) {
+      });
+    }
+        let selectedAnnoteEl;
+        const selectorForAnnotation = ( cell, annotation) => {
+          let cellAttr = 'data-code-cell="' + cell + '"';
+          let lineAttr = 'data-code-annotation="' +  annotation + '"';
+          const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+          return selector;
+        }
+        const selectCodeLines = (annoteEl) => {
+          const doc = window.document;
+          const targetCell = annoteEl.getAttribute("data-target-cell");
+          const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+          const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+          const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+          const lineIds = lines.map((line) => {
+            return targetCell + "-" + line;
+          })
+          let top = null;
+          let height = null;
+          let parent = null;
+          if (lineIds.length > 0) {
+              //compute the position of the single el (top and bottom and make a div)
+              const el = window.document.getElementById(lineIds[0]);
+              top = el.offsetTop;
+              height = el.offsetHeight;
+              parent = el.parentElement.parentElement;
+            if (lineIds.length > 1) {
+              const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+              const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+              height = bottom - top;
+            }
+            if (top !== null && height !== null && parent !== null) {
+              // cook up a div (if necessary) and position it 
+              let div = window.document.getElementById("code-annotation-line-highlight");
+              if (div === null) {
+                div = window.document.createElement("div");
+                div.setAttribute("id", "code-annotation-line-highlight");
+                div.style.position = 'absolute';
+                parent.appendChild(div);
+              }
+              div.style.top = top - 2 + "px";
+              div.style.height = height + 4 + "px";
+              div.style.left = 0;
+              let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+              if (gutterDiv === null) {
+                gutterDiv = window.document.createElement("div");
+                gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+                gutterDiv.style.position = 'absolute';
+                const codeCell = window.document.getElementById(targetCell);
+                const gutter = codeCell.querySelector('.code-annotation-gutter');
+                gutter.appendChild(gutterDiv);
+              }
+              gutterDiv.style.top = top - 2 + "px";
+              gutterDiv.style.height = height + 4 + "px";
+            }
+            selectedAnnoteEl = annoteEl;
+          }
+        };
+        const unselectCodeLines = () => {
+          const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+          elementsIds.forEach((elId) => {
+            const div = window.document.getElementById(elId);
+            if (div) {
+              div.remove();
+            }
+          });
+          selectedAnnoteEl = undefined;
+        };
+          // Handle positioning of the toggle
+      window.addEventListener(
+        "resize",
+        throttle(() => {
+          elRect = undefined;
+          if (selectedAnnoteEl) {
+            selectCodeLines(selectedAnnoteEl);
+          }
+        }, 10)
+      );
+      function throttle(fn, ms) {
+      let throttle = false;
+      let timer;
+        return (...args) => {
+          if(!throttle) { // first call gets through
+              fn.apply(this, args);
+              throttle = true;
+          } else { // all the others get throttled
+              if(timer) clearTimeout(timer); // cancel #2
+              timer = setTimeout(() => {
+                fn.apply(this, args);
+                timer = throttle = false;
+              }, ms);
+          }
+        };
+      }
+        // Attach click handler to the DT
+        const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+        for (const annoteDlNode of annoteDls) {
+          annoteDlNode.addEventListener('click', (event) => {
+            const clickedEl = event.target;
+            if (clickedEl !== selectedAnnoteEl) {
+              unselectCodeLines();
+              const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+              if (activeEl) {
+                activeEl.classList.remove('code-annotation-active');
+              }
+              selectCodeLines(clickedEl);
+              clickedEl.classList.add('code-annotation-active');
+            } else {
+              // Unselect the line
+              unselectCodeLines();
+              clickedEl.classList.remove('code-annotation-active');
+            }
+          });
+        }
+    const findCites = (el) => {
+      const parentEl = el.parentElement;
+      if (parentEl) {
+        const cites = parentEl.dataset.cites;
+        if (cites) {
+          return {
+            el,
+            cites: cites.split(' ')
+          };
+        } else {
+          return findCites(el.parentElement)
+        }
+      } else {
+        return undefined;
+      }
+    };
+    var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+    for (var i=0; i<bibliorefs.length; i++) {
+      const ref = bibliorefs[i];
+      const citeInfo = findCites(ref);
+      if (citeInfo) {
+        tippyHover(citeInfo.el, function() {
+          var popup = window.document.createElement('div');
+          citeInfo.cites.forEach(function(cite) {
+            var citeDiv = window.document.createElement('div');
+            citeDiv.classList.add('hanging-indent');
+            citeDiv.classList.add('csl-entry');
+            var biblioDiv = window.document.getElementById('ref-' + cite);
+            if (biblioDiv) {
+              citeDiv.innerHTML = biblioDiv.innerHTML;
+            }
+            popup.appendChild(citeDiv);
+          });
+          return popup.innerHTML;
+        });
+      }
+    }
+  });
+  </script>
+<nav class="page-navigation">
+  <div class="nav-page nav-page-previous">
+      <a href="../materials/da4-11-cleaning-data.html" class="pagination-link" aria-label="Clean, style &amp; arrange">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-number">14</span>&nbsp; <span class="chapter-title">Clean, style &amp; arrange</span></span>
+      </a>          
+  </div>
+  <div class="nav-page nav-page-next">
+  </div>
+</nav>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+      &nbsp;
+    </div>   
+    <div class="nav-footer-center">
+<p>Licensed <a href="https://creativecommons.org/licenses/by/4.0/">CC BY 4.0</a> <img src="https://creativecommons.org/images/deed/cc_icon_black_x2.png" class="img-fluid" width="25"> Cambridge Research Informatics Training</p>
+</div>
+    <div class="nav-footer-right">
+      &nbsp;
+    </div>
+  </div>
+</footer>
+<script>var lightboxQuarto = GLightbox({"closeEffect":"zoom","descPosition":"bottom","loop":false,"openEffect":"zoom","selector":".lightbox"});
+(function() {
+  let previousOnload = window.onload;
+  window.onload = () => {
+    if (previousOnload) {
+      previousOnload();
+    }
+    lightboxQuarto.on('slide_before_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      const href = trigger.getAttribute('href');
+      if (href !== null) {
+        const imgEl = window.document.querySelector(`a[href="${href}"] img`);
+        if (imgEl !== null) {
+          const srcAttr = imgEl.getAttribute("src");
+          if (srcAttr && srcAttr.startsWith("data:")) {
+            slideConfig.href = srcAttr;
+          }
+        }
+      } 
+    });
+  
+    lightboxQuarto.on('slide_after_load', (data) => {
+      const { slideIndex, slideNode, slideConfig, player, trigger } = data;
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(slideNode);
+      }
+    });
+  
+  };
+  
+})();
+          </script>
+
+
+
+
+</body></html>
