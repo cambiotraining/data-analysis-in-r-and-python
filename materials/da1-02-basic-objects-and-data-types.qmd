@@ -837,42 +837,126 @@ There are `r length(seq(2, 21, by = 2))` numbers in the sequence.
 ::::
 :::::
 
-### Subsetting {#sec-exr_subsetting}
+### Summation {#sec-exr_summation}
 
-::::: {.callout-exercise #ex-subsetting}
-#### Subsetting
+::::: {.callout-exercise #ex-summation}
+#### Summation
 
 {{< level 1 >}}
 
-For this exercise you need to use the number sequence you created in @sec-creating_objects.
+For this exercise, create a series of uneven numbers of 10 to 30.
 
-Using subsetting, select the second half of the sequence.
+Using programming, answer the following: what is the sum of the resulting series of numbers?
 
 :::: {.callout-answer collapse="true"}
 
-We determined that we have `r length(seq(2, 21, by = 2))` numbers in the sequence, so we need to select the last 5.
 
 ::: {.panel-tabset group="language"}
 ## R
 
 ```{r}
-num_seq[6:10]
+num_seq <- seq(11, 29, by = 2)
+```
+
+```{r}
+sum(num_seq)
 ```
 
 
 ## Python
 
-We need to select items 5 to 10, which corresponds to start index `5` (inclusive) and stop index `10` (exclusive):
-
 ```{python}
-num_seq[5:10]
+num_seq = list(range(11, 30, 2))
 ```
 
-Or using negative slicing:
+```{python}
+sum(num_seq)
+```
+
+:::
+::::
+:::::
+
+### Data types {#sec-exr_data_types}
+
+::::: {.callout-exercise #ex-data_types}
+#### Data types
+
+{{< level 2 >}}
+
+Programming languages have a habit of coercing data types. What data types do you expect the following collections to be?
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+ex1 <- c(22, 87, NA, 32)
+ex2 <- c(22, 87, 96, "unsure")
+ex3 <- c(22, 87, 96.8, 102)
+ex4 <- c(89, "rain", 12, TRUE)
+ex5 <- c(TRUE, FALSE, TRUE, TRUE, "1", TRUE)
+ex6 <- c(TRUE, FALSE, TRUE, TRUE, 1, TRUE)
+```
+
+## Python
 
 ```{python}
-num_seq[-5:]
+ex1 = np.array([22, 87, None, 32])
+ex2 = np.array([22, 87, 96, "unsure"])
+ex3 = np.array([22, 87, 96.8, 102])
+ex4 = np.array([89, "rain", 12, True])
+ex5 = np.array([True, False, True, True, "1", True])
+ex6 = np.array([True, False, True, True, 1, True])
 ```
+
+:::
+
+:::: {.callout-answer collapse="true"}
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+class(ex1)
+class(ex2)
+class(ex3)
+class(ex4)
+class(ex5)
+class(ex6)
+```
+
+There are some perhaps unexpected data types in there, so let's focus on it a bit more.
+
+| **Output**  | **Explanation**                                                                      |
+| ------------- | ------------------------------------------------------------------------------------ |
+| `"numeric"`   | All numeric values + `NA` (which is allowed in numeric vectors).                     |
+| `"character"` | Mixing numbers with a string (`"unsure"`) coerces everything to character.           |
+| `"numeric"`   | Integers and decimal values are both numeric in R (stored as doubles).               |
+| `"character"` | Presence of `"rain"` (a string) forces all elements to become character.             |
+| `"character"` | Mixing logical (`TRUE/FALSE`) with string (`"1"`) coerces all to character.          |
+| `"numeric"`   | Logical values (`TRUE/FALSE`) are coerced to `1` and `0`, making the vector numeric. |
+
+
+## Python
+
+```{python}
+ex1.dtype
+ex2.dtype
+ex3.dtype
+ex4.dtype
+ex5.dtype
+ex6.dtype
+```
+
+There are some weird data types in there, so let's unpack that a bit more.
+
+
+| dtype                 | Meaning                       | Explanation                                                                                                                                         |
+| --------------------- | ----------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| **`O`**               | *Object*                      | The array holds generic Python objects (mixed types, e.g. `int` + `None`). No coercion possible.                                                    |
+| **`<U21`**, **`<U5`** | *Unicode string*              | The array holds text (`U` = Unicode). The number (`21`, `5`) is the **maximum string length** in that array. NumPy converted everything to strings. |
+| **`float64`**         | 64-bit floating-point numbers | Purely numeric (can hold integers and floats together).                                                                                             |
+| **`int64`**           | 64-bit integers               | Purely integer values (booleans are treated as `1` and `0`).                                                                                        |
 
 :::
 ::::
