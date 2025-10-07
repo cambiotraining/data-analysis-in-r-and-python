@@ -601,6 +601,14 @@ Let's select the `lake` column.
 parasites$lake
 ```
 
+We can check how many unique values there are:
+
+```{r}
+length(unique(parasites$lake))
+```
+
+We read that as follows: "in the `lake` column in `parasites` (`parasites$lake`), find the unique values (`unique()`) and count how many items there are (`length()`)."
+
 
 ## Python
 
@@ -614,6 +622,12 @@ Or just use the `.` notation.
 
 ```{python}
 parasites.lake
+```
+
+We can then tally the number of unique values, using the `.nunique()` method:
+
+```{python}
+parasites["lake"].nunique()
 ```
 
 :::
@@ -645,7 +659,7 @@ max(parasites[12:29, "fish_length"])
 
 We can use the `[ ]` notation to subset our data. This takes the order `[rows, columns]`.
 
-Remember that Python has zero-based indexing. So, if we want rows 12 to 29 (included), we need to select index `[11:28]`. We're using `.loc` because we are using label-based indexing (by selecting the `fish_length` column using it's name).
+Remember that Python has zero-based indexing. Also remember that `.loc` is inclusive. So, if we want rows 12 to 29 (included), we need to select index `[11:28]`. We're using `.loc` because we are using label-based indexing (by selecting the `fish_length` column using it's name).
 
 ```{python}
 parasites.loc[11:28, "fish_length"]
@@ -665,6 +679,70 @@ parasites.loc[11:28, "fish_length"].max()
 
 :::
 :::
+
+### Random sampling: `parasites` {#sec-exr_random_sampling}
+
+::::: {.callout-exercise #ex-random_sampling}
+#### Random sampling
+
+{{< level 3 >}}
+
+For this exercise we'll be using the data from `data/parasites.csv`.
+
+Using subsetting, select 10 random rows in the data - without manually selecting them!
+
+What happens if you repeatedly randomly sample?
+
+:::: {.callout-answer collapse="true"}
+
+We can do this as follows.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+set.seed(123)  # optional, for reproducibility
+
+sample_rows <- sample(1:nrow(parasites), size = 10)  # pick 10 random row indices
+parasites_subset <- parasites[sample_rows, ]
+```
+
+We use the `sample()` function, to create a vector of random row numbers - based on the length of the `parasites` data set. We then use this to subset our data.
+
+This gives us the following subset of data:
+
+```{r}
+parasites_subset
+```
+
+::: {.callout-note}
+We are also using `set.seed(123)`. What this does is "set" the random number generator that R uses. This allows us to recreate output and provide reproducibility in the course materials. If we would not set it, then every time we create `sample_rows` it would pick 10 different random ones. 
+:::
+
+## Python
+
+Pandas has built-in random sampling, using the `.sample()` method.
+
+We need to give it three pieces of information:
+
+1. The data (`parasites`)
+2. The number of samples to take (`n = `)
+3. (optional) setting the random seed (`random_state = `)
+
+```{python}
+parasites_subset = parasites.sample(n = 10, random_state = 123)
+```
+
+```{python}
+parasites_subset.head()
+```
+
+::: {.callout-note}
+We are also using `random_state = 123`. What this does is "set" the random number generator that Python uses. This allows us to recreate output and provide reproducibility in the course materials. If we would not set it, then every time we create `parasites_subset` it would pick 10 different random rows. 
+:::
+:::
+::::
+:::::
 
 ## Summary
 
