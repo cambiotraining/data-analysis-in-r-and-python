@@ -1129,7 +1129,7 @@ p.show()
 
 ### Facetting plots: `parasites` {#sec-exr_facets}
 
-::: {.callout-exercise #ex-title}
+::: {.callout-exercise #ex-facets}
 #### Facetting plots
 
 {{< level 1 >}}
@@ -1138,7 +1138,7 @@ For this exercise we'll again use the data from `data/parasites.csv`.
 
 To practice creating sub panels using facetting, you'll be plotting `fish_length` against `parasite_count` for each `lake`.
 
-Which lake has the highest parasite count?
+Which lake has the highest parasite count value?
 
 ::: {.callout-answer collapse="true"}
 We'll assume you still have the data loaded.
@@ -1167,6 +1167,115 @@ Lake `C` has the highest parasite count (over 225).
 
 :::
 :::
+
+### Customising visuals: `parasites` {#sec-exr_custom_visuals}
+
+::::: {.callout-exercise #ex-custom_colours}
+#### Customising visuals
+
+{{< level 3 >}}
+
+For this exercise we'll again be using the data from `data/parasites.csv`.
+
+The goal of this exercise is to become more familiar with some of the customisations that are possible. You'll be focussing on adding titles and custom axis labels to a plot. You'll also practice customising the colour scheme of a plot.
+
+Recreate the following plot:
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+#| echo: false
+cb_palette   <- c("#999999", "#E69F00", "#56B4E9", "#009E73", 
+                  "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+```
+
+```{r}
+#| echo: false
+ggplot(data = parasites,
+       mapping = aes(x = lake, y = fish_length, fill = lake)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  scale_fill_manual(values = cb_palette) +
+  labs(title = "Fish length by lake",
+       x = "Lake",
+       y = "Fish length (mm)")
+```
+
+
+## Python
+
+```{python}
+#| echo: false
+cb_palette = ["#999999", "#E69F00", "#56B4E9", "#009E73",
+              "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]
+```
+
+```{python}
+#| echo: false
+p = (ggplot(parasites,
+       mapping = aes(x = "lake", y = "fish_length", fill = "lake")) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, fill = "black") +
+  scale_fill_manual(values = cb_palette) +
+  labs(title = "Fish length by lake",
+       x = "Lake",
+       y = "Fish length (mm)"))
+       
+p.show()
+```
+
+
+:::
+
+You can refer to the [Clean, style & arrange](da4-11-cleaning-data.qmd) chapter for suggestions on how to do this!
+
+:::: {.callout-answer collapse="true"}
+
+
+::: {.panel-tabset group="language"}
+## R
+
+
+```{r}
+cb_palette   <- c("#999999", "#E69F00", "#56B4E9", "#009E73", 
+                  "#F0E442", "#0072B2", "#D55E00", "#CC79A7")
+```
+
+```{r}
+ggplot(data = parasites,
+       mapping = aes(x = lake, y = fish_length, fill = lake)) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1) +
+  scale_fill_manual(values = cb_palette) +
+  labs(title = "Fish length by lake",
+       x = "Lake",
+       y = "Fish length (mm)")
+```
+
+## Python
+
+```{python}
+cb_palette = ["#999999", "#E69F00", "#56B4E9", "#009E73",
+              "#F0E442", "#0072B2", "#D55E00", "#CC79A7"]
+```
+
+```{python}
+p = (ggplot(parasites,
+       mapping = aes(x = "lake", y = "fish_length", fill = "lake")) +
+  geom_boxplot() +
+  geom_jitter(width = 0.1, fill = "black") +
+  scale_fill_manual(values = cb_palette) +
+  labs(title = "Fish length by lake",
+       x = "Lake",
+       y = "Fish length (mm)"))
+
+p.show()
+```
+
+:::
+::::
+:::::
 
 ## Summary
 
