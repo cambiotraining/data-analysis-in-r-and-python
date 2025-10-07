@@ -300,9 +300,9 @@ Please do the following:
 
 1. Read in the data
 2. Get to grips with the structure of the data
-3. Select the `patient_id`, `systolic_pressure` and `body_temperature` columns
-4. Select all numerical columns
-5. Unselect all logical columns
+3. Select the `patient_id`, `systolic_pressure` and `body_temperature` columns. How many rows have no missing data at all?
+4. Select all numerical columns. How many columns are there?
+5. Unselect all logical columns. How many columns are left?
 
 ::: {.callout-answer collapse="true"}
 #### 1. Read in the data
@@ -389,17 +389,25 @@ Now that we have a much better view of what our data looks like, let's play arou
 ## R
 
 ```{r}
-select(infections, patient_id, systolic_pressure, body_temperature)
+subset <- select(infections, patient_id, systolic_pressure, body_temperature)
 ```
 
+```{r}
+nrow(drop_na(subset))
+```
 
 ## Python
 
 We use the `[[ ]]` notations, because we are subsetting the DataFrame (`infections[ ]`) and we are subsetting it by using a list of column names `["patient_id", "systolic_pressure", "body_temperature"]`:
 
 ```{python}
-infections[["patient_id", "systolic_pressure", "body_temperature"]]
+subset = infections[["patient_id", "systolic_pressure", "body_temperature"]]
 ```
+
+```{python}
+subset.dropna().shape[0]
+```
+
 
 :::
 
@@ -409,14 +417,22 @@ infections[["patient_id", "systolic_pressure", "body_temperature"]]
 ## R
 
 ```{r}
-select(infections, where(is.numeric))
+subset <- select(infections, where(is.numeric))
+```
+
+```{r}
+ncol(subset)
 ```
 
 
 ## Python
 
 ```{python}
-infections.select_dtypes(include = ["number"])
+subset = infections.select_dtypes(include = ["number"])
+```
+
+```{python}
+subset.shape[1]
 ```
 
 :::
@@ -429,7 +445,11 @@ infections.select_dtypes(include = ["number"])
 We can do something similar as with the numerical column, just specifying the `logical` type and then negating it:
 
 ```{r}
-select(infections, -where(is.logical))
+subset <- select(infections, -where(is.logical))
+```
+
+```{r}
+ncol(subset)
 ```
 
 ## Python
@@ -460,10 +480,14 @@ We can see that the `dtype` has changed:
 infections.icu_admission.dtype
 ```
 
-Lastly, we can now *finally* unselect our column:
+Lastly, we can now *finally* unselect our column and count the number of remaining columns:
 
 ```{python}
-infections.select_dtypes(exclude = ["bool"])
+subset = infections.select_dtypes(exclude = ["bool"])
+```
+
+```{python}
+subset.shape[1]
 ```
 
 :::
@@ -477,9 +501,9 @@ infections.select_dtypes(exclude = ["bool"])
 
 {{< level 2 >}}
 
-For this exercise we'll again use the data from `data/infections.csv`. We'll assume you've still have it read in. Please try the following:
+For this exercise we'll again use the data from `data/infections.csv`. We'll assume you've still have it read in. Please do the following:
 
-Create a `body_temperature_f` that contains the body temperature measurements in Fahrenheit.
+Create a column called `body_temperature_f` that contains the body temperature measurements in Fahrenheit, rounded to a whole number.
 
 
 ::: {.callout-hint collapse="true"}
@@ -499,7 +523,7 @@ We need to update the existing table, so we view the result.
 ## R
 
 ```{r}
-infections <- mutate(infections, body_temperature_f = body_temperature * (9/5) + 32)
+infections <- mutate(infections, body_temperature_f = round(body_temperature * (9/5) + 32))
 ```
 
 Let's check if the result is what we expected.
@@ -511,7 +535,7 @@ select(infections, body_temperature, body_temperature_f)
 ## Python
 
 ```{python}
-infections["body_temperature_f"] = infections["body_temperature"] * (9/5) + 32
+infections["body_temperature_f"] = round(infections["body_temperature"] * (9/5) + 32)
 ```
 
 Let's check if the result is what we expected.

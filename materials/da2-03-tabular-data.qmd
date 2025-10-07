@@ -260,7 +260,7 @@ We can divide the way we extract the data into two methods: based on their label
 ::: {.panel-tabset group="language"}
 ## R
 
-Here, we are asking to return *all* the rows for the `species_id` column (its label). Note the comma before the `"species_id"` notation.
+Here, we are asking to return *all* the rows for the `species_id` column (its label). Note the comma before the `"species_id"` notation. The blank *before* the comma indicates that we're selecting all the rows.
 
 ```{r}
 surveys[ , "species_id"]
@@ -357,8 +357,8 @@ Let's create a practice data set to save, for example by taking the first 20 row
 surveys_snippet = surveys.iloc[0:20, :]
 ```
 
-We can now save this. We do this using `.to_csv`
-. 
+We can now save this. We do this using `.to_csv`.
+
 We need to tell it which data set to save (this comes first) and then tell it *where* we want to save it. Here, we're saving it in our `data/` folder, as a file called `surveys_snippet.csv`. The file extension `.csv` is important, so don't forget to add it!
 
 We also include the `index = False` argument, so that the row numbers are not written to file.
