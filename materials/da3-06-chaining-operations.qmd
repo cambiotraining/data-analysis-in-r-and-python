@@ -270,6 +270,73 @@ parasites |>
 :::
 :::
 
+### Converting dates: `surveys` {#sec-exr_converting_dates}
+
+::::: {.callout-exercise #ex-converting_dates}
+#### Converting dates
+
+{{< level 3 >}}
+
+For this exercise we'll go back to using the data from `data/surveys.csv`.
+
+In our data we have the day, month and year values in separate columns. This is a safe way of storing the data, but when it comes to plotting or working with the data it's useful to have it in a different format.
+
+Create two new columns:
+
+1. `record_date` that contains the full date in the format `yyyy-mm-dd`
+2. `month_abbr` that contains the month abbreviation (e.g. `Jan`, `Feb`, ...)
+3. Do this using chains, so you don't end up needing to save lots of intermediate objects
+
+Feel free to use new packages...
+
+:::: {.callout-answer collapse="true"}
+
+We can do this as follows.
+
+::: {.panel-tabset group="language"}
+## R
+
+In R there is the `lubridate` package, which allows us to manipulate dates efficiently. After installing it, make sure to load it.
+
+* we use `lubridate::make_date()` to create the date column
+* we use the `lubridate::month()` function to create the month label, using abbreviations
+
+```{r}
+library(lubridate)
+
+surveys |> 
+  mutate(record_date = make_date(year, month, day)) |> 
+  mutate(month_abbr = month(month, label = TRUE, abbr = TRUE)) |> 
+  select(record_id, year, month, day, record_date, month_abbr)
+```
+
+
+## Python
+
+We can use some functionality from the `calendar` package, as well as `pandas`.
+
+* we can use `to_datetime()` to convert the `year`, `month` and `day` columns to a date.
+* we can use `calendar.month_abbr` to convert the numeric value of `month` to a month abbreviation
+
+```{python}
+import calendar
+
+surveys = (
+    surveys
+    .assign(record_date = pd.to_datetime(surveys[['year', 'month', 'day']]))
+    .assign(month_abbr = surveys['month'].apply(lambda x: calendar.month_abbr[x]))
+)
+
+```
+
+```{python}
+surveys.head()
+```
+
+:::
+::::
+:::::
+
 ## Summary
 
 ::: {.callout-tip}
