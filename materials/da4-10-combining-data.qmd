@@ -111,6 +111,8 @@ We'll be adding the data from `plot_types` to the existing `surveys` data. This 
 
 This means that any `plot_id` that appears in `surveys`, but isn't present in `plot_types` will be empty or missing for its `plot_type` value.
 
+For an animated representation of the underlying principle of joining, have a look at the [garrickadenbuie](https://www.garrickadenbuie.com/project/tidyexplain/) website.
+
 ::: {.panel-tabset group="language"}
 ## R
 
