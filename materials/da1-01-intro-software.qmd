@@ -385,6 +385,10 @@ And if you do name the arguments, you can switch their order:
 round(digits = 2, x = 3.14159)
 ```
 
+:::{.callout-tip}
+You can have a more detailed look by checking the help page of the function. You can access any help page by typing `help(function_name)` or `?function_name`. So, for the round function this would be `help(round)` or `?round`.
+:::
+
 ## Python
 We can use `help(round)` to find what arguments it takes.
 
