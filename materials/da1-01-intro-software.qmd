@@ -386,6 +386,7 @@ round(digits = 2, x = 3.14159)
 ```
 
 :::{.callout-tip}
+## Getting help
 You can have a more detailed look by checking the help page of the function. You can access any help page by typing `help(function_name)` or `?function_name`. So, for the round function this would be `help(round)` or `?round`.
 :::
 

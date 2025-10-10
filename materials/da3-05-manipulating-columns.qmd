@@ -81,6 +81,18 @@ select(surveys, record_id, year)
  
 Using the base R syntax, this is equivalent to `surveys[, c("record_id", "year")]`. Notice that with the `select()` function (and generally with `dplyr` functions) we didn’t need to quote " the column names. This is because the first input to the function is the table name, and so everything after is assumed to be column names of that table.
 
+
+:::{.callout-tip}
+## Getting a better view
+If we wanted to get the resulting output in a separate tab, so we could view it better, we would be able to wrap this inside the `View()` function:
+
+```{r}
+#| eval: false
+View(select(surveys, record_id, year))
+```
+
+:::
+
 ## Python
 
 The way we need to specify this is by giving a list of column names `["record_id", "year"]` and subsetting the surveys data set with this.
