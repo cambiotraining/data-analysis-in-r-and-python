@@ -1016,12 +1016,15 @@ ggsave(filename = "images/weight_vs_hindfootlength.png",
 
 ```{python}
 #| results: hide
+#| message: false
 plot_python = (ggplot(surveys, aes(x = "weight", y = "hindfoot_length")) +
         geom_point() +
         facet_wrap("~ sex"))
 ```
 
 ```{python}
+#| results: hide
+#| message: false
 (ggsave(plot_python,
         filename = "images/weight_vs_hindfootlength.png",
         units = "in",
