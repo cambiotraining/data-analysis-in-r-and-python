@@ -886,7 +886,9 @@ sum(num_seq)
 
 Create an object that contains the following values:
 
-`"Genetics", "Geography", "Neurosurgery", "Medicine", "Zoology", "Chemistry"`
+```bash
+"Genetics", "Geography", "Neurosurgery", "Medicine", "Zoology", "Chemistry"
+```
 
 Extract the values where the number of characters in the Department name is more than 8.
 
