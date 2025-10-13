@@ -1,5 +1,5 @@
 ---
-title: "Live demo exercises"
+title: "Additional exercises"
 ---
 
 ## Section setup
