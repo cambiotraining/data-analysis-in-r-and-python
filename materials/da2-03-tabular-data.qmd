@@ -612,7 +612,7 @@ We read that as follows: "in the `lake` column in `parasites` (`parasites$lake`)
 
 ## Python
 
-We can define the column explicitly, using the `["col"]` notation.
+We can define the column explicitly, using the `["column_name"]` notation.
 
 ```{python}
 parasites["lake"]

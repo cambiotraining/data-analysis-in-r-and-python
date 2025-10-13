@@ -1138,10 +1138,10 @@ For this exercise we'll again use the data from `data/parasites.csv`.
 
 To practice creating sub panels using facetting, you'll be plotting `fish_length` against `parasite_count` for each `lake`.
 
-Which lake has the highest parasite count value?
+Which lake has the highest parasite count value? Eyeball this using the plots!
 
 ::: {.callout-answer collapse="true"}
-We'll assume you still have the data loaded.
+We'll assume you still have the data loaded. We create the scatterplot, then facet it by `lake`.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -1177,7 +1177,7 @@ Lake `C` has the highest parasite count (over 225).
 
 For this exercise we'll again be using the data from `data/parasites.csv`.
 
-The goal of this exercise is to become more familiar with some of the customisations that are possible. You'll be focussing on adding titles and custom axis labels to a plot. You'll also practice customising the colour scheme of a plot.
+The goal of this exercise is to become more familiar with some of the customisations that are possible. You'll be focusing on adding titles and custom axis labels to a plot. You'll also practice customising the colour scheme of a plot.
 
 Recreate the following plot:
 

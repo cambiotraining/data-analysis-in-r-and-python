@@ -242,10 +242,12 @@ parasites = pd.read_csv("data/parasites.csv")
 
 :::
 
-Perform chaining operations:
+Perform chaining operations.
 
 ::: {.panel-tabset group="language"}
 ## R
+
+We use `select()` to select the columns, `rename()` to rename the `fish_length` column and `mutate()` to create a new column containing the fishlength values in inches.
 
 ```{r}
 parasites |> 
@@ -255,6 +257,8 @@ parasites |>
 ```
 
 ## Python
+
+We use `.loc` to select the columns, `.rename()` to rename the `fish_length` column and `.assign()` to create the new column containin the fishlength values in inches.
 
 ```{python}
 (

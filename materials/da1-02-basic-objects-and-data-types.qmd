@@ -808,6 +808,8 @@ We can do this as follows:
 ::: {.panel-tabset group="language"}
 ## R
 
+We can create a number sequence using `seq()`. We specify the starting number, the end number and the step-size.
+
 ```{r}
 num_seq <- seq(2, 21, by = 2)
 ```
@@ -820,6 +822,8 @@ length(num_seq)
 
 
 ## Python
+
+We can create a number sequence using `range()`. We specify the starting number, the end number and the step-size.
 
 ```{python}
 num_seq = list(range(2, 21, 2))
@@ -854,6 +858,8 @@ Using programming, answer the following: what is the sum of the resulting series
 ::: {.panel-tabset group="language"}
 ## R
 
+We can create a number sequence using `seq()`. We specify the starting number, the end number and the step-size. Because we're after uneven numbers, we start at `11`.
+
 ```{r}
 num_seq <- seq(11, 29, by = 2)
 ```
@@ -865,6 +871,8 @@ sum(num_seq)
 
 ## Python
 
+We can create a number sequence using `range`()`. We specify the starting number, the end number and the step-size. 
+Because we're after uneven numbers, we start at `11`.
 ```{python}
 num_seq = list(range(11, 30, 2))
 ```
