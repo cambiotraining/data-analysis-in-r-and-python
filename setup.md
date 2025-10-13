@@ -22,7 +22,7 @@ In general we highly encourage everyone to have all the software installed local
 
 ## Data
 
-The data used in these materials is provided as a zip file. 
+The data used in these materials are provided as a zip file. 
 Download and unzip the folder to your Desktop, then copy it into your working directory to follow along with the materials. We cover how to do this in the [Intro to software](materials/da1-01-intro-software.qmd) section.
 
 <!-- Note for Training Developers: add the link to 'href' -->

@@ -877,6 +877,66 @@ sum(num_seq)
 ::::
 :::::
 
+### Data subsetting {#sec-exr_data_subsetting}
+
+::::: {.callout-exercise #ex-data_subsetting}
+#### Data subsetting
+
+{{< level 2 >}}
+
+Create an object that contains the following values:
+
+`"Genetics", "Geography", "Neurosurgery", "Medicine", "Zoology", "Chemistry"`
+
+Extract the values where the number of characters in the Department name is more than 8.
+
+:::{.callout-hint collapse="true"}
+
+::: {.panel-tabset group="language"}
+## R
+
+Use `nchar()` to count the number of characters.
+
+## Python
+
+Use `np.char.str_len()` to count the number of characters.
+
+:::
+:::
+
+:::: {.callout-answer collapse="true"}
+
+We need to create an object to contain the data and then extract only the entries that are longer than 8 characters.
+
+::: {.panel-tabset group="language"}
+## R
+
+```{r}
+departments <- c("Genetics", "Geography", "Neurosurgery", "Medicine", "Zoology", "Chemistry")
+```
+
+```{r}
+# Subset elements where the length of each string is greater than 8
+departments[nchar(departments) > 8]
+```
+
+
+## Python
+
+```{python}
+departments = np.array(["Genetics", "Geography", "Neurosurgery", "Medicine", "Zoology", "Chemistry"])
+```
+
+```{python}
+# Subset elements where the length of each string is greater than 8
+departments[np.char.str_len(departments) > 8]
+```
+
+:::
+::::
+:::::
+
+
 ### Data types {#sec-exr_data_types}
 
 ::::: {.callout-exercise #ex-data_types}
