@@ -47,7 +47,7 @@ surveys = pd.read_csv("data/surveys.csv")
 
 ## Selecting columns
 
-Let's remind ourselves to which columns we have in our `surveys` data set. After that, we'll start making some changes.
+Let's remind ourselves of which columns we have in our `surveys` data set. After that, we'll start making some changes.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -66,14 +66,14 @@ surveys.columns
 
 ### Selecting individual columns
 
-Let's say we wanted to select only the `record_id` and `year` columns. We've briefly done this when we looked at [subsetting rows and columns](#subset_rc).
+Let's say we wanted to select only the `record_id` and `year` columns. We've briefly done this when we looked at [subsetting rows and columns](#subset_rc). This used some basic subsetting, using the `[ ]` notation.
 
 ::: {.panel-tabset group="language"}
 ## R
 
-However, there is an alternative way of doing this using the `dplyr` package - which is part of `tidyverse`.
+There is an alternative way of doing this using the `dplyr` package - which is part of `tidyverse`.
  
- We can use the `select()` function:
+ We can use the `select()` function. This function selects columns.
  
 ```{r}
 select(surveys, record_id, year)
@@ -84,7 +84,7 @@ Using the base R syntax, this is equivalent to `surveys[, c("record_id", "year")
 
 :::{.callout-tip}
 ## Getting a better view
-If we wanted to get the resulting output in a separate tab, so we could view it better, we would be able to wrap this inside the `View()` function:
+If we wanted to get the resulting output in a separate tab, so we could view it better, we could wrap this inside the `View()` function:
 
 ```{r}
 #| eval: false
@@ -97,7 +97,7 @@ View(select(surveys, record_id, year))
 
 The way we need to specify this is by giving a list of column names `["record_id", "year"]` and subsetting the surveys data set with this.
 
-The way we subset is with `surveys[ ]`, so we end up with double square brackets:
+The way we subset is with `surveys[ ]`, so we end up with double square brackets: one set for the subsetting and one set for the list.
 
 ```{python}
 surveys[["record_id", "year"]]
@@ -125,7 +125,7 @@ select(surveys, where(is.numeric))
 
 ## Python
 
-The subsetting becomes a bit tedious when we're looking for patterns in the column names. Here, we can instead use the `.filter` attribute of the surveys data set, and look for a string (text) where the column name contains `"_id"`.
+The subsetting becomes a bit tedious when we're looking for patterns in the column names. Here, we can instead use the `.filter` method of the surveys data set, and look for a string (text) where the column name contains `"_id"`.
 
 ```{python}
 surveys.filter(like = "_id")
@@ -211,7 +211,7 @@ rename(surveys, weight_g = weight)
 
 ## Python
 
-We can use the `.rename()` attribute of the `surveys` `pandas` DataFrame:
+We can use the `.rename()` method of the `surveys` DataFrame:
 
 ```{python}
 surveys.rename(columns = {'weight': 'weight_g'})
@@ -246,7 +246,7 @@ Conceptually, that looks something like this:
 
 ![Creating a new column using data from an existing one.](images/manipulation-new_column.png){#fig-manipulation_new}
 
-Let's illustrate this with an example on our `surveys` data set. Let's say we wanted to get `hindfoot_length` in centimeters, instead of millimeters. We'd have to go through each row, take the `hindfoot_length` value and divide it by 10. We then need to store this output in a column called, for example, `hindfoot_length_cm`.
+Let's illustrate this with an example on our `surveys` data. Let's say we wanted to get `hindfoot_length` in centimeters, instead of millimeters. We'd have to go through each row, take the `hindfoot_length` value and divide it by 10. We then need to store this output in a column called, for example, `hindfoot_length_cm`.
 
 ::: {.panel-tabset group="language"}
 ## R
@@ -262,7 +262,7 @@ mutate(surveys, hindfoot_length_cm = hindfoot_length / 10)
 We use the square brackets to define the name of the new column, then specify what needs to go in the new column:
 
 ```{python}
-surveys['hindfoot_length_cm'] = surveys['hindfoot_length'] / 10
+surveys["hindfoot_length_cm"] = surveys["hindfoot_length"] / 10
 ```
 
 :::
@@ -290,7 +290,6 @@ Our previous step already added the new column to the DataFrame, so we can direc
 
 ```{python}
 surveys[['record_id', 'hindfoot_length', 'hindfoot_length_cm']]
-
 ```
 
 :::
@@ -399,10 +398,13 @@ Now that we have a much better view of what our data looks like, let's play arou
 
 ::: {.panel-tabset group="language"}
 ## R
+First, we select the columns of interest:
 
 ```{r}
 subset <- select(infections, patient_id, systolic_pressure, body_temperature)
 ```
+
+Next, we remove the missing data and get the number of rows:
 
 ```{r}
 nrow(drop_na(subset))
@@ -415,6 +417,8 @@ We use the `[[ ]]` notations, because we are subsetting the DataFrame (`infectio
 ```{python}
 subset = infections[["patient_id", "systolic_pressure", "body_temperature"]]
 ```
+
+Now that we have our columns of interest, we can drop the missing data and count the number of rows:
 
 ```{python}
 subset.dropna().shape[0]
