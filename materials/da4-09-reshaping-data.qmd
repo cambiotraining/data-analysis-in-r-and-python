@@ -59,6 +59,8 @@ The data that is present in both tables is the same - it's just encoded slightly
 1. The "long" format is where we have a column for each of the types of things we measured or recorded in our data. In other words, each variable has its own column.
 2. The "wide" format occurs when we have data relating to the same measured thing in different columns. In this case, we have values related to our *metric* spread across multiple columns (a column each for a year).
 
+For an animated representation of the underlying principle of joining, have a look at the [garrickadenbuie](https://www.garrickadenbuie.com/project/tidyexplain/#pivot-wider-and-longer) website.
+
 ::: {.callout-note}
 ## Wide or long?
 
