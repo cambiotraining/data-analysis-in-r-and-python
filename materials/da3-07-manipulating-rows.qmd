@@ -25,12 +25,12 @@ Data sets can contain large quantities of observations. Often we are only intere
 
 We'll continue this section with the script named `03_session`. If needed, add the following code to the top of your script and run it.
 
-In this section we will use a new package, called `naniar`, to visualise where we have missing data. Install it as follows:
+In this section we will use a new package, called `visdat`, to visualise where we have missing data. Install it as follows:
 
 ```{r}
 #| eval: false
 # install if needed
-install.packages("naniar")
+install.packages("visdat")
 ```
 
 ```{r}
@@ -39,7 +39,7 @@ install.packages("naniar")
 library(tidyverse)
 
 # Package to visualise missing data
-library(naniar)
+library(visdat)
 
 surveys <- read_csv("data/surveys.csv")
 ```
@@ -438,20 +438,20 @@ The easiest way of getting some numbers on the missing data is by using the `sum
 summary(surveys)
 ```
 
-Often it's nice to visualise where your missing values are, to see if there are any patterns that are obvious. There are several packages in R that can do this, of which `naniar` is one.
+Often it's nice to visualise where your missing values are, to see if there are any patterns that are obvious. There are several packages in R that can do this, of which `visdat` is one.
 
 ```{r}
 #| eval: false
 # install if needed
-install.packages("naniar")
+install.packages("visdat")
 
 # load the library
-library(naniar)
+library(visdat)
 ```
 
 ```{r}
 # visualise missing data
-vis_miss(surveys)
+vis_dat(surveys)
 ```
 
 ## Python
@@ -727,7 +727,7 @@ Following that, we then populate the column based on the conditions we check aga
 - Conditions can be set using several operators: `>`, `>=`, `<`, `<=`, `==`, `!=`, `%in%`.
 - Conditions can be combined using `&` (AND) and `|` (OR).
 - The function `is.na()` can be used to identify missing values. It can be negated as `!is.na()` to find non-missing values.
-- We can visualise missing data using the `vis_miss()` function from the `naniar` package.
+- We can visualise missing data using the `vis_dat()` function from the `visdat` package.
 
 ## Python
 
