@@ -38,7 +38,7 @@ Download and unzip the folder to your Desktop, then copy it into your working di
 - Then, open RStudio and run the following commands on the Console (bottom left panel) to install the required packages:
 
     ```r
-    install.packages(c("MASS", "janitor", "naniar", 
+    install.packages(c("MASS", "janitor", "visdat", 
                       "patchwork", "scales", "tidyverse"))
     ```
 
@@ -49,7 +49,7 @@ Download and unzip the folder to your Desktop, then copy it into your working di
 - Then, open a terminal and run the following command to install the required packages:
 
   ```bash
-  mamba create -n data-analysis -y -c conda-forge python plotnine pyjanitor matplotlib missingno numpy pandas seaborn textwrap jupyterlab
+  mamba create -n data-analysis -y -c conda-forge python plotnine pyjanitor matplotlib missingno numpy pandas seaborn jupyterlab
   ```
 
 - Once installation completes, activate the environment (your prompt should change to indicate you are in the `data-analysis` environment):
