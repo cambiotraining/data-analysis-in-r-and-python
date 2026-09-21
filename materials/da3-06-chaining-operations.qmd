@@ -143,26 +143,49 @@ In Python, a `lambda` is an **anonymous function** — a quick, in-place functio
 
 **Why is `lambda` important in method chaining?**
 
-This all relates to the evaluation order: `.assign()` evaluates its arguments **before** the previous steps in the chain are fully applied.
-
-So if you reference a column that was renamed or created earlier in the chain, `pandas` won’t find it unless you use `lambda` to delay evaluation.
-
-Using `lambda` in `.assign()` ensures that pandas waits to evaluate the new column **until the DataFrame is fully updated** by the earlier steps.
-
-Suppose we want to:
-
-- Select two columns
-- Create a new column `weight_kg` as `weight_g / 1000`
-
-Without `lambda` — this will raise an error:
+When you write:
 
 ```python
+surveys["weight"]
+```
+
+you are referring to the `weight` column in the **original `surveys` DataFrame**. But sometimes you want to use a column that was **created earlier in the method chain**. In that case, the column doesn't exist in the original DataFrame.
+
+Using `lambda` lets `.assign()` work with the DataFrame **as it exists at that point in the chain**.
+
+For example, suppose we want to:
+
+- Select `record_id` and `weight`
+- Create `weight_kg`
+- Create another column using the newly created `weight_kg`
+
+Without `lambda`, this will raise an error:
+
+```{python}
+#| error: true
+
 (
   surveys
   .loc[:, ["record_id", "weight"]]
-  .assign(weight_kg = surveys["weight_g"] / 1000)  # KeyError: "weight_g"
+  .assign(weight_kg = surveys["weight"] / 1000)
+  .assign(weight_doubled = surveys["weight_kg"] * 2)
 )
 ```
+
+This fails because `weight_kg` does **not** exist in the original `surveys` DataFrame. With `lambda`, we can refer to the DataFrame at the current point in the chain:
+
+```{python}
+(
+  surveys
+  .loc[:, ["record_id", "weight"]]
+  .assign(weight_kg = lambda df: df["weight"] / 1000)
+  .assign(weight_doubled = lambda df: df["weight_kg"] * 2)
+)
+```
+
+Here, `df["weight_kg"]` works because `df` represents the DataFrame **after `weight_kg` has been created**.
+
+**Key thing to remember:** use `lambda` when your calculation needs to refer to columns that were created or modified earlier in the method chain.
 :::
 
 ::: {.callout-note}
