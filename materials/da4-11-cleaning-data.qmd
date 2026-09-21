@@ -994,9 +994,7 @@ We're not covering the functionality of `patchwork` extensively here, since ther
 
 ## Python
 
-In Python there is a `patchworklib` that tries to emulate what R's `patchwork` is doing. However, it seems to run into issues quite quickly when `plotnine` gets updated.
-
-So, we don't provide code for this for the time being. We'll revisit this once the package is more stable.
+In Python, `plotnine` supports plot composition natively. Use `|` to place plots side by side and `/` to stack them vertically. For more information, see [here](https://plotnine.org/reference/Compose.html#plotnine.composition.Compose).
 
 :::
 
@@ -1012,6 +1010,12 @@ We can easily combine the 3 plots we created into a single panel.
 
 
 ## Python
+
+```{python}
+#| eval: false
+
+(p1 | p2) / p3
+```
 
 :::
 
@@ -1031,6 +1035,19 @@ We can add a title using the `title =` and add tags using `tag_levels =` argumen
 You can change the `tag_levels =` value to `"A"` for uppercase tags, or `"1"` for numbers (which wouldn't be very clear).
 
 ## Python
+
+We can add tags to the individual plots using `labs(tag = ...)`. We can use Quarto's `fig-cap` option to label the full figure:
+
+```{python}
+#| eval: false
+
+p1_tagged = p1 + labs(tag = "a")
+p2_tagged = p2 + labs(tag = "b")
+p3_tagged = p3 + labs(tag = "c")
+
+composition = (p1_tagged | p2_tagged) / p3_tagged
+composition
+```
 
 :::
 
